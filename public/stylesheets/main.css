@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+:root {
+    --main-color: #272727;
+    --text-color: #747474;
+}
 
 *{
-    font-family: 'Poppins', sans-serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,127 +13,69 @@
 
 body{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: white;
 }
 
 .sidebar{
-    background: lightgoldenrodyellow;
+    background: var(--main-color);
     position: relative;
-    display: grid;
     width: 100%;
-    height: 200px;
-    grid-template-rows: 25% 25% 25% 25%;
-    grid-template-columns: 25% 25% 25% 25%;
+    height: 45px;
     transition: 0.05s;
-}
-
-.sidebar.close{
-    height: 60px;
-
-}
-
-.sidebar .iconarrow{
-    position: absolute;
-    color: saddlebrown;
-    font-size: 25px;
-    bottom: -13px;
-    right: 0;
-    z-index: 100;
-}
-
-.sidebar .sidebar-trangchu{
-    grid-row: 1/5;
-    grid-column: 1/2;
-    /*border-right: 3px solid greenyellow;*/
-    position: absolute;
-    width: 100%;
-    height: 200px;
-}
-
-
-.sidebar .sidebar-ThoiKhoaBieu{
-    grid-row: 1 / 5;
-    grid-column: 2 / 3;
-    width: 100%;
-    height: 100%;
-    position: absolute;
     display: flex;
-    flex-direction: column;
-    /*border-right: 3px solid greenyellow;*/
-}
-
-.sidebar .sidebar-ThoiKhoaBieu .sapxeptoiuu a{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    position: absolute;
-}
-
-.sidebar .sidebar-ThoiKhoaBieu .sapxeprandom a{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    position: absolute;
-    top: 100px;
-}
-
-.sidebar .sidebar-nhanxet{
-    position: absolute;
-    grid-row: 1 / 5;
-    grid-column: 3 / 4;
-    width: 100%;
-    height: 200px;
-    /*border-right: 3px solid greenyellow;*/
-}
-
-.sidebar .sidebar-nhanxet .Dokhode a{
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
-
-.sidebar .sidebar-danhgia{
-    position: absolute;
-    grid-row: 1 / 5;
-    grid-column: 4 / 5;
-    width: 100%;
-    height: 200px;
+.sidebar .sidebar-item {
+    position: relative;
 }
 
-.sidebar a .icon{
-    font-size: 20px;
-    font-weight: bolder;
-    color: black;
-    margin: 10px;
-}
-.sidebar a .text{
-    font-weight: bold;
-    font-size: 20px;
-    color: black;
+.sidebar .sidebar-item + .sidebar-item {
+    margin-left: 10px;
 }
 
-.sidebar a{
+.sidebar .sidebar-menu {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-menu span {
     text-decoration: none;
-    display: flex;
     align-items: center;
-    width: 100%;
-    height: 50px;
-    transition: 0.03s;
+    font-size: 15px;
+    color: var(--text-color);
 }
 
-.sidebar a:hover{
-    background: saddlebrown;
-    border-radius: 10px;
+.sidebar .sidebar-menu:hover {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.sidebar a:hover .icon,
-.sidebar a:hover .text{
-    color: white;
+.sidebar .sidebar-menu:hover ~ .popup {
+    display: block;
 }
 
+/* .sidebar:focus */
+
+
+.sidebar .popup {
+    padding: 0 30px;
+    top: 100%;
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
+    width: max-content;
+    position: absolute;
+    background: var(--main-color);
+    border-radius: 5px;
+    display: none;
+}
+
+.sidebar .popup div {
+    padding: 5px 0;
+}

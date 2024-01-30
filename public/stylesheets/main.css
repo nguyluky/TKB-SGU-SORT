@@ -2,6 +2,7 @@
 :root {
     --main-color: #e9eef6;
     --text-color: rgb(60,64,67);
+    --text-color-2: rgb(91, 95, 99);
     --hover-back: rgba(0,0,0,0.05);
     --color-hover: rgb(75, 79, 82);
 }
@@ -129,7 +130,20 @@ body{
     position: absolute;
     padding: 5px;
     top: 100%;
-    right: 0px;
+    right: 5px;
     background: var(--main-color);
     box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
+    width: max-content;
+    border-radius: 5px;
 }
+
+.sidebar .siderbar-right-elem .accout-popup .user-info p..line {
+    
+}
+
+.sidebar .siderbar-right-elem .accout-popup .user-info .mssv {
+    color: var(--text-color-2);
+    font-size: 10px;
+    padding-left: 5px;
+}
+

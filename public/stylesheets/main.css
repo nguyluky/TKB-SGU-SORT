@@ -21,7 +21,7 @@ body{
 }
 
 .sidebar {
-    padding: 20px;
+    padding: 10px;
     background: var(--main-color);
     position: relative;
     width: 100%;
@@ -30,6 +30,22 @@ body{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.sidebar .sidebar-icon {
+    height: 37px;
+    width: 37px;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.sidebar .sidebar-icon:hover {
+    background-color: var(--hover-back);
+}
+
+.sidebar .sidebar-icon i {
+    font-size: 25px;
 }
 
 .sidebar .sidebar-item {
@@ -99,11 +115,11 @@ body{
     position: relative;
 }
 
-.sidebar .siderbar-right-elem div {
+.sidebar .siderbar-right-elem div.siderbar-right-item {
     padding: 3px;
 }
 
-.sidebar .siderbar-right-elem div + div {
+.sidebar .siderbar-right-elem div.siderbar-right-item + div.siderbar-right-item {
     margin-left: 10px;
 }
 
@@ -137,8 +153,9 @@ body{
     border-radius: 5px;
 }
 
-.sidebar .siderbar-right-elem .accout-popup .user-info p..line {
-    
+.sidebar .siderbar-right-elem .accout-popup .user-info p.line {
+    margin-top: 5px;
+    font-size: 13px;
 }
 
 .sidebar .siderbar-right-elem .accout-popup .user-info .mssv {
@@ -147,3 +164,18 @@ body{
     padding-left: 5px;
 }
 
+.sidebar .siderbar-right-elem .accout-popup .br {
+    width: 100%;
+    height: 1px;
+    background: black;
+    margin: 2px 0px 5px;
+}
+
+.sidebar .siderbar-right-elem .accout-popup .logout {
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sidebar .siderbar-right-elem .accout-popup .logout:hover {
+    text-decoration: underline;
+}

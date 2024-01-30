@@ -3,6 +3,13 @@
 
 var popup_is_show = false
 var popup_show = null
+var islogin = true
+
+function accout_hind() {
+    document.querySelector('.siderbar-right-item .accout-popup').style.display = 'none'
+    document.querySelector('body').addEventListener('click', accout_hind)
+
+}   
 
 function hind_popup() {
     document.querySelectorAll('.popup').forEach((e) => {
@@ -56,6 +63,15 @@ document.querySelectorAll('.sidebar-item').forEach(ele => {
 })
 
 
-document.getElementById('accout').onclick = () => {
-    console.log('login')
+document.getElementById('accout').onclick = (event) => {
+
+    // kiểm tra xem có đăng nhập chưa
+    if (!islogin) return
+    if (document.querySelector('.siderbar-right-item .accout-popup').style.display == 'block') {
+        accout_hind()
+        return
+    }
+    document.querySelector('.siderbar-right-item .accout-popup').style.display = 'block'
+    event.stopPropagation()
+    document.querySelector('body').addEventListener('click', accout_hind)
 }

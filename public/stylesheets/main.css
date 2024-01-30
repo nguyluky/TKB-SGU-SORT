@@ -2,6 +2,8 @@
 :root {
     --main-color: #e9eef6;
     --text-color: rgb(60,64,67);
+    --hover-back: rgba(0,0,0,0.05);
+    --color-hover: rgb(75, 79, 82);
 }
 
 *{
@@ -17,7 +19,8 @@ body{
     background: white;
 }
 
-.sidebar{
+.sidebar {
+    padding: 20px;
     background: var(--main-color);
     position: relative;
     width: 100%;
@@ -55,7 +58,7 @@ body{
 
 .sidebar .sidebar-menu:hover {
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-back);
 }
 
 .sidebar .sidebar-menu:hover ~ .popup {
@@ -63,7 +66,7 @@ body{
 }
 
 .sidebar .popup {
-    padding: 0 30px;
+    padding: 5px;
     top: 100%;
     box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
     width: max-content;
@@ -73,6 +76,60 @@ body{
     display: none;
 }
 
+.sidebar .popup a { 
+    padding: 0 20px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.sidebar .popup div:hover {
+    background-color: var(--hover-back);
+    border-radius: 5px;
+
+}
+
 .sidebar .popup div {
     padding: 5px 0;
+}
+
+.sidebar .siderbar-right-elem {
+    margin-left: auto;
+    display: flex;
+    position: relative;
+}
+
+.sidebar .siderbar-right-elem div {
+    padding: 3px;
+}
+
+.sidebar .siderbar-right-elem div + div {
+    margin-left: 10px;
+}
+
+.sidebar .siderbar-right-elem .siderbar-right-item .sidebar-menu:hover {
+    background-color: var(--hover-back);
+    border-radius: 50%;
+}
+
+.sidebar .siderbar-right-elem .siderbar-right-item .sidebar-menu:hover i {
+    color: var(--color-hover);
+}
+
+.sidebar .siderbar-right-elem i {
+    color: var(--text-color);
+    font-size: 25px;
+}
+
+.sidebar .siderbar-right-elem .share {
+    -webkit-transform: scaleX(-1);
+   transform: scaleX(-1);
+}
+
+.sidebar .siderbar-right-elem .accout-popup {
+    position: absolute;
+    padding: 5px;
+    top: 100%;
+    right: 0px;
+    background: var(--main-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
 }

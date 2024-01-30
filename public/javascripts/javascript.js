@@ -17,10 +17,11 @@ document.querySelectorAll('.sidebar-item').forEach(ele => {
     if (!menu) return
     menu.addEventListener('mouseenter', () => {
         if (!popup_is_show) return
+        var e = ele.querySelector('.popup')
+        if (!e) return // nếu nó enter vào cái không có popup thì không làm gì hết
         if (popup_show) {
             popup_show.style.display = 'none'
         }
-        var e = ele.querySelector('.popup')
         popup_show = e
         e.style.display = 'block'
     })

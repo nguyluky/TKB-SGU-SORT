@@ -1,7 +1,7 @@
 
 :root {
-    --main-color: #272727;
-    --text-color: #747474;
+    --main-color: #e9eef6;
+    --text-color: rgb(60,64,67);
 }
 
 *{
@@ -61,9 +61,6 @@ body{
 .sidebar .sidebar-menu:hover ~ .popup {
     display: block;
 }
-
-/* .sidebar:focus */
-
 
 .sidebar .popup {
     padding: 0 30px;

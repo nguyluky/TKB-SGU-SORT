@@ -7,12 +7,9 @@ var methodOverride = require('method-override')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-<<<<<<< HEAD
 var sign_inRouter = require('./routes/sign_in');
 var sign_upRouter = require('./routes/sign_up');
-=======
 var login = require("./routes/login")
->>>>>>> ca49349ed1450363c03f4392906c05d9e3307394
 
 var app = express();
 
@@ -35,11 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-<<<<<<< HEAD
 app.use('/sign_in', sign_inRouter);
 app.use('/sign_up', sign_upRouter);
-=======
 app.use('/login', login)
->>>>>>> ca49349ed1450363c03f4392906c05d9e3307394
 
 module.exports = app;

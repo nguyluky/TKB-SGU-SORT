@@ -7,6 +7,8 @@ var methodOverride = require('method-override')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var sign_inRouter = require('./routes/sign_in');
+var sign_upRouter = require('./routes/sign_up');
 
 var app = express();
 
@@ -29,5 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/sign_in', sign_inRouter);
+app.use('/sign_up', sign_upRouter);
 
 module.exports = app;

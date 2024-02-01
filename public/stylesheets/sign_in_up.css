@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: silver;
+}
+
+.wrapper{
+    background: whitesmoke;
+    width: 500px;
+    padding: 2rem 1rem;
+    margin:  100px auto;
+    text-align: center;
+    border-radius: 20px;
+}
+
+h1{
+    margin-bottom: 20px;
+    color: #07001f;
+}
+
+.wrapper form input{
+    border-radius: 20px;
+    font-size: 20px;
+    width: 80%;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    background: #e4e4e4;
+    padding: 10px 20px;
+}
+
+/*
+.wrapper input:focus{
+    border: 1px solid black;
+}
+ */
+
+.wrapper button{
+    width: 80%;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    padding: 10px 10px;
+    color: #fff;
+    margin-bottom: 20px;
+    background: rgb(17,107,143);
+}
+
+.wrapper button:hover{
+    background: rgba(17, 107, 143, 0.877);
+}
+
+.wrapper .dang_ky,
+.wrapper .quen_mat_khau{
+    margin-bottom: 10px;
+    text-align: right;
+    margin-right: 50px;
+}
+
+.wrapper a{
+    text-decoration: none;
+}
+
+.wrapper .member{
+    text-align: right;
+    margin-right: 50px;
+}
+
+

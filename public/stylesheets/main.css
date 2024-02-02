@@ -5,6 +5,9 @@
     --text-color-2: rgb(91, 95, 99);
     --hover-back: rgba(0,0,0,0.05);
     --color-hover: rgb(75, 79, 82);
+    --main-backe: whitesmoke;
+
+    --main-box-shadow: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
 }
 
 *{
@@ -17,46 +20,52 @@
 body{
     width: 100%;
     height: 100vh;
-    background: white;
+    background: var(--main-backe);
 }
 
-.sidebar {
+.menubar {
     padding: 10px;
     background: var(--main-color);
     position: relative;
     width: 100%;
-    height: 45px;
+    height: 50px;
     transition: 0.05s;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.sidebar .sidebar-icon {
+.menubar .menubar-icon i {
+    color: var(--text-color);
+}
+.menubar .menubar-icon {
     height: 37px;
     width: 37px;
     margin-right: 10px;
     padding: 5px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.sidebar .sidebar-icon:hover {
+.menubar .menubar-icon:hover {
     background-color: var(--hover-back);
 }
 
-.sidebar .sidebar-icon i {
+.menubar .menubar-icon i {
     font-size: 25px;
 }
 
-.sidebar .sidebar-item {
+.menubar .menubar-item {
     position: relative;
 }
 
-.sidebar .sidebar-item + .sidebar-item {
+.menubar .menubar-item + .menubar-item {
     margin-left: 10px;
 }
 
-.sidebar .sidebar-menu {
+.menubar .menubar-menu {
     background-color: transparent;
     border: none;
     outline: none;
@@ -66,26 +75,26 @@ body{
     cursor: pointer;
 }
 
-.sidebar .sidebar-menu span {
+.menubar .menubar-menu span {
     text-decoration: none;
     align-items: center;
     font-size: 15px;
     color: var(--text-color);
 }
 
-.sidebar .sidebar-menu:hover {
+.menubar .menubar-menu:hover {
     border-radius: 5px;
     background-color: var(--hover-back);
 }
 
-.sidebar .sidebar-menu:hover ~ .popup {
+.menubar .menubar-menu:hover ~ .popup {
     display: block;
 }
 
-.sidebar .popup {
+.menubar .popup {
     padding: 5px;
     top: 100%;
-    box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
+    box-shadow: var(--main-box-shadow);
     width: max-content;
     position: absolute;
     background: var(--main-color);
@@ -93,89 +102,114 @@ body{
     display: none;
 }
 
-.sidebar .popup a { 
+.menubar .popup a { 
     padding: 0 20px;
     text-decoration: none;
     color: var(--text-color);
 }
 
-.sidebar .popup div:hover {
+.menubar .popup div:hover {
     background-color: var(--hover-back);
     border-radius: 5px;
 
 }
 
-.sidebar .popup div {
+.menubar .popup div {
     padding: 5px 0;
 }
 
-.sidebar .siderbar-right-elem {
+.menubar .menubar-right-elem {
     margin-left: auto;
     display: flex;
     position: relative;
 }
 
-.sidebar .siderbar-right-elem div.siderbar-right-item {
+.menubar .menubar-right-elem div.menubar-right-item {
     padding: 3px;
 }
 
-.sidebar .siderbar-right-elem div.siderbar-right-item + div.siderbar-right-item {
+.menubar .menubar-right-elem div.menubar-right-item + div.menubar-right-item {
     margin-left: 10px;
 }
 
-.sidebar .siderbar-right-elem .siderbar-right-item .sidebar-menu:hover {
+.menubar .menubar-right-elem .menubar-right-item .menubar-menu:hover {
     background-color: var(--hover-back);
     border-radius: 50%;
 }
 
-.sidebar .siderbar-right-elem .siderbar-right-item .sidebar-menu:hover i {
+.menubar .menubar-right-elem .menubar-right-item .menubar-menu:hover i {
     color: var(--color-hover);
 }
 
-.sidebar .siderbar-right-elem i {
+.menubar .menubar-right-elem i {
     color: var(--text-color);
     font-size: 25px;
 }
 
-.sidebar .siderbar-right-elem .share {
+.menubar .menubar-right-elem .share {
     -webkit-transform: scaleX(-1);
    transform: scaleX(-1);
 }
 
-.sidebar .siderbar-right-elem .accout-popup {
+.menubar .menubar-right-elem .accout-popup {
     position: absolute;
     padding: 5px;
     top: 100%;
     right: 5px;
     background: var(--main-color);
-    box-shadow: rgba(0, 0, 0, 0.2) 1px 0 3px;
+    box-shadow: var(--main-box-shadow);
     width: max-content;
     border-radius: 5px;
 }
 
-.sidebar .siderbar-right-elem .accout-popup .user-info p.line {
+.menubar .menubar-right-elem .accout-popup .user-info p.line {
     margin-top: 5px;
     font-size: 13px;
 }
 
-.sidebar .siderbar-right-elem .accout-popup .user-info .mssv {
+.menubar .menubar-right-elem .accout-popup .user-info .mssv {
     color: var(--text-color-2);
     font-size: 10px;
     padding-left: 5px;
 }
 
-.sidebar .siderbar-right-elem .accout-popup .br {
+.menubar .menubar-right-elem .accout-popup .br {
     width: 100%;
     height: 1px;
     background: black;
     margin: 2px 0px 5px;
 }
 
-.sidebar .siderbar-right-elem .accout-popup .logout {
+.menubar .menubar-right-elem .accout-popup .logout {
     cursor: pointer;
     font-size: 14px;
 }
 
-.sidebar .siderbar-right-elem .accout-popup .logout:hover {
+.menubar .menubar-right-elem .accout-popup .logout:hover {
     text-decoration: underline;
+}
+
+.main-body {
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+}
+
+.main-body .siderbar {
+    height: 100%;
+    width: 23%;
+    background: red;
+    transition: all 0.05s ease-in-out;
+    
+    overflow: hidden;
+}
+
+.main-body .siderbar.close {
+    width: 0px !important;
+}
+
+.main-body .tkb {
+    width: 100%;
+    background: blue;
+    height: 100%;
 }

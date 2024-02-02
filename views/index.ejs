@@ -5,17 +5,40 @@
         <link rel="stylesheet" href="stylesheets\main.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <script defer src="javascripts\javascript.js"></script>
+        <script>
 
+            function setToDarkMode() {
+                document.documentElement.style.setProperty('--main-color', '#1b1b1b')
+                document.documentElement.style.setProperty('--text-color', '#e3e3e3')
+                document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+                document.documentElement.style.setProperty('--hover-back', 'rgba(232,234,237,.08)')
+                document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
+                document.documentElement.style.setProperty('--main-backe', '#282a2c')
+            }
+
+            function setToLightMode() {
+                document.documentElement.style.setProperty('--main-color', '#e9eef6')
+                document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
+                document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+                document.documentElement.style.setProperty('--hover-back', 'rgba(0,0,0,0.05)')
+                document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
+                document.documentElement.style.setProperty('--main-backe', 'whitesmoke')
+            }
+            
+            if (localStorage.getItem('theme') == 'dark') {
+                setToDarkMode()
+            }
+        </script>
     </head>
 
     <body>
-        <div class ="sidebar close">
-            <div class="sidebar-icon">
+        <div class ="menubar">
+            <div class="menubar-icon">
                 <i class='bx bx-menu'></i>
             </div>
 
-            <div class="sidebar-item trangchu">
-                <div class="sidebar-menu">
+            <div class="menubar-item trangchu">
+                <div class="menubar-menu">
                     <span class="text trang-chu">Học phần</span>
                 </div>
 
@@ -29,8 +52,8 @@
                 </div>
             </div>
 
-            <div class="sidebar-item ThoiKhoaBieu">
-                <div class="sidebar-menu">
+            <div class="menubar-item ThoiKhoaBieu">
+                <div class="menubar-menu">
                     <span>Thời Khóa Biểu</span>
                 </div>
 
@@ -56,8 +79,8 @@
                     
             </div>
 
-            <div class="sidebar-item nhanxet">
-                <div class="sidebar-menu">
+            <div class="menubar-item nhanxet">
+                <div class="menubar-menu">
                     <span class="text nhanxet">Nhận Xét GV</span>
                 </div>
                 <div class="popup" style="display: none;">
@@ -68,7 +91,7 @@
                         </a>
                     </div>
                     
-                    <div class="sidebar-item danhgia">
+                    <div class="menubar-item danhgia">
                         <a href="#">
                             <span class="text danhgia">Đánh Giá</span>
                         </a>
@@ -76,19 +99,19 @@
                 </div>
             </div>
 
-            <div class="siderbar-right-elem">
-                <div class="siderbar-right-item">
-                    <div class="sidebar-menu light-mode">
+            <div class="menubar-right-elem">
+                <div class="menubar-right-item" id="mod">
+                    <div class="menubar-menu light-mode">
                         <i class='bx bxs-moon' ></i>
                     </div>
                 </div>
-                <div class="siderbar-right-item">
-                    <div class="sidebar-menu share">
+                <div class="menubar-right-item">
+                    <div class="menubar-menu share">
                         <i class='bx bxs-share' ></i>
                     </div>
                 </div>
-                <div class="siderbar-right-item">
-                    <div class="sidebar-menu accout" id="accout">
+                <div class="menubar-right-item">
+                    <div class="menubar-menu accout" id="accout">
                         <i class='bx bxs-user-circle'></i>
                     </div>
                     <div class="accout-popup" style="display: none;">
@@ -102,6 +125,13 @@
                         <a class="logout">Đăng Xuất</a>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="main-body">
+            <div class="siderbar" id="siderbar"></div>
+            <div class="tkb" id="tkb">
+
             </div>
         </div>
     </body>

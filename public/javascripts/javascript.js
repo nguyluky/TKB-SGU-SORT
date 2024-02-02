@@ -3,7 +3,10 @@
 
 var popup_is_show = false
 var popup_show = null
-var islogin = true
+
+function checkLogin() {
+    return false
+}
 
 function accout_hind() {
     document.querySelector('.siderbar-right-item .accout-popup').style.display = 'none'
@@ -66,7 +69,11 @@ document.querySelectorAll('.sidebar-item').forEach(ele => {
 document.getElementById('accout').onclick = (event) => {
 
     // kiểm tra xem có đăng nhập chưa
-    if (!islogin) return
+    if (!checkLogin()) {
+
+        document.location.href = "/sign_up"
+        return
+    }
     if (document.querySelector('.siderbar-right-item .accout-popup').style.display == 'block') {
         accout_hind()
         return
@@ -74,4 +81,28 @@ document.getElementById('accout').onclick = (event) => {
     document.querySelector('.siderbar-right-item .accout-popup').style.display = 'block'
     event.stopPropagation()
     document.querySelector('body').addEventListener('click', accout_hind)
+}
+
+document.getElementById('mod').onclick = (event) => {
+    if (localStorage.getItem('theme') != 'dark') {
+        setToDarkMode();
+        localStorage.setItem('theme', 'dark')
+    }
+    else {
+        setToLightMode();
+        localStorage.setItem('theme', '')
+    }
+}
+
+const sidebar = document.getElementById('siderbar')
+const resize = document.getElementById('resize')
+
+document.querySelector('.menubar-icon').onclick = () => {
+    if (sidebar.classList.contains('close')) {
+        sidebar.classList.remove('close')
+    }
+    else {
+        sidebar.classList.add('close')
+    }
+    
 }

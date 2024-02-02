@@ -23,8 +23,8 @@ function hind_popup() {
     document.querySelector('body').addEventListener('click', hind_popup)
 }
 
-document.querySelectorAll('.sidebar-item').forEach(ele => {
-    var menu = ele.querySelector('.sidebar-menu')
+document.querySelectorAll('.menubar-item').forEach(ele => {
+    var menu = ele.querySelector('.menubar-menu')
     if (!menu) return
     menu.addEventListener('mouseenter', () => {
         if (!popup_is_show) return
@@ -100,8 +100,10 @@ const resize = document.getElementById('resize')
 document.querySelector('.menubar-icon').onclick = () => {
     if (sidebar.classList.contains('close')) {
         sidebar.classList.remove('close')
+        document.getElementById('add-button').classList.remove('close')
     }
     else {
+        document.getElementById('add-button').classList.add('close')
         sidebar.classList.add('close')
     }
     

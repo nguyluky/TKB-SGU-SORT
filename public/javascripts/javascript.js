@@ -123,18 +123,29 @@ const tkb = {
 
         console.log(data)
         data.tkb.forEach(e => {
-            var {thu, tbd, tkt, th} = e;
+            var {thu, tbd, tkt, th, phong, gv} = e;
             var tiets = this.tkb.querySelectorAll('.tiet');
             for (let index = tbd; index <= tkt - 1; index++) {
                 var thus = tiets[index].querySelectorAll('td')
                 thus[thu - 1].style.display = 'none'
-
             }
 
             var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
             tbd_ele.rowSpan = `${tkt - tbd + 1}`
             tbd_ele.querySelector('.tiet-item').classList.add('haveitem')
             if (th) tbd_ele.querySelector('.tiet-item').classList.add('th');
+
+            tbd_ele.querySelector('.tiet-item').innerHTML = `
+                <span>${data.ten_mon} (${data.ma_mon})</span>
+                <p>
+                    <span>Phòng: </span>
+                    ${phong}
+                </p>
+                <p>
+                    <span>Phòng: </span>
+                    ${gv}
+                </p>
+            `
         })
 
     },
@@ -176,3 +187,4 @@ function test(index) {
         // tkb.render(a)
     })
 }
+

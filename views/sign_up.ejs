@@ -8,6 +8,29 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <script>
+        function setToDarkMode() {
+            document.documentElement.style.setProperty('--wrapper-color', '#282a2c')
+            document.documentElement.style.setProperty('--h1dangky-color', '#bdc1c6')
+            document.documentElement.style.setProperty('--input-color', '#282a2c')
+            document.documentElement.style.setProperty('--text-color', '#bdc1c6')
+            document.documentElement.style.setProperty('--member-color', '#bdc1c6')
+        }
+
+        function setToLightMode() {
+            document.documentElement.style.setProperty('--wrapper-color', 'whitesmoke')
+            document.documentElement.style.setProperty('--h1dangky-color', '#07001f')
+            document.documentElement.style.setProperty('--input-color', '#e4e4e4')
+            document.documentElement.style.setProperty('--text-color', '#07001f')
+        }
+
+        if (localStorage.getItem('theme') == 'dark') {
+            setToDarkMode()
+        }
+    </script>
+
+
+
 </head>
 
 <body>

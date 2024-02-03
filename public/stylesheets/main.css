@@ -26,6 +26,7 @@ body{
 }
 
 .menubar {
+    user-select: none !important;
     padding: 10px;
     background: var(--main-color);
     position: relative;
@@ -216,6 +217,7 @@ body{
 }
 
 .main-body .tkb > table {
+    user-select: none !important;
     height: 100%;
     width: 100%;
     color: var(--text-color);
@@ -266,11 +268,23 @@ body{
     transform: translateX(-100%);
 }
 
+/* TODO remove */
+/* .main-body .tkb > table tr.tiet td .tiet-item {
+    border: 1px black solid;
+} */
 
 .main-body .tkb > table tr.tiet td .tiet-item {
     position: relative;
     height: 100%;
     width: 100%;
+}
+
+.main-body .tkb > table tr.tiet td .tiet-item.haveitem {
+    border-radius: 5px;
+    /* TODO chang to var() */
+    background-color: #cfe2ff;
+    width: calc(100% - 5px);
+
 }
 
 .main-body .tkb > table tr.tiet td .tiet-item::before {
@@ -345,5 +359,31 @@ body{
 
 
 .siderbar .siderbar-body .ls {
-    
+    margin: 0 20px 0 10px;
+}
+
+.siderbar .siderbar-body .hp {
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    height: 25px;
+}
+
+.siderbar .siderbar-body .hp i {
+    color: var(--text-color);
+    font-size: 25px;
+}
+
+.siderbar .siderbar-body .hp .name {
+
+    color: var(--text-color);
+
+    margin-left: 5px;
+    text-wrap: nowrap;
+}
+
+.siderbar .siderbar-body .hp .ct {
+    color: var(--text-color);
+
+    margin-left: auto;
 }

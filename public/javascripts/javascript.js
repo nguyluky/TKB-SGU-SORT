@@ -12,7 +12,7 @@ function accout_hind() {
     document.querySelector('.siderbar-right-item .accout-popup').style.display = 'none'
     document.querySelector('body').addEventListener('click', accout_hind)
 
-}   
+}
 
 function hind_popup() {
     document.querySelectorAll('.popup').forEach((e) => {
@@ -33,8 +33,8 @@ document.querySelectorAll('.menubar-item').forEach(ele => {
         var e = ele.querySelector('.popup')
 
         // nếu nó enter vào cái không có popup thì không làm gì hết
-        if (!e) return 
-        
+        if (!e) return
+
         if (popup_show) {
             popup_show.style.display = 'none'
         }
@@ -43,9 +43,9 @@ document.querySelectorAll('.menubar-item').forEach(ele => {
         e.style.display = 'block'
     })
 
-    menu.addEventListener('click', (event) => {        
+    menu.addEventListener('click', (event) => {
         e = ele.querySelector('.popup')
-        
+
         // nếu nó không có popup thì không làm gì cả
         if (!e) return
 
@@ -53,7 +53,7 @@ document.querySelectorAll('.menubar-item').forEach(ele => {
         if (popup_show == e) {
             hind_popup()
             return;
-        } 
+        }
         popup_show = e
         popup_show.style.display = 'block'
         popup_is_show = true
@@ -106,5 +106,34 @@ document.querySelector('.menubar-icon').onclick = () => {
         document.getElementById('add-button').classList.add('close')
         sidebar.classList.add('close')
     }
-    
+
+}
+
+const tkb = {
+    tkb: document.getElementById('tkb'),
+    hocphan: {},
+    clear: function () {
+        this.hocphan.forEach((e) => {
+            console.log(e)
+        })
+    },
+    render: function (ten, thu, tbd, tkt, data) {
+
+        this.hocphan[ten] = {
+            "thu": thu,
+            "tbd": tbd,
+            "tkt": tkt
+        }
+
+        var tiets = this.tkb.querySelectorAll('.tiet');
+        for (let index = tbd; index <= tkt - 1; index++) {
+            var thus = tiets[index].querySelectorAll('td')
+            thus[thu - 1].style.display = 'none'
+
+        }
+
+        var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
+        tbd_ele.rowSpan = `${tkt - tbd + 1}`
+        tbd_ele.querySelector('.tiet-item').classList.add('haveitem')
+    }
 }

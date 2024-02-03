@@ -7,6 +7,7 @@
     --color-hover: rgb(75, 79, 82);
     --main-backe: whitesmoke;
     --hairline: rgb(218,220,224);
+    --primary: rgb(26,115,232);
 
     --add-button-shadow:  0px 4px 4px 0px rgba(60,64,67,0.3),0px 8px 12px 6px rgba(60,64,67,0.15);
     --main-box-shadow: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
@@ -219,10 +220,11 @@ body{
 .main-body .tkb > table {
     user-select: none !important;
     height: 100%;
-    width: 100%;
+    width: calc(100% - 10px);
     color: var(--text-color);
     table-layout: fixed;
     border-collapse: collapse;
+    margin-left: 10px;
 }
 
 .main-body .tkb > table tr.header {
@@ -235,7 +237,7 @@ body{
 }
 
 .main-body .tkb > table tr.header th:nth-child(1) {
-    width: 80px;
+    width: 70px;
 }
 
 .main-body .tkb > table tr.tiet td:nth-child(1) {
@@ -248,6 +250,15 @@ body{
     color: var(--text-color-2);
 }
 
+.main-body .tkb th .header-th span {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background: var(--primary);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 .main-body .tkb th .header-th {
     height: 100%;
     width: 100%;
@@ -255,7 +266,10 @@ body{
     align-items: center;
     justify-content: center;
     position: relative;
+    color: var(--main-backe);
 }
+
+
 
 .main-body .tkb th .header-th::before {
     content: '';
@@ -282,9 +296,12 @@ body{
 .main-body .tkb > table tr.tiet td .tiet-item.haveitem {
     border-radius: 5px;
     /* TODO chang to var() */
-    background-color: #cfe2ff;
+    background-color: rgb(3, 155, 229);
     width: calc(100% - 5px);
 
+}
+.main-body .tkb > table tr.tiet td .tiet-item.haveitem.th {
+    background-color: rgb(230, 124, 115);
 }
 
 .main-body .tkb > table tr.tiet td .tiet-item::before {
@@ -345,6 +362,11 @@ body{
     margin-left: 10px;
 }
 
+#siderbar {
+    border-right: 2px var(--main-color) solid;
+}
+
+
 #siderbar .add-button-wallper {
     height: 80px;
     width: 100%;
@@ -362,11 +384,14 @@ body{
     margin: 0 20px 0 10px;
 }
 
+
+/* ====================================================== */
+
 .siderbar .siderbar-body .hp {
     flex-wrap: nowrap;
     display: flex;
     align-items: center;
-    height: 25px;
+    height: 40px;
 }
 
 .siderbar .siderbar-body .hp i {
@@ -384,6 +409,5 @@ body{
 
 .siderbar .siderbar-body .hp .ct {
     color: var(--text-color);
-
     margin-left: auto;
 }

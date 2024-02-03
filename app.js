@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sign_inRouter = require('./routes/sign_in');
 var sign_upRouter = require('./routes/sign_up');
+var api_Router = require('./routes/api')
 
 var app = express();
 
@@ -33,5 +34,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/sign_in', sign_inRouter);
 app.use('/sign_up', sign_upRouter);
+app.use('/api', api_Router)
 
 module.exports = app;

@@ -3,6 +3,7 @@
 
 var popup_is_show = false
 var popup_show = null
+var data = null
 
 function checkLogin() {
     return false
@@ -117,23 +118,61 @@ const tkb = {
             console.log(e)
         })
     },
-    render: function (ten, thu, tbd, tkt, data) {
+    render: function (data) {
+        this.hocphan[data.id_to_hoc] = data
 
-        this.hocphan[ten] = {
-            "thu": thu,
-            "tbd": tbd,
-            "tkt": tkt
-        }
+        console.log(data)
+        data.tkb.forEach(e => {
+            var {thu, tbd, tkt, th} = e;
+            var tiets = this.tkb.querySelectorAll('.tiet');
+            for (let index = tbd; index <= tkt - 1; index++) {
+                var thus = tiets[index].querySelectorAll('td')
+                thus[thu - 1].style.display = 'none'
 
-        var tiets = this.tkb.querySelectorAll('.tiet');
-        for (let index = tbd; index <= tkt - 1; index++) {
-            var thus = tiets[index].querySelectorAll('td')
-            thus[thu - 1].style.display = 'none'
+            }
 
-        }
+            var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
+            tbd_ele.rowSpan = `${tkt - tbd + 1}`
+            tbd_ele.querySelector('.tiet-item').classList.add('haveitem')
+            if (th) tbd_ele.querySelector('.tiet-item').classList.add('th');
+        })
 
-        var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
-        tbd_ele.rowSpan = `${tkt - tbd + 1}`
-        tbd_ele.querySelector('.tiet-item').classList.add('haveitem')
+    },
+    remove: function (ten) {
+        var data = this.hocphan[ten]
+
+
+        data.tkb.forEach(e => {
+            var {thu, tbd, tkt, th} = e;
+            var tiets = this.tkb.querySelectorAll('.tiet');
+            for (let index = tbd; index <= tkt - 1; index++) {
+                var thus = tiets[index].querySelectorAll('td')
+                thus[thu - 1].style.display = ''
+
+            }
+
+            var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
+            tbd_ele.rowSpan = `1`
+            tbd_ele.querySelector('.tiet-item').classList.remove('haveitem')
+            if (th) tbd_ele.querySelector('.tiet-item').classList.remove('th');
+        })
+    },
+    render_ghost: function () {
+        
     }
+
+
+}
+
+
+function test(index) {
+    fetch('api/dshocphan', {
+        method: "POST"
+    }).then(e => e.json()).then(e => {
+        data = e
+        // var a = e[index]
+        // console.log(a)
+
+        // tkb.render(a)
+    })
 }

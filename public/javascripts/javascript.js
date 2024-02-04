@@ -5,6 +5,22 @@ var popup_is_show = false
 var popup_show = null
 var data = null
 
+/*Popup - Thêm học phần*/
+
+var button_themhocphan = document.querySelector('.button_themhocphan')
+var popup_themhocphan = document.querySelector('.popupthemhocphan')
+var close_themhocphan = document.querySelector('.close_themhocphan')
+
+button_themhocphan.onclick = () =>{
+    popup_themhocphan.classList.add('active');
+}
+
+close_themhocphan.onclick = () =>{
+    popup_themhocphan.classList.remove('active');
+}
+
+/*Popup - Thêm học phần*/
+
 function checkLogin() {
     return false
 }

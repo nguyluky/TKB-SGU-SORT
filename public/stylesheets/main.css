@@ -8,6 +8,7 @@
     --main-backe: whitesmoke;
     --hairline: rgb(218,220,224);
     --primary: rgb(26,115,232);
+    --silver: #e4e4e4;
 
     --add-button-shadow:  0px 4px 4px 0px rgba(60,64,67,0.3),0px 8px 12px 6px rgba(60,64,67,0.15);
     --main-box-shadow: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
@@ -123,6 +124,93 @@ body {
 .menubar .popup div {
     padding: 5px 0;
 }
+
+/*Popup - Thêm học phần*/
+
+.menubar .button_themhocphan{
+    cursor: pointer;
+}
+
+.popupcontainer{
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.popupcontainer .popupthemhocphan{
+    position: absolute;
+    width: 400px;
+    margin-left: 3%;
+    top: -95px;
+    background: var(--main-color);
+    border-radius: 20px;
+    color: var(--text-color);
+    box-shadow: var(--main-box-shadow);
+    opacity: 0;
+    transform: scale(0.1);
+}
+
+.popupthemhocphan.active{
+    opacity: 1;
+    pointer-events: auto;
+    transition: 0.4s ease;
+    transform: scale(1);
+    margin-left: 14.5%;
+    top: -30px;
+}
+
+
+.popupcontainer .popupthemhocphan input{
+    border-radius: 10px;
+    background: var(--silver);
+    border: var(--silver);
+    padding: 4px 12px;
+}
+
+.popupcontainer .popupthemhocphan input::placeholder{
+    margin-left: 20px;
+}
+
+.popupcontainer .popupthemhocphan .show_hocphan .box_hocphan{
+    background: var(--silver);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 100px;
+}
+
+.popupcontainer .popupthemhocphan h1{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.popupcontainer .popupthemhocphan .ma_hocphan,
+.popupcontainer .popupthemhocphan .search,
+.popupcontainer .popupthemhocphan .show_hocphan h2{
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.popupcontainer .popupthemhocphan h2{
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: lighter;
+    margin-bottom: 5px;
+}
+
+.popupcontainer .popupthemhocphan .close_themhocphan{
+    font-size: 20px;
+    margin-left: 180px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/*Popup - Thêm học phần*/
 
 .menubar .menubar-right-elem {
     margin-left: auto;

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="stylesheets\main.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script defer src="javascripts\javascript.js"></script>
+    <title>THB - Untitled</title>
     <script>
 
         function setToDarkMode() {
@@ -31,6 +33,17 @@
         if (localStorage.getItem('theme') == 'dark') {
             setToDarkMode()
         }
+
+        var data;
+        function test(index) {
+            fetch('api/dshocphan', {
+                method: "POST"
+            }).then(e => e.json()).then(e => {
+                data = e
+            })
+        }
+        test()
+        
     </script>
 </head>
 
@@ -173,7 +186,9 @@
             <div class="add-button-wallper">
 
             </div>
-
+            <div class="select">
+                
+            </div>
             <div class="siderbar-body">
                 <div class="ls">
                     <div class="hp">

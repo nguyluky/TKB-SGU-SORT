@@ -81,7 +81,9 @@ h1{
     color: #8ab4f8;
 }
 
-.wrapper .member{
+.wrapper .member,
+.wrapper .dang_ky,
+.wrapper .quen_mat_khau{
     text-align: right;
     margin-right: 50px;
     color: var(--member-color);

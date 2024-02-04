@@ -112,8 +112,8 @@ const tkb = {
     tkb: document.getElementById('tkb'),
     hocphan: {},
     clear: function () {
-        this.hocphan.forEach((e) => {
-            console.log(e)
+        Object.keys(this.hocphan).forEach(e => {
+            this.remove(e)
         })
     },
     render: function (data) {
@@ -164,10 +164,15 @@ const tkb = {
             tbd_ele.rowSpan = `1`
             tbd_ele.querySelector('.tiet-item').classList.remove('haveitem')
             if (th) tbd_ele.querySelector('.tiet-item').classList.remove('th');
+            tbd_ele.querySelector('.tiet-item').innerHTML = ''
         })
     },
-    render_ghost: function () {
-        
+    render_ghost: function (ma_mon) {
+        data.ds_nhom_to.forEach(e => {
+            if (e.ma_mon == ma_mon) {
+                this.render(e)
+            }
+        })
     }
 
 

@@ -3,8 +3,6 @@
 
 var popup_is_show = false
 var popup_show = null
-var data = null
-
 function checkLogin() {
     return false
 }
@@ -174,17 +172,3 @@ const tkb = {
 
 
 }
-
-
-function test(index) {
-    fetch('api/dshocphan', {
-        method: "POST"
-    }).then(e => e.json()).then(e => {
-        data = e
-        // var a = e[index]
-        // console.log(a)
-
-        // tkb.render(a)
-    })
-}
-

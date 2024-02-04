@@ -31,6 +31,17 @@
         if (localStorage.getItem('theme') == 'dark') {
             setToDarkMode()
         }
+
+        var data;
+        function test(index) {
+            fetch('api/dshocphan', {
+                method: "POST"
+            }).then(e => e.json()).then(e => {
+                data = e
+            })
+        }
+        test()
+        
     </script>
 </head>
 

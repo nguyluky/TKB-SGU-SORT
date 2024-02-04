@@ -19,6 +19,18 @@ close_themhocphan.onclick = () =>{
     popup_themhocphan.classList.remove('active');
 }
 
+var button_nganhhoc = document.getElementById("button_nganhhoc")
+var popup_nganhhoc = document.querySelector('.popup_nganhhoc')
+var close_nganhhoc = document.querySelector('.close_nganhhoc')
+
+button_nganhhoc.onclick = () =>{
+    popup_nganhhoc.classList.add('active');
+}
+
+close_nganhhoc.onclick = () =>{
+    popup_nganhhoc.classList.remove('active');
+}
+
 /*Popup - Thêm học phần*/
 
 function checkLogin() {

@@ -209,13 +209,53 @@ body {
     cursor: pointer;
 }
 
+.popupcontainer{
+    .popupthemhocphan{
+        .search_nganhhoc{
+            z-index: 120;
+            .box_select{
+                margin-bottom: 8px;
+
+                span{
+                    margin-left: 10px;
+                }
+
+                i{
+                    cursor: pointer;
+                }
+            }
+            .popup_nganhhoc{
+                width: 200px;
+                height: 200px;
+                background: var(--silver);
+                opacity: 0;
+                transition: 0.4s ease;
+                transform: scale(0);
+                z-index: 120;
+
+                .close_nganhhoc{
+                    margin-top: 170px;
+                    margin-left: 90px;
+                    cursor: pointer;
+                }
+            }
+            .popup_nganhhoc.active{
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+}
+
 /*Popup - Thêm học phần*/
 
 .menubar .menubar-right-elem {
     margin-left: auto;
     display: flex;
     position: relative;
+    align-items: center;
 }
+
 
 .menubar .menubar-right-elem div.menubar-right-item {
     padding: 3px;

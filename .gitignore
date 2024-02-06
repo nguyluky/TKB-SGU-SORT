@@ -132,4 +132,4 @@ dist
 .idea/
 .scss/
 
-*.css.map
+*css.map

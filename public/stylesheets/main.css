@@ -255,6 +255,9 @@ body {
   background-color: var(--hover-back);
   border-radius: 5px;
 }
+.main-body .siderbar .siderbar-body .hp .list-hp .list-hp-item.select {
+  outline: var(--primary) auto 1px;
+}
 .main-body .siderbar .siderbar-body .hp .list-hp .list-hp-item + .list-hp-item {
   margin-top: 5px;
 }
@@ -335,6 +338,9 @@ body {
 }
 .main-body .tkb > table tr.tiet td .tiet-item span {
   font-weight: bold;
+}
+.main-body .tkb > table tr.tiet td .tiet-item.ghost {
+  opacity: 0.3;
 }
 .main-body .tkb > table tr.tiet td .tiet-item.haveitem {
   border-radius: 5px;

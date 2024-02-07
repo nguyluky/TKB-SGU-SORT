@@ -66,7 +66,6 @@ function initAccoutClick() {
 }
 initAccoutClick()
 
-
 function initMenuPopup() {
     var popup_is_show = false
     var popup_show = null   
@@ -156,6 +155,8 @@ document.querySelector('.menubar-icon').onclick = () => {
 const tkb = {
     tkb: document.getElementById('tkb'),
     hocphan: {},
+    hocphan_go: {},
+
     clear: function () {
         Object.keys(this.hocphan).forEach(e => {
             this.remove(e)
@@ -163,8 +164,6 @@ const tkb = {
     },
     render: function (data) {
         this.hocphan[data.id_to_hoc] = data
-
-        console.log(data)
         data.tkb.forEach(e => {
             var {thu, tbd, tkt, th, phong, gv} = e;
             var tiets = this.tkb.querySelectorAll('.tiet');
@@ -192,9 +191,10 @@ const tkb = {
         })
 
     },
-    remove: function (ten) {
+    remove: function (ten, deleted = true) {
         var data = this.hocphan[ten]
 
+        if (!data) return
 
         data.tkb.forEach(e => {
             var {thu, tbd, tkt, th} = e;
@@ -211,65 +211,228 @@ const tkb = {
             if (th) tbd_ele.querySelector('.tiet-item').classList.remove('th');
             tbd_ele.querySelector('.tiet-item').innerHTML = ''
         })
+        if (deleted) delete this.hocphan[ten];
     },
-    render_ghost: function (ma_mon) {
-        data.ds_nhom_to.forEach(e => {
-            if (e.ma_mon == ma_mon) {
-                this.render(e)
+    render_go: function (data) {
+        this.hocphan_go[data.id_to_hoc] = data
+        data.tkb.forEach(e => {
+            var {thu, tbd, tkt, th, phong, gv} = e;
+            var tiets = this.tkb.querySelectorAll('.tiet');
+            for (let index = tbd; index <= tkt - 1; index++) {
+                var thus = tiets[index].querySelectorAll('td')
+                thus[thu - 1].style.display = 'none'
             }
-        })
-    }
 
+            var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
+            tbd_ele.rowSpan = `${tkt - tbd + 1}`
+            tbd_ele.querySelector('.tiet-item').classList.add('haveitem')
+            if (th) tbd_ele.querySelector('.tiet-item').classList.add('th');
+            else tbd_ele.querySelector('.tiet-item').classList.remove('th');
+
+            tbd_ele.querySelector('.tiet-item').classList.add('ghost')
+            tbd_ele.querySelector('.tiet-item').innerHTML = `
+                <span>${data.ten_mon} (${data.ma_mon})</span>
+                <p>
+                    <span>Phòng: </span>
+                    ${phong}
+                </p>
+                <p>
+                    <span>Phòng: </span>
+                    ${gv}
+                </p>
+            `
+        })
+
+    },
+    remove_go: function (ten) {
+        var data = this.hocphan_go[ten]
+        
+        if (!data) return
+
+        data.tkb.forEach(e => {
+            var {thu, tbd, tkt, th} = e;
+            var tiets = this.tkb.querySelectorAll('.tiet');
+            for (let index = tbd; index <= tkt - 1; index++) {
+                var thus = tiets[index].querySelectorAll('td')
+                thus[thu - 1].style.display = ''
+
+            }
+
+            var tbd_ele = tiets[tbd - 1].querySelectorAll('td')[thu - 1];
+            tbd_ele.rowSpan = `1`
+            tbd_ele.querySelector('.tiet-item').classList.remove('haveitem')
+            if (th) tbd_ele.querySelector('.tiet-item').classList.remove('th');
+
+            tbd_ele.querySelector('.tiet-item').classList.remove('ghost')
+            tbd_ele.querySelector('.tiet-item').innerHTML = ''
+        })
+        delete this.hocphan_go[ten]
+    },
+    hide_all: function () {
+        Object.keys(this.hocphan).forEach(e => {
+            this.remove(e, false)
+            console.log(e)
+        })
+    },
+    show_all: function () {
+        Object.values(this.hocphan).forEach(e => {
+            this.render(e)
+        })
+    },
 
 }
 
 
 function hocphanpopup(e) {
-    console.log(e);
     var parent = e.parentElement
     parent.querySelector('.list-hp').classList.toggle('close')
     e.querySelector('i').classList.toggle('close')
 }
 
-function addHp(mahp) {
-    var list = data.ds_nhom_to.filter(e => e.ma_mon == mahp)
-    var name = data.ds_mon_hoc[mahp]
-    var ct = list[0].so_tc
-    var div_hp = document.createElement('div')
-    div_hp.className = "hp"
-    var div_info = document.createElement('div')
-    div_info.className = "info"
-    div_info.innerHTML = `
-        <span class="name">${name}</span>
-        <span class="ct">${ct}ct</span>
-        <i class='bx bx-chevron-down close'></i>
-    `
-
-    div_info.onclick = () => {hocphanpopup(div_info)}
-
-    var div_list_hp = document.createElement('div')
-    div_list_hp.className = "list-hp close"
-
-    list.forEach(e => {
-        var div_hp_item = document.createElement('div')
-        div_hp_item.className = "list-hp-item"
 
 
-        var dsThu = [...new Set(e.tkb.map(e => e.thu))]
-        var dsGv = [...new Set(e.tkb.map(e => `<p> - ${e.gv} ${e.th ? '(TH)' : ''}</p>`))]
+function initHocPhanHandel(cls) {
+    function removeSelection(div_list_hp) {
+        div_list_hp.querySelectorAll('.list-hp-item').forEach(e => {
+            if (e.classList.contains("select")) {
+                e.classList.remove("select")
+                tkb.remove(e.getAttribute('id-to-hoc'))
+            }
+        })
+    }
 
-        div_hp_item.innerHTML = `
-            <p>Thứ:  ${dsThu.join(' và ')}</p>
-            <p>GV:  </p>
-            ${dsGv.join('\n')}
-            <p>20/40</p>
+    function chonTiet(hp , div_hp_item, div_list_hp, hp_per) {
+        var list_tiet_curr = []
+        hp.tkb.forEach(tkb_item => {
+            for (let index = tkb_item.tbd; index <= tkb_item.tkt; index++) {
+                list_tiet_curr.push(`${tkb_item.thu}-${index}`)
+            }
+        })
+
+        var biTrung = false
+        Object.values(tkb.hocphan).forEach(hp => {
+
+            // nếu mà mã học phần giống nhau thì nghi đè
+            if (hp.ma_mon == hp_per.ma_mon) return
+
+            // nếu học phần khác nhau mà bị chùng tiết thì sét buTrung = true
+            hp.tkb.forEach(tkb_item => {
+                for (let index = tkb_item.tbd; index <= tkb_item.tkt; index++) {
+                    if (list_tiet_curr.includes(`${tkb_item.thu}-${index}`)) {
+                        biTrung = true
+                    }
+                }
+            })
+        })
+
+        console.log(list_tiet_curr);
+
+        
+        if (biTrung) {
+            // bị trùng tiết
+            console.log('bi trung')
+            return
+        }
+
+        tkb.remove_go(hp.id_to_hoc)
+
+        removeSelection(div_list_hp)
+
+        tkb.render(hp)
+
+        div_hp_item.classList.add("select")
+
+    }
+
+    function showGhost(hp, mahp) {
+        if (!tkb.hocphan[hp.id_to_hoc])
+        Object.values(tkb.hocphan).forEach(e => {
+            if (e.ma_mon == mahp) {
+                tkb.remove(e.id_to_hoc, false)
+            }
+        })
+        tkb.render_go(hp)
+
+    }
+
+    function hideGhost (hp, mahp) {
+        tkb.remove_go(hp.id_to_hoc)
+        Object.values(tkb.hocphan).forEach(e => {
+            if (e.ma_mon != mahp) {
+                tkb.render(e)
+            }
+        })
+    }
+
+    function makeEle(mahp) {
+
+        var list = data.ds_nhom_to.filter(e => e.ma_mon == mahp)
+        var name = data.ds_mon_hoc[mahp]
+        var ct = list[0].so_tc
+    
+        var div_hp = document.createElement('div')
+        div_hp.className = "hp"
+    
+        var div_info = document.createElement('div')
+        div_info.className = "info"
+        div_info.innerHTML = `
+            <span class="name">${name}</span>
+            <span class="ct">${ct}ct</span>
+            <i class='bx bx-chevron-down close'></i>
         `
+    
+        var div_list_hp = document.createElement('div')
+        div_list_hp.className = "list-hp close"
+    
 
-        div_list_hp.appendChild(div_hp_item)
-    })
+        list.forEach(hp => {
+            var div_hp_item = document.createElement('div')
+            div_hp_item.className = "list-hp-item"
+            div_hp_item.setAttribute('id-to-hoc', hp.id_to_hoc)
 
-    div_hp.appendChild(div_info)
-    div_hp.appendChild(div_list_hp)
 
-    document.querySelector('.siderbar-body .ls').appendChild(div_hp)
+            div_hp_item.onmouseenter = () => {showGhost(hp, mahp)}
+            div_hp_item.onmouseleave = () => {hideGhost(hp, mahp)}
+            div_hp_item.onclick = () => {chonTiet(hp, div_hp_item, div_list_hp, hp)}
+    
+            var dsThu = [...new Set(hp.tkb.map(e => e.thu))]
+            var dsGv = [...new Set(hp.tkb.map(e => `<p> - ${e.gv} ${e.th ? '(TH)' : ''}</p>`))]
+    
+            div_hp_item.innerHTML = `
+                <p>Thứ:  ${dsThu.join(' và ')}</p>
+                <p>GV:  </p>
+                ${dsGv.join('\n')}
+                <p>20/40</p>
+            `
+    
+            div_list_hp.appendChild(div_hp_item)
+        })
+
+
+        div_info.onclick = () => {hocphanpopup(div_info)}
+        div_list_hp.onmouseenter = () => {
+            // tkb.hide_all()
+    
+            Object.values(tkb.hocphan).forEach(e => {
+                if (e.ma_mon == mahp) {
+                    tkb.remove(e.id_to_hoc, false)
+                }
+            })
+        }
+    
+        div_list_hp.onmouseleave = () => {
+            tkb.show_all()
+        }
+    
+    
+        div_hp.appendChild(div_info)
+        div_hp.appendChild(div_list_hp)
+    
+        document.querySelector('.siderbar-body .ls').appendChild(div_hp)
+    }
+
+    cls.addHp = makeEle
 }
+
+
+initHocPhanHandel(this)

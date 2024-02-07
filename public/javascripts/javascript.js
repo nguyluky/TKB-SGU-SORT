@@ -30,8 +30,6 @@ var data = null
 // }
 
 
-/*Popup - Thêm học phần*/
-
 function checkLogin() {
     return true
 }
@@ -66,6 +64,8 @@ function initAccoutClick() {
 }
 initAccoutClick()
 
+
+// sử lý sợ kiện khi người dùng nhấn vào menu
 function initMenuPopup() {
     var popup_is_show = false
     var popup_show = null   
@@ -123,10 +123,10 @@ function initMenuPopup() {
     })
 
 }
-
 initMenuPopup()
 
 
+// sử lý sợ kiện khi người dùng nhấn đổi theme 
 document.getElementById('theme').onclick = (event) => {
     if (localStorage.getItem('theme') != 'dark') {
         setToDarkMode();
@@ -138,8 +138,9 @@ document.getElementById('theme').onclick = (event) => {
     }
 }
 
-const sidebar = document.getElementById('siderbar')
 
+// khi người dùng nhấn vào nút thu nhỏ phóng to side bar
+const sidebar = document.getElementById('siderbar')
 document.querySelector('.menubar-icon').onclick = () => {
     if (sidebar.classList.contains('close')) {
         sidebar.classList.remove('close')
@@ -152,6 +153,23 @@ document.querySelector('.menubar-icon').onclick = () => {
 
 }
 
+
+/*
+?
+làm thế nào để dùng
+
+tkb.render(e)
+e là học phần 
+nó sẽ vẽ tiết lên tkb
+
+tkb.remove(id)
+id của học phần đó (id_to_hoc)
+
+
+cách để coi dữ liệu
+trong console gõ data
+là có
+ */
 const tkb = {
     tkb: document.getElementById('tkb'),
     hocphan: {},
@@ -191,8 +209,8 @@ const tkb = {
         })
 
     },
-    remove: function (ten, deleted = true) {
-        var data = this.hocphan[ten]
+    remove: function (id, deleted = true) {
+        var data = this.hocphan[id]
 
         if (!data) return
 
@@ -211,7 +229,7 @@ const tkb = {
             if (th) tbd_ele.querySelector('.tiet-item').classList.remove('th');
             tbd_ele.querySelector('.tiet-item').innerHTML = ''
         })
-        if (deleted) delete this.hocphan[ten];
+        if (deleted) delete this.hocphan[id];
     },
     render_go: function (data) {
         this.hocphan_go[data.id_to_hoc] = data
@@ -283,15 +301,13 @@ const tkb = {
 }
 
 
-function hocphanpopup(e) {
-    var parent = e.parentElement
-    parent.querySelector('.list-hp').classList.toggle('close')
-    e.querySelector('i').classList.toggle('close')
-}
-
-
 
 function initHocPhanHandel(cls) {
+    function hocphanpopup(e) {
+        var parent = e.parentElement
+        parent.querySelector('.list-hp').classList.toggle('close')
+        e.querySelector('i').classList.toggle('close')
+    }
     function removeSelection(div_list_hp) {
         div_list_hp.querySelectorAll('.list-hp-item').forEach(e => {
             if (e.classList.contains("select")) {
@@ -435,4 +451,7 @@ function initHocPhanHandel(cls) {
 }
 
 
+// khai báo hàm addHp
+// gọi hàm addHp với parameter là mã học phần
+// thì nó sẽ thêm vời side bar học phần đó
 initHocPhanHandel(this)

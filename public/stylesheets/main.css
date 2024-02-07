@@ -330,6 +330,7 @@ body {
   position: relative;
 }
 .main-body .tkb > table tr.tiet td .tiet-item {
+  color: #fff;
   padding: 5px;
   font-size: 14px;
   /* overflow:hidden; */
@@ -406,6 +407,7 @@ body {
   color: var(--text-color);
   font-size: 15px;
   margin-left: 10px;
+  text-wrap: nowrap;
 }
 
 #siderbar {

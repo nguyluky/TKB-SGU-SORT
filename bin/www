@@ -15,7 +15,7 @@ var path = require('path')
 
 var key = fs.readFileSync(path.join(__dirname , '../certs/sgutkbsort.id.vn/private.key'));
 var cert = fs.readFileSync(path.join(__dirname , '../certs/sgutkbsort.id.vn/certificate.crt'));
-var ca = fs.readFileSync(path.join(__dirname + '../certs/sgutkbsort.id.vn/ca_bundle.crt'));
+var ca = fs.readFileSync(path.join(__dirname ,'../certs/sgutkbsort.id.vn/ca_bundle.crt'));
 var options = {
   ca: ca,
   key: key,

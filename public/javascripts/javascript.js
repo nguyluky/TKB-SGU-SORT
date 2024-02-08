@@ -47,7 +47,7 @@ var data = null
         button_themhocphan.classList.add('active');
         button_themhocphan.innerHTML = `
         <i class='bx bx-search-alt icon_themhhocphan'></i>
-        <input placeholder="tim hoc phan"/>   
+        <input placeholder="Tìm học phần"/>   
         `
         event.stopPropagation()
         document.body.addEventListener('click', xoaThemhocphan)
@@ -55,6 +55,7 @@ var data = null
     }
 
 // hết
+
 function checkLogin() {
     return true
 }

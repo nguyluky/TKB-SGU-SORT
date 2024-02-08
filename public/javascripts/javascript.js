@@ -76,7 +76,7 @@ function initMenuPopup() {
         })
         popup_is_show = false
         popup_show = null
-        document.querySelector('body').addEventListener('click', hind_popup)
+        document.querySelector('body').removeEventListener('click', hind_popup)
     }
 
     

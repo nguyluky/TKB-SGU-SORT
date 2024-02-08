@@ -8,16 +8,19 @@
 var app = require('../app');
 var debug = require('debug')('npm-server:server');
 var http = require('http');
-// var https = require('https')
-var http = require('http')
+const fs = require('fs');
+var https = require('https')
 
-// var credentials = {
-   // key: "asdfjhakjdsahreware", 
-   // cert: "sjadfhkjewr"
-// };
 
-// var server = https.createServer(credentials, app);
-var server = http.createServer(app);
+var key = fs.readFileSync(__dirname + '/../certs/sgutkbsort.id.vn/private.key');
+var cert = fs.readFileSync(__dirname + '/../certs/sgutkbsort.id.vn/certificate.crt');
+var credentials = {
+   key: key, 
+   cert: cert
+};
+
+var server = https.createServer(credentials, app);
+// var server = http.createServer(app);
 
 server.on('error', (error) => {
   if (error.syscall !== 'listen') {

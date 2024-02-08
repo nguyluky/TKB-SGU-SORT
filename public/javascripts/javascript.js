@@ -29,6 +29,32 @@ var data = null
 //     popup_nganhhoc.classList.remove('active');
 // }
 
+// Khi người dùng click thêm học phần
+    const button_themhocphan = document.querySelector('.button_themhocphan')
+    const add_themhocphan = document.querySelector('.add_themhocphan')
+
+    function xoaThemhocphan (){
+        button_themhocphan.classList.remove('active')
+        button_themhocphan.innerHTML = `
+        <i class='bx bx-plus'></i>
+        <span class="themhocphan">Thêm Học phần</span>
+        `
+        button_themhocphan.disabled = false;
+        document.body.removeEventListener('click', xoaThemhocphan)
+    }  
+    
+    button_themhocphan.onclick = (event) => {
+        button_themhocphan.classList.add('active');
+        button_themhocphan.innerHTML = `
+        <i class='bx bx-search-alt icon_themhhocphan'></i>
+        <input placeholder="Tìm học phần"/>   
+        `
+        event.stopPropagation()
+        document.body.addEventListener('click', xoaThemhocphan)
+        button_themhocphan.disabled = true;
+    }
+
+// hết
 
 function checkLogin() {
     return true
@@ -152,6 +178,7 @@ document.querySelector('.menubar-icon').onclick = () => {
     }
 
 }
+
 
 
 /*

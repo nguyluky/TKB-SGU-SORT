@@ -171,6 +171,24 @@ body {
 .menubar .menubar-right-elem .accout-popup .logout:hover {
   text-decoration: underline;
 }
+.menubar .button_themhocphan.active {
+  width: 300px !important;
+}
+.menubar .button_themhocphan.active input {
+  padding-left: 10px;
+  width: calc(100% - 50px);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  height: 100%;
+  background: transparent;
+  border: transparent;
+  outline: none;
+}
+.menubar .button_themhocphan.active .icon_themhhocphan {
+  padding: 5px;
+  font-size: 30px !important;
+}
 
 .main-body {
   width: 100%;

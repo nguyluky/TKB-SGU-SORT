@@ -201,6 +201,25 @@ body {
                 }
             }
         }
+
+    }
+    .button_themhocphan.active{
+        width: 300px !important;
+        input{
+            padding-left: 10px;
+            width: calc(100% - 50px);
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            height: 100%;
+            background: transparent;
+            border: transparent;
+            outline: none;
+        }
+        .icon_themhhocphan{
+            padding: 5px;
+            font-size: 30px !important;
+        }
     }
 }
 

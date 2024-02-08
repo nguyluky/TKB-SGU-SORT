@@ -29,7 +29,32 @@ var data = null
 //     popup_nganhhoc.classList.remove('active');
 // }
 
+// Khi người dùng click thêm học phần
+    const button_themhocphan = document.querySelector('.button_themhocphan')
+    const add_themhocphan = document.querySelector('.add_themhocphan')
 
+    function xoaThemhocphan (){
+        button_themhocphan.classList.remove('active')
+        button_themhocphan.innerHTML = `
+        <i class='bx bx-plus'></i>
+        <span class="themhocphan">Thêm Học phần</span>
+        `
+        button_themhocphan.disabled = false;
+        document.body.removeEventListener('click', xoaThemhocphan)
+    }  
+    
+    button_themhocphan.onclick = (event) => {
+        button_themhocphan.classList.add('active');
+        button_themhocphan.innerHTML = `
+        <i class='bx bx-search-alt icon_themhhocphan'></i>
+        <input placeholder="tim hoc phan"/>   
+        `
+        event.stopPropagation()
+        document.body.addEventListener('click', xoaThemhocphan)
+        button_themhocphan.disabled = true;
+    }
+
+// hết
 function checkLogin() {
     return true
 }
@@ -76,7 +101,7 @@ function initMenuPopup() {
         })
         popup_is_show = false
         popup_show = null
-        document.querySelector('body').addEventListener('click', hind_popup)
+        document.querySelector('body').removeEventListener('click', hind_popup)
     }
 
     
@@ -152,6 +177,7 @@ document.querySelector('.menubar-icon').onclick = () => {
     }
 
 }
+
 
 
 /*

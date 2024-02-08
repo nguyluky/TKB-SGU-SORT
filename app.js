@@ -13,9 +13,6 @@ var api_Router = require('./routes/api')
 
 var app = express();
 
-var port = process.env.PORT || '80'
-app.set('port', port);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

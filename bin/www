@@ -9,19 +9,22 @@ var app = require('../app');
 var debug = require('debug')('npm-server:server');
 const fs = require('fs');
 var https = require('https')
+var http = require('http')
 
 
 var key = fs.readFileSync(__dirname + '/../certs/sgutkbsort.id.vn/private.key');
 var cert = fs.readFileSync(__dirname + '/../certs/sgutkbsort.id.vn/certificate.crt');
-var credentials = {
-   key: key, 
-   cert: cert
+var ca = fs.readFileSync(__dirname + '/../certs/sgutkbsort.id.vn/ca_bundle.crt');
+var options = {
+  ca: ca,
+  key: key,
+  cert: cert
 };
 
-var server = https.createServer(credentials, app);
-// var server = http.createServer(app);
+var server_https = https.createServer(options, app);
+var server_http = http.createServer(app);
 
-server.on('error', (error) => {
+function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -45,8 +48,15 @@ server.on('error', (error) => {
     default:
       throw error;
   }
+}
+
+server_https.on('error', onError);
+server_http.on('error', onError)
+
+server_https.listen(443, () => {
+  console.log(`server start in https://localhost:443`)
 });
 
-server.listen(app.get('port'), () => {
-  console.log(`server start in http://localhost:${app.get('port')}`)
-});
+server_http.listen(80, () => {
+  console.log(`server start in http://localhost:80`)
+})

@@ -48,7 +48,7 @@ button_themhocphan.onclick = (event) => {
     button_themhocphan.innerHTML = `
     <i class='bx bx-search-alt icon_themhhocphan'></i>
     <input placeholder="Tìm học phần"/>
-    <div class="google-suggest"></div>
+    <div class="search-suggest"></div>
 
     `
     event.stopPropagation()

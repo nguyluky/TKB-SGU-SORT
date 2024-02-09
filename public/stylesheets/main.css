@@ -405,7 +405,7 @@ body {
   padding: 5px;
   font-size: 30px;
 }
-#add-button.active .google-suggest {
+#add-button.active .search-suggest {
   position: absolute;
   width: 100%;
   height: 200px;

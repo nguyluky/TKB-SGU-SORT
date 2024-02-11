@@ -31,20 +31,21 @@
         }
     </script>
 
-
+    <script defer src="javascripts\sign_up.js"></script>
 
 </head>
 
 <body>
 <div class="wrapper">
     <h1>Đăng Ký</h1>
-    <form action="#">
-        <input type="text" placeholder="Tên đăng nhập">
-        <input type="text" placeholder="Mật khẩu">
-        <input type="text" placeholder="Nhập lại mật khẩu">
-        <input type="text" placeholder="Gmail">
+    <form>
+        <input type="text" placeholder="Tên đăng nhập" id="username">
+        <input type="text" placeholder="Mật khẩu" id="pass">
+        <input type="text" placeholder="Nhập lại mật khẩu" id="pass2">
+        <input type="text" placeholder="Email" id="email">
     </form>
-    <button>Đăng ký</button>
+    <div class="err" id="err"></div>
+    <button onclick="sign_up()">Đăng ký</button>
     <div class="member">
         Đã có tài khoản ? <a href="./sign_in">Đăng nhập</a>
     </div>

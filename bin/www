@@ -25,12 +25,10 @@ var options = {
 var server_https = https.createServer(options, app);
 var server_http = http.createServer(app);
 
-function onError(error) {
+function onError(error, port) {
   if (error.syscall !== 'listen') {
     throw error;
   }
-
-  var port = app.get('port');
 
   var bind = typeof port === 'string'
     ? 'Pipe ' + port
@@ -51,13 +49,16 @@ function onError(error) {
   }
 }
 
-server_https.on('error', onError);
-server_http.on('error', onError)
+var http_port = app.get('http_port');
+var https_port = app.get('https_port');
 
-server_https.listen(443, () => {
-  console.log(`server start in https://localhost:443`)
+server_https.on('error', (e) => onError(e, https_port));
+server_http.on('error', (e) => onError(e, http_port))
+
+server_https.listen(https_port, () => {
+  console.log(`server start in https://localhost:${https_port}`);
 });
 
-server_http.listen(80, () => {
-  console.log(`server start in http://localhost:80`)
+server_http.listen(http_port, () => {
+  console.log(`server start in http://localhost:${http_port}`)
 })

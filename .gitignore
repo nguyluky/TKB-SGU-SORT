@@ -132,3 +132,5 @@ dist
 .idea/
 
 certs/tkbsgusort.id.vn/*
+
+tests/

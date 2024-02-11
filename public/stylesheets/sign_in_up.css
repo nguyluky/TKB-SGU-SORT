@@ -46,6 +46,10 @@ h1 {
 .wrapper form ::placeholder {
   color: var(--text-color);
 }
+.wrapper .err {
+  transform: translateY(-10px);
+  color: #ff3333;
+}
 .wrapper button {
   width: 80%;
   font-size: 20px;

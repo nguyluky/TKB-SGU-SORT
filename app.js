@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
+var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,11 +22,28 @@ app.use(logger('dev'));
 app.use(methodOverride())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 // static path
 app.use(express.static(path.join(__dirname, 'public')));
 
+// set port
+app.set('http_port', process.env.HTTP_PORT)
+app.set('https_port', process.env.HTTPS_PORT)
+
+
+//set session
+var sess = {
+    secret: process.env.SESSION_SECRET,
+    cookie: {}
+}
+
+if (process.env.DEVE === 'TRUE') {
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(session(sess))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

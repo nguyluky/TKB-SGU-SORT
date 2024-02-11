@@ -1,34 +1,5 @@
 
-// popup handel
-
 var data = null
-
-/*Popup - Thêm học phần*/
-
-// var button_themhocphan = document.querySelector('.button_themhocphan')
-// var popup_themhocphan = document.querySelector('.popupthemhocphan')
-// var close_themhocphan = document.querySelector('.close_themhocphan')
-
-// button_themhocphan.onclick = () =>{
-//     popup_themhocphan.classList.add('active');
-// }
-
-// close_themhocphan.onclick = () =>{
-//     popup_themhocphan.classList.remove('active');
-// }
-
-// var button_nganhhoc = document.getElementById("button_nganhhoc")
-// var popup_nganhhoc = document.querySelector('.popup_nganhhoc')
-// var close_nganhhoc = document.querySelector('.close_nganhhoc')
-
-// button_nganhhoc.onclick = () =>{
-//     popup_nganhhoc.classList.add('active');
-// }
-
-// close_nganhhoc.onclick = () =>{
-//     popup_nganhhoc.classList.remove('active');
-// }
-
 // Khi người dùng click thêm học phần
 const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
@@ -59,7 +30,7 @@ button_themhocphan.onclick = (event) => {
 // hết
 
 function checkLogin() {
-    return true
+    return false
 }
 
 function initAccoutClick() {
@@ -183,32 +154,26 @@ document.querySelector('.menubar-icon').onclick = () => {
 
 
 
-/*
-?
-làm thế nào để dùng
-
-tkb.render(e)
-e là học phần 
-nó sẽ vẽ tiết lên tkb
-
-tkb.remove(id)
-id của học phần đó (id_to_hoc)
-
-
-cách để coi dữ liệu
-trong console gõ data
-là có
+/**
+ * tkb user to render table 'thời khóa biểu' when user click on 'hocphan' button
  */
 const tkb = {
     tkb: document.getElementById('tkb'),
     hocphan: {},
     hocphan_go: {},
 
+    /**
+     * clear all the hocphan in table tkb
+     */
     clear: function () {
         Object.keys(this.hocphan).forEach(e => {
             this.remove(e)
         })
     },
+    /**
+     * render hocphan in table tkb
+     * @param {*} data hocphan information and in hocphan data haved tkb to render
+     */
     render: function (data) {
         this.hocphan[data.id_to_hoc] = data
         data.tkb.forEach(e => {
@@ -238,6 +203,11 @@ const tkb = {
         })
 
     },
+    /**
+     * remove hocphan in table tkb
+     * @param {*} id The id of the hoc phan
+     * @param {boolean} deleted if false is chunk hidden element
+     */
     remove: function (id, deleted = true) {
         var data = this.hocphan[id]
 
@@ -260,6 +230,10 @@ const tkb = {
         })
         if (deleted) delete this.hocphan[id];
     },
+    /**
+     * look like a render function a distinct from render function are is not add to list 'hocphan' and ez to remove
+     * @param {*} data 
+     */
     render_go: function (data) {
         this.hocphan_go[data.id_to_hoc] = data
         data.tkb.forEach(e => {
@@ -291,6 +265,10 @@ const tkb = {
         })
 
     },
+    /**
+     * remove the render_go
+     * @param {*} ten 
+     */
     remove_go: function (ten) {
         var data = this.hocphan_go[ten]
         
@@ -315,12 +293,19 @@ const tkb = {
         })
         delete this.hocphan_go[ten]
     },
+
+    /**
+     * hide all 'hocphan' in table tkb
+     */
     hide_all: function () {
         Object.keys(this.hocphan).forEach(e => {
             this.remove(e, false)
             console.log(e)
         })
     },
+    /**
+     * show all 'hocphan' is hidden
+     */
     show_all: function () {
         Object.values(this.hocphan).forEach(e => {
             this.render(e)
@@ -408,6 +393,7 @@ function initHocPhanHandel(cls) {
             }
         })
     }
+
 
     function makeEle(mahp) {
 

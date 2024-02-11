@@ -32,17 +32,18 @@
             setToDarkMode()
         }
     </script>
-
+    <script defer src="javascripts\sign_in.js"></script>
 </head>
 
 <body>
 <div class="wrapper">
     <h1>Đăng Nhập</h1>
     <form action="#">
-        <input type="text" placeholder="Tên đăng nhập">
-        <input type="text" placeholder="Mật khẩu">
+        <input type="text" placeholder="Tên đăng nhập" id="username">
+        <input type="text" placeholder="Mật khẩu" id="pass">
     </form>
-    <button>Đăng nhập</button>
+    <div class="err" id="err"></div>
+    <button onclick="sign_in()">Đăng nhập</button>
     <div class="dang_ky">
         Chưa có tài khoản -.- ? <a href="./sign_up">Đăng ký</a>
     </div>

@@ -45,5 +45,9 @@ module.exports = {
         const {user, password} = req.body;
         const sql = `SELECT * FROM user_login_info WHERE username = '${user}' AND pass = SHA1('${password}');`;
         db.query(sql, callback);
+    },
+    get_user: (uuid, callback) => {
+        const sql = `SELECT * FROM user_info WHERE id = '${uuid}';`;
+        db.query(sql, callback);
     }
 }

@@ -30,7 +30,7 @@ button_themhocphan.onclick = (event) => {
 // hết
 
 function checkLogin() {
-    return false
+    return sessionStorage.getItem('isLogin') == 'true';
 }
 
 function initAccoutClick() {
@@ -48,7 +48,6 @@ function initAccoutClick() {
 
         // kiểm tra xem có đăng nhập chưa
         if (!checkLogin()) {
-    
             document.location.href = "/sign_up"
             return
         }

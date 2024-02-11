@@ -41,6 +41,14 @@
             }).then(e => e.json()).then(e => {
                 data = e
             })
+
+            fetch('/sign_in/checkLogin').then(e => {
+                if (e.status == 200) {
+                    sessionStorage.setItem('isLogin', true)
+                    return
+                }
+                sessionStorage.setItem('isLogin', false)
+            })
         }
         test()
         

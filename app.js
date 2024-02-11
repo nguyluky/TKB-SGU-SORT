@@ -35,7 +35,9 @@ app.set('https_port', process.env.HTTPS_PORT)
 //set session
 var sess = {
     secret: process.env.SESSION_SECRET,
-    cookie: {}
+    cookie: {
+        sameSite: true 
+    }
 }
 
 if (process.env.DEVE === 'TRUE') {

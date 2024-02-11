@@ -36,7 +36,7 @@ app.set('https_port', process.env.HTTPS_PORT)
 var sess = {
     secret: process.env.SESSION_SECRET,
     cookie: {
-        sameSite: true 
+        maxAge: 60000
     }
 }
 

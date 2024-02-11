@@ -3,18 +3,21 @@ var dbHandler = require('../db/databaseHandle');
 
 var router = express.Router();
 
+
 router.get('/checkLogin', function(req, res, next) {
-    var uuid = req.session.user_uuid;
+    var uuid = req.session.token;
+    // console.log("🚀 ~ router.get ~ uuid:", uuid)
+    // console.log("🚀 ~ dbHandler.create_token ~ req.session.id:", req.session.id)
+
     if (!uuid) {        
         res.status(300).send();
         return
     }
 
-    dbHandler.get_user(uuid, (err, result) => {
+    dbHandler.check_token(uuid, (err, result) => {
         if (err) throw err;
         var user = result[0];
         if (!user) {
-            req.session.is_login = false;
             res.status(300).send();
             return;
         }
@@ -30,8 +33,15 @@ router.post('/', function(req, res, next) {
             res.status(300).send("Tên đăng nhập hoặc mật khẩu không đúng");
             return;
         }
-        req.session.user_uuid = user.id;
-        res.status(200).send('ok');
+
+        dbHandler.create_token(user.id, (err , token, result) => {
+            // console.log("🚀 ~ dbHandler.create_token ~ token:", token)
+            req.session.token = token;
+            // console.log("🚀 ~ dbHandler.create_token ~ req.session.id:", req.session.id)
+            console.log(req.session.token)
+            res.status(200).send('ok');
+        })
+            
     })
 })
 

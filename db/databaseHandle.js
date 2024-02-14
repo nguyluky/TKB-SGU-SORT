@@ -3,6 +3,16 @@ const db = require('./db');
 module.exports = {
     sign_up: function (req, callback) {
         const {user, password, email} = req.body;
+        
+        if (user.includes(' ')) {
+            callback({code: "Tên đăng nhập không hợp lệ"}, {})
+            return
+        }
+
+        if (password.includes(' ')){
+            callback({code: "Mật khẩu không hợp lệ"}, {})
+            return
+        }
 
         const sql_get_uuid = 'SELECT UUID() AS UUID_Value;'
 
@@ -33,7 +43,7 @@ module.exports = {
                         callback(err, result);
                         return;
                     };
-                    db.query(`UPDATE user_info SET username = '${user}' WHERE id = '${uuid}';`, callback)
+                    db.query(`UPDATE user_info SET username = '${user}' WHERE id = '${uuid}';`, (err, result) => callback(err, uuid))
                 });
                 
             })
@@ -49,8 +59,6 @@ module.exports = {
         const sql = `SELECT * FROM user_info WHERE id = '${uuid}';`;
         db.query(sql, callback);
     },
-
-    // không có dùng
     create_token: function (user_id, callback) {
         const sql_get_uuid = 'SELECT UUID() AS UUID_Value;'
         db.query(sql_get_uuid, (err, result) => {
@@ -74,13 +82,62 @@ module.exports = {
             callback(err, result)
         })
     },
-
     check_token: function (token, callback) {
         const sql = `SELECT * FROM user_login_info WHERE token = '${token}';`;
         db.query(sql, callback);
+    },
+    clear_token: function(token, callback) {
+        const sql = `
+            UPDATE user_login_info 
+            SET token = NULL
+            WHERE token = '${token}';
+            `
+
+        db.query(sql, (err, result) => {
+            if (err) throw err;
+
+            callback(err, result)
+        })
+    },
+
+    update_info: function (data, callback) {
+        var {display_name, ma_sv, khoa, lop, uuid} = data;
+
+        const sql = `
+            UPDATE user_info SET
+            display_name = '${display_name}',
+            ma_sv = ${ma_sv ? "'" + ma_sv + "'": 'NULL'},
+            khoa = ${khoa ? "'" + khoa + "'": 'NULL'},
+            lop = ${lop ? "'" + lop + "'": 'NULL'}
+            WHERE id = '${uuid}';
+        `
+
+        db.query(sql, (err, result) => {
+            callback(err, result)
+        })
+        // console.log(sql)
+
+    },
+    check_have_acc: function(name, callback) {
+        const sql = `SELECT COUNT(*) FROM user_login_info
+        WHERE username = '${name}';`
+
+        db.query(sql, (err, result) => {
+            callback(err, result)
+        })
+    },
+
+    get_user_info: function(uuid, callback) {
+        const sql = `
+            SELECT display_name, khoa, lop, ma_sv FROM user_info
+            WHERE id = '${uuid}';
+        `
+
+        db.query(sql, (err, result) => {
+            if (err) {
+                throw err
+            }
+            callback(err, result)
+        })
     }
-
-
-
-
 }

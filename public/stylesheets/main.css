@@ -121,14 +121,17 @@ body {
 }
 .menubar .menubar-right-elem .menubar-right-item .menubar-menu:hover {
   background-color: var(--hover-back);
-  border-radius: 50%;
+  border-radius: 17.5px;
 }
-.menubar .menubar-right-elem .menubar-right-item .menubar-menu:hover i {
+.menubar .menubar-right-elem .menubar-right-item .menubar-menu:hover i, .menubar .menubar-right-elem .menubar-right-item .menubar-menu:hover p {
   color: var(--color-hover);
 }
 .menubar .menubar-right-elem i {
   color: var(--text-color);
   font-size: 25px;
+}
+.menubar .menubar-right-elem p {
+  color: var(--text-color);
 }
 .menubar .menubar-right-elem .share {
   -webkit-transform: scaleX(-1);

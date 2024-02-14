@@ -1,8 +1,12 @@
-
 var data = null
+var user_info = null
 // Khi người dùng click thêm học phần
 const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
+
+function checkLogin() {
+    return sessionStorage.getItem('isLogin') == 'true';
+}
 
 function xoaThemhocphan (){
     button_themhocphan.classList.remove('active')
@@ -28,11 +32,6 @@ button_themhocphan.onclick = (event) => {
 }
 
 // hết
-
-function checkLogin() {
-    return sessionStorage.getItem('isLogin') == 'true';
-}
-
 function initAccoutClick() {
 
     var accountPopup = document.querySelector('.menubar-right-item .accout-popup')
@@ -48,7 +47,7 @@ function initAccoutClick() {
 
         // kiểm tra xem có đăng nhập chưa
         if (!checkLogin()) {
-            document.location.href = "/sign_up"
+            document.location.href = "/sign_in"
             return
         }
         if (accountPopup.style.display == 'block') {
@@ -469,3 +468,24 @@ function initHocPhanHandel(cls) {
 // gọi hàm addHp với parameter là mã học phần
 // thì nó sẽ thêm vời side bar học phần đó
 initHocPhanHandel(this)
+
+function get_use_info() {
+    fetch('/api/get_user_info', {method: "POST",}).then(e => e.json()).then(json_ => {
+        // console.log(json_)
+        user_info = json_
+
+        document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+        document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+        document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+        document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+    })
+}
+
+get_use_info()
+
+
+function log_out() {
+    fetch('/sign_in/log_out').then(e => {
+        document.location.reload()
+    })
+}

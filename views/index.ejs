@@ -8,8 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script defer src="javascripts\javascript.js"></script>
     <title>TKB - Untitled</title>
-    <script>
-
+    <script defer>
         function setToDarkMode() {
             document.documentElement.style.setProperty('--main-color', '#1b1b1b')
             document.documentElement.style.setProperty('--text-color', '#e3e3e3')
@@ -35,7 +34,7 @@
         }
 
         var data;
-        function test(index) {
+        function api(index) {
             fetch('api/dshocphan', {
                 method: "POST"
             }).then(e => e.json()).then(e => {
@@ -48,9 +47,10 @@
                     return
                 }
                 sessionStorage.setItem('isLogin', false)
+                document.getElementById('accout').innerHTML = "<p> Sign In </p>"
             })
         }
-        test()
+        api()
         
     </script>
 </head>
@@ -166,7 +166,7 @@
                         <p class="line">Lớp: ****</p>
                     </div>
                     <div class="br"></div>
-                    <a class="logout">Đăng Xuất</a>
+                    <p class="logout" onclick="log_out()">Đăng Xuất</p>
                 </div>
             </div>
         </div>

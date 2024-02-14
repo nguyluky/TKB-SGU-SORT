@@ -140,9 +140,9 @@ body {
     
         .menubar-right-item .menubar-menu:hover {
             background-color: var(--hover-back);
-            border-radius: 50%;
+            border-radius: 17.5px;
     
-            i {
+            i, p {
                 color: var(--color-hover);
             }
         }
@@ -150,6 +150,10 @@ body {
         i {
             color: var(--text-color);
             font-size: 25px;
+        }
+
+        p {
+            color: var(--text-color);
         }
     
         .share {

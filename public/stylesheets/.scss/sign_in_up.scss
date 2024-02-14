@@ -68,9 +68,24 @@ h1 {
     margin-bottom: 20px;
     background: rgb(17, 107, 143);
 
+    &.sguacc {
+      background-color: #8ab4f8;
+    }
+
     &:hover {
       background: rgba(17, 107, 143, 0.877);
     }
+
+    &.sguacc:hover {
+      background-color: #8ab4f8;
+    }
+  }
+
+  .line {
+    height: 1px;
+    margin: 0px 90px;
+    background-color: var(--text-color);
+    transform: translatey(-10px);
   }
 
   .dang_ky, .quen_mat_khau {

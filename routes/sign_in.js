@@ -4,20 +4,27 @@ var dbHandler = require('../db/databaseHandle');
 var router = express.Router();
 
 
+router.get('/log_out' , function(req, res, next) {
+    var token = req.session.token;
+    dbHandler.clear_token(token, (err, result) => {
+        res.status(200).send()
+    })
+})
+
 router.get('/checkLogin', function(req, res, next) {
-    var uuid = req.session.token;
+    var token = req.session.token;
     // console.log("🚀 ~ router.get ~ uuid:", uuid)
     // console.log("🚀 ~ dbHandler.create_token ~ req.session.id:", req.session.id)
 
-    if (!uuid) {        
+    if (!token) {        
         res.status(300).send();
         return
     }
 
-    dbHandler.check_token(uuid, (err, result) => {
+    dbHandler.check_token(token, (err, result) => {
         if (err) throw err;
-        var user = result[0];
-        if (!user) {
+        var uuid = result[0];
+        if (!uuid) {
             res.status(300).send();
             return;
         }
@@ -35,9 +42,7 @@ router.post('/', function(req, res, next) {
         }
 
         dbHandler.create_token(user.id, (err , token, result) => {
-            // console.log("🚀 ~ dbHandler.create_token ~ token:", token)
             req.session.token = token;
-            // console.log("🚀 ~ dbHandler.create_token ~ req.session.id:", req.session.id)
             console.log(req.session.token)
             res.status(200).send('ok');
         })

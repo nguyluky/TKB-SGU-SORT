@@ -60,8 +60,20 @@ h1 {
   margin-bottom: 20px;
   background: rgb(17, 107, 143);
 }
+.wrapper button.sguacc {
+  background-color: #8ab4f8;
+}
 .wrapper button:hover {
   background: rgba(17, 107, 143, 0.877);
+}
+.wrapper button.sguacc:hover {
+  background-color: #8ab4f8;
+}
+.wrapper .line {
+  height: 1px;
+  margin: 0px 90px;
+  background-color: var(--text-color);
+  transform: translatey(-10px);
 }
 .wrapper .dang_ky, .wrapper .quen_mat_khau {
   margin-bottom: 10px;

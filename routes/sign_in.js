@@ -11,9 +11,9 @@ router.get('/log_out' , function(req, res, next) {
     })
 })
 
-router.get('/checkLogin', function(req, res, next) {
+router.post('/checkLogin', function(req, res, next) {
     var token = req.session.token;
-    // console.log("🚀 ~ router.get ~ uuid:", uuid)
+    // console.log("🚀 ~ router.get ~ token:", token)
     // console.log("🚀 ~ dbHandler.create_token ~ req.session.id:", req.session.id)
 
     if (!token) {        
@@ -32,6 +32,8 @@ router.get('/checkLogin', function(req, res, next) {
     });
 })
 
+
+// sign in handle
 router.post('/', function(req, res, next) {
 
     dbHandler.sign_in(req, function(err,result) {
@@ -43,7 +45,10 @@ router.post('/', function(req, res, next) {
 
         dbHandler.create_token(user.id, (err , token, result) => {
             req.session.token = token;
-            console.log(req.session.token)
+            // console.log(req.session.token)
+            // console.log("🚀 ~ router.get ~ token:", req.session.token)
+            // console.log("🚀 ~ dbHandler.create_token ~ req.session.id:", req.session.id)
+                
             res.status(200).send('ok');
         })
             

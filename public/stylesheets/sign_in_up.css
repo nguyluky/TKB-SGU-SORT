@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.9rem;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,22 +33,39 @@ h1 {
   color: var(--h1dangky-color);
 }
 
-.wrapper form input {
+.wrapper form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.wrapper form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapper form input[type=text] {
+  height: 53px;
   border-radius: 20px;
   font-size: 20px;
   width: 80%;
-  margin-bottom: 20px;
   border: 1px solid #fff;
   background: var(--input-color);
   padding: 10px 20px;
   color: var(--text-color);
 }
-.wrapper form ::placeholder {
-  color: var(--text-color);
+.wrapper form input[type=text].err {
+  outline-color: #ff3333;
 }
-.wrapper .err {
-  transform: translateY(-10px);
+.wrapper form ::placeholder {
+  color: gray;
+}
+.wrapper .err_view {
+  text-align: left;
+  padding: 0px 12%;
   color: #ff3333;
+  height: 25px;
+  font-weight: bold;
+  width: 95%;
 }
 .wrapper button {
   width: 80%;
@@ -72,7 +89,7 @@ h1 {
 .wrapper .line {
   height: 1px;
   margin: 0px 90px;
-  background-color: var(--text-color);
+  background-color: gray;
   transform: translatey(-10px);
 }
 .wrapper .dang_ky, .wrapper .quen_mat_khau {
@@ -95,3 +112,81 @@ h1 {
     border: 1px solid black;
 }
  */
+.select-box {
+  height: 53px;
+  border-radius: 20px;
+  font-size: 20px;
+  width: 80%;
+  border: 1px solid #fff;
+  background: var(--input-color);
+  color: var(--text-color);
+  padding: 0 20px;
+  position: relative;
+}
+.select-box .selected {
+  height: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  text-wrap: nowrap;
+  overflow: hidden;
+}
+.select-box .selected[id_sele=null] {
+  color: gray;
+}
+.select-box .selec-popup {
+  position: absolute;
+  width: max-content;
+  transform: translate(-20px, 10px);
+  border-radius: 15px;
+  background: var(--input-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 18px;
+  z-index: 2;
+  height: fit-content;
+  max-height: 300px;
+  min-width: 100%;
+  display: none;
+}
+.select-box .selec-popup.open {
+  display: block;
+}
+.select-box .selec-popup .search input {
+  color: var(--text-color);
+  margin-top: 10px;
+  width: 95%;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: transparent;
+  border: 1px solid gray;
+  border-radius: 10px;
+  outline: transparent;
+  font-size: 20px;
+}
+.select-box .selec-popup .option-container {
+  padding: 10px 0;
+  max-height: 245px;
+  height: fit-content;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: gray transparent;
+}
+.select-box .selec-popup .option-container .option {
+  margin: 0 20px;
+  border-radius: 10px;
+}
+.select-box .selec-popup .option-container .option:hover {
+  background: #8ab4f8;
+  color: #07001f;
+}
+.select-box .selec-popup .option-container .option label {
+  padding: 5px;
+  height: 100%;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.select-box .selec-popup .option-container .option input[type=radio] {
+  display: none;
+}

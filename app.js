@@ -20,9 +20,9 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(methodOverride())
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(express.json());
 
 // static path
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,8 +35,13 @@ app.set('https_port', process.env.HTTPS_PORT)
 //set session
 var sess = {
     secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
     cookie: {
-        maxAge: 60000
+        secure: false,
+        httpOnly: false,
+        sameSite: 'none',
+        maxAge: 1000 * 60 * 10
     }
 }
 

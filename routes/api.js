@@ -1,6 +1,9 @@
 const express = require('express');
 const dbHandler = require('../db/databaseHandle');
 const path = require('path');
+const { env } = require('process');
+var kickbox = require('kickbox').client(env.KICKBOX_API).kickbox();
+
 
 var router = express.Router();
 
@@ -28,4 +31,30 @@ router.post('/get_user_info', (req, res, next) => {
     })
 })
 
+router.get('/ds_khoa', function(req, res, next) {
+    res.setHeader('Content-Type', 'application/json')
+    dbHandler.get_ds_khoa((result) => {
+        res.send(result)
+    })
+})
+
+router.get('/ds_lop', function(req, res, next) {
+    res.setHeader('Content-Type', 'application/json')
+    dbHandler.get_ds_lop((result) => {
+        res.send(result)
+    })
+})
+
+router.post('/check_email', function(req, res, next) {
+    const {email} = req.body;
+    // console.log(email)
+    kickbox.verify(email, function (err, response) {
+        // console.log(response.body.result)
+        if (response.body.result == 'deliverable') {
+            res.status(200).send()
+            return
+        }
+        res.status(300).send()
+    });
+})
 module.exports = router;

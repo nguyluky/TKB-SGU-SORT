@@ -1,10 +1,10 @@
-
+  
 function setErr(mess) {
-    document.getElementById('err').innerHTML += `<p>${mess}</p>` 
+    document.querySelector('.err_view.a').innerHTML += `<p>${mess}</p>` 
 }
 
 function clsErr() {
-    document.getElementById('err').innerHTML = ''
+    document.querySelector('.err_view.a').innerHTML = ''
 }
 
 function sign_in() {

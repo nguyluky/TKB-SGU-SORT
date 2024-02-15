@@ -18,15 +18,17 @@ router.post('/checkacc', function(req, res, next) {
     })
 })
 
+router.post('/checkemail', function(req, res, next) {
+    var {email} = req.body;
+    
+})
+
 // create acc
-// NOTE: tạm thời khi người dùng sign_up thì client
-    // gửi 2 yêu cầu req
-    // cái thứ nhất gửi req tại tài khoản
-    // cái thứ 2 gửi sau cái thứ nhất là cập nhật thông tin
 router.put('/', function(req, res, next) {
     dbHandler.sign_up(req, function(err,result) {
         if (err) {
             var mess;
+            console.log(err)
             if (err.code == "ER_DUP_ENTRY") mess = "Tên đăng nhập đã tồn tại"
             else mess = err.code;
             res.status(300).send(mess);

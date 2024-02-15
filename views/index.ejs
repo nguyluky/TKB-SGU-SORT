@@ -41,7 +41,9 @@
                 data = e
             })
 
-            fetch('/sign_in/checkLogin').then(e => {
+            fetch('/sign_in/checkLogin', {
+                method: "POST"
+            }).then(e => {
                 if (e.status == 200) {
                     sessionStorage.setItem('isLogin', true)
                     return

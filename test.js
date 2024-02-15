@@ -1,19 +1,4 @@
-var db = require('./db/databaseHandle');
-
-// db.sign_in({
-//     body: {
-//         user: 'khachieu',
-//         password: 'pass'
-//     }}, 
-//     function(err, result) {
-//         console.log(result);
-//     })
-
-
-db.sign_up({
-    body: {
-        user: 'khachieu1',
-        password: 'pass1'
-    }}, function(err, result) {
-    console.log(result);
-})
+require('crypto').randomBytes(48, function(err, buffer) {
+    var token = buffer.toString('hex');
+    console.log(token)
+  });

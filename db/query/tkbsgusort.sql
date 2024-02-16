@@ -35,16 +35,14 @@ ON DELETE CASCADE;
 -- -------------------------------------------------
 
 
-
-
-
-
+DROP TABLE user_info;
+DROP TABLE user_login_info;
 
 ALTER TABLE user_info
 DROP COLUMN username ;
 
 ALTER TABLE user_info
-DROP FOREIGN KEY user_login_info_ibfk_1 ;
+DROP FOREIGN KEY user_info_ibfk_3 ;
 
 
 SELECT * FROM user_info;

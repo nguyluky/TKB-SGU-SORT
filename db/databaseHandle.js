@@ -21,12 +21,13 @@ module.exports = {
             callback({code: "Tên đăng nhập quá ngắn"}, {})
             return
         }
-
+        
+        console.log(user, password, email, display_name, ma_sv, khoa, lop)
         const uuid = uuidv4()
 
         const sql_create_user_login_info = `
             INSERT INTO user_login_info(username, pass, email, id, created) 
-            VALUES(?,?,?,?,NOW())
+            VALUES(?,SHA1(?),?,?,NOW())
         `   
         const sql_create_user_info = `
             INSERT INTO user_info(id, display_name, ma_sv, khoa, lop)

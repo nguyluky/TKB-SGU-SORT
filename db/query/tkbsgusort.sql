@@ -14,7 +14,7 @@ CREATE TABLE user_login_info (
 
 CREATE TABLE user_info (
     id VARCHAR(36) PRIMARY KEY,
-    display_name VARCHAR(40),
+    display_name VARCHAR(40) CHARSET utf8,
     ma_sv VARCHAR(11),
     khoa VARCHAR(4),
     lop VARCHAR(7),
@@ -98,3 +98,4 @@ VALUES (
 
 SELECT COUNT(*) FROM user_login_info
 WHERE email = "nguyenkhachieu117@gmail.com";
+

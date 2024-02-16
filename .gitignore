@@ -133,4 +133,4 @@ dist
 
 certs/tkbsgusort.id.vn/*
 
-tests/
+test.*

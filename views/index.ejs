@@ -36,28 +36,6 @@
         if (localStorage.getItem('theme') == 'dark') {
             setToDarkMode()
         }
-
-        var data;
-        function api(index) {
-            fetch('api/dshocphan', {
-                method: "POST"
-            }).then(e => e.json()).then(e => {
-                data = e
-            })
-
-            fetch('/sign_in/checkLogin', {
-                method: "POST"
-            }).then(e => {
-                if (e.status == 200) {
-                    sessionStorage.setItem('isLogin', true)
-                    return
-                }
-                sessionStorage.setItem('isLogin', false)
-                document.getElementById('accout').innerHTML = "<p> Sign In </p>"
-            })
-        }
-        api()
-        
     </script>
 </head>
 

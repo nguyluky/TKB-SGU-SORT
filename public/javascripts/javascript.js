@@ -20,12 +20,65 @@ function xoaThemhocphan (){
 
 button_themhocphan.onclick = (event) => {
     button_themhocphan.classList.add('active');
-    button_themhocphan.innerHTML = `
-    <i class='bx bx-search-alt icon_themhhocphan'></i>
-    <input placeholder="Tìm học phần"/>
-    <div class="search-suggest"></div>
+    button_themhocphan.innerHTML = `<i class='bx bx-search-alt icon_themhhocphan'></i>`
 
-    `
+    var input = document.createElement('input')
+    input.setAttribute('placeholder', 'Tìm học phần')
+    
+
+    var div = document.createElement('div')
+    div.className = 'search-suggest'
+
+    input.addEventListener('keyup', event => {
+        var t = event.target.value;
+
+        var max_=10
+    
+        div.childNodes.forEach(e => {
+            if (t == '') {
+                e.style.display = 'none'
+                return
+            }
+
+            if (max_ == 0) {
+
+            }
+            else if (e.textContent.toLowerCase().includes(t.toLowerCase())) {
+                max_ --;
+                e.style.display = ''
+            }
+            else if (e.getAttribute('id_hp').includes(e)) {
+                max_ --;
+                e.style.display = ''
+            }
+            else (
+                e.style.display = 'none'
+            )
+        })
+        
+    })
+
+    Object.keys(data.ds_mon_hoc).forEach(e => {
+        var option = document.createElement('div')
+        option.className = 'search-option'
+        option.setAttribute('id_hp', e)
+        option.onclick = function () {
+            addHp(`${e}`)
+            xoaThemhocphan()
+        }
+        option.textContent = `${data.ds_mon_hoc[e]} - ${e}`
+        option.style.display = 'none'
+        div.appendChild(option)
+    })
+
+    button_themhocphan.appendChild(input)
+    button_themhocphan.appendChild(div)
+    
+    // <input placeholder="Tìm học phần"/>
+    // <div class="search-suggest"></div>
+
+
+
     event.stopPropagation()
     document.body.addEventListener('click', xoaThemhocphan)
     button_themhocphan.disabled = true;
@@ -489,3 +542,37 @@ function log_out() {
         document.location.reload()
     })
 }
+
+
+var data;
+
+function render_hocphan() {
+    var div = document.querySelector('#add-button > div')
+    data.ds_mon_hoc.forEach(e => {
+        
+    })
+
+}
+
+function api(index) {
+    fetch('api/dshocphan', {
+        method: "POST"
+    }).then(e => e.json()).then(e => {
+        data = e
+
+
+
+    })
+
+    fetch('/sign_in/checkLogin', {
+        method: "POST"
+    }).then(e => {
+        if (e.status == 200) {
+            sessionStorage.setItem('isLogin', true)
+            return
+        }
+        sessionStorage.setItem('isLogin', false)
+        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+    })
+}
+api()

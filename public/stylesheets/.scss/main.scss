@@ -243,7 +243,7 @@ body {
 
             .hp {
                 flex-wrap: nowrap;
-                padding: 0 15px 0 0;
+                padding: 0 10px 0 0;
 
                 + .hp {
                     margin-top: 5px;
@@ -258,6 +258,7 @@ body {
                     padding-left: 7px;
                     cursor: pointer;
                     font-size: 14px;
+                    padding: 0 5px 0 0;
 
 
                     &:hover {
@@ -269,6 +270,9 @@ body {
                     .name {
                         color: var(--text-color);
                         text-wrap: nowrap;
+                        max-width: 78%;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
                     }
             
                     .ct {
@@ -284,6 +288,11 @@ body {
                         &.close {
                             transform: rotate(0);
                         }
+
+                    }
+
+                    i.bx-x:hover {
+                        color: #ff3333;
                     }
                 }
 

@@ -204,7 +204,7 @@ body {
 }
 .main-body .siderbar .siderbar-body .hp {
   flex-wrap: nowrap;
-  padding: 0 15px 0 0;
+  padding: 0 10px 0 0;
 }
 .main-body .siderbar .siderbar-body .hp + .hp {
   margin-top: 5px;
@@ -218,6 +218,7 @@ body {
   padding-left: 7px;
   cursor: pointer;
   font-size: 14px;
+  padding: 0 5px 0 0;
 }
 .main-body .siderbar .siderbar-body .hp .info:hover {
   background-color: var(--hover-back);
@@ -226,6 +227,9 @@ body {
 .main-body .siderbar .siderbar-body .hp .info .name {
   color: var(--text-color);
   text-wrap: nowrap;
+  max-width: 78%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .main-body .siderbar .siderbar-body .hp .info .ct {
   color: var(--text-color);
@@ -239,6 +243,9 @@ body {
 }
 .main-body .siderbar .siderbar-body .hp .info i.close {
   transform: rotate(0);
+}
+.main-body .siderbar .siderbar-body .hp .info i.bx-x:hover {
+  color: #ff3333;
 }
 .main-body .siderbar .siderbar-body .hp .list-hp {
   margin-top: 5px;

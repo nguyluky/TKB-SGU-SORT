@@ -460,9 +460,43 @@ function initHocPhanHandel(cls) {
         div_info.innerHTML = `
             <span class="name">${name}</span>
             <span class="ct">${ct}ct</span>
-            <i class='bx bx-chevron-down close'></i>
         `
+            // <i class='bx bx-chevron-down close'></i>
+
+        var icon = document.createElement('i')
+        icon.className = 'bx bx-chevron-down close'
+
+        var dele_id = null
+        var candele = false
+        icon.addEventListener('mouseenter', () => {
+            dele_id = setTimeout(() => {
+                icon.classList.remove('bx-chevron-down')
+                icon.classList.add('bx-x')
+                candele = true
+
+            }, 200)
+        })
+
+        icon.addEventListener('mouseleave', () => {
+            clearTimeout(dele_id)
+            icon.classList.add('bx-chevron-down')
+            icon.classList.remove('bx-x')
+            candele = false
+        })
+
+        icon.addEventListener('click', () => {
+            if (candele) {
+                div_hp.remove()
+                Object.values(tkb.hocphan).forEach(e => {
+                    if (e.ma_mon == mahp) {
+                        tkb.remove(e.id_to_hoc)
+                    }
+                })
+            }
+        })
     
+        div_info.appendChild(icon)
+
         var div_list_hp = document.createElement('div')
         div_list_hp.className = "list-hp close"
     

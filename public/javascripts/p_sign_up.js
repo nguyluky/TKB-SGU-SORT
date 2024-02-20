@@ -284,11 +284,19 @@ function create_sele_box(elem, data) {
 }
 
 fetch('api/ds_khoa').then(e => e.json()).then(e => {
-  create_sele_box(document.getElementById('khoa'), e)
+    if (e.err_mess) {
+        console.error(e.err_mess)
+        return
+    }
+    create_sele_box(document.getElementById('khoa'), e.data)
 })
 
 fetch('api/ds_lop').then(e => e.json()).then(e => {
-  create_sele_box(document.getElementById('lop'), e)
+    if (e.err_mess) {
+        console.error(e.err_mess)
+        return
+    }
+    create_sele_box(document.getElementById('lop'), e.data)
 })
 
 

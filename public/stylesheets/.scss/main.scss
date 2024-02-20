@@ -60,7 +60,7 @@ body {
         }
 
         i {
-            font-size: 25px;
+            font-size: 1.563rem;
         }
     }
 
@@ -84,7 +84,7 @@ body {
         span {
             text-decoration: none;
             align-items: center;
-            font-size: 15px;
+            font-size: 0.938rem;
             color: var(--text-color);
         }
 
@@ -113,6 +113,13 @@ body {
             padding: 0 20px;
             text-decoration: none;
             color: var(--text-color);
+        }
+
+        li {
+            padding: 0 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
         }
 
         div {
@@ -149,7 +156,7 @@ body {
     
         i {
             color: var(--text-color);
-            font-size: 25px;
+            font-size: 1.563rem;
         }
 
         p {
@@ -175,12 +182,12 @@ body {
             .user-info {
                 p.line {
                     margin-top: 5px;
-                    font-size: 13px;
+                    font-size: 0.813rem;
                 }
     
                 .mssv {
                     color: var(--text-color-2);
-                    font-size: 10px;
+                    font-size: 0.625rem;
                     padding-left: 5px;
                 }
             }
@@ -194,7 +201,7 @@ body {
     
             .logout {
                 cursor: pointer;
-                font-size: 14px;
+                font-size: 0.875rem;
     
                 &:hover {
                     text-decoration: underline;
@@ -243,7 +250,7 @@ body {
 
             .hp {
                 flex-wrap: nowrap;
-                padding: 0 10px 0 0;
+                padding: 0 14px 0 0;
 
                 + .hp {
                     margin-top: 5px;
@@ -255,10 +262,10 @@ body {
                     display: flex;
                     align-items: center;
                     font-weight: bold;
-                    padding-left: 7px;
+                    // padding-left: 7px;
                     cursor: pointer;
-                    font-size: 14px;
-                    padding: 0 5px 0 0;
+                    font-size: 0.875rem;
+                    padding: 0 5px 0 7px;
 
 
                     &:hover {
@@ -282,7 +289,7 @@ body {
 
                     i {
                         margin-left: 5px;
-                        font-size: 25px;
+                        font-size: 1.563rem;
                         color: var(--text-color);
                         transform: rotate(180deg);
                         &.close {
@@ -307,7 +314,7 @@ body {
                     }
 
                     .list-hp-item {
-                        font-size: 14px;
+                        font-size: 0.875rem;
                         padding: 7px;
                         background-color: var(--hover-back);
                         border-radius: 5px;
@@ -336,6 +343,7 @@ body {
     .tkb {
         width: 100%;
         height: 100%;
+        background-color: var(--main-backe);
 
         >table {
             user-select: none !important;
@@ -365,7 +373,7 @@ body {
 
                     span {
                         padding-right: 10px;
-                        font-size: 13px;
+                        font-size: 0.813rem;
                         color: var(--text-color-2);
                     }
                 }
@@ -415,7 +423,7 @@ body {
             &.tiet td .tiet-item {
                 color: #fff;
                 padding: 5px;
-                font-size: 14px;
+                font-size: 0.875rem;
 
                 /* overflow:hidden; */
 
@@ -483,7 +491,6 @@ body {
     z-index: 10;
     cursor: pointer;
 
-    // được thêm ở đây nè
     &.active {
         width: 300px;
         input{
@@ -496,13 +503,16 @@ body {
             background: transparent;
             border: transparent;
             outline: none;
-            font-size: 15px;
+            font-size: 0.938rem;
             color: var(--text-color);
         }
         .icon_themhhocphan{
             padding: 5px;
-            font-size: 30px;
+            font-size: 1.875rem;
         }
+
+
+
         .search-suggest {
             padding: 10px 0;
             // color: gray;
@@ -523,7 +533,7 @@ body {
 
             .search-option {
                 padding: 8px;
-                font-size: 15px;
+                font-size: 0.938rem;
                 border-radius: 5px;
                 margin: 0px 10px;
                 text-align: left;
@@ -560,15 +570,20 @@ body {
     }
 
     i {
-        font-size: 40px;
+        font-size: 2.5rem;
         color: var(--text-color);
     }
 
-    span {
+    
+    
+    span.themhocphan {
         color: var(--text-color);
-        font-size: 15px;
+        font-size: 0.938rem;
         margin-left: 10px;
         text-wrap: nowrap;
+        
+        font-weight: bold;
+        
     }
 }
 

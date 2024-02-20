@@ -55,7 +55,7 @@ body {
   background-color: var(--hover-back);
 }
 .menubar .menubar-icon i {
-  font-size: 25px;
+  font-size: 1.563rem;
 }
 .menubar .menubar-item {
   position: relative;
@@ -75,7 +75,7 @@ body {
 .menubar .menubar-menu span {
   text-decoration: none;
   align-items: center;
-  font-size: 15px;
+  font-size: 0.938rem;
   color: var(--text-color);
 }
 .menubar .menubar-menu:hover {
@@ -100,6 +100,12 @@ body {
   padding: 0 20px;
   text-decoration: none;
   color: var(--text-color);
+}
+.menubar .popup li {
+  padding: 0 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  display: block;
 }
 .menubar .popup div {
   padding: 5px 0;
@@ -128,7 +134,7 @@ body {
 }
 .menubar .menubar-right-elem i {
   color: var(--text-color);
-  font-size: 25px;
+  font-size: 1.563rem;
 }
 .menubar .menubar-right-elem p {
   color: var(--text-color);
@@ -151,11 +157,11 @@ body {
 }
 .menubar .menubar-right-elem .accout-popup .user-info p.line {
   margin-top: 5px;
-  font-size: 13px;
+  font-size: 0.813rem;
 }
 .menubar .menubar-right-elem .accout-popup .user-info .mssv {
   color: var(--text-color-2);
-  font-size: 10px;
+  font-size: 0.625rem;
   padding-left: 5px;
 }
 .menubar .menubar-right-elem .accout-popup .br {
@@ -166,7 +172,7 @@ body {
 }
 .menubar .menubar-right-elem .accout-popup .logout {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .menubar .menubar-right-elem .accout-popup .logout:hover {
   text-decoration: underline;
@@ -204,7 +210,7 @@ body {
 }
 .main-body .siderbar .siderbar-body .hp {
   flex-wrap: nowrap;
-  padding: 0 10px 0 0;
+  padding: 0 14px 0 0;
 }
 .main-body .siderbar .siderbar-body .hp + .hp {
   margin-top: 5px;
@@ -215,10 +221,9 @@ body {
   display: flex;
   align-items: center;
   font-weight: bold;
-  padding-left: 7px;
   cursor: pointer;
-  font-size: 14px;
-  padding: 0 5px 0 0;
+  font-size: 0.875rem;
+  padding: 0 5px 0 7px;
 }
 .main-body .siderbar .siderbar-body .hp .info:hover {
   background-color: var(--hover-back);
@@ -237,7 +242,7 @@ body {
 }
 .main-body .siderbar .siderbar-body .hp .info i {
   margin-left: 5px;
-  font-size: 25px;
+  font-size: 1.563rem;
   color: var(--text-color);
   transform: rotate(180deg);
 }
@@ -257,7 +262,7 @@ body {
   overflow: hidden;
 }
 .main-body .siderbar .siderbar-body .hp .list-hp .list-hp-item {
-  font-size: 14px;
+  font-size: 0.875rem;
   padding: 7px;
   background-color: var(--hover-back);
   border-radius: 5px;
@@ -274,6 +279,7 @@ body {
 .main-body .tkb {
   width: 100%;
   height: 100%;
+  background-color: var(--main-backe);
 }
 .main-body .tkb > table {
   user-select: none !important;
@@ -299,7 +305,7 @@ body {
 }
 .main-body .tkb > table tr.tiet td:nth-child(1) span {
   padding-right: 10px;
-  font-size: 13px;
+  font-size: 0.813rem;
   color: var(--text-color-2);
 }
 .main-body .tkb th .header-th {
@@ -339,7 +345,7 @@ body {
 .main-body .tkb > table tr.tiet td .tiet-item {
   color: #fff;
   padding: 5px;
-  font-size: 14px;
+  font-size: 0.875rem;
   /* overflow:hidden; */
   width: 100%;
   height: 100%;
@@ -408,12 +414,12 @@ body {
   background: transparent;
   border: transparent;
   outline: none;
-  font-size: 15px;
+  font-size: 0.938rem;
   color: var(--text-color);
 }
 #add-button.active .icon_themhhocphan {
   padding: 5px;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 #add-button.active .search-suggest {
   padding: 10px 0;
@@ -434,7 +440,7 @@ body {
 }
 #add-button.active .search-suggest .search-option {
   padding: 8px;
-  font-size: 15px;
+  font-size: 0.938rem;
   border-radius: 5px;
   margin: 0px 10px;
   text-align: left;
@@ -462,14 +468,15 @@ body {
   display: none;
 }
 #add-button i {
-  font-size: 40px;
+  font-size: 2.5rem;
   color: var(--text-color);
 }
-#add-button span {
+#add-button span.themhocphan {
   color: var(--text-color);
-  font-size: 15px;
+  font-size: 0.938rem;
   margin-left: 10px;
   text-wrap: nowrap;
+  font-weight: bold;
 }
 
 #siderbar {

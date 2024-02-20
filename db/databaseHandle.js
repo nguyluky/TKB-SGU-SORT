@@ -152,6 +152,19 @@ module.exports = {
             callback(result)
         })
     },
-    // get_check_
+    save_tkb: function(uuid, id_to_hocs, name, thumbnail,callback) {
+
+        var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, NOW())'
+
+        db.query(sql, [uuid, name ,JSON.stringify(id_to_hocs), thumbnail], callback)
+    },
+    get_ds_tkb: function(uuid, callback) {
+        var sql = 'SELECT tkb_name, json_data, thumbnails, date_save FROM tkb_save WHERE id = ?'
+
+        db.query(sql, [uuid], callback)
+    },
+    get_tkb: function(uuid, name, callback) {
+        
+    }
     
 }

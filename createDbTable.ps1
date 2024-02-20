@@ -37,7 +37,7 @@ CREATE TABLE user_login_info (
     pass CHAR(40) NOT NULL,
     email VARCHAR(320) UNIQUE,
     id VARCHAR(36) NOT NULL UNIQUE,
-    created DATE NOT NULL,
+    created DATETIME NOT NULL,
     token VARCHAR(36),
     type_signup VARCHAR(10) DEFAULT(''DEFAULT'')
 )"'

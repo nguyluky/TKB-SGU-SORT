@@ -4,11 +4,7 @@ var user_info = null
 const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
 
-function checkLogin() {
-    return sessionStorage.getItem('isLogin') == 'true';
-}
-
-function xoaThemhocphan (){
+function xoaThemhocphan() {
     button_themhocphan.classList.remove('active')
     button_themhocphan.innerHTML = `
     <i class='bx bx-plus'></i>
@@ -16,7 +12,7 @@ function xoaThemhocphan (){
     `
     button_themhocphan.disabled = false;
     document.body.removeEventListener('click', xoaThemhocphan)
-}  
+}
 
 button_themhocphan.onclick = (event) => {
     button_themhocphan.classList.add('active');
@@ -24,16 +20,18 @@ button_themhocphan.onclick = (event) => {
 
     var input = document.createElement('input')
     input.setAttribute('placeholder', 'Tìm học phần')
-    
+
+
 
     var div = document.createElement('div')
     div.className = 'search-suggest'
+    div.style.display = 'none'
 
     input.addEventListener('keyup', event => {
         var t = event.target.value;
 
-        var max_=10
-    
+        var max_ = 10
+
         div.childNodes.forEach(e => {
             if (t == '') {
                 e.style.display = 'none'
@@ -44,18 +42,23 @@ button_themhocphan.onclick = (event) => {
 
             }
             else if (e.textContent.toLowerCase().includes(t.toLowerCase())) {
-                max_ --;
+                max_--;
                 e.style.display = ''
             }
             else if (e.getAttribute('id_hp').includes(e)) {
-                max_ --;
+                max_--;
                 e.style.display = ''
             }
             else (
                 e.style.display = 'none'
             )
         })
-        
+
+        if (max_ == 10) {
+            div.style.display = 'none'
+        }
+        else div.style.display = ''
+
     })
 
     Object.keys(data.ds_mon_hoc).forEach(e => {
@@ -73,53 +76,29 @@ button_themhocphan.onclick = (event) => {
 
     button_themhocphan.appendChild(input)
     button_themhocphan.appendChild(div)
-    
+
     // <input placeholder="Tìm học phần"/>
     // <div class="search-suggest"></div>
 
 
 
     event.stopPropagation()
+    setTimeout(() => {
+        document.querySelector('#add-button > input').focus()
+    }, 100)
     document.body.addEventListener('click', xoaThemhocphan)
     button_themhocphan.disabled = true;
 }
 
 // hết
-function initAccoutClick() {
 
-    var accountPopup = document.querySelector('.menubar-right-item .accout-popup')
-
-    function accout_hind() {
-        accountPopup.style.display = 'none'
-        document.querySelector('body').addEventListener('click', accout_hind)
-    
-    }
-
-
-    document.getElementById('accout').onclick = (event) => {
-
-        // kiểm tra xem có đăng nhập chưa
-        if (!checkLogin()) {
-            document.location.href = "/sign_in"
-            return
-        }
-        if (accountPopup.style.display == 'block') {
-            accout_hind()
-            return
-        }
-        accountPopup.style.display = 'block'
-        event.stopPropagation()
-        document.querySelector('body').addEventListener('click', accout_hind)
-    }
-}
-initAccoutClick()
 
 
 // sử lý sợ kiện khi người dùng nhấn vào menu
 function initMenuPopup() {
     var popup_is_show = false
-    var popup_show = null   
-    
+    var popup_show = null
+
     function hind_popup() {
         document.querySelectorAll('.popup').forEach((e) => {
             e.style.display = "none"
@@ -129,7 +108,7 @@ function initMenuPopup() {
         document.querySelector('body').removeEventListener('click', hind_popup)
     }
 
-    
+
     document.querySelectorAll('.menubar-item').forEach(ele => {
         var menu = ele.querySelector('.menubar-menu')
         if (!menu) return
@@ -175,20 +154,6 @@ function initMenuPopup() {
 }
 initMenuPopup()
 
-
-// sử lý sợ kiện khi người dùng nhấn đổi theme 
-document.getElementById('theme').onclick = (event) => {
-    if (localStorage.getItem('theme') != 'dark') {
-        setToDarkMode();
-        localStorage.setItem('theme', 'dark')
-    }
-    else {
-        setToLightMode();
-        localStorage.setItem('theme', '')
-    }
-}
-
-
 // khi người dùng nhấn vào nút thu nhỏ phóng to side bar
 const sidebar = document.getElementById('siderbar')
 document.querySelector('.menubar-icon').onclick = () => {
@@ -228,7 +193,7 @@ const tkb = {
     render: function (data) {
         this.hocphan[data.id_to_hoc] = data
         data.tkb.forEach(e => {
-            var {thu, tbd, tkt, th, phong, gv} = e;
+            var { thu, tbd, tkt, th, phong, gv } = e;
             var tiets = this.tkb.querySelectorAll('.tiet');
             for (let index = tbd; index <= tkt - 1; index++) {
                 var thus = tiets[index].querySelectorAll('td')
@@ -265,7 +230,7 @@ const tkb = {
         if (!data) return
 
         data.tkb.forEach(e => {
-            var {thu, tbd, tkt, th} = e;
+            var { thu, tbd, tkt, th } = e;
             var tiets = this.tkb.querySelectorAll('.tiet');
             for (let index = tbd; index <= tkt - 1; index++) {
                 var thus = tiets[index].querySelectorAll('td')
@@ -288,7 +253,7 @@ const tkb = {
     render_go: function (data) {
         this.hocphan_go[data.id_to_hoc] = data
         data.tkb.forEach(e => {
-            var {thu, tbd, tkt, th, phong, gv} = e;
+            var { thu, tbd, tkt, th, phong, gv } = e;
             var tiets = this.tkb.querySelectorAll('.tiet');
             for (let index = tbd; index <= tkt - 1; index++) {
                 var thus = tiets[index].querySelectorAll('td')
@@ -322,11 +287,11 @@ const tkb = {
      */
     remove_go: function (ten) {
         var data = this.hocphan_go[ten]
-        
+
         if (!data) return
 
         data.tkb.forEach(e => {
-            var {thu, tbd, tkt, th} = e;
+            var { thu, tbd, tkt, th } = e;
             var tiets = this.tkb.querySelectorAll('.tiet');
             for (let index = tbd; index <= tkt - 1; index++) {
                 var thus = tiets[index].querySelectorAll('td')
@@ -382,7 +347,7 @@ function initHocPhanHandel(cls) {
         })
     }
 
-    function chonTiet(hp , div_hp_item, div_list_hp, hp_per) {
+    function chonTiet(hp, div_hp_item, div_list_hp, hp_per) {
         var list_tiet_curr = []
         hp.tkb.forEach(tkb_item => {
             for (let index = tkb_item.tbd; index <= tkb_item.tkt; index++) {
@@ -408,7 +373,7 @@ function initHocPhanHandel(cls) {
 
         console.log(list_tiet_curr);
 
-        
+
         if (biTrung) {
             // bị trùng tiết
             console.log('bi trung')
@@ -427,16 +392,16 @@ function initHocPhanHandel(cls) {
 
     function showGhost(hp, mahp) {
         if (!tkb.hocphan[hp.id_to_hoc])
-        Object.values(tkb.hocphan).forEach(e => {
-            if (e.ma_mon == mahp) {
-                tkb.remove(e.id_to_hoc, false)
-            }
-        })
+            Object.values(tkb.hocphan).forEach(e => {
+                if (e.ma_mon == mahp) {
+                    tkb.remove(e.id_to_hoc, false)
+                }
+            })
         tkb.render_go(hp)
 
     }
 
-    function hideGhost (hp, mahp) {
+    function hideGhost(hp, mahp) {
         tkb.remove_go(hp.id_to_hoc)
         Object.values(tkb.hocphan).forEach(e => {
             if (e.ma_mon != mahp) {
@@ -445,23 +410,23 @@ function initHocPhanHandel(cls) {
         })
     }
 
-
     function makeEle(mahp) {
 
         var list = data.ds_nhom_to.filter(e => e.ma_mon == mahp)
         var name = data.ds_mon_hoc[mahp]
         var ct = list[0].so_tc
-    
+
         var div_hp = document.createElement('div')
         div_hp.className = "hp"
-    
+        div_hp.setAttribute('mahp', mahp)
+
         var div_info = document.createElement('div')
         div_info.className = "info"
         div_info.innerHTML = `
             <span class="name">${name}</span>
             <span class="ct">${ct}ct</span>
         `
-            // <i class='bx bx-chevron-down close'></i>
+        // <i class='bx bx-chevron-down close'></i>
 
         var icon = document.createElement('i')
         icon.className = 'bx bx-chevron-down close'
@@ -486,20 +451,15 @@ function initHocPhanHandel(cls) {
 
         icon.addEventListener('click', () => {
             if (candele) {
-                div_hp.remove()
-                Object.values(tkb.hocphan).forEach(e => {
-                    if (e.ma_mon == mahp) {
-                        tkb.remove(e.id_to_hoc)
-                    }
-                })
+                removeHp(mahp)
             }
         })
-    
+
         div_info.appendChild(icon)
 
         var div_list_hp = document.createElement('div')
         div_list_hp.className = "list-hp close"
-    
+
 
         list.forEach(hp => {
             var div_hp_item = document.createElement('div')
@@ -507,45 +467,57 @@ function initHocPhanHandel(cls) {
             div_hp_item.setAttribute('id-to-hoc', hp.id_to_hoc)
 
 
-            div_hp_item.onmouseenter = () => {showGhost(hp, mahp)}
-            div_hp_item.onmouseleave = () => {hideGhost(hp, mahp)}
-            div_hp_item.onclick = () => {chonTiet(hp, div_hp_item, div_list_hp, hp)}
-    
+            div_hp_item.onmouseenter = () => { showGhost(hp, mahp) }
+            div_hp_item.onmouseleave = () => { hideGhost(hp, mahp) }
+            div_hp_item.onclick = () => { chonTiet(hp, div_hp_item, div_list_hp, hp) }
+
             var dsThu = [...new Set(hp.tkb.map(e => e.thu))]
             var dsGv = [...new Set(hp.tkb.map(e => `<p> - ${e.gv} ${e.th ? '(TH)' : ''}</p>`))]
-    
+
             div_hp_item.innerHTML = `
                 <p>Thứ:  ${dsThu.join(' và ')}</p>
                 <p>GV:  </p>
                 ${dsGv.join('\n')}
                 <p>20/40</p>
             `
-    
+
             div_list_hp.appendChild(div_hp_item)
         })
 
 
-        div_info.onclick = () => {hocphanpopup(div_info)}
+        div_info.onclick = () => { hocphanpopup(div_info) }
         div_list_hp.onmouseenter = () => {
             // tkb.hide_all()
-    
+
             Object.values(tkb.hocphan).forEach(e => {
                 if (e.ma_mon == mahp) {
                     tkb.remove(e.id_to_hoc, false)
                 }
             })
         }
-    
+
         div_list_hp.onmouseleave = () => {
             tkb.show_all()
         }
-    
-    
+
+
         div_hp.appendChild(div_info)
         div_hp.appendChild(div_list_hp)
-    
+
         document.querySelector('.siderbar-body .ls').appendChild(div_hp)
     }
+    function removeHp(mahp) {
+        var hp = document.querySelector(`.hp[mahp="${mahp}"]`)
+        if (!hp) return
+        hp.remove()
+        Object.values(tkb.hocphan).forEach(e => {
+            if (e.ma_mon == mahp) {
+                tkb.remove(e.id_to_hoc)
+            }
+        })
+    }
+
+    cls.removeHp = removeHp
 
     cls.addHp = makeEle
 }
@@ -556,57 +528,36 @@ function initHocPhanHandel(cls) {
 // thì nó sẽ thêm vời side bar học phần đó
 initHocPhanHandel(this)
 
-function get_use_info() {
-    fetch('/api/get_user_info', {method: "POST",}).then(e => e.json()).then(json_ => {
-        // console.log(json_)
-        user_info = json_
-
-        document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
-        document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
-        document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
-        document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
-    })
-}
-
-get_use_info()
-
-
-function log_out() {
-    fetch('/sign_in/log_out').then(e => {
-        document.location.reload()
-    })
-}
-
-
 var data;
+fetch('api/dshocphan', {
+    method: "POST"
+}).then(e => e.json()).then(e => {
+    data = e
+})
 
-function render_hocphan() {
-    var div = document.querySelector('#add-button > div')
-    data.ds_mon_hoc.forEach(e => {
-        
-    })
-
+function saveTkb() {
+    html2canvas(document.querySelector("body > div.main-body > div.tkb"),
+        {
+            windowWidth: 1300,
+            windowHeight: 616,
+        }).then(e => {
+            console.log(e)
+            var base64 = e.toDataURL('image/jpeg')
+            
+            fetch('api/tkb_save', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: 'test1',
+                    id_to_hocs: Object.keys(tkb.hocphan),
+                    thumbnail: base64.substring(23)
+                })
+            }).then(e => {
+                console.log(e)
+            })
+        })
+    console.log(Object.keys(tkb.hocphan))
+    
 }
-
-function api(index) {
-    fetch('api/dshocphan', {
-        method: "POST"
-    }).then(e => e.json()).then(e => {
-        data = e
-
-
-
-    })
-
-    fetch('/sign_in/checkLogin', {
-        method: "POST"
-    }).then(e => {
-        if (e.status == 200) {
-            sessionStorage.setItem('isLogin', true)
-            return
-        }
-        sessionStorage.setItem('isLogin', false)
-        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
-    })
-}
-api()

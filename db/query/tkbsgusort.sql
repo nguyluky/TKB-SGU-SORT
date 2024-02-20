@@ -7,7 +7,7 @@ CREATE TABLE user_login_info (
     pass CHAR(40) NOT NULL,
     email VARCHAR(320) UNIQUE,
     id VARCHAR(36) NOT NULL UNIQUE,
-    created DATE NOT NULL,
+    created DATETIME NOT NULL,
     token VARCHAR(36),
     type_signup VARCHAR(10) DEFAULT('DEFAULT')
 );
@@ -24,7 +24,14 @@ CREATE TABLE user_info (
     FOREIGN KEY(username) REFERENCES user_login_info(username) ON DELETE CASCADE
 );
 
-
+CREATE TABLE tkb_save(
+    id VARCHAR(36),
+    tkb_name VARCHAR(20),
+    json_data JSON,
+    thumbnails MEDIUMBLOB,
+    date_save DATETIME,
+    FOREIGN KEY (id) REFERENCES user_info(id) ON DELETE CASCADE
+);
 
 
 ALTER TABLE user_login_info ADD 
@@ -34,6 +41,19 @@ ON DELETE CASCADE;
 
 -- -------------------------------------------------
 
+SELECT NOW()
+
+SELECT tkb_name,
+json_data,
+thumbnails,
+date_save FROM tkb_save
+WHERE id = '00dc8fed-f13f-4c88-903a-a300eff0b928'
+
+
+INSERT INTO tkb_save VALUES
+('2f1b5102-08f7-4b0c-b83d-ef2a15a101ef', 'test' ,'[1,2,3,4]', '', NOW())
+
+DROP TABLE tkb_save;
 
 DROP TABLE user_info;
 DROP TABLE user_login_info;
@@ -99,3 +119,6 @@ VALUES (
 SELECT COUNT(*) FROM user_login_info
 WHERE email = "nguyenkhachieu117@gmail.com";
 
+INSERT INTO tkb_save VALUES 
+    ( '-6456252966221625023' , '00dc8fed-f13f-4c88-903a-a300eff0b928', 'test1'),
+    ( '-5953224805198452669' , '00dc8fed-f13f-4c88-903a-a300eff0b928', 'test1')

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="javascripts\share.js"></script>
+    <link rel="stylesheet" href="stylesheets\home.css">
+    <link href='stylesheets\boxicons.min.css' rel='stylesheet'>
+    <title>TKB</title>
+
+    <script>
+        function setToDarkMode() {
+            document.documentElement.style.setProperty('--main-color', '#1b1b1b')
+            document.documentElement.style.setProperty('--text-color', '#e3e3e3')
+            document.documentElement.style.setProperty('--text-color-2', '#898989')
+            document.documentElement.style.setProperty('--hover-back', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
+            document.documentElement.style.setProperty('--main-backe', '#282a2c')
+            document.documentElement.style.setProperty('--hairline', 'rgba(255,255,255,0.2)')
+        }
+
+        function setToLightMode() {
+            document.documentElement.style.setProperty('--main-color', '#e9eef6')
+            document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
+            document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+            document.documentElement.style.setProperty('--hover-back', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
+            document.documentElement.style.setProperty('--main-backe', 'whitesmoke')
+            document.documentElement.style.setProperty('--hairline', 'rgb(218,220,224)')
+        }
+
+        if (localStorage.getItem('theme') == 'dark') {
+            setToDarkMode()
+        }
+    </script>
+    <script defer src="javascripts\home.js"></script>
+</head>
+
+<body>
+    <div class="menubar">
+        <div class="left">
+            <img src="images\favicon.ico">
+            Thời Khóa Biểu
+        </div>
+
+        <div class="center">
+            <i class='bx bx-search-alt-2'></i>
+            <input type="text">
+        </div>
+
+        <div class="right">
+            <div class="menubar-right-item" id="theme">
+                <div class="menubar-menu light-mode">
+                    <i class='bx bxs-moon'></i>
+                </div>
+            </div>
+            <div class="menubar-right-item">
+                <div class="menubar-menu accout" id="accout">
+                    <i class='bx bxs-user-circle'></i>
+                </div>
+                <div class="accout-popup" style="display: none;">
+                    <div class="user-info">
+                        <p>Nguyễn Văn a</p>
+                        <p class="mssv">MSSV: **********</p>
+                        <p class="line">Khoa: ****</p>
+                        <p class="line">Lớp: ****</p>
+                    </div>
+                    <div class="br"></div>
+                    <p class="logout" onclick="log_out()">Đăng Xuất</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="template">
+            <div class="wall">
+
+                <div class="head">
+                    <div class="title">
+                        <span>Bắc đầu thời khóa biểu mới</span>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-item">
+                            <i class='bx bx-dots-vertical-rounded'></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list">
+                    <div class="new_black list-tiem" onclick="newTkb()">
+                        <div class="thumbnail">
+                            <i class='bx bx-plus'></i>
+                        </div>
+                        <div class="info">
+                            <p class="name">TKB liệu mới</p>
+                        </div>
+                    </div>
+                    <div class="list-tiem">
+                        <div class="thumbnail">
+                            <img src="https://picsum.photos/390/185" alt="">
+                        </div>
+                        <div class="info">
+                            <p class="name">test</p>
+                            <p class="auth">nguyen van a</p>
+                        </div>
+                        <div class="more">
+                            <i class='bx bx-dots-vertical' ></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="saved">
+            <div class="wall">
+
+                <div class="head">
+                    <div class="title">
+                        <span>Bắc đầu thời khóa biểu mới</span>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-item">
+                            <i class='bx bx-sort-a-z' ></i>
+                        </div>
+                        <div class="tool-item">
+                            <i class='bx bxs-file-plus'></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list" id="saved">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

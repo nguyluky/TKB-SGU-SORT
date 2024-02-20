@@ -1,16 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session')
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var sign_inRouter = require('./routes/sign_in');
-var sign_upRouter = require('./routes/sign_up');
-var api_Router = require('./routes/api')
+const tkbRouter = require('./routes/tkb');
+const usersRouter = require('./routes/users');
+const signinRouter = require('./routes/sign_in');
+const signupRouter = require('./routes/sign_up');
+const apiRouter = require('./routes/api')
+const homeRouter = require('./routes/home')
+const {redisStore, redisClient} = require('./db/redis')
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,14 +32,17 @@ app.set('http_port', process.env.HTTP_PORT)
 app.set('https_port', process.env.HTTPS_PORT)
 
 
+
+
 //set session
 var sess = {
+    store: redisStore,
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
         secure: false,
-        httpOnly: false,
+        httpOnly: true,
         sameSite: 'none',
         maxAge: 1000 * 60 * 10
     }
@@ -52,11 +58,11 @@ const sessionMiddleware = session(sess)
 app.use(sessionMiddleware)
 app.set('session', sessionMiddleware)
 
-
-app.use('/', indexRouter);
+app.use('/', homeRouter)
+app.use('/tkb', tkbRouter);
 app.use('/users', usersRouter);
-app.use('/sign_in', sign_inRouter);
-app.use('/sign_up', sign_upRouter);
-app.use('/api', api_Router)
+app.use('/sign_in', signinRouter);
+app.use('/sign_up', signupRouter);
+app.use('/api', apiRouter)
 
 module.exports = app;

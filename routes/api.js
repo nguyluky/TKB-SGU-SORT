@@ -2,12 +2,27 @@ const express = require('express');
 const dbHandler = require('../db/databaseHandle');
 const path = require('path');
 const { env } = require('process');
-var kickbox = require('kickbox').client(env.KICKBOX_API).kickbox();
+const kickbox = require('kickbox').client(env.KICKBOX_API).kickbox();
+
 
 
 var router = express.Router();
 
 const cachePath = path.join(__dirname, '../cache')
+
+
+
+// resp_templay
+// resq = {
+//     err_mess: String,
+//     data: Object
+// }
+
+const mess_code = {
+    NOLOGIN: "You are not logged in",
+    TOKEN_TIME_OUT: "Login expired"
+}
+
 
 // ? chuse test
 router.post('/dshocphan', (req, res, next) => {
@@ -17,16 +32,36 @@ router.post('/dshocphan', (req, res, next) => {
 
 router.post('/get_user_info', (req, res, next) => {
     var token = req.session.token;
+    if (!token) {
+        res.setHeader('Content-Type', 'application/json')
+        res.send({
+            err_mess: mess_code.NOLOGIN,
+            data: {}
+        })
+        return
+    }
     dbHandler.check_token(token, (err, result) => {
         if (err) throw err;
         
         const user = result[0];
-        if (!user) return;
+        if (!user) {
+            res.setHeader('Content-Type', 'application/json')
+            res.send(
+                {
+                    err_mess: mess_code.TOKEN_TIME_OUT,
+                    data: {}
+                }
+            )
+            return
+        };
         dbHandler.get_user_info(user.id , (err, result) => {
             if (err) throw err;
 
             res.setHeader('Content-Type', 'application/json')
-            res.send(result[0])
+            res.send({
+                err_mess: null,
+                data: result[0]
+            })
         })
     })
 })
@@ -34,14 +69,20 @@ router.post('/get_user_info', (req, res, next) => {
 router.get('/ds_khoa', function(req, res, next) {
     res.setHeader('Content-Type', 'application/json')
     dbHandler.get_ds_khoa((result) => {
-        res.send(result)
+        res.send({
+            err_mess: null,
+            data: result
+        })
     })
 })
 
 router.get('/ds_lop', function(req, res, next) {
     res.setHeader('Content-Type', 'application/json')
     dbHandler.get_ds_lop((result) => {
-        res.send(result)
+        res.send({
+            err_mess: null,
+            data: result
+        })
     })
 })
 
@@ -57,4 +98,95 @@ router.post('/check_email', function(req, res, next) {
         res.status(300).send()
     });
 })
+
+router.post('/get_tkb_save', function(req, res, next) {
+    const token = req.session.token;
+    res.setHeader('Content-Type', 'application/json')
+
+    if (!token) {
+        res.send({
+            err_mess: mess_code.NOLOGIN,
+            data: []
+        })
+        return
+    }
+    dbHandler.check_token(token, (err, result) =>  {
+        const user = result[0]
+        if (!user) {
+            res.send(
+                {
+                    err_mess: mess_code.TOKEN_TIME_OUT,
+                    data: []
+                }
+            )
+            return
+        }
+        dbHandler.get_ds_tkb(user.id, (err , result) => {
+            res.send({
+                err_mess: null,
+                data: result
+            })
+        })
+    })
+
+})
+
+router.post('/tkb_save', function(req, res, next) {
+    const token = req.session.token;
+    const {name , id_to_hocs, thumbnail} = req.body;
+    console.log(name, id_to_hocs)
+
+    if (!token) {
+        res.setHeader('Content-Type', 'application/json')
+        res.send({
+            err_mess: "token don't exit",
+            data: null
+        })
+        return
+    }
+
+    if (!name || !id_to_hocs.length) {
+        res.setHeader('Content-Type', 'application/json')
+        res.status(400)
+        res.send({
+            err_mess: "bad req",
+            data: null
+        })
+
+        return
+    }
+
+    dbHandler.check_token(token, (err, result) => {
+        if (err) {
+
+            return;
+        }
+
+        var user = result[0]
+        if (!user) {
+            res.setHeader('Content-Type', 'application/json')
+            res.send({
+                err_mess: "Login expired",
+                data: null
+            })
+            return
+        }
+
+        const uuid = user.id;
+
+        dbHandler.save_tkb(uuid, id_to_hocs, name, thumbnail , (err, result) => {
+            if (err) throw err;
+            res.setHeader('Content-Type', 'application/json')
+            res.send({
+                err_mess: null,
+                data: null
+            })
+        })
+        
+
+    })
+})
+
+
+
 module.exports = router;

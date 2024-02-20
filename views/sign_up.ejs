@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký tài khoản</title>
@@ -38,39 +39,40 @@
 </head>
 
 <body>
-<div class="wrapper">
-    <h1>Đăng Ký</h1>
-    <form>
-        <div class="tab1">
-            <input type="text" placeholder="Tên đăng nhập" id="username">
-            <p class="err_view username"></p>
-            <input type="text" placeholder="Mật khẩu" id="pass">
-            <p class="err_view pass"></p>
-            <input type="text" placeholder="Nhập lại mật khẩu" id="pass2">
-            <p class="err_view pass2"></p>
-        </div>
+    <div class="wrapper">
+        <h1>Đăng Ký</h1>
+        <form>
+            <div class="tab1">
+                <input type="text" placeholder="Tên đăng nhập" id="username">
+                <p class="err_view username"></p>
+                <input type="text" placeholder="Mật khẩu" id="pass">
+                <p class="err_view pass"></p>
+                <input type="text" placeholder="Nhập lại mật khẩu" id="pass2">
+                <p class="err_view pass2"></p>
+            </div>
 
-        <div class="tab2" style="display: none;">
-            <input type="text" placeholder="Họ Tên" id="display_name">
-            <p class="err_view display_name"></p>
-            <input type="text" placeholder="Mã Sinh Viên" id="mssv">
-            <p class="err_view mssv"></p>
-            <!-- <input type="text" placeholder="Khao" id="khoa"> -->
-            <div class="select-box khoa" id="khoa" placeholder="Chọn khoa"></div>
-            <p class="err_view khoa"></p>
-            <div class="select-box khoa" id="lop" placeholder="Chọn lop"></div>
-            <p class="err_view lop"></p>
-            <input type="text" placeholder="Email" id="email">
-            <p class="err_view email"></p>
+            <div class="tab2" style="display: none;">
+                <input type="text" placeholder="Họ Tên" id="display_name">
+                <p class="err_view display_name"></p>
+                <input type="text" placeholder="Mã Sinh Viên" id="mssv">
+                <p class="err_view mssv"></p>
+                <!-- <input type="text" placeholder="Khao" id="khoa"> -->
+                <div class="select-box khoa" id="khoa" placeholder="Chọn khoa"></div>
+                <p class="err_view khoa"></p>
+                <div class="select-box khoa" id="lop" placeholder="Chọn lop"></div>
+                <p class="err_view lop"></p>
+                <input type="text" placeholder="Email" id="email">
+                <p class="err_view email"></p>
+            </div>
+        </form>
+        <div class="err" id="err"></div>
+        <button onclick="next()" class="next">Đăng ký</button>
+        <div class="line"></div>
+        <button onclick="" class="sguacc">Đăng ký với tài khoản trường</button>
+        <div class="member">
+            Đã có tài khoản ? <a href="./sign_in">Đăng nhập</a>
         </div>
-    </form>
-    <div class="err" id="err"></div>
-    <button onclick="next()" class="next">Đăng ký</button>
-    <div class="line"></div>
-    <button onclick="" class="sguacc">Đăng ký với tài khoản trường</button>
-    <div class="member">
-        Đã có tài khoản ? <a href="./sign_in">Đăng nhập</a>
     </div>
-</div>
 </body>
+
 </html>

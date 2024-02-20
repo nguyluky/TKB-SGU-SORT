@@ -7,12 +7,15 @@ var options = {
   password: process.env.DB_PASS,
   database: process.env.DB_DATABASE_NAME
 }
+
+console.log(options)
+
 var con = mysql.createConnection(options);
 
 con.connect(function (err) {
   if (err) throw err;
 
-  
+
   
 });
 

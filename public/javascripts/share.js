@@ -1,3 +1,5 @@
+var user_info;
+
 fetch('/sign_in/checkLogin', {
     method: "POST"
 }).then(e => {
@@ -6,7 +8,6 @@ fetch('/sign_in/checkLogin', {
         return
     }
     sessionStorage.setItem('isLogin', false)
-    document.getElementById('accout').innerHTML = "<p> Sign In </p>"
 })
 
 function checkLogin() {
@@ -28,11 +29,6 @@ function get_use_info() {
             return
         }
         user_info = json_.data
-
-        document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
-        document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
-        document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
-        document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
     })
 }
 
@@ -87,6 +83,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //do work
     initAccoutClick()
     initThemeClick()
+
+    if (!checkLogin()) {
+        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+    }
+
+    document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+    document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+    document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+    document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
 });
 
 

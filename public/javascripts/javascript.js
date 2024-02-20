@@ -1,5 +1,4 @@
 var data = null
-var user_info = null
 // Khi người dùng click thêm học phần
 const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')

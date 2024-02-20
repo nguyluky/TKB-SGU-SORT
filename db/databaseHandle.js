@@ -82,6 +82,15 @@ module.exports = {
             callback(err, result)
         })
     },
+    get_user_id_form_token: function (token, callback) {
+        this.check_token(token, (err, result) => {
+            if (!result[0]) {
+                callback(err, null)
+                return
+            }
+            callback(err, result[0].id)
+        })
+    },
     check_token: function (token, callback) {
         const sql = `SELECT * FROM user_login_info WHERE token = ?`;
         db.query(sql, [token], callback);
@@ -153,18 +162,21 @@ module.exports = {
         })
     },
     save_tkb: function(uuid, id_to_hocs, name, thumbnail,callback) {
-
-        var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, NOW())'
-
-        db.query(sql, [uuid, name ,JSON.stringify(id_to_hocs), thumbnail], callback)
+        var tkb_id = uuidv4()
+        var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, ?, NOW())'
+        
+        db.query(sql, [tkb_id, uuid, name ,JSON.stringify(id_to_hocs), thumbnail], callback)
     },
     get_ds_tkb: function(uuid, callback) {
-        var sql = 'SELECT tkb_name, json_data, thumbnails, date_save FROM tkb_save WHERE id = ?'
+        var sql = 'SELECT id, tkb_name, json_data, thumbnails, date_save FROM tkb_save WHERE id_user = ?'
 
         db.query(sql, [uuid], callback)
     },
-    get_tkb: function(uuid, name, callback) {
-        
+    get_tkb: function(uuid, callback) {
+        var sql = 'SELECT * FROM tkb_save ' +
+        'WHERE id = ?'
+
+        db.query(sql, [uuid], callback)
     }
     
 }

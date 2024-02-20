@@ -23,7 +23,7 @@ function sign_in() {
         })
     }).then(async (response) => {
         if (response.status == 200) {
-            document.location.pathname = '';
+            document.location.pathname = sessionStorage.getItem('befor');
             return;
         }
 

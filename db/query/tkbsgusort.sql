@@ -25,12 +25,13 @@ CREATE TABLE user_info (
 );
 
 CREATE TABLE tkb_save(
-    id VARCHAR(36),
+    id VARCHAR(36) PRIMARY KEY,
+    id_user VARCHAR(36),
     tkb_name VARCHAR(20),
     json_data JSON,
     thumbnails MEDIUMBLOB,
     date_save DATETIME,
-    FOREIGN KEY (id) REFERENCES user_info(id) ON DELETE CASCADE
+    FOREIGN KEY (id_user) REFERENCES user_info(id) ON DELETE CASCADE
 );
 
 
@@ -47,11 +48,11 @@ SELECT tkb_name,
 json_data,
 thumbnails,
 date_save FROM tkb_save
-WHERE id = '00dc8fed-f13f-4c88-903a-a300eff0b928'
+WHERE id = '21a430bb-2d6a-4d3d-bf98-881567cb45c6'
 
 
 INSERT INTO tkb_save VALUES
-('2f1b5102-08f7-4b0c-b83d-ef2a15a101ef', 'test' ,'[1,2,3,4]', '', NOW())
+("aiasdf",'2f1b5102-08f7-4b0c-b83d-ef2a15a101ef', 'test' ,'[1,2,3,4]', '', NOW())
 
 DROP TABLE tkb_save;
 
@@ -67,6 +68,7 @@ DROP FOREIGN KEY user_info_ibfk_3 ;
 
 SELECT * FROM user_info;
 SELECT * FROM user_login_info;
+SELECT * FROM tkb_save;
 
 -- DROP TABLE user_info;
 -- DROP TABLE user_login_info;

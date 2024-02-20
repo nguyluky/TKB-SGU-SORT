@@ -4,6 +4,23 @@ var user_info = null
 const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
 
+
+
+function initFile() {
+    if (!tkb_open) return
+    tkb_open.id_to_hocs.forEach(id_to_hoc => {
+        data.ds_nhom_to.forEach(e => {
+            if (e.id_to_hoc == id_to_hoc) {
+                // console.log(e)
+                addHp(e.ma_mon)
+                tkb.render(e)
+
+            }
+        })
+        // addHp()
+    })
+}
+
 function xoaThemhocphan() {
     button_themhocphan.classList.remove('active')
     button_themhocphan.innerHTML = `
@@ -89,9 +106,6 @@ button_themhocphan.onclick = (event) => {
     document.body.addEventListener('click', xoaThemhocphan)
     button_themhocphan.disabled = true;
 }
-
-// hết
-
 
 
 // sử lý sợ kiện khi người dùng nhấn vào menu
@@ -529,11 +543,16 @@ function initHocPhanHandel(cls) {
 initHocPhanHandel(this)
 
 var data;
-fetch('api/dshocphan', {
-    method: "POST"
-}).then(e => e.json()).then(e => {
-    data = e
-})
+function get_dshocphan() {
+    fetch('/api/dshocphan', {
+        method: "POST"
+    }).then(e => e.json()).then(e => {
+        data = e
+        initFile()
+    })
+}
+
+get_dshocphan()
 
 function saveTkb() {
     html2canvas(document.querySelector("body > div.main-body > div.tkb"),
@@ -544,7 +563,7 @@ function saveTkb() {
             console.log(e)
             var base64 = e.toDataURL('image/jpeg')
             
-            fetch('api/tkb_save', {
+            fetch('/api/tkb_save', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -561,3 +580,4 @@ function saveTkb() {
     console.log(Object.keys(tkb.hocphan))
     
 }
+

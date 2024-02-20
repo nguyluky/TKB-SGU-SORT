@@ -19,7 +19,6 @@ function log_out() {
     })
 }
 
-
 function get_use_info() {
     fetch('/api/get_user_info', { method: "POST", }).then(e => e.json()).then(json_ => {
         // console.log(json_)
@@ -54,6 +53,7 @@ function initAccoutClick() {
 
         // kiểm tra xem có đăng nhập chưa
         if (!checkLogin()) {
+            sessionStorage.setItem('befor', document.location.pathname)
             document.location.href = "/sign_in"
             return
         }

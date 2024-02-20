@@ -4,13 +4,12 @@ fetch('api/get_tkb_save', {method: "POST"}).then(e => e.json()).then(e => {
         var base64String = String.fromCharCode(...new Uint8Array(e.thumbnails.data))
         var tkb_name = e.tkb_name
 
-        document.getElementById('saved').appendChild(create_list_item(tkb_name, base64String, e.date_save ))
-
+        document.getElementById('saved').appendChild(create_list_item(tkb_name, base64String, e.date_save , e.id))
 
     })
 })
 
-function create_list_item(tkb_name, base64String, date_save){
+function create_list_item(tkb_name, base64String, date_save, id){
 	//Create Elements
 	var div_listtiem_1 = document.createElement("div");
 	var div_thumbnail_1_1 = document.createElement("div");
@@ -43,6 +42,11 @@ function create_list_item(tkb_name, base64String, date_save){
 	p_auth_1_2_2.appendChild(textNode_1_2_2_1);
 	div_listtiem_1.appendChild(div_more_1_3);
 	div_more_1_3.appendChild(i_bx_bxdotsvertical_1_3_1);
+
+
+	div_listtiem_1.onclick = () => {
+		document.location.pathname = '/tkb/'+id
+	}
 
     return div_listtiem_1
 }

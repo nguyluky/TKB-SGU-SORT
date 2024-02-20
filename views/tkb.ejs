@@ -3,16 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylesheets\main.css">
-    <link href='stylesheets\boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link href='/stylesheets/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <script src="javascripts\share.js"></script>
-    <script defer src="javascripts\javascript.js"></script>
-    <script src="javascripts\socket.io.min.4.7.2.js"></script>
-    <script src="javascripts\html2canvas.min.js"></script>
-    <script>
-        var socket = io();
-    </script>
+    <script src="/javascripts/share.js"></script>
+    <script defer src="/javascripts/javascript.js"></script>
+    <script src="/javascripts/socket.io.min.4.7.2.js"></script>
+    <script src="/javascripts/html2canvas.min.js"></script>
     <title>TKB - Untitled</title>
     <script>
         function setToDarkMode() {
@@ -38,6 +35,13 @@
         if (localStorage.getItem('theme') == 'dark') {
             setToDarkMode()
         }
+    </script>
+
+    <script> 
+        var tkb_open = { 
+            id_to_hocs: [<%= id_to_hoc.toString() %>] ,
+            file_name: '<%= file_name %>'
+        } 
     </script>
 </head>
 

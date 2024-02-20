@@ -173,7 +173,7 @@ module.exports = {
         db.query(sql, [uuid], callback)
     },
     get_tkb: function(uuid, callback) {
-        var sql = 'SELECT * FROM tkb_save ' +
+        var sql = 'SELECT id_user, tkb_name, json_data, date_save FROM tkb_save ' +
         'WHERE id = ?'
 
         db.query(sql, [uuid], callback)

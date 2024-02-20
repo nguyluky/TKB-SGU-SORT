@@ -7,8 +7,8 @@ const add_themhocphan = document.querySelector('.add_themhocphan')
 
 
 function initFile() {
-    if (!tkb_open) return
-    tkb_open.id_to_hocs.forEach(id_to_hoc => {
+    if (tkb_open == {}) return
+    JSON.parse(tkb_open.json_data).forEach(id_to_hoc => {
         data.ds_nhom_to.forEach(e => {
             if (e.id_to_hoc == id_to_hoc) {
                 // console.log(e)

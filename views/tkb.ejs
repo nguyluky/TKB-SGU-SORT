@@ -38,10 +38,7 @@
     </script>
 
     <script> 
-        var tkb_open = { 
-            id_to_hocs: [<%= id_to_hoc.toString() %>] ,
-            file_name: '<%= file_name %>'
-        } 
+        var tkb_open = <%- JSON.stringify(json_data) %>
     </script>
 </head>
 

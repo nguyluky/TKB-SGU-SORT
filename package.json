@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --env-file=.env ./bin/www",
-    "dev": "nodemon -L --env-file=.env ./bin/www",
+    "start": "node ./bin/www",
+    "dev": "nodemon -L ./bin/www",
     "sass_w": "sass --watch --no-source-map .\\public\\stylesheets\\.scss\\:.\\public\\stylesheets\\"
   },
   "dependencies": {
@@ -12,6 +12,7 @@
     "cookie-parser": "~1.4.4",
     "crypto-js": "^4.2.0",
     "debug": "~2.6.9",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.18.0",

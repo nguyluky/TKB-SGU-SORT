@@ -2,7 +2,9 @@
 
 
 -- tạo data base
-CREATE TABLE user_login_info (
+
+
+CREATE TABLE IF NOT EXISTS user_login_info (
     username VARCHAR(20) PRIMARY KEY,
     pass CHAR(40) NOT NULL,
     email VARCHAR(320) UNIQUE,
@@ -12,7 +14,7 @@ CREATE TABLE user_login_info (
     type_signup VARCHAR(10) DEFAULT('DEFAULT')
 );
 
-CREATE TABLE user_info (
+CREATE TABLE IF NOT EXISTS user_info (
     id VARCHAR(36) PRIMARY KEY,
     display_name VARCHAR(40) CHARSET utf8,
     ma_sv VARCHAR(11),
@@ -24,7 +26,7 @@ CREATE TABLE user_info (
     FOREIGN KEY(username) REFERENCES user_login_info(username) ON DELETE CASCADE
 );
 
-CREATE TABLE tkb_save(
+CREATE TABLE IF NOT EXISTS tkb_save(
     id VARCHAR(36) PRIMARY KEY,
     id_user VARCHAR(36),
     tkb_name VARCHAR(20),

@@ -4,6 +4,10 @@ const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
 
 
+function get_ds_mon_hoc() {
+    fetch('/api/')
+}
+
 
 function initFile() {
     if (tkb_open == {}) return

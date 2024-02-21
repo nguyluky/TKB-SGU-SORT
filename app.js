@@ -12,15 +12,16 @@ const apiRouter = require('./routes/api')
 const homeRouter = require('./routes/home')
 const {redisStore, redisClient} = require('./db/redis')
 
-var app = express();
 
+
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended:  false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.json());
 

@@ -1,16 +1,16 @@
 const express = require('express');
-const dbHandler = require('../db/databaseHandle');
 const path = require('path');
+const fs = require('fs');
 const { env } = require('process');
 const kickbox = require('kickbox').client(env.KICKBOX_API).kickbox();
+const cache = require('../db/cache')
 
+const dbHandler = require('../db/databaseHandle');
 
 
 var router = express.Router();
 
 const cachePath = path.join(__dirname, '../cache')
-
-
 
 // resp_templay
 // resq = {
@@ -24,10 +24,22 @@ const mess_code = {
 }
 
 
+
 // ? chuse test
-router.post('/dshocphan', (req, res, next) => {
+router.post('/dshocphan', async (req, res, next) => {
     res.setHeader('Content-Type', 'application/json')
-    res.sendFile('locdsnhomto.json', {root: cachePath})
+
+    
+    function read_file() {
+        return fs.readFileSync(path.join(cachePath , 'locdsnhomto.json'), 'utf-8')
+    }
+    
+
+    json_file = await cache(read_file)()
+
+    // console.log(json_file)
+    res.send(json_file)
+
 })
 
 router.post('/get_user_info', (req, res, next) => {

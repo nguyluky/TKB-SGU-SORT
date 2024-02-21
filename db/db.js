@@ -8,10 +8,11 @@ var options = {
   database: process.env.DB_DATABASE_NAME
 }
 
-console.log(options)
-
 var con = mysql.createConnection(options);
 
+
+console.log('>> mysql star connect')
+console.log(options)
 con.connect(function (err) {
   if (err) throw err;
 

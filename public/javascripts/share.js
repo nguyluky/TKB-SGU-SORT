@@ -1,4 +1,5 @@
 var user_info;
+var isloaded = false;
 
 fetch('/sign_in/checkLogin', {
     method: "POST"
@@ -29,6 +30,12 @@ function get_use_info() {
             return
         }
         user_info = json_.data
+        if (isloaded) {
+            document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+            document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+            document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+            document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+        }
     })
 }
 
@@ -81,6 +88,7 @@ function initThemeClick() {
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     //do work
+    isloaded = true
     initAccoutClick()
     initThemeClick()
 

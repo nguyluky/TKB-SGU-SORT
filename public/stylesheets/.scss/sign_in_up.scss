@@ -47,8 +47,8 @@ h1 {
         flex-direction: column;
         align-items: center;
     }
-
-    input[type=text] {
+    .tab1 input[type=text],
+    .tab2 input[type=text] {
       height: 53px;
       border-radius: 20px;
       font-size: 20px;
@@ -218,5 +218,46 @@ h1 {
         }
       }
     }
+  }
+}
+
+.tab3 {
+
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+
+  .otp-box {
+    height: 53px;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 80%;
+    padding: 0 20px;
+    position: relative;
+
+
+    .input {
+      background: transparent;
+      width: 40px;
+      border: none;
+      border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+      margin: 0 10px;
+      text-align: center;
+      font-size: 36px;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .input:focus {
+      border-bottom: 3px solid orange;
+      outline: none;
+    }
+
+    .input:nth-child(1) {
+      cursor: pointer;
+      pointer-events: all;
+    }
+
+
   }
 }

@@ -10,6 +10,7 @@ const signinRouter = require('./routes/sign_in');
 const signupRouter = require('./routes/sign_up');
 const apiRouter = require('./routes/api')
 const homeRouter = require('./routes/home')
+// const registerRouter = require('./routes/register')
 const {redisStore, redisClient} = require('./db/redis')
 
 
@@ -65,5 +66,6 @@ app.use('/users', usersRouter);
 app.use('/sign_in', signinRouter);
 app.use('/sign_up', signupRouter);
 app.use('/api', apiRouter)
+// app.use('/register', registerRouter)
 
 module.exports = app;

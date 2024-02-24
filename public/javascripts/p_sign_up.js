@@ -6,6 +6,44 @@ const display_name = document.getElementById('display_name')
 const mssv = document.getElementById('mssv')
 const khoa = document.querySelector('#khoa > div.selected')
 const lop = document.querySelector('#lop > div.selected')
+const inputs = document.getElementById("inputs");
+
+
+function optInit() {
+
+    inputs.addEventListener("input", function (e) {
+        const target = e.target;
+        const val = target.value;
+
+        if (isNaN(val)) {
+            target.value = "";
+            return;
+        }
+
+        if (val != "") {
+            const next = target.nextElementSibling;
+            if (next) {
+                next.focus();
+            }
+        }
+    });
+
+    inputs.addEventListener("keyup", function (e) {
+        const target = e.target;
+        const key = e.key.toLowerCase();
+
+        if (key == "backspace" || key == "delete") {
+            target.value = "";
+            const prev = target.previousElementSibling;
+            if (prev) {
+                prev.focus();
+            }
+            return;
+        }
+    });
+}
+optInit()
+
 
 function setErr(mess) {
     document.getElementById('err').innerHTML += `<p>${mess}</p>` 
@@ -114,7 +152,49 @@ function sign_up() {
             setErr(text)
             return  
         }
-        document.location.pathname = '/sign_in'
+
+        nextOtp();
+
+    })
+}
+
+function nextOtp() {
+    document.querySelector('.tab2').style.display = 'none'
+    document.querySelector('.tab3').style.display = ''
+
+    document.querySelector('button.sguacc').onclick = () => {
+        document.querySelector('.tab3').style.display = 'none'
+        document.querySelector('.tab2').style.display = ''
+        document.querySelector('button.sguacc').onclick = back
+        document.querySelector('button.next').onclick = sign_up
+    }
+    document.querySelector('button.next').onclick = sendOtp
+
+}
+
+function sendOtp() {
+
+    const otps = document.querySelectorAll('#inputs input')
+    const a = Array.from(otps)
+    const otp = a.map(e => e.value).join('');
+    if (otp.length != 5) return;
+    console.log(otp)
+    fetch('/sign_up/otp', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            otp: otp
+        })
+    }).then(async e => {
+        if (e.status == 200) {
+            document.location.pathname='/sign_in'
+            return
+        }
+
+        const mess = await e.text();
+        err_show('otp', mess);
 
     })
 }
@@ -126,7 +206,7 @@ function err_show(id, err) {
     const input = document.getElementById(id)
     const err_view = document.querySelector(`.err_view.${id}`)
     if (err) {
-        input.classList.add('err')
+        if (input) input.classList.add('err');
         err_view.textContent = err
         return
     }

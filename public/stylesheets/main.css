@@ -11,6 +11,7 @@
   --silver: #e4e4e4;
   --add-button-shadow: 0px 4px 4px 0px rgba(60, 64, 67, 0.3), 0px 8px 12px 6px rgba(60, 64, 67, 0.15);
   --main-box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --popup-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2) ;
 }
 
 * {
@@ -490,3 +491,72 @@ body {
 }
 
 /* ====================================================== */
+#popup-area {
+  height: 0px;
+  width: 0px;
+}
+#popup-area > .popup-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: var(--popup-shadow);
+  background-color: var(--main-backe);
+  border-radius: 10px;
+}
+#popup-area .save-tkb {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  justify-items: center;
+  max-width: 620px;
+}
+#popup-area .save-tkb > div {
+  padding: 15px;
+}
+#popup-area .save-tkb .left input[type=text], #popup-area .save-tkb .left textarea {
+  width: calc(100% - 10px);
+  padding: 8px;
+  margin: 5px 0;
+  resize: none;
+  font-size: 15px;
+  border: 1.5px gray solid;
+  border-radius: 5px;
+  background: transparent;
+}
+#popup-area .save-tkb .pp > div {
+  padding: 2px;
+}
+#popup-area .save-tkb .pp > div input {
+  height: 15px;
+  width: 15px;
+}
+#popup-area .save-tkb .right {
+  grid-column: 2;
+  grid-row: 1;
+}
+#popup-area .save-tkb .right img {
+  height: 144px;
+  width: 200px;
+  border: 1px gray solid;
+  border-radius: 5px;
+}
+#popup-area .save-tkb .button {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+  margin-bottom: calc((100% - 144px) / 2);
+  transform: translateY(calc(50% + 10px));
+}
+#popup-area .save-tkb .button button {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+#popup-area .save-tkb .button button + button {
+  margin-left: 10px;
+}
+#popup-area .save-tkb .button .save {
+  background: #1cc487;
+}
+#popup-area .save-tkb .button .cancel {
+  background: #e23243;
+}

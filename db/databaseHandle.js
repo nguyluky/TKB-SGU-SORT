@@ -4,8 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 // 1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed
 
 module.exports = {
-    sign_up: function (req, callback) {
-        const {user, password, email, display_name, ma_sv, khoa, lop} = req.body;
+    sign_up: function (user, password, email, display_name, ma_sv, khoa, lop, callback) {
         
         if (user.includes(' ')) {
             callback({code: "Tên đăng nhập không hợp lệ"}, {})
@@ -177,6 +176,18 @@ module.exports = {
         'WHERE id = ?'
 
         db.query(sql, [uuid], callback)
-    }
+    },
+    update_tkb: function(uuid, id_to_hocs, name, thumbnail,callback) {
+        
+    },
+    check_have_email: function(email, callback) {
+        const sql = `SELECT COUNT(*) FROM user_login_info
+        WHERE email = ?`
+
+        db.query(sql, [name],(err, result) => {
+            callback(err, result)
+        })
+
+    } 
     
 }

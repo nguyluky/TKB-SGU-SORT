@@ -1,7 +1,8 @@
-var express = require('express');
-var dbHandler = require('../db/databaseHandle');
+const express = require('express');
+const dbHandler = require('../db/databaseHandle');
 
 var router = express.Router();
+
 
 
 router.get('/log_out' , function(req, res, next) {

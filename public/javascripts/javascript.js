@@ -558,29 +558,159 @@ function get_dshocphan() {
 get_dshocphan()
 
 function saveTkb() {
+
+    var base64;
+
+    function cancelHandle() {
+        document.getElementById('popup-area').innerHTML = ''
+    }
+
+    function saveHandle(ele) {
+        // console.log(ele)
+        var name = ele.querySelector('#file_save_name').value
+        var des = ele.querySelector('#file_save_des').value
+
+        console.log(name, des)
+
+        fetch('/api/tkb_save', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: name,
+                id_to_hocs: Object.keys(tkb.hocphan),
+                thumbnail: base64.substring(23)
+            })
+        }).then(e => {
+            console.log(e)
+            cancelHandle()
+        })
+    }
+
+    if (!checkLogin()) {
+        alert('you not login')
+        return;
+    }
+
+
     html2canvas(document.querySelector("body > div.main-body > div.tkb"),
         {
             windowWidth: 1300,
             windowHeight: 616,
         }).then(e => {
             console.log(e)
-            var base64 = e.toDataURL('image/jpeg')
-            
-            fetch('/api/tkb_save', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: 'test1',
-                    id_to_hocs: Object.keys(tkb.hocphan),
-                    thumbnail: base64.substring(23)
-                })
-            }).then(e => {
-                console.log(e)
-            })
+            base64 = e.toDataURL('image/jpeg')
+
+            var ele = document.getElementById('popup-area')
+            var popup = makeSavePopup(base64, cancelHandle, saveHandle)
+            ele.appendChild(popup)
         })
     console.log(Object.keys(tkb.hocphan))
-    
+
 }
 
+function makeSavePopup(img_url, oncancel, onok) {
+    //Create Elements
+    var div_popupitem_savetkb_1 = document.createElement("div");
+    var div_left_1_1 = document.createElement("div");
+    var div_name_1_1_1 = document.createElement("div");
+    var input__1_1_1_1 = document.createElement("input"); //
+    var div_mt_1_1_2 = document.createElement("div");
+    var textarea__1_1_2_1 = document.createElement("textarea"); //
+    var div_pp_1_1_3 = document.createElement("div");
+    var div_public_1_1_3_1 = document.createElement("div");
+    var input__1_1_3_1_1 = document.createElement("input");
+    var label__1_1_3_1_2 = document.createElement("label");
+    var span__1_1_3_1_2_1 = document.createElement("span");
+    var i_bx_bxslockopenalt_1_1_3_1_2_1_1 = document.createElement("i");
+    var span__1_1_3_1_2_2 = document.createElement("span");
+    var div_private_1_1_3_2 = document.createElement("div");
+    var input__1_1_3_2_1 = document.createElement("input");
+    var label__1_1_3_2_2 = document.createElement("label");
+    var span__1_1_3_2_2_1 = document.createElement("span");
+    var i_bx_bxslockalt_1_1_3_2_2_1_1 = document.createElement("i");
+    var span__1_1_3_2_2_2 = document.createElement("span");
+    var div_right_1_2 = document.createElement("div");
+    var img__1_2_1 = document.createElement("img");
+    var div_button_1_3 = document.createElement("div");
+    var button_save_1_3_1 = document.createElement("button");
+    var button_cancel_1_3_2 = document.createElement("button");
+    //Create Text Nodes
+    var textNode_1_1_3_1_2_1_1 = document.createTextNode("public");
+    var textNode_1_1_3_1_2_2_1 = document.createTextNode("Mọi người có thể thấy và sử dụng thời khóa biểu của bạn");
+    var textNode_1_1_3_2_2_1_1 = document.createTextNode("private");
+    var textNode_1_1_3_2_2_2_1 = document.createTextNode("Chỉ mình bạn hoặc các người bạn cho phép được sử dụng");
+    var textNode_1_3_1_1 = document.createTextNode("save");
+    var textNode_1_3_2_1 = document.createTextNode("cancel");
+    //Set Attributes
+    div_popupitem_savetkb_1.setAttribute("class", "popup-item save-tkb");
+    div_left_1_1.setAttribute("class", "left");
+    div_name_1_1_1.setAttribute("class", "name");
+    input__1_1_1_1.setAttribute("type", "text");
+    input__1_1_1_1.setAttribute("placeholder", "TKB name");
+    input__1_1_1_1.setAttribute("id", "file_save_name")
+    div_mt_1_1_2.setAttribute("class", "mt");
+    textarea__1_1_2_1.setAttribute("name", "");
+    textarea__1_1_2_1.setAttribute("id", "");
+    textarea__1_1_2_1.setAttribute("placeholder", "Miêu tả");
+    textarea__1_1_2_1.setAttribute("id", "file_save_des")
+    div_pp_1_1_3.setAttribute("class", "pp");
+    div_public_1_1_3_1.setAttribute("class", "public");
+    input__1_1_3_1_1.setAttribute("type", "radio");
+    input__1_1_3_1_1.setAttribute("name", "type");
+    input__1_1_3_1_1.setAttribute("id", "public");
+    label__1_1_3_1_2.setAttribute("for", "public");
+    i_bx_bxslockopenalt_1_1_3_1_2_1_1.setAttribute("class", "bx bxs-lock-open-alt");
+    div_private_1_1_3_2.setAttribute("class", "private");
+    input__1_1_3_2_1.setAttribute("type", "radio");
+    input__1_1_3_2_1.setAttribute("name", "type");
+    input__1_1_3_2_1.setAttribute("id", "private");
+    input__1_1_3_2_1.setAttribute("checked", "");
+    label__1_1_3_2_2.setAttribute("for", "private");
+    i_bx_bxslockalt_1_1_3_2_2_1_1.setAttribute("class", "bx bxs-lock-alt");
+    div_right_1_2.setAttribute("class", "right");
+    img__1_2_1.setAttribute("src", img_url);
+    img__1_2_1.setAttribute("alt", "");
+    div_button_1_3.setAttribute("class", "button");
+    button_save_1_3_1.setAttribute("class", "save");
+    button_cancel_1_3_2.setAttribute("class", "cancel");
+    button_cancel_1_3_2.onclick = () => {
+        oncancel(div_popupitem_savetkb_1)
+    }
+    button_save_1_3_1.onclick = () => {
+        onok(div_popupitem_savetkb_1)
+    }
+    //Append Children
+    div_popupitem_savetkb_1.appendChild(div_left_1_1);
+    div_left_1_1.appendChild(div_name_1_1_1);
+    div_name_1_1_1.appendChild(input__1_1_1_1);
+    div_left_1_1.appendChild(div_mt_1_1_2);
+    div_mt_1_1_2.appendChild(textarea__1_1_2_1);
+    div_left_1_1.appendChild(div_pp_1_1_3);
+    div_pp_1_1_3.appendChild(div_public_1_1_3_1);
+    div_public_1_1_3_1.appendChild(input__1_1_3_1_1);
+    div_public_1_1_3_1.appendChild(label__1_1_3_1_2);
+    label__1_1_3_1_2.appendChild(span__1_1_3_1_2_1);
+    span__1_1_3_1_2_1.appendChild(i_bx_bxslockopenalt_1_1_3_1_2_1_1);
+    span__1_1_3_1_2_1.appendChild(textNode_1_1_3_1_2_1_1);
+    label__1_1_3_1_2.appendChild(span__1_1_3_1_2_2);
+    span__1_1_3_1_2_2.appendChild(textNode_1_1_3_1_2_2_1);
+    div_pp_1_1_3.appendChild(div_private_1_1_3_2);
+    div_private_1_1_3_2.appendChild(input__1_1_3_2_1);
+    div_private_1_1_3_2.appendChild(label__1_1_3_2_2);
+    label__1_1_3_2_2.appendChild(span__1_1_3_2_2_1);
+    span__1_1_3_2_2_1.appendChild(i_bx_bxslockalt_1_1_3_2_2_1_1);
+    span__1_1_3_2_2_1.appendChild(textNode_1_1_3_2_2_1_1);
+    label__1_1_3_2_2.appendChild(span__1_1_3_2_2_2);
+    span__1_1_3_2_2_2.appendChild(textNode_1_1_3_2_2_2_1);
+    div_popupitem_savetkb_1.appendChild(div_right_1_2);
+    div_right_1_2.appendChild(img__1_2_1);
+    div_popupitem_savetkb_1.appendChild(div_button_1_3);
+    div_button_1_3.appendChild(button_save_1_3_1);
+    button_save_1_3_1.appendChild(textNode_1_3_1_1);
+    div_button_1_3.appendChild(button_cancel_1_3_2);
+    button_cancel_1_3_2.appendChild(textNode_1_3_2_1);
+
+    return div_popupitem_savetkb_1
+}

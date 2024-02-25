@@ -579,6 +579,7 @@ function saveTkb() {
             },
             body: JSON.stringify({
                 name: name,
+                description: des,
                 id_to_hocs: Object.keys(tkb.hocphan),
                 thumbnail: base64.substring(23)
             })

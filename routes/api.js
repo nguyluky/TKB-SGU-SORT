@@ -154,7 +154,7 @@ router.post('/get_tkb_save', function(req, res, next) {
 
 router.post('/tkb_save', function(req, res, next) {
     const token = req.session.token;
-    const {name , id_to_hocs, thumbnail} = req.body;
+    const {name , id_to_hocs, description,thumbnail} = req.body;
     console.log(name, id_to_hocs)
 
     if (!token) {
@@ -195,7 +195,7 @@ router.post('/tkb_save', function(req, res, next) {
 
         const uuid = user.id;
 
-        dbHandler.save_tkb(uuid, id_to_hocs, name, thumbnail , (err, result) => {
+        dbHandler.save_tkb(uuid, id_to_hocs, name, description, thumbnail , (err, result) => {
             if (err) throw err;
             res.setHeader('Content-Type', 'application/json')
             res.send({

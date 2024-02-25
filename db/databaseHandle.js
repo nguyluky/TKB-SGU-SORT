@@ -160,19 +160,19 @@ module.exports = {
             callback(result)
         })
     },
-    save_tkb: function(uuid, id_to_hocs, name, thumbnail,callback) {
+    save_tkb: function(uuid, id_to_hocs, name, description, thumbnail,callback) {
         var tkb_id = uuidv4()
-        var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, ?, NOW())'
+        var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, ?, ?, NOW())'
         
-        db.query(sql, [tkb_id, uuid, name ,JSON.stringify(id_to_hocs), thumbnail], callback)
+        db.query(sql, [tkb_id, uuid, name , description,JSON.stringify(id_to_hocs), thumbnail], callback)
     },
     get_ds_tkb: function(uuid, callback) {
-        var sql = 'SELECT id, tkb_name, json_data, thumbnails, date_save FROM tkb_save WHERE id_user = ?'
+        var sql = 'SELECT id, tkb_name, description, json_data, thumbnails, date_save FROM tkb_save WHERE id_user = ?'
 
         db.query(sql, [uuid], callback)
     },
     get_tkb: function(uuid, callback) {
-        var sql = 'SELECT id_user, tkb_name, json_data, date_save FROM tkb_save ' +
+        var sql = 'SELECT id_user, tkb_name, description, json_data, date_save FROM tkb_save ' +
         'WHERE id = ?'
 
         db.query(sql, [uuid], callback)

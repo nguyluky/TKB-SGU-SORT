@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS tkb_save(
     id VARCHAR(36) PRIMARY KEY,
     id_user VARCHAR(36),
     tkb_name VARCHAR(20),
+    description TEXT,
     json_data JSON,
     thumbnails MEDIUMBLOB,
     date_save DATETIME,

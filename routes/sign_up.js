@@ -63,18 +63,45 @@ router.post('/checkacc', function(req, res, next) {
     })
 })
 
-router.post('/checkemail', function(req, res, next) {
-    var {email} = req.body;
-    
-})
+// router.post('/checkemail', function(req, res, next) {
+//     var {email} = req.body;
+//     console.log(email)
+//     dbHandler.check_have_email(email, (err, result) => {
+//         console.log(result[0]['COUNT(*)'])
+//         if (result[0]['COUNT(*)'] == 0) {
+//             res.status(200).send()
+
+//             return
+//         }
+
+//         res.status(300).send()
+//     })
+// })
 
 // create acc
 router.put('/', async function(req, res, next) {
-    const otp_g = await generateOTP();
-    req.session.user_info = req.body;
-    req.session.otp = otp_g;
-    console.log(otp_g)
-    res.status(200).send()
+
+
+    const {email} = req.body;
+
+    console.log(email)
+    dbHandler.check_have_email(email, async (err, result) => {
+        console.log(result[0]['COUNT(*)'])
+        if (result[0]['COUNT(*)'] == 0) {
+            const otp_g = await generateOTP();
+            req.session.user_info = req.body;
+            req.session.otp = otp_g;
+            sendMail(otp_g, email)
+            console.log(otp_g)
+            res.status(200).send()
+            return
+        }
+
+        res.status(300).send('email đã tồn tại')
+    })
+
+
+    
 })
 
 // update info

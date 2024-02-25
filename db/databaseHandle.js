@@ -184,7 +184,7 @@ module.exports = {
         const sql = `SELECT COUNT(*) FROM user_login_info
         WHERE email = ?`
 
-        db.query(sql, [name],(err, result) => {
+        db.query(sql, [email],(err, result) => {
             callback(err, result)
         })
 

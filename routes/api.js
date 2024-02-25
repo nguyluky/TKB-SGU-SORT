@@ -102,7 +102,16 @@ router.post('/check_email', function(req, res, next) {
     const {email} = req.body;
     // console.log(email)
     kickbox.verify(email, function (err, response) {
+
+        if (err) {
+            res.status(200).send()
+            return
+        }
         // console.log(response.body.result)
+        if (!response){ 
+            res.status(200).send();
+            return
+        }
         if (response.body.result == 'deliverable') {
             res.status(200).send()
             return

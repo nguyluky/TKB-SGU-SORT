@@ -116,7 +116,7 @@ function next() {
   
 }
 
-function sign_up() {
+async function sign_up() {
     var user = username.value
     var pas = pass.value
     var pas2 = pass2.value
@@ -130,6 +130,22 @@ function sign_up() {
         return
     }
 
+    
+    // var check_req = await fetch('/sign_up/checkemail', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         email: ema
+    //     })
+    // })
+
+    // if (check_req.status != 200) {
+    //     var text = await check_req.text()
+    //     setErr(text)
+    //     return
+    // }
 
     fetch('sign_up', {
         method: 'PUT',

@@ -621,6 +621,8 @@ body {
         justify-items: center;
         // align-items: center;
         max-width: 620px;
+        color: var(--text-color);
+
 
         > div {
             padding: 15px;
@@ -628,6 +630,7 @@ body {
 
         .left {
             input[type=text], textarea {
+                color: var(--text-color);
                 width: calc(100% - 10px);
                 padding: 8px;
                 margin: 5px 0;

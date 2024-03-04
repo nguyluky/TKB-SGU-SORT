@@ -100,24 +100,39 @@ router.get('/ds_lop', function(req, res, next) {
 
 router.post('/check_email', function(req, res, next) {
     const {email} = req.body;
-    // console.log(email)
-    kickbox.verify(email, function (err, response) {
+    console.log(email)
+    // kickbox.verify(email, function (err, response) {
 
+    //     if (err) {
+    //         res.status(200).send()
+    //         return
+    //     }
+    //     // console.log(response.body.result)
+    //     if (!response){ 
+    //         res.status(200).send();
+    //         return
+    //     }
+    //     if (response.body.result == 'deliverable') {
+    //         res.status(200).send()
+    //         return
+    //     }
+    //     res.status(300).send()
+    // });
+
+    dbHandler.check_have_email(email, function(err, result) {
         if (err) {
-            res.status(200).send()
+            res.status(500).send()
             return
         }
-        // console.log(response.body.result)
-        if (!response){ 
-            res.status(200).send();
-            return
+
+        if (result[0]['COUNT(*)']) {
+            res.status(300).send()
+            return 
         }
-        if (response.body.result == 'deliverable') {
-            res.status(200).send()
-            return
-        }
-        res.status(300).send()
-    });
+
+        res.status(200).send()
+    })
+
 })
 
 router.post('/get_tkb_save', function(req, res, next) {

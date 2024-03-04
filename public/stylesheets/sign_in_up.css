@@ -133,7 +133,7 @@ h1 {
   text-wrap: nowrap;
   overflow: hidden;
 }
-.select-box .selected[id_sele=null] {
+.select-box .selected[id_sele=""] {
   color: gray;
 }
 .select-box .selec-popup {
@@ -194,6 +194,7 @@ h1 {
 }
 
 .tab3 {
+  color: var(--text-color);
   min-height: 300px;
   display: flex;
   justify-content: center;

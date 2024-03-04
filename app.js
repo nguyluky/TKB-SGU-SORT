@@ -21,7 +21,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+app.use(logger(':method :url :status :res[content-length] - :response-time ms'));
 app.use(express.urlencoded({ extended:  false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.json());

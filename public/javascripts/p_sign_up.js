@@ -1,6 +1,5 @@
 const username = document.getElementById('username');
 const pass = document.getElementById('pass');
-const pass2 = document.getElementById('pass2');
 const email = document.getElementById('email');
 const display_name = document.getElementById('display_name')
 const mssv = document.getElementById('mssv')
@@ -9,8 +8,15 @@ const lop = document.querySelector('#lop > div.selected')
 const inputs = document.getElementById("inputs");
 
 
-function optInit() {
+function disable_button_next() {
+    document.querySelector('button.next').disabled = true
+}
 
+function no_disable_button_next() {
+    document.querySelector('button.next').disabled = false
+}
+
+function optInit() {
     inputs.addEventListener("input", function (e) {
         const target = e.target;
         const val = target.value;
@@ -63,19 +69,55 @@ function back() {
     document.querySelector('button.next').onclick = next
 }
 
-function next() {
+
+async function check_user_name() {
+    disable_button_next();
+    var check_user_name_req = await fetch('/sign_up/checkacc', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user_name: username.value
+        })
+    })
+
+    console.log('check user name res', (await check_user_name_req).status)
+
+
+    if (check_user_name_req.status == 200) {
+        document.querySelector('.tab1').style.display = 'none'
+        document.querySelector('.tab2').style.display = ''
+    
+        document.querySelector('button.sguacc').textContent = 'Back'
+        document.querySelector('button.sguacc').onclick = back
+        document.querySelector('button.next').onclick = sign_up
+    }
+    else {
+        setErr("Tên đăng nhập đã tồn tại")
+    }
+
+    no_disable_button_next()
+}
+
+async function next() {
     clsErr()
     var user = username.value
     var pas = pass.value
-    var pas2 = pass2.value
+    var em = email.value
 
     if (user == '') {
         err_show('username', 'Vui lòng nhập tên đăng nhập')
         return
     }
 
-    if (pass == '') {
+    if (pas == '') {
         err_show('pass1', "Vui lòng nhập một khẩu")
+        return
+    }
+
+    if (em == '') {
+        err_show('email', "Emal không thể trống")
         return
     }
 
@@ -84,42 +126,12 @@ function next() {
         return
     }
 
-    if (pas != pas2) {
-        err_show('pass2', "Mật khẩu không chùng khớp")
-        return
-    }
-
-    fetch('/sign_up/checkacc', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            user_name: username.value
-        })
-    }).then(e => {
-        console.log(e.status)
-        if (e.status == 200)  {
-            document.querySelector('.tab1').style.display = 'none'
-            document.querySelector('.tab2').style.display = ''
-        
-            document.querySelector('button.sguacc').textContent = 'Back'
-            document.querySelector('button.sguacc').onclick = back
-            document.querySelector('button.next').onclick = sign_up
-        
-            return
-        }
-
-        setErr("Tên đăng nhập đã tồn tại")
-    })
-
-  
+    check_user_name()
 }
 
 async function sign_up() {
     var user = username.value
     var pas = pass.value
-    var pas2 = pass2.value
     var ema = email.value
     var dn = display_name.value
     var ms = mssv.value
@@ -281,16 +293,6 @@ document.getElementById('pass').addEventListener('focusout', event => {
     err_show('pass', err_mess)
 })
 
-document.getElementById('pass2').addEventListener('keyup', event => {
-    var pa = event.target.value;
-    var err_mess = null;
-
-    if (pa != document.getElementById('pass').value) {
-        err_mess = "Mật khẩu không khớp"
-    }
-    err_show('pass2', err_mess)
-})
-
 /**
  * 
  * @param {Element} elem 
@@ -409,7 +411,7 @@ function check_email(email) {
     var err_mess = null;
     if (e.status != 200) {
       // không hợp lệ
-      err_mess = "Email không hợp lệ"
+      err_mess = "Đã tồn tại"
       console.log('khp')
     }
     // lợp lệ

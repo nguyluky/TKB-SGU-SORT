@@ -1,47 +1,47 @@
-INSERT INTO ds_khoa VALUES ('TNHO' , '(ngành) SP Hóa học');
-INSERT INTO ds_khoa VALUES ('TT' , 'Khoa Thư viện - Văn phòng');
-INSERT INTO ds_khoa VALUES ('LULK' , 'Luật Kinh doanh (không còn dùng)');
-INSERT INTO ds_khoa VALUES ('TTTV' , '(ngành) Thư viện - Văn phòng');
-INSERT INTO ds_khoa VALUES ('GTGT' , '(ngành) Giáo dục Tiểu học');
-INSERT INTO ds_khoa VALUES ('TE' , 'Khoa Tài chính - Kế toán');
-INSERT INTO ds_khoa VALUES ('' , '');
-INSERT INTO ds_khoa VALUES ('NTNH' , '(ngành) SP Âm nhạc');
-INSERT INTO ds_khoa VALUES ('TDTU' , '(ngành) Toán ứng dụng');
-INSERT INTO ds_khoa VALUES ('LULU' , '(ngành) Luật');
-INSERT INTO ds_khoa VALUES ('MOCM' , '(ngành) Công nghệ kỹ thuật môi trường');
-INSERT INTO ds_khoa VALUES ('TDTO' , '(ngành) SP Toán học');
-INSERT INTO ds_khoa VALUES ('LC' , 'Khoa Giáo dục chính trị');
-INSERT INTO ds_khoa VALUES ('XHSU' , '(ngành) SP Lịch sử');
-INSERT INTO ds_khoa VALUES ('NNSA' , '(ngành) SP Tiếng Anh');
-INSERT INTO ds_khoa VALUES ('XHXH' , '(khoa) SP Khoa học Xã hội');
-INSERT INTO ds_khoa VALUES ('LULH' , 'Luật Hành chinh (không còn dùng)');
-INSERT INTO ds_khoa VALUES ('NNTA' , '(ngành) Tiếng Anh (Thương mại và du lịch)');
-INSERT INTO ds_khoa VALUES ('QG' , 'Khoa Giáo dục');
-INSERT INTO ds_khoa VALUES ('TETN' , '(ngành) Tài chính - Ngân hàng');
-INSERT INTO ds_khoa VALUES ('DVDV' , '(ngành) Kỹ thuật điện tử - viễn thông');
-INSERT INTO ds_khoa VALUES ('XHVA' , '(ngành) SP Ngữ văn');
-INSERT INTO ds_khoa VALUES ('VDVI' , '(ngành) Việt Nam học (Văn hóa - Du lịch)');
-INSERT INTO ds_khoa VALUES ('TNLI' , '(ngành) SP Vật lý');
-INSERT INTO ds_khoa VALUES ('NTNT' , '(khoa) Nghệ thuật');
-INSERT INTO ds_khoa VALUES ('TTQV' , '(ngành) Quản trị văn phòng');
-INSERT INTO ds_khoa VALUES ('TN' , 'Khoa SP Khoa học Tự nhiên');
-INSERT INTO ds_khoa VALUES ('XH' , 'Khoa SP Khoa học Xã hội');
-INSERT INTO ds_khoa VALUES ('VDQT' , '(ngành) Quốc tế học');
-INSERT INTO ds_khoa VALUES ('VD' , 'Khoa Văn hóa và Du lịch');
-INSERT INTO ds_khoa VALUES ('QGQG' , '(ngành) Quản lý Giáo dục');
-INSERT INTO ds_khoa VALUES ('NN' , 'Khoa Ngoại ngữ');
-INSERT INTO ds_khoa VALUES ('TNSI' , '(ngành) SP Sinh học');
-INSERT INTO ds_khoa VALUES ('NTNA' , '(ngành) Thanh nhạc');
-INSERT INTO ds_khoa VALUES ('TEKE' , '(ngành) Kế toán');
-INSERT INTO ds_khoa VALUES ('MIMI' , '(ngành) SP Mỹ thuật');
-INSERT INTO ds_khoa VALUES ('XHDI' , '(ngành) SP Địa lý');
-INSERT INTO ds_khoa VALUES ('MOKM' , '(ngành) Khoa học môi trường');
-INSERT INTO ds_khoa VALUES ('QDQK' , '(ngành) Quản trị kinh doanh');
-INSERT INTO ds_khoa VALUES ('DV' , 'Khoa Điện tử viễn thông');
-INSERT INTO ds_khoa VALUES ('LCGD' , '(ngành) Giáo dục Chính trị');
-INSERT INTO ds_khoa VALUES ('CTCT' , '(ngành) Công nghệ thông tin');
-INSERT INTO ds_khoa VALUES ('TD' , 'Khoa Toán - ứng dụng');
-INSERT INTO ds_khoa VALUES ('MO' , 'Khoa Môi trường');
-INSERT INTO ds_khoa VALUES ('QGTL' , '(ngành) Tâm lí học');
-INSERT INTO ds_khoa VALUES ('GMGM' , '(ngành) Giáo dục Mầm non');
-INSERT INTO ds_khoa VALUES ('NT' , 'Khoa Nghệ thuật');
+INSERT INTO ds_khoa VALUES 
+    ('TNHO' , '(ngành) SP Hóa học'),
+    ('TT' , 'Khoa Thư viện - Văn phòng'),
+    ('LULK' , 'Luật Kinh doanh (không còn dùng)'),
+    ('TTTV' , '(ngành) Thư viện - Văn phòng'),
+    ('GTGT' , '(ngành) Giáo dục Tiểu học'),
+    ('TE' , 'Khoa Tài chính - Kế toán'),
+    ('NTNH' , '(ngành) SP Âm nhạc'),
+    ('TDTU' , '(ngành) Toán ứng dụng'),
+    ('LULU' , '(ngành) Luật'),
+    ('MOCM' , '(ngành) Công nghệ kỹ thuật môi trường'),
+    ('TDTO' , '(ngành) SP Toán học'),
+    ('LC' , 'Khoa Giáo dục chính trị'),
+    ('XHSU' , '(ngành) SP Lịch sử'),
+    ('NNSA' , '(ngành) SP Tiếng Anh'),
+    ('XHXH' , '(khoa) SP Khoa học Xã hội'),
+    ('LULH' , 'Luật Hành chinh (không còn dùng)'),
+    ('NNTA' , '(ngành) Tiếng Anh (Thương mại và du lịch)'),
+    ('QG' , 'Khoa Giáo dục'),
+    ('TETN' , '(ngành) Tài chính - Ngân hàng'),
+    ('DVDV' , '(ngành) Kỹ thuật điện tử - viễn thông'),
+    ('XHVA' , '(ngành) SP Ngữ văn'),
+    ('VDVI' , '(ngành) Việt Nam học (Văn hóa - Du lịch)'),
+    ('TNLI' , '(ngành) SP Vật lý'),
+    ('NTNT' , '(khoa) Nghệ thuật'),
+    ('TTQV' , '(ngành) Quản trị văn phòng'),
+    ('TN' , 'Khoa SP Khoa học Tự nhiên'),
+    ('XH' , 'Khoa SP Khoa học Xã hội'),
+    ('VDQT' , '(ngành) Quốc tế học'),
+    ('VD' , 'Khoa Văn hóa và Du lịch'),
+    ('QGQG' , '(ngành) Quản lý Giáo dục'),
+    ('NN' , 'Khoa Ngoại ngữ'),
+    ('TNSI' , '(ngành) SP Sinh học'),
+    ('NTNA' , '(ngành) Thanh nhạc'),
+    ('TEKE' , '(ngành) Kế toán'),
+    ('MIMI' , '(ngành) SP Mỹ thuật'),
+    ('XHDI' , '(ngành) SP Địa lý'),
+    ('MOKM' , '(ngành) Khoa học môi trường'),
+    ('QDQK' , '(ngành) Quản trị kinh doanh'),
+    ('DV' , 'Khoa Điện tử viễn thông'),
+    ('LCGD' , '(ngành) Giáo dục Chính trị'),
+    ('CTCT' , '(ngành) Công nghệ thông tin'),
+    ('TD' , 'Khoa Toán - ứng dụng'),
+    ('MO' , 'Khoa Môi trường'),
+    ('QGTL' , '(ngành) Tâm lí học'),
+    ('GMGM' , '(ngành) Giáo dục Mầm non'),
+    ('NT' , 'Khoa Nghệ thuật')

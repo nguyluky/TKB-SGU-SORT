@@ -63,21 +63,6 @@ router.post('/checkacc', function(req, res, next) {
     })
 })
 
-// router.post('/checkemail', function(req, res, next) {
-//     var {email} = req.body;
-//     console.log(email)
-//     dbHandler.check_have_email(email, (err, result) => {
-//         console.log(result[0]['COUNT(*)'])
-//         if (result[0]['COUNT(*)'] == 0) {
-//             res.status(200).send()
-
-//             return
-//         }
-
-//         res.status(300).send()
-//     })
-// })
-
 // create acc
 router.put('/', async function(req, res, next) {
 

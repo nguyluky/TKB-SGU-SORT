@@ -150,7 +150,7 @@ h1 {
     text-wrap: nowrap;
     overflow: hidden;
 
-    &[id_sele=null] {
+    &[id_sele=''] {
       color: gray;
     }
 
@@ -222,7 +222,7 @@ h1 {
 }
 
 .tab3 {
-
+  color: var(--text-color);
   min-height: 300px;
   display: flex;
   justify-content: center;

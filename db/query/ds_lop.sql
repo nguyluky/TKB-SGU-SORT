@@ -1,222 +1,223 @@
-INSERT INTO ds_lop VALUES ('DHO1221' , 'ĐH chính quy - ngành SP Hóa - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DHO1211' , 'ĐH chính quy - ngành SP Hóa - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DHO1231' , 'ĐH chính quy - ngành SP Hóa - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DHO1201' , 'Đại học chính quy - ngành SP Hóa  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTT1211' , 'ĐH chính quy - ngành Thông tin - Thư viện - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLU1221' , 'ĐH chính quy - ngành Luật - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLU1211' , 'ĐH chính quy - ngành Luật - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTT1201' , 'Đại học chính quy - ngành Thông tin - Thư viện - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTT1231' , 'ĐH chính quy - ngành Thông tin - Thư viện - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTT1221' , 'ĐH chính quy - ngành Thông tin - Thư viện - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGT1211' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGT1201' , 'Đại học chính quy - ngành Giáo dục Tiểu học - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGT1221' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKE1212' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DTN1214' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DKE1214' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DTN1211' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTN1224' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DTN1222' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKE1221' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKE1223' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DKE1222' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DTN1212' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKE1213' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DTN1201' , 'Đại học chính quy - ngành Tài chính - Ngân hàng - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTN1223' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DGD1201' , 'Đại học chính quy - ngành Giáo dục Chính trị  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKM1201' , 'Đại học chính quy - ngành Khoa học môi trường - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQV1201' , 'Đại học chính quy - ngành Quản trị văn phòng - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DNA1201' , 'Đại học chính quy - ngành Thanh nhạc - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGD1221' , 'ĐH chính quy - ngành Giáo dục Chính trị - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DMI1201' , 'Đại học chính quy - ngành SP Mỹ thuật - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTU1201' , 'Đại học chính quy - ngành Toán ứng dụng - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTO1201' , 'Đại học chính quy - ngành SP Toán  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTU1202' , 'Đại học chính quy - ngành Toán ứng dụng - K.20 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DNH1201' , 'Đại học chính quy - ngành SP Âm nhạc - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCM1201' , 'Đại học chính quy - ngành Công nghệ Kĩ thuật Môi trường - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDU1231' , 'ĐH chính quy - ngành Khoa học dữ liệu - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DNH1211' , 'ĐH chính quy - ngành SP Âm nhạc - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGT1212' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DGT1231' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGT1232' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKE1201' , 'Đại học chính quy - ngành Kế toán - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTN1221' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKE1224' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DTN1213' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DKE1202' , 'Đại học chính quy - ngành Kế toán - K.20 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DTU1231' , 'ĐH chính quy - ngành Toán ứng dụng - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTU1211' , 'ĐH chính quy - ngành Toán ứng dụng - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTU1221' , 'ĐH chính quy - ngành Toán ứng dụng - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTO1231' , 'ĐH chính quy - ngành SP Toán - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTO1221' , 'ĐH chính quy - ngành SP Toán - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLU1202' , 'Đại học chính quy - ngành Luật - K.20 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DLU1231' , 'ĐH chính quy - ngành Luật - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLU1201' , 'Đại học chính quy - ngành Luật - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLU1212' , 'ĐH chính quy - ngành Luật - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DLU1222' , 'ĐH chính quy - ngành Luật - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DNA1221' , 'ĐH chính quy - ngành Thanh nhạc - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DNH1231' , 'ĐH chính quy - ngành SP Âm nhạc - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DNH1221' , 'ĐH chính quy - ngành SP Âm nhạc - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGT1222' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DSU1221' , 'ĐH chính quy - ngành SP Lịch sử - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSU1231' , 'ĐH chính quy - ngành SP Lịch sử - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1214' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DSA1221' , 'ĐH chính quy - ngành SP Tiếng Anh - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1232' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DAN1221' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1233' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DAN1215' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 5');
-INSERT INTO ds_lop VALUES ('DAN1222' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DAN1213' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DAN1234' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DAN1212' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DSA1212' , 'ĐH chính quy - ngành SP Tiếng Anh - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DSA1231' , 'ĐH chính quy - ngành SP Tiếng Anh - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1223' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DAN1231' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLU1232' , 'ĐH chính quy - ngành Luật - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DLD1201' , 'Đại học chính quy - ngành SP Lịch sử - Địa lý  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLD1211' , 'ĐH chính quy - ngành SP Lịch sử - Địa lý - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1201' , 'Đại học chính quy - ngành Ngôn ngữ Anh - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTL1221' , 'ĐH chính quy - ngành Tâm lí học - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQG1211' , 'ĐH chính quy - ngành Quản lý Giáo dục - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKE1211' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTO1211' , 'ĐH chính quy - ngành SP Toán - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1235' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 5');
-INSERT INTO ds_lop VALUES ('DSA1213' , 'ĐH chính quy - ngành SP Tiếng Anh - K.21 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DAN1211' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSA1211' , 'ĐH chính quy - ngành SP Tiếng Anh - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDV1201' , 'Đại học chính quy - ngành Kỹ thuật điện tử - viễn thông - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKD1201' , 'Đại học chính quy - ngành Công nghệ Kĩ thuật điện, điện tử - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKD1231' , 'ĐH chính quy - ngành CN Kĩ thuật điện, điện tử - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCV1231' , 'ĐH chính quy - ngành CN kỹ thuật điện tử - viễn thông - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCV1211' , 'ĐH chính quy - ngành CN kỹ thuật điện tử - viễn thông - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDE1201' , 'Đại học chính quy - ngành Kỹ thuật điện - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DVA1201' , 'Đại học chính quy - ngành SP Ngữ văn  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DVA1231' , 'ĐH chính quy - ngành SP Ngữ văn - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DVA1211' , 'ĐH chính quy - ngành SP Ngữ văn - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DVA1221' , 'ĐH chính quy - ngành SP Ngữ văn - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQT1231' , 'ĐH chính quy - ngành Quốc tế học - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQT1211' , 'ĐH chính quy - ngành Quốc tế học - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSU1201' , 'Đại học chính quy - ngành SP Lịch sử  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSU1211' , 'ĐH chính quy - ngành SP Lịch sử - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTL1212' , 'ĐH chính quy - ngành Tâm lí học - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DQG1221' , 'ĐH chính quy - ngành Quản lý Giáo dục - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTL1201' , 'Đại học chính quy - ngành Tâm lí học - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTL1222' , 'ĐH chính quy - ngành Tâm lí học - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DTL1211' , 'ĐH chính quy - ngành Tâm lí học - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLI1211' , 'ĐH chính quy - ngành SP Vật lí - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQV1231' , 'ĐH chính quy - ngành Quản trị văn phòng - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQV1211' , 'ĐH chính quy - ngành Quản trị văn phòng - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQV1221' , 'ĐH chính quy - ngành Quản trị văn phòng - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKH1231' , 'ĐH chính quy - ngành SP Khoa học tự nhiên - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKH1211' , 'ĐH chính quy - ngành SP Khoa học tự nhiên - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKH1201' , 'Đại học chính quy - ngành SP Khoa học tự nhiên  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKH1221' , 'ĐH chính quy - ngành SP Khoa học tự nhiên - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDI1231' , 'ĐH chính quy - ngành SP Địa lý - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLD1231' , 'ĐH chính quy - ngành SP Lịch sử - Địa lý - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLD1221' , 'ĐH chính quy - ngành SP Lịch sử - Địa lý - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DVI1231' , 'ĐH chính quy - ngành Việt Nam học - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDL1231' , 'ĐH chính quy - ngành Du lịch - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDL1211' , 'ĐH chính quy - ngành Du lịch - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDL1221' , 'ĐH chính quy - ngành Du lịch - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLI1221' , 'ĐH chính quy - ngành SP Vật lí - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLI1231' , 'ĐH chính quy - ngành SP Vật lí - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DLI1201' , 'Đại học chính quy - ngành SP Vật lí  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDE1211' , 'ĐH chính quy - ngành Kỹ thuật điện - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKD1211' , 'ĐH chính quy - ngành CN Kĩ thuật điện, điện tử - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCV1221' , 'ĐH chính quy - ngành CN kỹ thuật điện tử - viễn thông - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTN1202' , 'Đại học chính quy - ngành Tài chính - Ngân hàng - K.20 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DQG1231' , 'ĐH chính quy - ngành Quản lý Giáo dục - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSA1233' , 'ĐH chính quy - ngành SP Tiếng Anh - K.23 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DSI1231' , 'ĐH chính quy - ngành SP Sinh học - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSI1211' , 'ĐH chính quy - ngành SP Sinh học - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDE1231' , 'ĐH chính quy - ngành Kỹ thuật điện - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDV1211' , 'ĐH chính quy - ngành Kỹ thuật điện tử - viễn thông - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTN1234' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DKE1232' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DTN1232' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKE1233' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DQT1221' , 'ĐH chính quy - ngành Quốc tế học - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DMI1231' , 'ĐH chính quy - ngành SP Mỹ thuật - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DMI1221' , 'ĐH chính quy - ngành SP Mỹ thuật - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DMI1211' , 'ĐH chính quy - ngành SP Mỹ thuật - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDI1201' , 'Đại học chính quy - ngành SP Địa lý  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDI1221' , 'ĐH chính quy - ngành SP Địa lý - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DVI1211' , 'ĐH chính quy - ngành Việt Nam học - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQT1201' , 'Đại học chính quy - ngành Quốc tế học - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCM1231' , 'ĐH chính quy - ngành CN Kĩ thuật Môi trường - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKM1231' , 'ĐH chính quy - ngành Khoa học môi trường - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKM1211' , 'ĐH chính quy - ngành Khoa học môi trường - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSI1221' , 'ĐH chính quy - ngành SP Sinh học - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSI1201' , 'Đại học chính quy - ngành SP Sinh học  - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCM1211' , 'ĐH chính quy - ngành CN Kĩ thuật Môi trường - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCM1221' , 'ĐH chính quy - ngành CN Kĩ thuật Môi trường - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKM1221' , 'ĐH chính quy - ngành Khoa học môi trường - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQK1212' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKD1221' , 'ĐH chính quy - ngành CN Kĩ thuật điện, điện tử - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDV1231' , 'ĐH chính quy - ngành Kỹ thuật điện tử - viễn thông - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DAN1225' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 5');
-INSERT INTO ds_lop VALUES ('DVI1201' , 'Đại học chính quy - ngành Việt Nam học - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDE1221' , 'ĐH chính quy - ngành Kỹ thuật điện - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DDV1221' , 'ĐH chính quy - ngành Kỹ thuật điện tử - viễn thông - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKE1234' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DTN1231' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCV1201' , 'Đại học chính quy - ngành Công nghệ kỹ thuật điện tử - viễn thông - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DSA1232' , 'ĐH chính quy - ngành SP Tiếng Anh - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DAN1224' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DTN1233' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DGD1211' , 'ĐH chính quy - ngành Giáo dục Chính trị - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGD1231' , 'ĐH chính quy - ngành Giáo dục Chính trị - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1214' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DVI1221' , 'ĐH chính quy - ngành Việt Nam học - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKE1231' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DHA1231' , 'ĐH chính quy - ngành QT nhà hàng và dịch vụ ăn uống - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQK1202' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DQK1232' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKQ1221' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKP1231' , 'ĐH chính quy - ngành Kỹ thuật phần mềm - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1222' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DQK1221' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQK1204' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DKQ1232' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DQK1234' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DKQ1211' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQK1233' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DQK1201' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKP1221' , 'ĐH chính quy - ngành Kỹ thuật phần mềm - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKP1201' , 'Đại học chính quy - ngành Kỹ thuật phần mềm - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1232' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DQK1203' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DQK1224' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DQK1222' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DKQ1231' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1201' , 'Đại học chính quy - ngành Công nghệ thông tin - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1234' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DCT1213' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DQK1223' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DQK1231' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DKQ1201' , 'Đại học chính quy - ngành Kinh doanh quốc tế - K.20 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DQK1211' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1231' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1233' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DDI1211' , 'ĐH chính quy - ngành SP Địa lý - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTL1231' , 'ĐH chính quy - ngành Tâm lí học - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DTL1232' , 'ĐH chính quy - ngành Tâm lí học - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DCT1202' , 'Đại học chính quy - ngành Công nghệ thông tin - K.20 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DCT1223' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 3');
-INSERT INTO ds_lop VALUES ('DCT1215' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 5');
-INSERT INTO ds_lop VALUES ('DCT1212' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DCT1211' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1224' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 4');
-INSERT INTO ds_lop VALUES ('DKP1211' , 'ĐH chính quy - ngành Kỹ thuật phần mềm - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DCT1221' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGM1211' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGM1221' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.22 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DGM1232' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.23 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DGM1222' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.22 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DGM1212' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.21 - Lớp 2');
-INSERT INTO ds_lop VALUES ('DGM1231' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.23 - Lớp 1');
-INSERT INTO ds_lop VALUES ('DNA1211' , 'ĐH chính quy - ngành Thanh nhạc - K.21 - Lớp 1');
-INSERT INTO ds_lop VALUES ('*' , 'Lớp chung');
+INSERT INTO ds_lop VALUES 
+('DHO1221' , 'ĐH chính quy - ngành SP Hóa - K.22 - Lớp 1'),
+ ('DHO1211' , 'ĐH chính quy - ngành SP Hóa - K.21 - Lớp 1'),
+ ('DHO1231' , 'ĐH chính quy - ngành SP Hóa - K.23 - Lớp 1'),
+ ('DHO1201' , 'Đại học chính quy - ngành SP Hóa  - K.20 - Lớp 1'),
+ ('DTT1211' , 'ĐH chính quy - ngành Thông tin - Thư viện - K.21 - Lớp 1'),
+ ('DLU1221' , 'ĐH chính quy - ngành Luật - K.22 - Lớp 1'),
+ ('DLU1211' , 'ĐH chính quy - ngành Luật - K.21 - Lớp 1'),
+ ('DTT1201' , 'Đại học chính quy - ngành Thông tin - Thư viện - K.20 - Lớp 1'),
+ ('DTT1231' , 'ĐH chính quy - ngành Thông tin - Thư viện - K.23 - Lớp 1'),
+ ('DTT1221' , 'ĐH chính quy - ngành Thông tin - Thư viện - K.22 - Lớp 1'),
+ ('DGT1211' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.21 - Lớp 1'),
+ ('DGT1201' , 'Đại học chính quy - ngành Giáo dục Tiểu học - K.20 - Lớp 1'),
+ ('DGT1221' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.22 - Lớp 1'),
+ ('DKE1212' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 2'),
+ ('DTN1214' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 4'),
+ ('DKE1214' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 4'),
+ ('DTN1211' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 1'),
+ ('DTN1224' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 4'),
+ ('DTN1222' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 2'),
+ ('DKE1221' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 1'),
+ ('DKE1223' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 3'),
+ ('DKE1222' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 2'),
+ ('DTN1212' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 2'),
+ ('DKE1213' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 3'),
+ ('DTN1201' , 'Đại học chính quy - ngành Tài chính - Ngân hàng - K.20 - Lớp 1'),
+ ('DTN1223' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 3'),
+ ('DGD1201' , 'Đại học chính quy - ngành Giáo dục Chính trị  - K.20 - Lớp 1'),
+ ('DKM1201' , 'Đại học chính quy - ngành Khoa học môi trường - K.20 - Lớp 1'),
+ ('DQV1201' , 'Đại học chính quy - ngành Quản trị văn phòng - K.20 - Lớp 1'),
+ ('DNA1201' , 'Đại học chính quy - ngành Thanh nhạc - K.20 - Lớp 1'),
+ ('DGD1221' , 'ĐH chính quy - ngành Giáo dục Chính trị - K.22 - Lớp 1'),
+ ('DMI1201' , 'Đại học chính quy - ngành SP Mỹ thuật - K.20 - Lớp 1'),
+ ('DTU1201' , 'Đại học chính quy - ngành Toán ứng dụng - K.20 - Lớp 1'),
+ ('DTO1201' , 'Đại học chính quy - ngành SP Toán  - K.20 - Lớp 1'),
+ ('DTU1202' , 'Đại học chính quy - ngành Toán ứng dụng - K.20 - Lớp 2'),
+ ('DNH1201' , 'Đại học chính quy - ngành SP Âm nhạc - K.20 - Lớp 1'),
+ ('DCM1201' , 'Đại học chính quy - ngành Công nghệ Kĩ thuật Môi trường - K.20 - Lớp 1'),
+ ('DDU1231' , 'ĐH chính quy - ngành Khoa học dữ liệu - K.23 - Lớp 1'),
+ ('DNH1211' , 'ĐH chính quy - ngành SP Âm nhạc - K.21 - Lớp 1'),
+ ('DGT1212' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.21 - Lớp 2'),
+ ('DGT1231' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.23 - Lớp 1'),
+ ('DGT1232' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.23 - Lớp 2'),
+ ('DKE1201' , 'Đại học chính quy - ngành Kế toán - K.20 - Lớp 1'),
+ ('DTN1221' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.22 - Lớp 1'),
+ ('DKE1224' , 'ĐH chính quy - ngành Kế toán - K.22 - Lớp 4'),
+ ('DTN1213' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.21 - Lớp 3'),
+ ('DKE1202' , 'Đại học chính quy - ngành Kế toán - K.20 - Lớp 2'),
+ ('DTU1231' , 'ĐH chính quy - ngành Toán ứng dụng - K.23 - Lớp 1'),
+ ('DTU1211' , 'ĐH chính quy - ngành Toán ứng dụng - K.21 - Lớp 1'),
+ ('DTU1221' , 'ĐH chính quy - ngành Toán ứng dụng - K.22 - Lớp 1'),
+ ('DTO1231' , 'ĐH chính quy - ngành SP Toán - K.23 - Lớp 1'),
+ ('DTO1221' , 'ĐH chính quy - ngành SP Toán - K.22 - Lớp 1'),
+ ('DLU1202' , 'Đại học chính quy - ngành Luật - K.20 - Lớp 2'),
+ ('DLU1231' , 'ĐH chính quy - ngành Luật - K.23 - Lớp 1'),
+ ('DLU1201' , 'Đại học chính quy - ngành Luật - K.20 - Lớp 1'),
+ ('DLU1212' , 'ĐH chính quy - ngành Luật - K.21 - Lớp 2'),
+ ('DLU1222' , 'ĐH chính quy - ngành Luật - K.22 - Lớp 2'),
+ ('DNA1221' , 'ĐH chính quy - ngành Thanh nhạc - K.22 - Lớp 1'),
+ ('DNH1231' , 'ĐH chính quy - ngành SP Âm nhạc - K.23 - Lớp 1'),
+ ('DNH1221' , 'ĐH chính quy - ngành SP Âm nhạc - K.22 - Lớp 1'),
+ ('DGT1222' , 'ĐH chính quy - ngành Giáo dục Tiểu học - K.22 - Lớp 2'),
+ ('DSU1221' , 'ĐH chính quy - ngành SP Lịch sử - K.22 - Lớp 1'),
+ ('DSU1231' , 'ĐH chính quy - ngành SP Lịch sử - K.23 - Lớp 1'),
+ ('DAN1214' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 4'),
+ ('DSA1221' , 'ĐH chính quy - ngành SP Tiếng Anh - K.22 - Lớp 1'),
+ ('DAN1232' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 2'),
+ ('DAN1221' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 1'),
+ ('DAN1233' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 3'),
+ ('DAN1215' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 5'),
+ ('DAN1222' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 2'),
+ ('DAN1213' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 3'),
+ ('DAN1234' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 4'),
+ ('DAN1212' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 2'),
+ ('DSA1212' , 'ĐH chính quy - ngành SP Tiếng Anh - K.21 - Lớp 2'),
+ ('DSA1231' , 'ĐH chính quy - ngành SP Tiếng Anh - K.23 - Lớp 1'),
+ ('DAN1223' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 3'),
+ ('DAN1231' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 1'),
+ ('DLU1232' , 'ĐH chính quy - ngành Luật - K.23 - Lớp 2'),
+ ('DLD1201' , 'Đại học chính quy - ngành SP Lịch sử - Địa lý  - K.20 - Lớp 1'),
+ ('DLD1211' , 'ĐH chính quy - ngành SP Lịch sử - Địa lý - K.21 - Lớp 1'),
+ ('DAN1201' , 'Đại học chính quy - ngành Ngôn ngữ Anh - K.20 - Lớp 1'),
+ ('DTL1221' , 'ĐH chính quy - ngành Tâm lí học - K.22 - Lớp 1'),
+ ('DQG1211' , 'ĐH chính quy - ngành Quản lý Giáo dục - K.21 - Lớp 1'),
+ ('DKE1211' , 'ĐH chính quy - ngành Kế toán - K.21 - Lớp 1'),
+ ('DTO1211' , 'ĐH chính quy - ngành SP Toán - K.21 - Lớp 1'),
+ ('DAN1235' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.23 - Lớp 5'),
+ ('DSA1213' , 'ĐH chính quy - ngành SP Tiếng Anh - K.21 - Lớp 3'),
+ ('DAN1211' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.21 - Lớp 1'),
+ ('DSA1211' , 'ĐH chính quy - ngành SP Tiếng Anh - K.21 - Lớp 1'),
+ ('DDV1201' , 'Đại học chính quy - ngành Kỹ thuật điện tử - viễn thông - K.20 - Lớp 1'),
+ ('DKD1201' , 'Đại học chính quy - ngành Công nghệ Kĩ thuật điện, điện tử - K.20 - Lớp 1'),
+ ('DKD1231' , 'ĐH chính quy - ngành CN Kĩ thuật điện, điện tử - K.23 - Lớp 1'),
+ ('DCV1231' , 'ĐH chính quy - ngành CN kỹ thuật điện tử - viễn thông - K.23 - Lớp 1'),
+ ('DCV1211' , 'ĐH chính quy - ngành CN kỹ thuật điện tử - viễn thông - K.21 - Lớp 1'),
+ ('DDE1201' , 'Đại học chính quy - ngành Kỹ thuật điện - K.20 - Lớp 1'),
+ ('DVA1201' , 'Đại học chính quy - ngành SP Ngữ văn  - K.20 - Lớp 1'),
+ ('DVA1231' , 'ĐH chính quy - ngành SP Ngữ văn - K.23 - Lớp 1'),
+ ('DVA1211' , 'ĐH chính quy - ngành SP Ngữ văn - K.21 - Lớp 1'),
+ ('DVA1221' , 'ĐH chính quy - ngành SP Ngữ văn - K.22 - Lớp 1'),
+ ('DQT1231' , 'ĐH chính quy - ngành Quốc tế học - K.23 - Lớp 1'),
+ ('DQT1211' , 'ĐH chính quy - ngành Quốc tế học - K.21 - Lớp 1'),
+ ('DSU1201' , 'Đại học chính quy - ngành SP Lịch sử  - K.20 - Lớp 1'),
+ ('DSU1211' , 'ĐH chính quy - ngành SP Lịch sử - K.21 - Lớp 1'),
+ ('DTL1212' , 'ĐH chính quy - ngành Tâm lí học - K.21 - Lớp 2'),
+ ('DQG1221' , 'ĐH chính quy - ngành Quản lý Giáo dục - K.22 - Lớp 1'),
+ ('DTL1201' , 'Đại học chính quy - ngành Tâm lí học - K.20 - Lớp 1'),
+ ('DTL1222' , 'ĐH chính quy - ngành Tâm lí học - K.22 - Lớp 2'),
+ ('DTL1211' , 'ĐH chính quy - ngành Tâm lí học - K.21 - Lớp 1'),
+ ('DLI1211' , 'ĐH chính quy - ngành SP Vật lí - K.21 - Lớp 1'),
+ ('DQV1231' , 'ĐH chính quy - ngành Quản trị văn phòng - K.23 - Lớp 1'),
+ ('DQV1211' , 'ĐH chính quy - ngành Quản trị văn phòng - K.21 - Lớp 1'),
+ ('DQV1221' , 'ĐH chính quy - ngành Quản trị văn phòng - K.22 - Lớp 1'),
+ ('DKH1231' , 'ĐH chính quy - ngành SP Khoa học tự nhiên - K.23 - Lớp 1'),
+ ('DKH1211' , 'ĐH chính quy - ngành SP Khoa học tự nhiên - K.21 - Lớp 1'),
+ ('DKH1201' , 'Đại học chính quy - ngành SP Khoa học tự nhiên  - K.20 - Lớp 1'),
+ ('DKH1221' , 'ĐH chính quy - ngành SP Khoa học tự nhiên - K.22 - Lớp 1'),
+ ('DDI1231' , 'ĐH chính quy - ngành SP Địa lý - K.23 - Lớp 1'),
+ ('DLD1231' , 'ĐH chính quy - ngành SP Lịch sử - Địa lý - K.23 - Lớp 1'),
+ ('DLD1221' , 'ĐH chính quy - ngành SP Lịch sử - Địa lý - K.22 - Lớp 1'),
+ ('DVI1231' , 'ĐH chính quy - ngành Việt Nam học - K.23 - Lớp 1'),
+ ('DDL1231' , 'ĐH chính quy - ngành Du lịch - K.23 - Lớp 1'),
+ ('DDL1211' , 'ĐH chính quy - ngành Du lịch - K.21 - Lớp 1'),
+ ('DDL1221' , 'ĐH chính quy - ngành Du lịch - K.22 - Lớp 1'),
+ ('DLI1221' , 'ĐH chính quy - ngành SP Vật lí - K.22 - Lớp 1'),
+ ('DLI1231' , 'ĐH chính quy - ngành SP Vật lí - K.23 - Lớp 1'),
+ ('DLI1201' , 'Đại học chính quy - ngành SP Vật lí  - K.20 - Lớp 1'),
+ ('DDE1211' , 'ĐH chính quy - ngành Kỹ thuật điện - K.21 - Lớp 1'),
+ ('DKD1211' , 'ĐH chính quy - ngành CN Kĩ thuật điện, điện tử - K.21 - Lớp 1'),
+ ('DCV1221' , 'ĐH chính quy - ngành CN kỹ thuật điện tử - viễn thông - K.22 - Lớp 1'),
+ ('DTN1202' , 'Đại học chính quy - ngành Tài chính - Ngân hàng - K.20 - Lớp 2'),
+ ('DQG1231' , 'ĐH chính quy - ngành Quản lý Giáo dục - K.23 - Lớp 1'),
+ ('DSA1233' , 'ĐH chính quy - ngành SP Tiếng Anh - K.23 - Lớp 3'),
+ ('DSI1231' , 'ĐH chính quy - ngành SP Sinh học - K.23 - Lớp 1'),
+ ('DSI1211' , 'ĐH chính quy - ngành SP Sinh học - K.21 - Lớp 1'),
+ ('DDE1231' , 'ĐH chính quy - ngành Kỹ thuật điện - K.23 - Lớp 1'),
+ ('DDV1211' , 'ĐH chính quy - ngành Kỹ thuật điện tử - viễn thông - K.21 - Lớp 1'),
+ ('DTN1234' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 4'),
+ ('DKE1232' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 2'),
+ ('DTN1232' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 2'),
+ ('DKE1233' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 3'),
+ ('DQT1221' , 'ĐH chính quy - ngành Quốc tế học - K.22 - Lớp 1'),
+ ('DMI1231' , 'ĐH chính quy - ngành SP Mỹ thuật - K.23 - Lớp 1'),
+ ('DMI1221' , 'ĐH chính quy - ngành SP Mỹ thuật - K.22 - Lớp 1'),
+ ('DMI1211' , 'ĐH chính quy - ngành SP Mỹ thuật - K.21 - Lớp 1'),
+ ('DDI1201' , 'Đại học chính quy - ngành SP Địa lý  - K.20 - Lớp 1'),
+ ('DDI1221' , 'ĐH chính quy - ngành SP Địa lý - K.22 - Lớp 1'),
+ ('DVI1211' , 'ĐH chính quy - ngành Việt Nam học - K.21 - Lớp 1'),
+ ('DQT1201' , 'Đại học chính quy - ngành Quốc tế học - K.20 - Lớp 1'),
+ ('DCM1231' , 'ĐH chính quy - ngành CN Kĩ thuật Môi trường - K.23 - Lớp 1'),
+ ('DKM1231' , 'ĐH chính quy - ngành Khoa học môi trường - K.23 - Lớp 1'),
+ ('DKM1211' , 'ĐH chính quy - ngành Khoa học môi trường - K.21 - Lớp 1'),
+ ('DSI1221' , 'ĐH chính quy - ngành SP Sinh học - K.22 - Lớp 1'),
+ ('DSI1201' , 'Đại học chính quy - ngành SP Sinh học  - K.20 - Lớp 1'),
+ ('DCM1211' , 'ĐH chính quy - ngành CN Kĩ thuật Môi trường - K.21 - Lớp 1'),
+ ('DCM1221' , 'ĐH chính quy - ngành CN Kĩ thuật Môi trường - K.22 - Lớp 1'),
+ ('DKM1221' , 'ĐH chính quy - ngành Khoa học môi trường - K.22 - Lớp 1'),
+ ('DQK1212' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.21 - Lớp 2'),
+ ('DKD1221' , 'ĐH chính quy - ngành CN Kĩ thuật điện, điện tử - K.22 - Lớp 1'),
+ ('DDV1231' , 'ĐH chính quy - ngành Kỹ thuật điện tử - viễn thông - K.23 - Lớp 1'),
+ ('DAN1225' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 5'),
+ ('DVI1201' , 'Đại học chính quy - ngành Việt Nam học - K.20 - Lớp 1'),
+ ('DDE1221' , 'ĐH chính quy - ngành Kỹ thuật điện - K.22 - Lớp 1'),
+ ('DDV1221' , 'ĐH chính quy - ngành Kỹ thuật điện tử - viễn thông - K.22 - Lớp 1'),
+ ('DKE1234' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 4'),
+ ('DTN1231' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 1'),
+ ('DCV1201' , 'Đại học chính quy - ngành Công nghệ kỹ thuật điện tử - viễn thông - K.20 - Lớp 1'),
+ ('DSA1232' , 'ĐH chính quy - ngành SP Tiếng Anh - K.23 - Lớp 2'),
+ ('DAN1224' , 'ĐH chính quy - ngành Ngôn ngữ Anh - K.22 - Lớp 4'),
+ ('DTN1233' , 'ĐH chính quy - ngành Tài chính - Ngân hàng - K.23 - Lớp 3'),
+ ('DGD1211' , 'ĐH chính quy - ngành Giáo dục Chính trị - K.21 - Lớp 1'),
+ ('DGD1231' , 'ĐH chính quy - ngành Giáo dục Chính trị - K.23 - Lớp 1'),
+ ('DCT1214' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 4'),
+ ('DVI1221' , 'ĐH chính quy - ngành Việt Nam học - K.22 - Lớp 1'),
+ ('DKE1231' , 'ĐH chính quy - ngành Kế toán - K.23 - Lớp 1'),
+ ('DHA1231' , 'ĐH chính quy - ngành QT nhà hàng và dịch vụ ăn uống - K.23 - Lớp 1'),
+ ('DQK1202' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 2'),
+ ('DQK1232' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 2'),
+ ('DKQ1221' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.22 - Lớp 1'),
+ ('DKP1231' , 'ĐH chính quy - ngành Kỹ thuật phần mềm - K.23 - Lớp 1'),
+ ('DCT1222' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 2'),
+ ('DQK1221' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 1'),
+ ('DQK1204' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 4'),
+ ('DKQ1232' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.23 - Lớp 2'),
+ ('DQK1234' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 4'),
+ ('DKQ1211' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.21 - Lớp 1'),
+ ('DQK1233' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 3'),
+ ('DQK1201' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 1'),
+ ('DKP1221' , 'ĐH chính quy - ngành Kỹ thuật phần mềm - K.22 - Lớp 1'),
+ ('DKP1201' , 'Đại học chính quy - ngành Kỹ thuật phần mềm - K.20 - Lớp 1'),
+ ('DCT1232' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 2'),
+ ('DQK1203' , 'Đại học chính quy - ngành Quản trị kinh doanh - K.20 - Lớp 3'),
+ ('DQK1224' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 4'),
+ ('DQK1222' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 2'),
+ ('DKQ1231' , 'ĐH chính quy - ngành Kinh doanh quốc tế - K.23 - Lớp 1'),
+ ('DCT1201' , 'Đại học chính quy - ngành Công nghệ thông tin - K.20 - Lớp 1'),
+ ('DCT1234' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 4'),
+ ('DCT1213' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 3'),
+ ('DQK1223' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.22 - Lớp 3'),
+ ('DQK1231' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.23 - Lớp 1'),
+ ('DKQ1201' , 'Đại học chính quy - ngành Kinh doanh quốc tế - K.20 - Lớp 1'),
+ ('DQK1211' , 'ĐH chính quy - ngành Quản trị kinh doanh - K.21 - Lớp 1'),
+ ('DCT1231' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 1'),
+ ('DCT1233' , 'ĐH chính quy - ngành Công nghệ thông tin - K.23 - Lớp 3'),
+ ('DDI1211' , 'ĐH chính quy - ngành SP Địa lý - K.21 - Lớp 1'),
+ ('DTL1231' , 'ĐH chính quy - ngành Tâm lí học - K.23 - Lớp 1'),
+ ('DTL1232' , 'ĐH chính quy - ngành Tâm lí học - K.23 - Lớp 2'),
+ ('DCT1202' , 'Đại học chính quy - ngành Công nghệ thông tin - K.20 - Lớp 2'),
+ ('DCT1223' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 3'),
+ ('DCT1215' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 5'),
+ ('DCT1212' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 2'),
+ ('DCT1211' , 'ĐH chính quy - ngành Công nghệ thông tin - K.21 - Lớp 1'),
+ ('DCT1224' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 4'),
+ ('DKP1211' , 'ĐH chính quy - ngành Kỹ thuật phần mềm - K.21 - Lớp 1'),
+ ('DCT1221' , 'ĐH chính quy - ngành Công nghệ thông tin - K.22 - Lớp 1'),
+ ('DGM1211' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.21 - Lớp 1'),
+ ('DGM1221' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.22 - Lớp 1'),
+ ('DGM1232' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.23 - Lớp 2'),
+ ('DGM1222' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.22 - Lớp 2'),
+ ('DGM1212' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.21 - Lớp 2'),
+ ('DGM1231' , 'ĐH chính quy - ngành Giáo dục Mầm non - K.23 - Lớp 1'),
+ ('DNA1211' , 'ĐH chính quy - ngành Thanh nhạc - K.21 - Lớp 1'),
+ ('*' , 'Lớp chung')

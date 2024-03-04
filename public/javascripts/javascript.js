@@ -594,20 +594,27 @@ function saveTkb() {
         return;
     }
 
+    if (tkb_open.tkb_name) {
+        console.log('save exit')
+    }
+    else {
 
-    html2canvas(document.querySelector("body > div.main-body > div.tkb"),
-        {
-            windowWidth: 1300,
-            windowHeight: 616,
-        }).then(e => {
-            console.log(e)
-            base64 = e.toDataURL('image/jpeg')
 
-            var ele = document.getElementById('popup-area')
-            var popup = makeSavePopup(base64, cancelHandle, saveHandle)
-            ele.appendChild(popup)
-        })
-    console.log(Object.keys(tkb.hocphan))
+        html2canvas(document.querySelector("body > div.main-body > div.tkb"),
+            {
+                windowWidth: 1300,
+                windowHeight: 616,
+            }).then(e => {
+                console.log(e)
+                base64 = e.toDataURL('image/jpeg')
+
+                var ele = document.getElementById('popup-area')
+                var popup = makeSavePopup(base64, cancelHandle, saveHandle)
+                ele.appendChild(popup)
+            })
+        console.log(Object.keys(tkb.hocphan))
+    }
+
 
 }
 

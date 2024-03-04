@@ -1,5 +1,6 @@
-var mysql = require('mysql');
-
+const mysql = require('mysql');
+const fs = require('fs');
+const path = require('path');
 
 var options = {
   host: process.env.DB_HOST,
@@ -8,18 +9,11 @@ var options = {
   database: process.env.DB_DATABASE_NAME
 }
 
-var con = mysql.createConnection(options);
+let con = mysql.createConnection(options);
 
 
-console.log('>> mysql star connect')
-console.log(options)
-con.connect(function (err) {
+con.connect((err, result) => {
   if (err) throw err;
-
-
-  
-});
-
-
+})
 
 module.exports = con;

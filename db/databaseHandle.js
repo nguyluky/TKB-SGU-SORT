@@ -177,8 +177,29 @@ module.exports = {
 
         db.query(sql, [uuid], callback)
     },
-    update_tkb: function(uuid, id_to_hocs, name, thumbnail,callback) {
-        
+    update_tkb: function(id, id_to_hocs, name, description, thumbnail,callback) {
+        const sql = `
+            UPDATE tkb_save 
+            SET tkb_name = CASE 
+                    WHEN ${db.escape(name)} IS NOT NULL THEN  ${db.escape(name)}
+                    ELSE  tkb_name
+                END,
+                json_data = CASE 
+                    WHEN ${db.escape(id_to_hocs)} IS NOT NULL THEN  ${db.escape(id_to_hocs)}
+                    ELSE  json_data
+                END,
+                description = CASE 
+                    WHEN ${db.escape(description)} IS NOT NULL THEN  ${db.escape(description)}
+                    ELSE  description 
+                END
+                thumbnails = CASE 
+                    WHEN ${db.escape(thumbnail)} IS NOT NULL THEN  ${db.escape(thumbnail)}
+                    ELSE  thumbnails 
+                END
+            WHERE id = ${db.escape(id)}
+        `
+
+        db.query(sql, callback)
     },
     check_have_email: function(email, callback) {
         const sql = `SELECT COUNT(*) FROM user_login_info

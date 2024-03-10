@@ -1,5 +1,5 @@
 
-fetch('api/get_tkb_save', {method: "POST"}).then(e => e.json()).then(e => {
+fetch('api/tkbs').then(e => e.json()).then(e => {
     Object.values(e.data).forEach(e => {
         var base64String = String.fromCharCode(...new Uint8Array(e.thumbnails.data))
         var tkb_name = e.tkb_name

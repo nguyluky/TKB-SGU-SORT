@@ -4,14 +4,21 @@ const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
 
 
-function get_ds_mon_hoc() {
-    fetch('/api/')
-}
+// TODO add get tkb data from api
+async function initFile() {
 
+    console.log(tkb_id)
+    if (!tkb_id) return;
+    var req = await fetch(`/api/tkb/${tkb_id}`)
+    var data_json = await req.json()
 
-function initFile() {
-    if (tkb_open == {}) return
-    JSON.parse(tkb_open.json_data).forEach(id_to_hoc => {
+    if (data_json.err_mess) {
+        console.log('err')
+        createPopup('err', data_json.err_mess, -1)
+        return
+    }
+
+    JSON.parse(data_json.data.json_data).forEach(id_to_hoc => {
         data.ds_nhom_to.forEach(e => {
             if (e.id_to_hoc == id_to_hoc) {
                 // console.log(e)
@@ -20,8 +27,22 @@ function initFile() {
 
             }
         })
-        // addHp()
     })
+
+
+
+    // if (tkb_open == {}) return
+    // JSON.parse(tkb_open.json_data).forEach(id_to_hoc => {
+    //     data.ds_nhom_to.forEach(e => {
+    //         if (e.id_to_hoc == id_to_hoc) {
+    //             // console.log(e)
+    //             addHp(e.ma_mon)
+    //             tkb.render(e)
+
+    //         }
+    //     })
+    //     // addHp()
+    // })
 }
 
 function xoaThemhocphan() {
@@ -798,6 +819,7 @@ function createPopup(type, mess, duration = 2000) {
 
     var node_1 = createElem();
     document.getElementById('notification').appendChild(node_1)
+    if (duration < 0) return;
     setTimeout(() => {
         node_1.remove()
     }, duration)

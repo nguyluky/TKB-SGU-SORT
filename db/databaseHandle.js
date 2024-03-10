@@ -1,7 +1,7 @@
+const { NULL } = require('sass');
 const db = require('./db');
 const { v4: uuidv4 } = require('uuid');
 
-// TODO change user_id of tkbsave to list user can edit that tkb
 // sudo /etc/init.d/redis-server start
 // sudo /etc/init.d/mysql start
 
@@ -204,6 +204,10 @@ module.exports = {
 
         db.query(sql, callback)
     },
+    check_permission_tkb: function(uuid, user_id, callback) {
+        var sql = `SELECT tkb_name, description, json_data, date_save  FROM tkb_save WHERE JSON_CONTAINS(id_user, '${db.escape(user_id).replace(/'/g, '"')}', "$") AND id=${db.escape(uuid)}`
+        db.query(sql, callback)
+    },
     check_have_email: function(email, callback) {
         const sql = `SELECT COUNT(*) FROM user_login_info
         WHERE email = ?`
@@ -212,6 +216,20 @@ module.exports = {
             callback(err, result)
         })
 
-    } 
+    },
+
+    async_token2userid: function(token) {
+        return new Promise((resolve, reject) => {
+            this.get_user_id_form_token(token, (err, result) => {
+                if (err) 
+                    {
+                        resolve(null)
+                        return
+                    }
+                resolve(result)
+            })
+
+        })
+    }
     
 }

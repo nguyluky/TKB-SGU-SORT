@@ -6,6 +6,7 @@ const kickbox = require('kickbox').client(env.KICKBOX_API).kickbox();
 const cache = require('../db/cache')
 
 const dbHandler = require('../db/databaseHandle');
+const { Z_FULL_FLUSH } = require('zlib');
 
 
 var router = express.Router();
@@ -20,7 +21,8 @@ const cachePath = path.join(__dirname, '../cache')
 
 const mess_code = {
     NOLOGIN: "You are not logged in",
-    TOKEN_TIME_OUT: "Login expired"
+    TOKEN_TIME_OUT: "Login expired",
+    PERMISSION: "Not have access"
 }
 
 
@@ -135,7 +137,15 @@ router.post('/check_email', function(req, res, next) {
 
 })
 
-router.post('/get_tkb_save', function(req, res, next) {
+/*
+ _____ _  ______  
+|_   _| |/ / __ ) 
+  | | | ' /|  _ \ 
+  | | | . \| |_) |
+  |_| |_|\_\____/ 
+*/
+
+router.get('/tkbs', function(req, res, next) {
     const token = req.session.token;
     res.setHeader('Content-Type', 'application/json')
 
@@ -168,7 +178,7 @@ router.post('/get_tkb_save', function(req, res, next) {
 
 })
 
-router.post('/tkb_save', function(req, res, next) {
+router.post('/tkb', function(req, res, next) {
     const token = req.session.token;
     const {name , id_to_hocs, description,thumbnail} = req.body;
     console.log(name, id_to_hocs)
@@ -223,6 +233,52 @@ router.post('/tkb_save', function(req, res, next) {
         })
         
 
+    })
+})
+
+router.put('/tkb/:tkb_id', function(req, res, next) {
+    const { tkb_id } = req.params;
+
+    req.send("coming ...")
+
+})
+
+router.get('/tkb/:tkb_id', async function(req, res, next) {
+    const { tkb_id } = req.params;
+    var token = req.session.token;
+
+    if (!token) {
+        // 
+        res.send(JSON.stringify({
+            err_mess: mess_code.NOLOGIN,
+            data: null
+        }))
+        return
+    }
+
+    var user_id = await dbHandler.async_token2userid(token);
+    if (!user_id) {
+        res.send(JSON.stringify({
+            err_mess: mess_code.TOKEN_TIME_OUT,
+            data: null
+        }))
+        return
+    }
+    dbHandler.check_permission_tkb(tkb_id, user_id, (err, result) => {
+        // console.log(result)
+        if (!result[0]) {
+            res.send(JSON.stringify({
+                err_mess: mess_code.PERMISSION,
+                data: null
+            }))
+            return
+        }
+
+        res.send(JSON.stringify({
+            err_mess: null,
+            data: result[0]
+        }))
+        
     })
 })
 

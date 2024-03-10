@@ -5,8 +5,23 @@ fetch('/sign_in/checkLogin', {
     method: "POST"
 }).then(e => {
     if (e.status == 200) {
+        if (isloaded) {
+            document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+        }
         sessionStorage.setItem('isLogin', true)
         return
+    }
+    if (isloaded) {
+        if (!checkLogin()) {
+            document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+        }
+    
+        if (user_info) {
+            document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+            document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+            document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+            document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+        }
     }
     sessionStorage.setItem('isLogin', false)
 })
@@ -22,7 +37,7 @@ function log_out() {
 }
 
 function get_use_info() {
-    fetch('/api/get_user_info', { method: "POST", }).then(e => e.json()).then(json_ => {
+    fetch('/api/get_user_info').then(e => e.json()).then(json_ => {
         // console.log(json_)
 
         if (json_.err_mess) {
@@ -103,5 +118,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
     }
 });
-
 

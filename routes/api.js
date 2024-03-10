@@ -28,7 +28,7 @@ const mess_code = {
 
 
 // ? chuse test
-router.post('/dshocphan', async (req, res, next) => {
+router.get('/dshocphan', async (req, res, next) => {
     res.setHeader('Content-Type', 'application/json')
 
     
@@ -44,7 +44,7 @@ router.post('/dshocphan', async (req, res, next) => {
 
 })
 
-router.post('/get_user_info', (req, res, next) => {
+router.get('/get_user_info', (req, res, next) => {
     var token = req.session.token;
     if (!token) {
         res.setHeader('Content-Type', 'application/json')
@@ -99,6 +99,7 @@ router.get('/ds_lop', function(req, res, next) {
         })
     })
 })
+
 
 router.post('/check_email', function(req, res, next) {
     const {email} = req.body;

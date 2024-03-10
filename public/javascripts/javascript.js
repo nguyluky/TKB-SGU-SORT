@@ -6,7 +6,7 @@ const add_themhocphan = document.querySelector('.add_themhocphan')
 
 // TODO add get tkb data from api
 async function initFile() {
-
+    var a = createPopup('info', "get tkb save", -1)
     console.log(tkb_id)
     if (!tkb_id) return;
     var req = await fetch(`/api/tkb/${tkb_id}`)
@@ -28,7 +28,8 @@ async function initFile() {
             }
         })
     })
-
+    a.remove()
+    createPopup('success')
 
 
     // if (tkb_open == {}) return
@@ -590,10 +591,10 @@ initHocPhanHandel(this)
 
 var data;
 function get_dshocphan() {
-    fetch('/api/dshocphan', {
-        method: "POST"
-    }).then(e => e.json()).then(e => {
+    var load_popup = createPopup('info', 'get data', -1)
+    fetch('/api/dshocphan').then(e => e.json()).then(e => {
         data = e
+        load_popup.remove()
         initFile()
     })
 }
@@ -819,9 +820,11 @@ function createPopup(type, mess, duration = 2000) {
 
     var node_1 = createElem();
     document.getElementById('notification').appendChild(node_1)
-    if (duration < 0) return;
-    setTimeout(() => {
-        node_1.remove()
-    }, duration)
+    if (duration > 0) {
+        setTimeout(() => {
+            node_1.remove()
+        }, duration)
+    }
+    return node_1
 
 }

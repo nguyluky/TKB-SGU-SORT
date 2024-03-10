@@ -14,7 +14,12 @@
     --silver: #e4e4e4;
     --add-button-shadow: 0px 4px 4px 0px rgba(60, 64, 67, 0.3), 0px 8px 12px 6px rgba(60, 64, 67, 0.15);
     --main-box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
-    --popup-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2)
+    --popup-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2);
+
+    --err-color: 220, 53, 69;
+    --info-color: 23, 162, 184;
+    --warning-color: 255, 193, 7;
+    --success-color: 40, 167, 69;
 }
 
 * {
@@ -319,6 +324,7 @@ body {
                         padding: 7px;
                         background-color: var(--hover-back);
                         border-radius: 5px;
+                        cursor: pointer;
 
                         &.select {
                             outline: var(--primary) auto 1px;
@@ -687,6 +693,105 @@ body {
             .cancel {
                 background: #e23243;
             }
+        }
+    }
+}
+
+#notification {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: max-content;
+    width: 30%;
+    
+    .item-notification {
+        margin-top: 0.625rem;
+        height: 50px;
+        border-radius: 0.3125rem;
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+        overflow: hidden;
+        background: var(--main-color);
+        
+        &.err {
+            border-left: 0.625rem rgb(var(--err-color)) solid;
+            .close {
+                background: rgba(var(--err-color), 0.533);
+            }
+            
+            .icon,
+            .body {
+                background: rgba(var(--err-color), 0.424);
+            }
+        }
+
+        &.info {
+            border-left: 0.625rem rgb(var(--info-color)) solid;
+            .close {
+                background: rgba(var(--info-color), 0.533);
+            }
+            
+            .icon,
+            .body {
+                background: rgba(var(--info-color), 0.424);
+            }
+        }
+
+        &.warning {
+            border-left: 0.625rem rgb(var(--warning-color)) solid;
+            .close {
+                background: rgba(var(--warning-color), 0.533);
+            }
+            
+            .icon,
+            .body {
+                background: rgba(var(--warning-color), 0.424);
+            }
+        }
+
+        &.success {
+            border-left: 0.625rem rgb(var(--success-color)) solid;
+            .close {
+                background: rgba(var(--success-color), 0.533);
+            }
+            
+            .icon,
+            .body {
+                background: rgba(var(--success-color), 0.424);
+            }
+        }
+
+        i {
+            width: 1.875rem;
+            height: 1.875rem;
+            padding-left: 0.3125rem;
+            font-size: 1.875rem;
+            padding-right: 5px;
+        }
+        .icon,
+        .body {
+            font-size: 1.0625rem;
+            padding-left: 5px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .body{
+            span:nth-child(2) {
+                margin-left: 10px;
+                margin-right: 5px;
+            }
+            width: calc(100% - 35px);
+        }
+        // animation: name duration timing-function delay iteration-count direction fill-mode;
+        .close {
+            width: 40px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
         }
     }
 }

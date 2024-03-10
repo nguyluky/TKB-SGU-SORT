@@ -8,25 +8,27 @@ router.get('/:tkb_id', function (req, res, next) {
     var token = req.session.token;
 
     if (!token) {
-        res.render("tkb", { json_data: {} });
+        res.render('noPermission', {})
         return
     }
 
     dbHandler.get_tkb(tkb_id, (err, result) => {
         var tkb = result[0];
+        console.log(err)
         if (!tkb) {
-            res.render("tkb", { json_data: {} });
+            res.render('noPermission', {})
             return
         }
-        var id_user = tkb.id_user;
+        var id_user = JSON.parse(tkb.id_user);
 
         dbHandler.get_user_id_form_token(token, (err, result) => {
-            if (result == id_user) {
+            if (id_user.includes(result)) {
+                tkb.id_user = null;
                 console.log(JSON.stringify(tkb))
                 res.render("tkb", { json_data: tkb });
             }
             else {
-                res.render("tkb", { json_data: {} });
+                res.render('noPermission', {})
             }
         })
     })

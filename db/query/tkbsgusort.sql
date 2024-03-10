@@ -1,11 +1,14 @@
+-- Active: 1709643794316@@127.0.0.1@3306@tkbsgusort
 CREATE TABLE IF NOT EXISTS ds_lop (
   id VARCHAR(7) PRIMARY KEY, 
   display_name VARCHAR(80) CHARACTER SET utf8
 );
+
 CREATE TABLE IF NOT EXISTS ds_khoa (
   id VARCHAR(4) PRIMARY KEY, 
   display_name VARCHAR(41) CHARACTER SET utf8
 );
+
 CREATE TABLE IF NOT EXISTS user_login_info (
   username VARCHAR(20) PRIMARY KEY, 
   pass CHAR(40) NOT NULL, 
@@ -15,6 +18,7 @@ CREATE TABLE IF NOT EXISTS user_login_info (
   token VARCHAR(36), 
   type_signup VARCHAR(10) DEFAULT('DEFAULT')
 );
+
 CREATE TABLE IF NOT EXISTS user_info (
   id VARCHAR(36) PRIMARY KEY, 
   display_name VARCHAR(40) CHARSET utf8, 
@@ -26,16 +30,17 @@ CREATE TABLE IF NOT EXISTS user_info (
   FOREIGN KEY(lop) REFERENCES ds_lop(id), 
   FOREIGN KEY(username) REFERENCES user_login_info(username) ON DELETE CASCADE
 );
+
 CREATE TABLE IF NOT EXISTS tkb_save(
   id VARCHAR(36) PRIMARY KEY, 
-  id_user VARCHAR(36), 
+  id_user JSON,
   tkb_name VARCHAR(20), 
   description TEXT, 
   json_data JSON, 
   thumbnails MEDIUMBLOB, 
-  date_save DATETIME, 
-  FOREIGN KEY (id_user) REFERENCES user_info(id) ON DELETE CASCADE
+  date_save DATETIME
 );
+
 ALTER TABLE 
   user_login_info 
 ADD 

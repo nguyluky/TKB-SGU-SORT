@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+:root {
+    --main-color: #e9eef6;
+    --text-color: rgb(60, 64, 67);
+    --text-color-2: rgb(91, 95, 99);
+    --hover-back: rgba(0, 0, 0, 0.05);
+    --color-hover: rgb(75, 79, 82);
+    --main-backe: #f5f5f5;
+    --hairline: rgb(218, 220, 224);
+    --primary: rgb(26, 115, 232);
+    --silver: #e4e4e4;
+    --add-button-shadow: 0px 4px 4px 0px rgba(60, 64, 67, 0.3), 0px 8px 12px 6px rgba(60, 64, 67, 0.15);
+    --main-box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --popup-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2);
+
+    --err-color: 220, 53, 69;
+    --info-color: 23, 162, 184;
+    --warning-color: 255, 193, 7;
+    --success-color: 40, 167, 69;
+}
+
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-backe);
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--err-color));
+    line-height: 2rem;
+    font-size: 20px;
+    text-align: center;
+
+    h2 {
+        color: rgb(var(--info-color));
+    }
+
+    i {
+        color: rgb(var(--info-color));
+        font-size: 70px;
+    }
+
+    a {
+        color: var(--text-color);
+    }
+
+}

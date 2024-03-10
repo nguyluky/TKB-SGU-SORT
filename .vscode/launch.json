@@ -1,31 +1,21 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        
         {
-            "type": "node",
+            "name": "Launch via NPM",
             "request": "launch",
-            "name": "main",
+            "runtimeArgs": [
+                "linux_command"
+            ],
+            "runtimeExecutable": "npm",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\bin\\www",
-            "args": [],
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
             "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\test.js",
-            "args": [],
-            "envFile": "${workspaceFolder}/.env"
+            "asRoot": true,
+            "console": "integratedTerminal"
         }
+
     ]
 }

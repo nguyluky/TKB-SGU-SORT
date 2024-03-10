@@ -158,6 +158,7 @@ router.post('/get_tkb_save', function(req, res, next) {
             return
         }
         dbHandler.get_ds_tkb(user.id, (err , result) => {
+            console.log(err)
             res.send({
                 err_mess: null,
                 data: result
@@ -215,7 +216,9 @@ router.post('/tkb_save', function(req, res, next) {
             res.setHeader('Content-Type', 'application/json')
             res.send({
                 err_mess: null,
-                data: null
+                data: {
+                    "hello": "ok"
+                }
             })
         })
         

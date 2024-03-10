@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon -L ./bin/www",
-    "sass_w": "sass --watch --no-source-map .\\public\\stylesheets\\.scss\\:.\\public\\stylesheets\\"
+    "start": "node --trace-deprecation ./bin/www",
+    "dev": "nodemon --inspect -L ./bin/www",
+    "sass_w": "sass --watch --no-source-map ./public/stylesheets/.scss/:./public/stylesheets/"
   },
   "dependencies": {
     "connect-redis": "^7.1.1",

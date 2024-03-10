@@ -87,6 +87,10 @@ h1 {
     margin-bottom: 20px;
     background: rgb(17, 107, 143);
 
+
+    &:disabled {
+      filter: brightness(0.5);
+    }
     &.sguacc {
       background-color: #8ab4f8;
     }
@@ -244,20 +248,11 @@ h1 {
       margin: 0 10px;
       text-align: center;
       font-size: 36px;
-      cursor: not-allowed;
-      pointer-events: none;
     }
 
     .input:focus {
       border-bottom: 3px solid orange;
       outline: none;
     }
-
-    .input:nth-child(1) {
-      cursor: pointer;
-      pointer-events: all;
-    }
-
-
   }
 }

@@ -1,7 +1,10 @@
 const db = require('./db');
 const { v4: uuidv4 } = require('uuid');
-// makeuuid
-// 1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed
+
+// TODO change user_id of tkbsave to list user can edit that tkb
+// sudo /etc/init.d/redis-server start
+// sudo /etc/init.d/mysql start
+
 
 module.exports = {
     sign_up: function (user, password, email, display_name, ma_sv, khoa, lop, callback) {
@@ -164,12 +167,11 @@ module.exports = {
         var tkb_id = uuidv4()
         var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, ?, ?, NOW())'
         
-        db.query(sql, [tkb_id, uuid, name , description,JSON.stringify(id_to_hocs), thumbnail], callback)
+        db.query(sql, [tkb_id, JSON.stringify([uuid]), name , description, JSON.stringify(id_to_hocs), thumbnail], (err, result) => callback(err, uuid))
     },
     get_ds_tkb: function(uuid, callback) {
-        var sql = 'SELECT id, tkb_name, description, json_data, thumbnails, date_save FROM tkb_save WHERE id_user = ?'
-
-        db.query(sql, [uuid], callback)
+        var sql = `SELECT id, tkb_name, description, json_data, thumbnails, date_save FROM tkb_save WHERE JSON_CONTAINS(id_user, '${db.escape(uuid).replace(/'/g, '"')}', "$")`
+        db.query(sql, callback)
     },
     get_tkb: function(uuid, callback) {
         var sql = 'SELECT id_user, tkb_name, description, json_data, date_save FROM tkb_save ' +
@@ -178,6 +180,7 @@ module.exports = {
         db.query(sql, [uuid], callback)
     },
     update_tkb: function(id, id_to_hocs, name, description, thumbnail,callback) {
+        // TODO this
         const sql = `
             UPDATE tkb_save 
             SET tkb_name = CASE 

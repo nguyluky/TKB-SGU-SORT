@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry</title>
+
+    <link rel="stylesheet" href="/stylesheets/noPermission.css">
+    <link href='/stylesheets/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <script>
+        function setToDarkMode() {
+            document.documentElement.style.setProperty('--main-color', '#1b1b1b')
+            document.documentElement.style.setProperty('--text-color', '#e3e3e3')
+            document.documentElement.style.setProperty('--text-color-2', '#898989')
+            document.documentElement.style.setProperty('--hover-back', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
+            document.documentElement.style.setProperty('--main-backe', '#282a2c')
+            document.documentElement.style.setProperty('--hairline', 'rgba(255,255,255,0.2)')
+        }
+
+        function setToLightMode() {
+            document.documentElement.style.setProperty('--main-color', '#e9eef6')
+            document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
+            document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+            document.documentElement.style.setProperty('--hover-back', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
+            document.documentElement.style.setProperty('--main-backe', 'whitesmoke')
+            document.documentElement.style.setProperty('--hairline', 'rgb(218,220,224)')
+        }
+
+        if (localStorage.getItem('theme') == 'dark') {
+            setToDarkMode()
+        }
+        </script>
+</head>
+<body>
+    <div class="center-content">
+        <i class='bx bxs-user-x'></i>
+        <div class="mess">
+            <h2>Bạn không thể xem trang này!</h2>
+            <p>Bạn không có quền để xem TKB này.</p>
+            <p>để truy cập nội dung này, vui lòng liện hệ với người sử hư.</p>
+        </div>
+        <a href="/">back to home</a>
+    </div>
+</body>
+</html>

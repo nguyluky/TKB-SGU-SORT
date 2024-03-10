@@ -366,6 +366,8 @@ function initHocPhanHandel(cls) {
 
     function chonTiet(hp, div_hp_item, div_list_hp, hp_per) {
         var list_tiet_curr = []
+
+        // tiet hoc pham moi them vao
         hp.tkb.forEach(tkb_item => {
             for (let index = tkb_item.tbd; index <= tkb_item.tkt; index++) {
                 list_tiet_curr.push(`${tkb_item.thu}-${index}`)
@@ -373,19 +375,34 @@ function initHocPhanHandel(cls) {
         })
 
         var biTrung = false
-        Object.values(tkb.hocphan).forEach(hp => {
+        var biKhacSC = false
+        Object.values(tkb.hocphan).forEach(hp_ed => {
 
             // nếu mà mã học phần giống nhau thì nghi đè
-            if (hp.ma_mon == hp_per.ma_mon) return
+            if (hp_ed.ma_mon == hp_per.ma_mon) return
 
-            // nếu học phần khác nhau mà bị chùng tiết thì sét buTrung = true
-            hp.tkb.forEach(tkb_item => {
+            // xo xanh neu co bat cu tiet nao co trong tiet hoc pham moi la bij trung
+            hp_ed.tkb.forEach(tkb_item => {
                 for (let index = tkb_item.tbd; index <= tkb_item.tkt; index++) {
                     if (list_tiet_curr.includes(`${tkb_item.thu}-${index}`)) {
                         biTrung = true
                     }
                 }
             })
+
+            // khac co so hay khong
+            hp_ed.tkb.forEach(tkb_item => {
+                hp.tkb.forEach(tkb_item1 => {
+                    if (tkb_item.thu == tkb_item1.thu && tkb_item.phong[0] != tkb_item1.phong[0]) {
+                        if (tkb_item.tkt <= 5 && tkb_item1.tkt <= 5)
+                            biTrung = true;
+
+                        else if (tkb_item.tkt > 5 && tkb_item1.tkt > 5)
+                            biKhacSC = true;
+                    }
+                })
+            })
+
         })
 
         console.log(list_tiet_curr);
@@ -393,7 +410,12 @@ function initHocPhanHandel(cls) {
 
         if (biTrung) {
             // bị trùng tiết
-            console.log('bi trung')
+            createPopup('err', "Trùng tiết")
+            return
+        }
+
+        if (biKhacSC) {
+            createPopup('err', "Khác cơ sở")
             return
         }
 
@@ -488,11 +510,11 @@ function initHocPhanHandel(cls) {
             div_hp_item.onmouseleave = () => { hideGhost(hp, mahp) }
             div_hp_item.onclick = () => { chonTiet(hp, div_hp_item, div_list_hp, hp) }
 
-            var dsThu = [...new Set(hp.tkb.map(e => e.thu))]
+            var dsThu = [...new Set(hp.tkb.map(e => "T" + e.thu + " - P:" + e.phong))]
             var dsGv = [...new Set(hp.tkb.map(e => `<p> - ${e.gv} ${e.th ? '(TH)' : ''}</p>`))]
 
             div_hp_item.innerHTML = `
-                <p>Thứ:  ${dsThu.join(' và ')}</p>
+                <p>${dsThu.join(' | ')}</p>
                 <p>GV:  </p>
                 ${dsGv.join('\n')}
                 <p>20/40</p>
@@ -560,9 +582,9 @@ get_dshocphan()
 function saveTkb() {
 
     var base64;
-
+    var popup;
     function cancelHandle() {
-        document.getElementById('popup-area').innerHTML = ''
+        popup.remove()
     }
 
     function saveHandle(ele) {
@@ -585,12 +607,13 @@ function saveTkb() {
             })
         }).then(e => {
             console.log(e)
+            createPopup('success', '')
             cancelHandle()
         })
     }
 
     if (!checkLogin()) {
-        alert('you not login')
+        createPopup('err', 'Bạn chưa có đăng nhập', 2000)
         return;
     }
 
@@ -609,7 +632,8 @@ function saveTkb() {
                 base64 = e.toDataURL('image/jpeg')
 
                 var ele = document.getElementById('popup-area')
-                var popup = makeSavePopup(base64, cancelHandle, saveHandle)
+
+                popup = makeSavePopup(base64, cancelHandle, saveHandle)
                 ele.appendChild(popup)
             })
         console.log(Object.keys(tkb.hocphan))
@@ -721,4 +745,61 @@ function makeSavePopup(img_url, oncancel, onok) {
     button_cancel_1_3_2.appendChild(textNode_1_3_2_1);
 
     return div_popupitem_savetkb_1
+}
+
+
+function createPopup(type, mess, duration = 2000) {
+    function createElem() {
+        var node_1 = document.createElement('DIV');
+        node_1.setAttribute('class', `item-notification ${type}`);
+
+        var node_2 = document.createElement('SPAN');
+        node_2.setAttribute('class', 'icon body');
+        node_1.appendChild(node_2);
+
+        var node_3 = document.createElement('I');
+        if (type == 'err') {
+            node_3.setAttribute('class', 'bx bx-x-circle');
+
+        }
+        else if (type == 'warning') {
+            node_3.setAttribute('class', 'bx bx-info-circle');
+
+        }
+        else
+            node_3.setAttribute('class', 'bx bx-check-circle');
+
+        node_2.appendChild(node_3);
+
+        var node_4 = document.createElement('SPAN');
+        node_4.textContent = type.toUpperCase() + ':'
+        node_2.appendChild(node_4);
+
+        var node_5 = document.createElement('SPAN');
+        node_5.textContent = mess;
+        node_2.appendChild(node_5);
+
+        var node_6 = document.createElement('SAMP');
+        node_6.setAttribute('class', 'close');
+        node_6.addEventListener('click', function () {
+            node_1.remove()
+        })
+        node_1.appendChild(node_6);
+
+
+        var node_7 = document.createElement('I');
+        node_7.setAttribute('class', 'bx bx-x');
+        node_6.appendChild(node_7);
+
+
+
+        return node_1;
+    }
+
+    var node_1 = createElem();
+    document.getElementById('notification').appendChild(node_1)
+    setTimeout(() => {
+        node_1.remove()
+    }, duration)
+
 }

@@ -12,7 +12,6 @@ const apiRouter = require('./routes/api')
 const homeRouter = require('./routes/home')
 // const registerRouter = require('./routes/register')
 
-// TODO: add redisStore
 const {redisStore, redisClient} = require('./db/redis')
 
 

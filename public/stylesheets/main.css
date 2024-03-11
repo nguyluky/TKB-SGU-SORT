@@ -192,14 +192,79 @@ body {
   height: 100%;
   width: 256px;
   transition: all 0.05s ease-in-out;
-  overflow: hidden;
   flex-shrink: 0;
 }
 .main-body .siderbar.close {
   width: 0px !important;
 }
+.main-body .siderbar.close .info-filter {
+  overflow: hidden;
+}
+.main-body .siderbar .info-filter {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 3px;
+  position: relative;
+}
+.main-body .siderbar .info-filter::before {
+  content: "";
+  height: 1px;
+  width: 90%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: var(--hover-back);
+}
+.main-body .siderbar .info-filter::after {
+  content: "";
+  height: 1px;
+  width: 90%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  background: var(--hover-back);
+}
+.main-body .siderbar .info-filter span {
+  color: var(--text-color);
+  font-size: 17px;
+  font-weight: bold;
+}
+.main-body .siderbar .info-filter .button-filter {
+  display: block;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  position: relative;
+}
+.main-body .siderbar .info-filter .button-filter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: rgb(var(--err-color));
+}
+.main-body .siderbar .info-filter .button-filter.on::before {
+  background: rgb(var(--success-color));
+}
+.main-body .siderbar .info-filter .button-filter i {
+  font-size: 25px;
+  color: var(--text-color);
+}
+.main-body .siderbar .info-filter .button-filter-wall {
+  position: relative;
+}
+.main-body .siderbar .info-filter .button-filter-wall .popup-filter {
+  position: absolute;
+}
 .main-body .siderbar .siderbar-body {
-  height: calc(100% - 80px);
+  height: calc(100% - 120px);
   width: calc(100% - 10px);
   overflow-y: auto;
   overflow-x: hidden;

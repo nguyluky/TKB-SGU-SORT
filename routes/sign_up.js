@@ -34,15 +34,12 @@ router.post('/otp' , function(req, res, next) {
 
     dbHandler.sign_up(user, password, email, display_name, ma_sv, khoa, lop, function(err,result) {
         if (err) {
-            var mess;
-            console.log(err)
-            if (err.code == "ER_DUP_ENTRY") mess = "Tên đăng nhập đã tồn tại"
-            else mess = err.code;
-            res.status(300).send(mess);
+            res.status(300).send(result.sqlMessage);
             return;
         };
         console.log(result)
         res.status(200).send('ok');
+        req.session.destroy();
     });
 })
 

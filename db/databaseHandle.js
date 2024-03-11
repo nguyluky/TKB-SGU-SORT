@@ -180,7 +180,6 @@ module.exports = {
         db.query(sql, [uuid], callback)
     },
     update_tkb: function(id, id_to_hocs, name, description, thumbnail, user_id, callback) {
-        // TODO this
         const sql = `
             UPDATE tkb_save 
             SET tkb_name = CASE 

@@ -7,11 +7,6 @@ const khoa = document.querySelector('#khoa > div.selected')
 const lop = document.querySelector('#lop > div.selected')
 const inputs = document.getElementById("inputs");
 
-
-// TODO: trường hợp người dùng tạo nhiều tài khoản không sác nhận otg:
-// lúc đó một email đồng thời có nhiều otp của nhiều tải khoản khác nhau
-// lúc đó người dùng vược quan được hàng dào spane
-
 function disable_button_next() {
     document.querySelector('button.next').disabled = true
 }

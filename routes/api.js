@@ -7,6 +7,7 @@ const cache = require('../db/cache')
 
 const dbHandler = require('../db/databaseHandle');
 const { Z_FULL_FLUSH } = require('zlib');
+const app = require('../app');
 
 
 var router = express.Router();
@@ -169,7 +170,6 @@ router.get('/tkbs', function(req, res, next) {
             return
         }
         dbHandler.get_ds_tkb(user.id, (err , result) => {
-            console.log(err)
             res.send({
                 err_mess: null,
                 data: result
@@ -228,24 +228,59 @@ router.post('/tkb', function(req, res, next) {
             res.send({
                 err_mess: null,
                 data: {
-                    "hello": "ok"
+                    "tkb_id": result
                 }
             })
         })
         
-
     })
 })
 
-router.put('/tkb/:tkb_id', function(req, res, next) {
-    const { tkb_id } = req.params;
+router.put('/tkb', async function(req, res, next) {
+    const { tkb_id } = req.query;
+    const {name , id_to_hocs, description,thumbnail} = req.body;
+    var token = req.session.token;
+    
+    res.setHeader('Content-Type', 'application/json')
 
-    req.send("coming ...")
+    if (!token) {
+        // 
+        res.send(JSON.stringify({
+            err_mess: mess_code.NOLOGIN,
+            data: null
+        }))
+        return
+    }
 
+    var user_id = await dbHandler.async_token2userid(token);
+    if (!user_id) {
+        res.send(JSON.stringify({
+            err_mess: mess_code.TOKEN_TIME_OUT,
+            data: null
+        }))
+        return
+    }
+
+
+    dbHandler.update_tkb(tkb_id, id_to_hocs, name, description, thumbnail, user_id, (err, result) => {
+        if (err) {
+            res.send(JSON.stringify({
+                err_mess: "query fall",
+                data: null
+            }))
+
+            return
+        }
+
+        res.send(JSON.stringify({
+            err_mess: null,
+            data: null
+        }))
+    })
 })
 
-router.get('/tkb/:tkb_id', async function(req, res, next) {
-    const { tkb_id } = req.params;
+router.get('/tkb', async function(req, res, next) {
+    const { tkb_id } = req.query;
     var token = req.session.token;
 
     if (!token) {
@@ -282,6 +317,7 @@ router.get('/tkb/:tkb_id', async function(req, res, next) {
         
     })
 })
+
 
 
 

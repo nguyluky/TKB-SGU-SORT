@@ -167,7 +167,7 @@ module.exports = {
         var tkb_id = uuidv4()
         var sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, ?, ?, NOW())'
         
-        db.query(sql, [tkb_id, JSON.stringify([uuid]), name , description, JSON.stringify(id_to_hocs), thumbnail], (err, result) => callback(err, uuid))
+        db.query(sql, [tkb_id, JSON.stringify([uuid]), name , description, JSON.stringify(id_to_hocs), thumbnail], (err, result) => callback(err, tkb_id))
     },
     get_ds_tkb: function(uuid, callback) {
         var sql = `SELECT id, tkb_name, description, json_data, thumbnails, date_save FROM tkb_save WHERE JSON_CONTAINS(id_user, '${db.escape(uuid).replace(/'/g, '"')}', "$")`
@@ -179,7 +179,7 @@ module.exports = {
 
         db.query(sql, [uuid], callback)
     },
-    update_tkb: function(id, id_to_hocs, name, description, thumbnail,callback) {
+    update_tkb: function(id, id_to_hocs, name, description, thumbnail, user_id, callback) {
         // TODO this
         const sql = `
             UPDATE tkb_save 
@@ -188,18 +188,18 @@ module.exports = {
                     ELSE  tkb_name
                 END,
                 json_data = CASE 
-                    WHEN ${db.escape(id_to_hocs)} IS NOT NULL THEN  ${db.escape(id_to_hocs)}
+                    WHEN ${db.escape(JSON.stringify(id_to_hocs))} IS NOT NULL THEN  ${db.escape(JSON.stringify(id_to_hocs))}
                     ELSE  json_data
                 END,
                 description = CASE 
                     WHEN ${db.escape(description)} IS NOT NULL THEN  ${db.escape(description)}
                     ELSE  description 
-                END
+                END,
                 thumbnails = CASE 
                     WHEN ${db.escape(thumbnail)} IS NOT NULL THEN  ${db.escape(thumbnail)}
                     ELSE  thumbnails 
                 END
-            WHERE id = ${db.escape(id)}
+            WHERE id = ${db.escape(id)} AND JSON_CONTAINS(id_user, '${db.escape(user_id).replace(/'/g, '"')}', "$")
         `
 
         db.query(sql, callback)

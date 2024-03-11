@@ -6,22 +6,22 @@ fetch('/sign_in/checkLogin', {
 }).then(e => {
     if (e.status == 200) {
         if (isloaded) {
-            document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+            if (!checkLogin()) {
+                document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+            }
+        
+            if (user_info) {
+                document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+                document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+                document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+                document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+            }
         }
         sessionStorage.setItem('isLogin', true)
         return
     }
     if (isloaded) {
-        if (!checkLogin()) {
-            document.getElementById('accout').innerHTML = "<p> Sign In </p>"
-        }
-    
-        if (user_info) {
-            document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
-            document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
-            document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
-            document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
-        }
+        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
     }
     sessionStorage.setItem('isLogin', false)
 })

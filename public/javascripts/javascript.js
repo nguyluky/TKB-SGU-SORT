@@ -6,10 +6,12 @@ const add_themhocphan = document.querySelector('.add_themhocphan')
 
 // TODO add get tkb data from api
 async function initFile() {
-    var a = createPopup('info', "get tkb save", -1)
     console.log(tkb_id)
     if (!tkb_id) return;
-    var req = await fetch(`/api/tkb/${tkb_id}`)
+    var a = createPopup('info', "get tkb save", -1)
+    var req = await fetch(`/api/tkb?` + new URLSearchParams({
+        tkb_id: tkb_id
+    }))
     var data_json = await req.json()
 
     if (data_json.err_mess) {
@@ -29,7 +31,7 @@ async function initFile() {
         })
     })
     a.remove()
-    createPopup('success')
+    createPopup('success', "tai tkb thanh cong")
 
 
     // if (tkb_open == {}) return
@@ -471,7 +473,12 @@ function initHocPhanHandel(cls) {
         })
     }
 
+    var list_hp = []
+
     function makeEle(mahp) {
+
+        if (list_hp.includes(mahp)) return
+        list_hp.push(mahp);
 
         var list = data.ds_nhom_to.filter(e => e.ma_mon == mahp)
         var name = data.ds_mon_hoc[mahp]
@@ -616,7 +623,7 @@ function saveTkb() {
 
         console.log(name, des)
 
-        fetch('/api/tkb_save', {
+        fetch('/api/tkb', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -627,8 +634,13 @@ function saveTkb() {
                 id_to_hocs: Object.keys(tkb.hocphan),
                 thumbnail: base64.substring(23)
             })
-        }).then(e => {
-            console.log(e)
+        }).then(async e => {
+            var resp_json = await e.json()
+            let stateObj = { id: "200" };
+            tkb_id = resp_json.data.tkb_id
+            window.history.pushState(stateObj, "", "/tkb?" + new URLSearchParams({
+                "tkb_id": tkb_id
+            }));
             createPopup('success', '')
             cancelHandle()
         })
@@ -639,8 +651,26 @@ function saveTkb() {
         return;
     }
 
-    if (tkb_open.tkb_name) {
-        console.log('save exit')
+    if (tkb_id) {
+        fetch('/api/tkb?' + new URLSearchParams({
+            "tkb_id": tkb_id
+        }) , {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id_to_hocs: Object.keys(tkb.hocphan)
+                })
+        }).then(async e => {
+            var resp_json = await e.json()
+            if (resp_json.err_mess) {
+                createPopup('err', resp_json.err_mess)
+            }
+
+            createPopup('success', '')
+        })
+
     }
     else {
 

@@ -62,12 +62,18 @@ const sessionMiddleware = session(sess)
 app.use(sessionMiddleware)
 app.set('session', sessionMiddleware)
 
+
+
+
 app.use('/', homeRouter)
 app.use('/tkb', tkbRouter);
 app.use('/users', usersRouter);
 app.use('/sign_in', signinRouter);
 app.use('/sign_up', signupRouter);
 app.use('/api', apiRouter)
-// app.use('/register', registerRouter)
+
+app.all('*', (req, res) => {
+    res.status(404).send("aaa")
+})
 
 module.exports = app;

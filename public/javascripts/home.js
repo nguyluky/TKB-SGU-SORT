@@ -45,7 +45,7 @@ function create_list_item(tkb_name, base64String, date_save, id){
 
 
 	div_listtiem_1.onclick = () => {
-		document.location.pathname = '/tkb/'+id
+		document.location.pathname = '/tkb/' + id;
 	}
 
     return div_listtiem_1

@@ -1,30 +1,32 @@
 var user_info;
 var isloaded = false;
 
-fetch('/sign_in/checkLogin', {
-    method: "POST"
-}).then(e => {
-    if (e.status == 200) {
-        if (isloaded) {
-            if (!checkLogin()) {
-                document.getElementById('accout').innerHTML = "<p> Sign In </p>"
-            }
+
+
+// fetch('/api/checkLogin', {
+//     method: "POST"
+// }).then(e => {
+//     if (e.status == 200) {
+//         if (isloaded) {
+//             if (!checkLogin()) {
+//                 document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+//             }
         
-            if (user_info) {
-                document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
-                document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
-                document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
-                document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
-            }
-        }
-        sessionStorage.setItem('isLogin', true)
-        return
-    }
-    if (isloaded) {
-        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
-    }
-    sessionStorage.setItem('isLogin', false)
-})
+//             if (user_info) {
+//                 document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+//                 document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+//                 document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+//                 document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+//             }
+//         }
+//         sessionStorage.setItem('isLogin', true)
+//         return
+//     }
+//     if (isloaded) {
+//         document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+//     }
+//     sessionStorage.setItem('isLogin', false)
+// })
 
 function checkLogin() {
     return sessionStorage.getItem('isLogin') == 'true';
@@ -38,19 +40,39 @@ function log_out() {
 
 function get_use_info() {
     fetch('/api/get_user_info').then(e => e.json()).then(json_ => {
-        // console.log(json_)
 
-        if (json_.err_mess) {
+        console.log(json_)
+        // console.log(json_)
+        if (json_.err) {
+            if (isloaded) {
+                document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+            }
+            sessionStorage.setItem('isLogin', false)
             console.error("chưa đăng nhậm")
             return
         }
+
         user_info = json_.data
+
         if (isloaded) {
             document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
             document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
             document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
             document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
         }
+        sessionStorage.setItem('isLogin', true)
+
+        // if (json_.err_mess) {
+        //     console.error("chưa đăng nhậm")
+        //     return
+        // }
+        // user_info = json_.data
+        // if (isloaded) {
+        //     document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
+        //     document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
+        //     document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
+        //     document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+        // }
     })
 }
 

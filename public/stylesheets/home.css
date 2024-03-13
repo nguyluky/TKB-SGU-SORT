@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap");
 :root {
-  --main-color: #e9eef6;
+  --background-color-2: #e9eef6;
   --text-color: rgb(60, 64, 67);
   --text-color-2: rgb(91, 95, 99);
-  --hover-back: rgba(0, 0, 0, 0.05);
+  --hover-color: rgba(0, 0, 0, 0.05);
   --color-hover: rgb(75, 79, 82);
-  --main-backe: #f5f5f5;
-  --hairline: rgb(218, 220, 224);
+  --background-color-1: #f5f5f5;
+  --height-line-color: rgb(218, 220, 224);
   --primary: rgb(26, 115, 232);
   --silver: #e4e4e4;
   --add-button-shadow: 0px 4px 4px 0px rgba(60, 64, 67, 0.3), 0px 8px 12px 6px rgba(60, 64, 67, 0.15);
@@ -20,13 +20,13 @@
 }
 
 body {
-  background-color: var(--main-backe);
+  background-color: var(--background-color-1);
   height: 100vh;
 }
 
 .menubar {
   height: 50px;
-  background-color: var(--main-color);
+  background-color: var(--background-color-2);
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -48,7 +48,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: var(--main-backe);
+  background: var(--background-color-1);
   display: flex;
   align-items: center;
   padding: 0 10px;
@@ -81,7 +81,7 @@ body {
   cursor: pointer;
 }
 .menubar .right .menubar-menu:hover {
-  background-color: var(--hover-back);
+  background-color: var(--hover-color);
   border-radius: 17.5px;
 }
 .menubar .right .menubar-menu:hover i, .menubar .right .menubar-menu:hover p {
@@ -105,7 +105,7 @@ body {
   padding: 5px;
   top: 100%;
   right: 5px;
-  background: var(--main-color);
+  background: var(--background-color-2);
   box-shadow: var(--main-box-shadow);
   width: max-content;
   border-radius: 5px;
@@ -146,7 +146,7 @@ body {
 }
 .body .saved {
   height: 100%;
-  background-color: var(--main-color);
+  background-color: var(--background-color-2);
 }
 .body .wall .head {
   width: calc(100% - 20px);
@@ -182,7 +182,7 @@ body {
   border-color: var(--primary);
 }
 .body .wall .list .list-tiem.new_black .thumbnail {
-  background-color: var(--main-color);
+  background-color: var(--background-color-2);
 }
 .body .wall .list .list-tiem .thumbnail {
   height: 144px;

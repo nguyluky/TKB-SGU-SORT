@@ -27,8 +27,9 @@ function sign_in() {
             return;
         }
 
+        // TODO: chỉnh lại cái này
         var mess;
-        if (response.status == 300) mess = "Tên đăng nhập hoặc mật khẩu không đúng";
+        if (response.status == 400) mess = "Tên đăng nhập hoặc mật khẩu không đúng";
         else mess = await response.text();
         setErr(mess);
     });

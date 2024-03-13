@@ -13,23 +13,23 @@
     <title>TKB - Untitled</title>
     <script>
         function setToDarkMode() {
-            document.documentElement.style.setProperty('--main-color', '#1b1b1b')
+            document.documentElement.style.setProperty('--background-color-2', '#1b1b1b')
             document.documentElement.style.setProperty('--text-color', '#e3e3e3')
             document.documentElement.style.setProperty('--text-color-2', '#898989')
-            document.documentElement.style.setProperty('--hover-back', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(232,234,237,.08)')
             document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
-            document.documentElement.style.setProperty('--main-backe', '#282a2c')
-            document.documentElement.style.setProperty('--hairline', 'rgba(255,255,255,0.2)')
+            document.documentElement.style.setProperty('--background-color-1', '#282a2c')
+            document.documentElement.style.setProperty('--height-line-color', 'rgba(255,255,255,0.2)')
         }
 
         function setToLightMode() {
-            document.documentElement.style.setProperty('--main-color', '#e9eef6')
+            document.documentElement.style.setProperty('--background-color-2', '#e9eef6')
             document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
             document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
-            document.documentElement.style.setProperty('--hover-back', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(0,0,0,0.05)')
             document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
-            document.documentElement.style.setProperty('--main-backe', 'whitesmoke')
-            document.documentElement.style.setProperty('--hairline', 'rgb(218,220,224)')
+            document.documentElement.style.setProperty('--background-color-1', 'whitesmoke')
+            document.documentElement.style.setProperty('--height-line-color', 'rgb(218,220,224)')
         }
 
         if (localStorage.getItem('theme') == 'dark') {
@@ -37,7 +37,7 @@
         }
     </script>
 
-    <script> 
+    <script>
 
         var tkb_id = "<%= tkb_id %>"
     </script>
@@ -50,7 +50,7 @@
         <div class="menubar-icon">
             <i class='bx bx-menu'></i>
         </div>
-        
+
         <div class="menubar-item home">
             <div class="menubar-menu" onclick="location.pathname = '/'">
                 <span class="text trang-chu">Home</span>
@@ -184,16 +184,16 @@
         </div>
 
         <button class="button_themhocphan" id="add-button">
-              <i class='bx bx-plus'></i>
-              <span class="themhocphan">Thêm Học phần</span>
+            <i class='bx bx-plus'></i>
+            <span class="themhocphan">Thêm Học phần</span>
 
-         </button>
+        </button>
     </div>
 
     <div class="main-body">
         <div class="siderbar" id="siderbar">
             <div class="add-button-wallper">
-                
+
             </div>
 
             <div class="info-filter">
@@ -204,7 +204,68 @@
                     </span>
 
                     <div class="popup-filter">
-                        hello
+                        <div class="top">
+                            <div class="left">
+                                <span>Filter</span>
+                                <label class="switch" id="filter-switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                                <i class='bx bx-brush'></i>
+                            </div>
+
+                            <div class="right">
+                                <i class='bx bx-x'></i>
+                            </div>
+                        </div>
+                        <div class="context">
+                            <div class="filter-item thu">
+                                <div class="title">Thứ</div>
+                                <div class="items">
+                                    <div>
+                                        <li><label><input checked type="checkbox">2</label></li>
+                                        <li><label><input checked type="checkbox">3</label></li>
+                                        <li><label><input checked type="checkbox">4</label></li>
+                                        <li><label><input checked type="checkbox">5</label></li>
+                                        <li><label><input checked type="checkbox">6</label></li>
+                                        <li><label><input checked type="checkbox">7</label></li>
+                                        <li><label><input checked type="checkbox">CN</label></li>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <div class="title">Tiết học</div>
+                                <div class="items">
+                                    <div>
+                                        <li><label><input checked type="checkbox">1</label></li>
+                                        <li><label><input checked type="checkbox">2</label></li>
+                                        <li><label><input checked type="checkbox">3</label></li>
+                                        <li><label><input checked type="checkbox">4</label></li>
+                                        <li><label><input checked type="checkbox">5</label></li>
+                                        <li><label><input checked type="checkbox">6</label></li>
+                                        <li><label><input checked type="checkbox">7</label></li>
+                                        <li><label><input checked type="checkbox">8</label></li>
+                                        <li><label><input checked type="checkbox">9</label></li>
+                                        <li><label><input checked type="checkbox">10</label></li>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="filter-item hocphan">
+                                <div class="title">Học phần</div>
+                                <div class="items">
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-item gv">
+                                <div class="title">Giáo viện</div>
+                                <div class="items">
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </span>
             </div>
@@ -264,436 +325,436 @@
                         <td><span>Tiết 1</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 2</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 3</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 4</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 5</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 6</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 7</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 8</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 9</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 10</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 11</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 12</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 13</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                     </tr>
                     <tr class="tiet">
                         <td><span>Tiết 14</span></td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
                         <td>
                             <p class="tiet-item">
-                                </p>
+                            </p>
                         </td>
-                    </tr>     
+                    </tr>
                 </tbody>
 
             </table>

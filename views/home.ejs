@@ -12,23 +12,23 @@
 
     <script>
         function setToDarkMode() {
-            document.documentElement.style.setProperty('--main-color', '#1b1b1b')
+            document.documentElement.style.setProperty('--background-color-2', '#1b1b1b')
             document.documentElement.style.setProperty('--text-color', '#e3e3e3')
             document.documentElement.style.setProperty('--text-color-2', '#898989')
-            document.documentElement.style.setProperty('--hover-back', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(232,234,237,.08)')
             document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
-            document.documentElement.style.setProperty('--main-backe', '#282a2c')
-            document.documentElement.style.setProperty('--hairline', 'rgba(255,255,255,0.2)')
+            document.documentElement.style.setProperty('--background-color-1', '#282a2c')
+            document.documentElement.style.setProperty('--height-line-color', 'rgba(255,255,255,0.2)')
         }
 
         function setToLightMode() {
-            document.documentElement.style.setProperty('--main-color', '#e9eef6')
+            document.documentElement.style.setProperty('--background-color-2', '#e9eef6')
             document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
             document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
-            document.documentElement.style.setProperty('--hover-back', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(0,0,0,0.05)')
             document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
-            document.documentElement.style.setProperty('--main-backe', 'whitesmoke')
-            document.documentElement.style.setProperty('--hairline', 'rgb(218,220,224)')
+            document.documentElement.style.setProperty('--background-color-1', 'whitesmoke')
+            document.documentElement.style.setProperty('--height-line-color', 'rgb(218,220,224)')
         }
 
         if (localStorage.getItem('theme') == 'dark') {

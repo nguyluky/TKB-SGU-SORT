@@ -12,11 +12,11 @@
   --input-color:#e4e4e4;
   --text-color:#07001f;
   --member-color:#07001f;
-  --main-color: #e9eef6;
+  --background-color-2: #e9eef6;
 }
 
 body {
-  background: var(--main-color);
+  background: var(--background-color-2);
 }
 
 .wrapper {

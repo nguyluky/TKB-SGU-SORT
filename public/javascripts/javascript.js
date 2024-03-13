@@ -5,7 +5,6 @@ const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
 
 // TODO khi nguoi dung chuat phai vao hoc phan
-
 async function initFile() {
     console.log(tkb_id)
     if (!tkb_id) return;
@@ -14,6 +13,7 @@ async function initFile() {
         tkb_id: tkb_id
     }))
     var data_json = await req.json()
+    console.log(data_json)
 
     if (data_json.err_mess) {
         console.log('err')
@@ -21,7 +21,7 @@ async function initFile() {
         return
     }
 
-    JSON.parse(data_json.data.json_data).forEach(id_to_hoc => {
+    data_json.data.json_data.forEach(id_to_hoc => {
         data.ds_nhom_to.forEach(e => {
             if (e.id_to_hoc == id_to_hoc) {
                 // console.log(e)
@@ -30,6 +30,7 @@ async function initFile() {
             }
         })
     })
+
     a.remove()
     createPopup('success', "Tải thời khóa biểu thành công")
 }
@@ -38,8 +39,8 @@ function themhocphanButtonEventInit() {
     function xoaThemhocphan() {
         button_themhocphan.classList.remove('active')
         button_themhocphan.innerHTML = `
-    <i class='bx bx-plus'></i>
-    <span class="themhocphan">Thêm Học phần</span>
+            <i class='bx bx-plus'></i>
+            <span class="themhocphan">Thêm Học phần</span>
     `
         button_themhocphan.disabled = false;
         document.body.removeEventListener('click', xoaThemhocphan)
@@ -845,3 +846,87 @@ function createPopup(type, mess, duration = 2000) {
     return node_1
 
 }
+
+function filterClickEventInit() {
+    const popup_ = document.querySelector('.popup-filter')
+    var filter_stor = {
+        thu: [],
+        tiet: [],
+        hp: new Set(),
+        gv: new Set()
+    }
+
+    function hide_filter() {
+        popup_.classList.remove('show')
+        document.body.removeEventListener('click', hide_filter)
+    }
+
+    function filterRenderHP() {
+        var a = document.querySelector('div.filter-item.hocphan > div.items > div')
+        a.querySelectorAll('label')
+        a.innerHTML = ''
+        document.querySelectorAll('#siderbar > div.siderbar-body > div  div.hp').forEach(e => {
+            var mahp = e.getAttribute('mahp')
+
+            var name = data.ds_mon_hoc[mahp]
+
+            a.innerHTML += `<li mahp="${mahp}"><label><input ${filter_stor.hp.has(mahp) ? '': 'checked'} type="checkbox">${name}</label></li>`
+        })
+    }
+
+    function filterRenderGV() {
+        var a = document.querySelector('div.filter-item.gv > div.items > div')
+        a.innerHTML = ''
+        var list_ = new Set()
+        Object.values(tkb.hocphan).forEach(e => {
+            e.tkb.forEach(j => {
+                list_.add(j.gv)
+            })
+        })
+
+
+        Array.from(list_).forEach(e => {
+            a.innerHTML += `<li><label><input checked type="checkbox">${e}</label></li>`
+        })
+    }
+
+    function HandleFilterHP() {
+        document.querySelectorAll('div.filter-item.hocphan > div.items li').forEach(e => {
+            var a = e.getAttribute('mahp')
+            if(e.querySelector('input').checked) {
+                document.querySelector(`div.hp[mahp="${a}"]`).style.display = null
+                filter_stor.hp.delete(a)
+                return
+            }
+            filter_stor.hp.add(a)
+            document.querySelector(`div.hp[mahp="${a}"]`).style.display = "none"
+        })
+
+    }
+
+    function HandleFilterGv() {
+        document.querySelectorAll('div.filter-item.gv > div.items li')
+    }
+
+
+    document.querySelector('#siderbar > div.info-filter > span.button-filter-wall > div > div.top > div.right').onclick = hide_filter
+    popup_.addEventListener('click', (event) => {
+        HandleFilterHP();
+        event.stopPropagation()
+    })
+
+    
+    document.querySelector('.button-filter').onclick = (event) => {
+        if (popup_.classList.contains('show')) {
+            hide_filter()
+        }
+        else {
+            popup_.classList.add('show')
+            filterRenderHP()
+            filterRenderGV()
+            document.body.addEventListener('click' , hide_filter)
+            event.stopPropagation()
+        }
+    }
+}
+filterClickEventInit()

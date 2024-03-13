@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --trace-deprecation ./bin/www",
-    "dev": "nodemon --inspect -L ./bin/www",
+    "start": "node --trace-deprecation ./app.js",
+    "dev": "nodemon --inspect -L ./app.js",
     "sass_w": "sass --watch --no-source-map ./public/stylesheets/.scss/:./public/stylesheets/"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "method-override": "^3.0.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
+    "mysql2": "^3.9.2",
     "nodemailer": "^6.9.10",
     "nodemon": "^3.0.3",
     "redis": "^4.6.13",

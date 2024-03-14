@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -8,15 +6,18 @@ const session = require('express-session')
 const fs = require('fs');
 const https = require('https')
 const { Server } = require("socket.io");
+require('dotenv').config()
 
 
 const tkbRouter = require('./src/routes/tkb');
 const usersRouter = require('./src/routes/users');
 const signinRouter = require('./src/routes/sign_in');
 const signupRouter = require('./src/routes/sign_up');
-const apiRouter = require('./src/routes/api')
-const homeRouter = require('./src/routes/home')
-// const registerRouter = require('./routes/register')
+const apiRouter = require('./src/routes/api');
+const homeRouter = require('./src/routes/home');
+const errPageRouter = require('./src/routes/err_page')
+
+const errPages = require('./src/models/errPage.model')
 
 const {redisStore, redisClient} = require('./src/services/redis.service')
 
@@ -72,15 +73,17 @@ app.use('/users', usersRouter);
 app.use('/sign_in', signinRouter);
 app.use('/sign_up', signupRouter);
 app.use('/api', apiRouter)
+app.use('/err_page', errPageRouter)
 
 app.all('*', (req, res) => {
-    res.status(404).send("aaa")
+  res.status(404)
+  res.render('err_page', errPages.PAGE_NOT_FOUND)
 })
 
-var key = fs.readFileSync(path.join(__dirname , './certs/tkbsgusort.id.vn/private.key'));
-var cert = fs.readFileSync(path.join(__dirname , './certs/tkbsgusort.id.vn/certificate.crt'));
-var ca = fs.readFileSync(path.join(__dirname ,'./certs/tkbsgusort.id.vn/ca_bundle.crt'));
-var options = {
+const key = fs.readFileSync(path.join(__dirname , './certs/tkbsgusort.id.vn/private.key'));
+const cert = fs.readFileSync(path.join(__dirname , './certs/tkbsgusort.id.vn/certificate.crt'));
+const ca = fs.readFileSync(path.join(__dirname ,'./certs/tkbsgusort.id.vn/ca_bundle.crt'));
+const options = {
   ca: ca,
   key: key,
   cert: cert
@@ -117,8 +120,7 @@ function onError(error, port) {
   }
 }
 
-var https_port = app.get('https_port');
-
+var https_port = process.env.HTTPS_PORT;
 server_https.on('error', (e) => onError(e, https_port));
 
 io.on('connection', (socket) => {

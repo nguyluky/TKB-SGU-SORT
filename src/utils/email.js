@@ -23,11 +23,11 @@ function sendMail(to, subject, text, callback) {
 }
 
 function sendOtp(to, otp, userName, callback) {
-    const subject = `Xác thực OTP: ${otp}`
-    const text = `Xin chào ${userName},`+
-    "Cảm ơn bạn đã đăng ký tài khoản."
-    "Để hoàn tất quá trình đăng ký, bạn cần xác thực email của mình bằng mã OTP được gửi trong email này."
-    `Mã OTP của bạn là: ${otp}`+
+    const subject = `Xác thực OTP: ${otp}\n`
+    var text = `Xin chào ${userName},\n`+
+    "Cảm ơn bạn đã đăng ký tài khoản.\n"+
+    "Để hoàn tất quá trình đăng ký, bạn cần xác thực email của mình bằng mã OTP được gửi trong email này.\n"+
+    `Mã OTP của bạn là: ${otp}\n`+
     "Vui lòng nhập mã OTP vào trang web tkbsgusort.id.vn trong vòng 5 phút."
 
     sendMail(to, subject, text, callback)

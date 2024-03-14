@@ -13,10 +13,12 @@ const {sendOtp} = require('../utils/email')
  * @param {response} res 
  */
 async function handleOTP(req, res) {
-    const otpClient = req.body.otpCode;
+    const otpClient = req.body.otp;
     const otpStore = req.session.otpCode;
 
-    if (otpStore !== otpClient) {
+    console.log(otpClient, otpStore)
+
+    if (otpStore != otpClient) {
         createResponse(res, ERR_LOCATION.OTP, "Mã xác nhận không đúng");
         return
     }
@@ -32,9 +34,10 @@ async function handleOTP(req, res) {
         return
     }
 
+
     // TODO: thêm phần thông báo
     req.session.destroy()
-    res.redirect('/sign_in')
+    createResponse(res, null, "ok");
 }
 
 // NOTE: checkacc move to api
@@ -47,7 +50,7 @@ async function handleOTP(req, res) {
  */
 async function createAcc(req, res) {
 
-    const {user, password, email} = req.session.userInfoCache;
+    const {user, password, email} = req.body;
 
 
     const {userErr, passErr} = validAccountPassword(user, password);

@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const generateOTP = () => new Promise(res =>
 	crypto.randomBytes(3, (err, buffer) => {
 		res(

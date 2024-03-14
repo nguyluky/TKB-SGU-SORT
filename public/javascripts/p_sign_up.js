@@ -108,7 +108,7 @@ function back() {
 
 
 async function check_user_name() {
-    var check_user_name_req = await fetch('/sign_up/checkacc', {
+    var check_user_name_req = await fetch('/api/check_user_name', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -120,8 +120,13 @@ async function check_user_name() {
 
     console.log('check user name res', (await check_user_name_req).status)
 
-    if (check_user_name_req.status == 200) return false;
-    else return true;
+    const json_resp = await check_user_name_req.json()
+    if (json_resp.err) {
+        console.log(json_resp.err_mess)
+        return false
+    }
+
+    return json_resp.data;
 
 }
 
@@ -247,7 +252,6 @@ function nextOtp() {
 }
 
 function sendOtp() {
-
     const otps = document.querySelectorAll('#inputs input')
     const a = Array.from(otps)
     const otp = a.map(e => e.value).join('');
@@ -262,14 +266,14 @@ function sendOtp() {
             otp: otp
         })
     }).then(async e => {
-        if (e.status == 200) {
-            document.location.pathname = '/sign_in'
-            return
+        const json_req = await e.json()
+        if (json_req.err) {
+            console.error(json_req.err_mess)
         }
 
-        const mess = await e.text();
-        err_show('otp', mess);
-
+        console.log(json_req)
+        document.location.pathname = '/sign_in'
+        
     })
 }
 
@@ -452,8 +456,11 @@ async function check_email(email) {
         })
     })
 
-    if (check_email_req.status != 200) return true;
-    return false;
+    const json_resp = await check_email_req.json()
+
+    return json_resp.data
+    
+
 }
 
 function email_event() {

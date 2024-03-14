@@ -1,9 +1,9 @@
 const crypto = require('crypto');
 
-function token48() {
+function token48(len = 36) {
         return new Promise(function(resolve, reject) {
-            crypto.randomBytes(48, function(err, buffer) {
-                var token = buffer.toString('hex').substring(0, 36);
+            crypto.randomBytes(len, function(err, buffer) {
+                var token = buffer.toString('hex').substring(0, len);
                 resolve(token)
               });
         })

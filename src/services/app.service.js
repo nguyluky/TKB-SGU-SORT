@@ -81,6 +81,9 @@ async function setToken(userId, token) {
  * @returns {[Error|null, string|null]}
  */
 async function token2userId(token) {
+
+    if (!token) return [null, 0];
+
     const sql = `SELECT * FROM user_login_info WHERE token = ?`;
     const [err, result, fields] = await query(sql, [token]);
     if (err) return [err, null]
@@ -162,7 +165,7 @@ async function saveTkb(userId, idToHocs, name, description, thumbnail) {
     const sql = 'INSERT INTO tkb_save VALUES (?, ?, ?, ?, ?, ?, NOW())'
 
     const [err, result, fields] = await query(sql, [tkbId, JSON.stringify(userId), name, description, JSON.stringify(idToHocs), thumbnail]);
-    return err, tkbId
+    return [err, tkbId]
 }
 
 async function getDsTkb(userId) {
@@ -189,7 +192,7 @@ async function updateTkb(tkbId, idToHocs, name, description, thumbnail, userId) 
                 ELSE  tkb_name
             END,
             json_data = CASE 
-                WHEN ${escape(JSON.stringify(id_to_hocs))} IS NOT NULL THEN  ${escape(JSON.stringify(id_to_hocs))}
+                WHEN ${escape(JSON.stringify(idToHocs))} IS NOT NULL THEN  ${escape(JSON.stringify(idToHocs))}
                 ELSE  json_data
             END,
             description = CASE 
@@ -200,14 +203,65 @@ async function updateTkb(tkbId, idToHocs, name, description, thumbnail, userId) 
                 WHEN ${escape(thumbnail)} IS NOT NULL THEN  ${escape(thumbnail)}
                 ELSE  thumbnails 
             END
-        WHERE id = ${escape(id)} AND JSON_CONTAINS(id_user, '${escape(user_id).replace(/'/g, '"')}', "$")
+        WHERE id = ${escape(tkbId)} AND JSON_CONTAINS(id_user, '${escape(userId).replace(/'/g, '"')}', "$")
     `
     const [err, result, fields] = await query(sql);
     return [err, result];
 }
 
+
+
+/**
+ * 
+ * @param {string} tkbId 
+ * @returns {string} return Invite Id
+ */
+async function getInviteId(tkbId) {
+    
+    const sql = 'SELECT * FROM invite_link WHERE tkb_id=?'
+    
+    const [err, result, fields] = await query(sql, [tkbId])
+    
+    if (result.length) return [err, result[0].id]
+
+    const inviteId = await token(48)
+
+
+    const sql1 = 'INSERT INTO invite_link VALUES ( ?, ? )'
+    const [err1, result1, fields1] = await query(sql1, [inviteId, tkbId])
+
+    return [err1, inviteId]
+}
+
+async function inviteId2TkbId(inviteId) {
+    const sql = 'SELECT * FROM invite_link WHERE id=?'
+
+    const [err, result, fields] = await query(sql, [inviteId])
+    return [err, result[0].tkb_id]
+}
+
+async function deleteInviteByTkbId(tkbId) {
+    console.log("delete ", tkbId)
+    const [err, result, fields] = await query('DELETE FROM invite_link WHERE tkb_id=?;', [tkbId]);
+    return [err, result];
+}
+
+async function addUserToTkb(tkbId, userId) {
+    const sql = `
+    Update tkb_save
+    set id_user=CASE 
+        WHEN JSON_CONTAINS(id_user, '${escape(userId).replace(/'/g, '"')}') THEN id_user
+        ELSE JSON_ARRAY_APPEND(id_user, '$', ${escape(userId)})
+    END 
+    where id=?;`
+
+    const [err, result, fields] = await query(sql, [tkbId]);
+    return [err, result]
+}
+
 module.exports = {
     registerAccount, login, refreshToken, setToken, 
     token2userId, updateUserInfo, findUserById, findUserByUserName,
-    getDsKhoa, getDsLop, saveTkb, getTkb, updateTkb, getDsTkb
+    getDsKhoa, getDsLop, saveTkb, getTkb, updateTkb, getDsTkb, getInviteId,
+    inviteId2TkbId, deleteInviteByTkbId, addUserToTkb
 }

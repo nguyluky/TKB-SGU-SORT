@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap");
 :root {
   --background-color-2: #e9eef6;
-  --hover-color: rgba(0, 0, 0, 0.05);
   --background-color-1: #f5f5f5;
-  --text-color: rgb(60, 64, 67);
-  --text-color-2: rgb(91, 95, 99);
+  --text-color: #3c4043;
+  --text-color-2: #5b5f63;
+  --hover-color: rgba(0, 0, 0, 0.05);
   --color-hover: rgb(75, 79, 82);
   --height-line-color: rgb(218, 220, 224);
   --primary: rgb(26, 115, 232);
@@ -264,6 +264,7 @@ body {
   position: relative;
 }
 .main-body .siderbar .info-filter .button-filter-wall .popup-filter {
+  left: calc(100% + 10px);
   display: none;
   height: 262px;
   background-color: var(--background-color-2);
@@ -313,9 +314,12 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
   max-width: 250px;
+  scrollbar-width: thin;
+  direction: rtl;
+  scrollbar-color: lightgrey transparent;
 }
-.main-body .siderbar .info-filter .button-filter-wall .popup-filter .context .filter-item .items::-webkit-scrollbar {
-  display: none;
+.main-body .siderbar .info-filter .button-filter-wall .popup-filter .context .filter-item .items > div {
+  direction: ltr;
 }
 .main-body .siderbar .info-filter .button-filter-wall .popup-filter .context .filter-item .items li {
   display: block;
@@ -651,6 +655,7 @@ body {
   box-shadow: var(--popup-shadow);
   background-color: var(--background-color-1);
   border-radius: 10px;
+  z-index: 13;
 }
 #popup-area .save-tkb {
   display: grid;

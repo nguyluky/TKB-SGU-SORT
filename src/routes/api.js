@@ -8,13 +8,15 @@ var router = express.Router();
 
 
 router.get('/dshocphan', apiController.getDsHocPhan)
-router.get('/get_user_info', apiController.getUserInfo)
 router.get('/ds_khoa', apiController.getDsKhoa)
 router.get('/ds_lop', apiController.getDsLop)
 
 // TODO chang post to get
-router.get('/check_email', apiController.checkEmailAlreadyExists)
-router.get('/check_user_name', apiController.checkUserNameAlreadyExists)
+router.post('/check_email', apiController.checkEmailAlreadyExists)
+router.post('/check_user_name', apiController.checkUserNameAlreadyExists)
+
+
+router.get('/get_user_info', apiController.getUserInfo)
 
 /*
  _____ _  ______  
@@ -28,7 +30,8 @@ router.get('/tkbs', apiController.getDsTkb)
 router.post('/tkb', apiController.createTkb)
 router.put('/tkb', apiController.updateTkb)
 router.get('/tkb', apiController.getTkb)
-// router.delete
+router.get('/get_invite_link', apiController.getInviteLink)
+// TODO: delete tkb
 
 
 module.exports = router;

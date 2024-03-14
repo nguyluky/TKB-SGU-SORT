@@ -16,7 +16,7 @@ createConnet()
 /**
  * 
  * @param {string} sql 
- * @param {string} values 
+ * @param {[...string]} values 
  * @returns {[Error | null, mysql.OkPacket | mysql.RowDataPacket[] | mysql.ResultSetHeader[] | mysql.RowDataPacket[][] | mysql.OkPacket[] | mysql.ProcedureCallPacket | null, mysql.FieldPacket[] | null]}
  */
 async function query(sql, values) {
@@ -25,7 +25,7 @@ async function query(sql, values) {
         return [null, result, fields];
     }
     catch (err) {
-        return [err, null, null]
+        return [err, [], []]
     }
 }
 

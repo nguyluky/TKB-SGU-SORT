@@ -37,9 +37,15 @@ CREATE TABLE IF NOT EXISTS tkb_save(
   tkb_name VARCHAR(20), 
   description TEXT, 
   json_data JSON, 
-  thumbnails MEDIUMBLOB, 
+  thumbnails MEDIUMBLOB,
   date_save DATETIME
 );
+
+CREATE TABLE IF NOT EXISTS invite_link(
+  id VARCHAR(48) PRIMARY KEY,
+  tkb_id VARCHAR(36),
+  Foreign Key (tkb_id) REFERENCES tkb_save(id) ON DELETE CASCADE
+)
 
 ALTER TABLE 
   user_login_info 

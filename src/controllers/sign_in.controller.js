@@ -1,7 +1,7 @@
 const { request, response } = require('express');
 
 const mysqlService = require('../services/app.service')
-
+const createResponse = require('../models/signInRes.model')
 
 /**
  * 
@@ -27,18 +27,24 @@ async function login(req, res) {
 
     const {user: userName, password} = req.body;
     
+    if (!userName || !password) {
+        createResponse(res, false, "bad req")
+    }
+
     const [err, user] = await mysqlService.login(userName, password)
     
     if (err) {
         // TODO: redirect To err page
         console.error(err)
-        res.status(500).send()
+        createResponse(res, false, "lỗi server")
+        // res.status(500).send()
         return
     }
 
 
     if (!user) {
-        res.status(400).send()
+        createResponse(res, false, "tên đăng nhập mật khẩu không đúng")
+        // res.status(400).send()
         return
     }
 
@@ -54,7 +60,7 @@ async function login(req, res) {
     }
 
     req.session.token = token;
-    res.status(200).redirect('/')
+    createResponse(res, true, "đăng nhập thành công")
 }
 
 /**

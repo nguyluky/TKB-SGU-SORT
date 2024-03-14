@@ -1,5 +1,6 @@
 var data = null;
 var isSave = false;
+let filterItem = {}
 // Khi người dùng click thêm học phần
 const button_themhocphan = document.querySelector('.button_themhocphan')
 const add_themhocphan = document.querySelector('.add_themhocphan')
@@ -16,6 +17,7 @@ async function initFile() {
     console.log(data_json)
 
     if (data_json.err_mess) {
+        a.remove()
         console.log('err')
         createPopup('err', data_json.err_mess, -1)
         return
@@ -26,7 +28,10 @@ async function initFile() {
             if (e.id_to_hoc == id_to_hoc) {
                 // console.log(e)
                 addHp(e.ma_mon)
-                tkb.render(e)
+                var ele = document.querySelector(`div.list-hp div[id-to-hoc="${e.id_to_hoc}"]`)
+                ele.click()
+                // tkb.render(e)
+
             }
         })
     })
@@ -35,7 +40,7 @@ async function initFile() {
     createPopup('success', "Tải thời khóa biểu thành công")
 }
 
-function themhocphanButtonEventInit() {
+function buttonThemHocPhanInit() {
     function xoaThemhocphan() {
         button_themhocphan.classList.remove('active')
         button_themhocphan.innerHTML = `
@@ -117,11 +122,11 @@ function themhocphanButtonEventInit() {
         button_themhocphan.disabled = true;
     }
 }
-themhocphanButtonEventInit()
+buttonThemHocPhanInit()
 
 
 // sử lý sợ kiện khi người dùng nhấn vào menu
-function menuPopupEventInit() {
+function menuInit() {
     var popup_is_show = false
     var popup_show = null
 
@@ -179,11 +184,11 @@ function menuPopupEventInit() {
     })
 
 }
-menuPopupEventInit()
+menuInit()
 
 
 // khi người dùng nhấn vào nút thu nhỏ phóng to side bar
-function sliveBarIconEventInit() {
+function sliveBarInit() {
     const sidebar = document.getElementById('siderbar')
     document.querySelector('.menubar-icon').onclick = () => {
         if (sidebar.classList.contains('close')) {
@@ -197,15 +202,17 @@ function sliveBarIconEventInit() {
         
     }
 }
-sliveBarIconEventInit()
+sliveBarInit()
 
 
-function hocPhanEventInit(cls) {
+function hocPhanInit(cls) {
+
     function hocphanpopup(e) {
         var parent = e.parentElement
         parent.querySelector('.list-hp').classList.toggle('close')
         e.querySelector('i').classList.toggle('close')
     }
+
     function removeSelection(div_list_hp) {
         div_list_hp.querySelectorAll('.list-hp-item').forEach(e => {
             if (e.classList.contains("select")) {
@@ -309,6 +316,7 @@ function hocPhanEventInit(cls) {
 
         var list = data.ds_nhom_to.filter(e => e.ma_mon == mahp)
         var name = data.ds_mon_hoc[mahp]
+        // filterItem.hp.add(mahp)
         var ct = list[0].so_tc
 
         var div_hp = document.createElement('div')
@@ -355,12 +363,13 @@ function hocPhanEventInit(cls) {
         var div_list_hp = document.createElement('div')
         div_list_hp.className = "list-hp close"
 
-
+        // filterItem[mahp] = []
+        filterItem[mahp] = new Set()
         list.forEach(hp => {
             var div_hp_item = document.createElement('div')
             div_hp_item.className = "list-hp-item"
-            div_hp_item.setAttribute('id-to-hoc', hp.id_to_hoc)
 
+            div_hp_item.setAttribute('id-to-hoc', hp.id_to_hoc)
 
             div_hp_item.onmouseenter = () => { showGhost(hp, mahp) }
             div_hp_item.onmouseleave = () => { hideGhost(hp, mahp) }
@@ -368,6 +377,10 @@ function hocPhanEventInit(cls) {
             div_hp_item.addEventListener('contextmenu', (event) => {
                 console.log('ok')
                 event.preventDefault()
+            })
+
+            hp.tkb.forEach(e => {
+                filterItem[mahp].add(e.gv)
             })
 
             var dsThu = [...new Set(hp.tkb.map(e => "T" + e.thu + " - P:" + e.phong))]
@@ -407,9 +420,13 @@ function hocPhanEventInit(cls) {
     }
 
     function removeHp(mahp) {
+        // filterItem.hp.delete(mahp)
+        delete filterItem[mahp]
         var hp = document.querySelector(`.hp[mahp="${mahp}"]`)
+        
         if (!hp) return
         hp.remove()
+
         Object.values(tkb.hocphan).forEach(e => {
             if (e.ma_mon == mahp) {
                 tkb.remove(e.id_to_hoc)
@@ -587,7 +604,7 @@ const tkb = {
 // khai báo hàm addHp
 // gọi hàm addHp với parameter là mã học phần
 // thì nó sẽ thêm vời side bar học phần đó
-hocPhanEventInit(this)
+hocPhanInit(this)
 
 function get_dshocphan() {
     var load_popup = createPopup('info', 'get data', -1)
@@ -732,6 +749,10 @@ function saveTkb() {
             })
         }).then(async e => {
             var resp_json = await e.json()
+            if (resp_json.err) {
+                createPopup('err', resp_json.err_mess)
+                return
+            }
             let stateObj = { id: "200" };
             tkb_id = resp_json.data.tkb_id
             window.history.pushState(stateObj, "", "/tkb/" + tkb_id);
@@ -847,7 +868,7 @@ function createPopup(type, mess, duration = 2000) {
 
 }
 
-function filterClickEventInit() {
+function filterInit() {
     const popup_ = document.querySelector('.popup-filter')
     var filter_stor = {
         thu: [],
@@ -865,8 +886,9 @@ function filterClickEventInit() {
         var a = document.querySelector('div.filter-item.hocphan > div.items > div')
         a.querySelectorAll('label')
         a.innerHTML = ''
-        document.querySelectorAll('#siderbar > div.siderbar-body > div  div.hp').forEach(e => {
-            var mahp = e.getAttribute('mahp')
+        // TODO
+        Object.keys(filterItem).forEach(mahp => {
+            // var mahp = e.getAttribute('mahp')
 
             var name = data.ds_mon_hoc[mahp]
 
@@ -877,17 +899,16 @@ function filterClickEventInit() {
     function filterRenderGV() {
         var a = document.querySelector('div.filter-item.gv > div.items > div')
         a.innerHTML = ''
-        var list_ = new Set()
-        Object.values(tkb.hocphan).forEach(e => {
-            e.tkb.forEach(j => {
-                list_.add(j.gv)
+
+        Object.keys(filterItem).forEach(key => {
+            if (filter_stor.hp.has(key)) return;
+
+            filterItem[key].forEach(e => {
+                a.innerHTML += `<li mahp="${key}"><label><input ${filter_stor.gv.has(e) ? "" : "checked"} type="checkbox">${e}</label></li>`
             })
         })
-
-
-        Array.from(list_).forEach(e => {
-            a.innerHTML += `<li><label><input checked type="checkbox">${e}</label></li>`
-        })
+        // filterItem.gv.forEach(e => {
+        // })
     }
 
     function HandleFilterHP() {
@@ -895,23 +916,53 @@ function filterClickEventInit() {
             var a = e.getAttribute('mahp')
             if(e.querySelector('input').checked) {
                 document.querySelector(`div.hp[mahp="${a}"]`).style.display = null
+                document.querySelectorAll(`.gv div.items > div > li[mahp="${a}"]`).forEach(e => e.style.display = null)
                 filter_stor.hp.delete(a)
                 return
             }
             filter_stor.hp.add(a)
             document.querySelector(`div.hp[mahp="${a}"]`).style.display = "none"
+            document.querySelectorAll(`.gv div.items > div > li[mahp="${a}"]`).forEach(e => e.style.display = "none")
         })
 
     }
 
     function HandleFilterGv() {
-        document.querySelectorAll('div.filter-item.gv > div.items li')
+        document.querySelectorAll('div.filter-item.gv > div.items li').forEach(e => {
+            var gv = e.textContent
+            var check = e.querySelector('input').checked
+            if (!check) filter_stor.gv.add(gv)
+            else filter_stor.gv.delete(gv)
+            var list_gv = data.ds_nhom_to.filter(e => {
+                var have = false
+
+                e.tkb.forEach(j => {
+                    if (j.gv == gv) have = true
+                })
+
+                return have
+            })
+
+            list_gv.forEach(e => {
+                var ele = document.querySelector(`div.list-hp div[id-to-hoc="${e.id_to_hoc}"]`)
+                if (ele) {
+                    if (check) {
+                        ele.style.display = null
+                    }
+                    else {
+                        ele.style.display = "none"
+                    }
+                }
+            })
+        })
+
     }
 
 
     document.querySelector('#siderbar > div.info-filter > span.button-filter-wall > div > div.top > div.right').onclick = hide_filter
     popup_.addEventListener('click', (event) => {
         HandleFilterHP();
+        HandleFilterGv();
         event.stopPropagation()
     })
 
@@ -929,4 +980,4 @@ function filterClickEventInit() {
         }
     }
 }
-filterClickEventInit()
+filterInit()

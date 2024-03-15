@@ -22,16 +22,28 @@ function sign_in() {
             password: pass
         })
     }).then(async (response) => {
-        if (response.status == 200) {
-            document.location.pathname = sessionStorage.getItem('befor');
-            return;
+
+        const json_data = await response.json();
+
+        console.log(json_data)
+        if (!json_data.success) {
+            setErr(json_data.mess)
+            return
         }
 
-        // TODO: chỉnh lại cái này
-        var mess;
-        if (response.status == 400) mess = "Tên đăng nhập hoặc mật khẩu không đúng";
-        else mess = await response.text();
-        setErr(mess);
+
+        document.location.pathname = sessionStorage.getItem('befor');
+
+        // if (response.status == 200) {
+            // document.location.pathname = sessionStorage.getItem('befor');
+        //     return;
+        // }
+
+        // // TODO: chỉnh lại cái này
+        // var mess;
+        // if (response.status == 400) mess = "Tên đăng nhập hoặc mật khẩu không đúng";
+        // else mess = await response.text();
+        // setErr(mess);
     });
 
 }

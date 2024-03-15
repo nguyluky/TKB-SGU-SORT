@@ -21,7 +21,7 @@ function create_list_item(tkb_name, base64String, date_save, id){
 	var i_bx_bxdotsvertical_1_3_1 = document.createElement("i");
 	//Create Text Nodes
 	var textNode_1_2_1_1 = document.createTextNode(tkb_name);
-	var textNode_1_2_2_1 = document.createTextNode(date_save);
+	var textNode_1_2_2_1 = document.createTextNode(dataFormatString(date_save));
 	//Set Attributes
 	img__1_1_1.setAttribute("src","data:image/jpeg;base64," + base64String);
 	div_listtiem_1.setAttribute("class","list-tiem");

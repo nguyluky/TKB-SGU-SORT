@@ -444,6 +444,7 @@ function hocPhanInit(cls) {
  * tkb user to render table 'thời khóa biểu' when user click on 'hocphan' button
  */
 
+// TODO chia ra làm 2 cái một cái là suer lý dữ liệu một cái là render không gộp chung
 const tkb = {
     tkb: document.getElementById('tkb'),
     hocphan: {},
@@ -618,109 +619,290 @@ function get_dshocphan() {
 get_dshocphan()
 
 function makeSavePopup(img_url, oncancel, onok) {
-    //Create Elements
-    var div_popupitem_savetkb_1 = document.createElement("div");
-    var div_left_1_1 = document.createElement("div");
-    var div_name_1_1_1 = document.createElement("div");
-    var input__1_1_1_1 = document.createElement("input"); //
-    var div_mt_1_1_2 = document.createElement("div");
-    var textarea__1_1_2_1 = document.createElement("textarea"); //
-    var div_pp_1_1_3 = document.createElement("div");
-    var div_public_1_1_3_1 = document.createElement("div");
-    var input__1_1_3_1_1 = document.createElement("input");
-    var label__1_1_3_1_2 = document.createElement("label");
-    var span__1_1_3_1_2_1 = document.createElement("span");
-    var i_bx_bxslockopenalt_1_1_3_1_2_1_1 = document.createElement("i");
-    var span__1_1_3_1_2_2 = document.createElement("span");
-    var div_private_1_1_3_2 = document.createElement("div");
-    var input__1_1_3_2_1 = document.createElement("input");
-    var label__1_1_3_2_2 = document.createElement("label");
-    var span__1_1_3_2_2_1 = document.createElement("span");
-    var i_bx_bxslockalt_1_1_3_2_2_1_1 = document.createElement("i");
-    var span__1_1_3_2_2_2 = document.createElement("span");
-    var div_right_1_2 = document.createElement("div");
-    var img__1_2_1 = document.createElement("img");
-    var div_button_1_3 = document.createElement("div");
-    var button_save_1_3_1 = document.createElement("button");
-    var button_cancel_1_3_2 = document.createElement("button");
-    //Create Text Nodes
-    var textNode_1_1_3_1_2_1_1 = document.createTextNode("public");
-    var textNode_1_1_3_1_2_2_1 = document.createTextNode("Mọi người có thể thấy và sử dụng thời khóa biểu của bạn");
-    var textNode_1_1_3_2_2_1_1 = document.createTextNode("private");
-    var textNode_1_1_3_2_2_2_1 = document.createTextNode("Chỉ mình bạn hoặc các người bạn cho phép được sử dụng");
-    var textNode_1_3_1_1 = document.createTextNode("save");
-    var textNode_1_3_2_1 = document.createTextNode("cancel");
-    //Set Attributes
-    div_popupitem_savetkb_1.setAttribute("class", "popup-item save-tkb");
-    div_left_1_1.setAttribute("class", "left");
-    div_name_1_1_1.setAttribute("class", "name");
-    input__1_1_1_1.setAttribute("type", "text");
-    input__1_1_1_1.setAttribute("placeholder", "TKB name");
-    input__1_1_1_1.setAttribute("id", "file_save_name")
-    div_mt_1_1_2.setAttribute("class", "mt");
-    textarea__1_1_2_1.setAttribute("name", "");
-    textarea__1_1_2_1.setAttribute("id", "");
-    textarea__1_1_2_1.setAttribute("placeholder", "Miêu tả");
-    textarea__1_1_2_1.setAttribute("id", "file_save_des")
-    div_pp_1_1_3.setAttribute("class", "pp");
-    div_public_1_1_3_1.setAttribute("class", "public");
-    input__1_1_3_1_1.setAttribute("type", "radio");
-    input__1_1_3_1_1.setAttribute("name", "type");
-    input__1_1_3_1_1.setAttribute("id", "public");
-    label__1_1_3_1_2.setAttribute("for", "public");
-    i_bx_bxslockopenalt_1_1_3_1_2_1_1.setAttribute("class", "bx bxs-lock-open-alt");
-    div_private_1_1_3_2.setAttribute("class", "private");
-    input__1_1_3_2_1.setAttribute("type", "radio");
-    input__1_1_3_2_1.setAttribute("name", "type");
-    input__1_1_3_2_1.setAttribute("id", "private");
-    input__1_1_3_2_1.setAttribute("checked", "");
-    label__1_1_3_2_2.setAttribute("for", "private");
-    i_bx_bxslockalt_1_1_3_2_2_1_1.setAttribute("class", "bx bxs-lock-alt");
-    div_right_1_2.setAttribute("class", "right");
-    img__1_2_1.setAttribute("src", img_url);
-    img__1_2_1.setAttribute("alt", "");
-    div_button_1_3.setAttribute("class", "button");
-    button_save_1_3_1.setAttribute("class", "save");
-    button_cancel_1_3_2.setAttribute("class", "cancel");
-    button_cancel_1_3_2.onclick = () => {
-        oncancel(div_popupitem_savetkb_1)
-    }
-    button_save_1_3_1.onclick = () => {
-        onok(div_popupitem_savetkb_1)
-    }
-    //Append Children
-    div_popupitem_savetkb_1.appendChild(div_left_1_1);
-    div_left_1_1.appendChild(div_name_1_1_1);
-    div_name_1_1_1.appendChild(input__1_1_1_1);
-    div_left_1_1.appendChild(div_mt_1_1_2);
-    div_mt_1_1_2.appendChild(textarea__1_1_2_1);
-    div_left_1_1.appendChild(div_pp_1_1_3);
-    div_pp_1_1_3.appendChild(div_public_1_1_3_1);
-    div_public_1_1_3_1.appendChild(input__1_1_3_1_1);
-    div_public_1_1_3_1.appendChild(label__1_1_3_1_2);
-    label__1_1_3_1_2.appendChild(span__1_1_3_1_2_1);
-    span__1_1_3_1_2_1.appendChild(i_bx_bxslockopenalt_1_1_3_1_2_1_1);
-    span__1_1_3_1_2_1.appendChild(textNode_1_1_3_1_2_1_1);
-    label__1_1_3_1_2.appendChild(span__1_1_3_1_2_2);
-    span__1_1_3_1_2_2.appendChild(textNode_1_1_3_1_2_2_1);
-    div_pp_1_1_3.appendChild(div_private_1_1_3_2);
-    div_private_1_1_3_2.appendChild(input__1_1_3_2_1);
-    div_private_1_1_3_2.appendChild(label__1_1_3_2_2);
-    label__1_1_3_2_2.appendChild(span__1_1_3_2_2_1);
-    span__1_1_3_2_2_1.appendChild(i_bx_bxslockalt_1_1_3_2_2_1_1);
-    span__1_1_3_2_2_1.appendChild(textNode_1_1_3_2_2_1_1);
-    label__1_1_3_2_2.appendChild(span__1_1_3_2_2_2);
-    span__1_1_3_2_2_2.appendChild(textNode_1_1_3_2_2_2_1);
-    div_popupitem_savetkb_1.appendChild(div_right_1_2);
-    div_right_1_2.appendChild(img__1_2_1);
-    div_popupitem_savetkb_1.appendChild(div_button_1_3);
-    div_button_1_3.appendChild(button_save_1_3_1);
-    button_save_1_3_1.appendChild(textNode_1_3_1_1);
-    div_button_1_3.appendChild(button_cancel_1_3_2);
-    button_cancel_1_3_2.appendChild(textNode_1_3_2_1);
+    var Node1 = document.createElement("div");
+    Node1.setAttribute("class", "popup-item save-tkb");
 
-    return div_popupitem_savetkb_1
+    var Node11 = document.createElement("div");
+    Node11.setAttribute("class", "wall");
+    Node1.appendChild(Node11);
+
+    var Node111 = document.createElement("div");
+    Node111.setAttribute("class", "top");
+    Node11.appendChild(Node111);
+
+    var Node1111 = document.createElement("span");
+    Node111.appendChild(Node1111);
+
+    var textNode1111_1 = document.createTextNode("Save");
+    Node1111.appendChild(textNode1111_1);
+
+
+    var Node1112 = document.createElement("span");
+    Node1112.onclick = oncancel;
+    Node111.appendChild(Node1112);
+
+    var Node11121 = document.createElement("i");
+    Node11121.setAttribute("class", "bx bx-x");
+    Node1112.appendChild(Node11121);
+
+
+
+
+    var Node112 = document.createElement("div");
+    Node112.setAttribute("class", "conten");
+    Node11.appendChild(Node112);
+
+    var Node1121 = document.createElement("div");
+    Node1121.setAttribute("class", "fill");
+    Node112.appendChild(Node1121);
+
+    var Node11211 = document.createElement("div");
+    Node11211.setAttribute("class", "input-text tkb-name");
+    Node1121.appendChild(Node11211);
+
+    var Node112111 = document.createElement("input");
+    Node112111.setAttribute("type", "text");
+    Node112111.setAttribute("placeholder", "TKB name");
+    Node112111.setAttribute("id", "file_save_name")
+    Node11211.appendChild(Node112111);
+
+
+
+    var Node11212 = document.createElement("div");
+    Node11212.setAttribute("class", "input-text description");
+    Node1121.appendChild(Node11212);
+
+    var Node112121 = document.createElement("input");
+    Node112121.setAttribute("type", "text");
+    Node112121.setAttribute("placeholder", "Description (optional)");
+    Node112121.setAttribute("id", "file_save_des")
+    Node11212.appendChild(Node112121);
+
+
+
+    var Node11213 = document.createElement("label");
+    Node11213.setAttribute("class", "type public");
+    Node1121.appendChild(Node11213);
+
+    var Node112131 = document.createElement("input");
+    Node112131.setAttribute("type", "radio");
+    Node112131.setAttribute("id", "public-type");
+    Node112131.setAttribute("name", "tkb-type");
+    Node11213.appendChild(Node112131);
+
+
+    var Node112132 = document.createElement("i");
+    Node112132.setAttribute("class", "bx bxs-book-alt");
+    Node11213.appendChild(Node112132);
+
+
+    var Node112133 = document.createElement("div");
+    Node112133.setAttribute("class", "text");
+    Node11213.appendChild(Node112133);
+
+    var Node1121331 = document.createElement("p");
+    Node112133.appendChild(Node1121331);
+
+    var textNode1121331_1 = document.createTextNode("Công khai:");
+    Node1121331.appendChild(textNode1121331_1);
+
+
+    var Node1121332 = document.createElement("p");
+    Node112133.appendChild(Node1121332);
+
+    var textNode1121332_1 = document.createTextNode("Mọi người có thể thấy và chỉnh sửa thời khóa biểu của bạn.");
+    Node1121332.appendChild(textNode1121332_1);
+
+
+
+
+    var Node11214 = document.createElement("label");
+    Node11214.setAttribute("class", "type private");
+    Node1121.appendChild(Node11214);
+
+    var Node112141 = document.createElement("input");
+    Node112141.setAttribute("type", "radio");
+    Node112141.setAttribute("id", "private-type");
+    Node112141.setAttribute("name", "tkb-type");
+    Node112141.setAttribute("checked", true)
+    Node11214.appendChild(Node112141);
+
+
+    var Node112142 = document.createElement("i");
+    Node112142.setAttribute("class", "bx bxs-lock-alt");
+    Node11214.appendChild(Node112142);
+
+
+    var Node112143 = document.createElement("div");
+    Node112143.setAttribute("class", "text");
+    Node11214.appendChild(Node112143);
+
+    var Node1121431 = document.createElement("p");
+    Node112143.appendChild(Node1121431);
+
+    var textNode1121431_1 = document.createTextNode("Private:");
+    Node1121431.appendChild(textNode1121431_1);
+
+
+    var Node1121432 = document.createElement("p");
+    Node112143.appendChild(Node1121432);
+
+    var textNode1121432_1 = document.createTextNode("Mọi người có thể thấy và chỉnh sửa thời khóa biểu của bạn.");
+    Node1121432.appendChild(textNode1121432_1);
+
+
+
+
+
+    var Node1122 = document.createElement("div");
+    Node1122.setAttribute("class", "thumbnail");
+    Node112.appendChild(Node1122);
+
+    var Node11221 = document.createElement("img");
+    Node11221.setAttribute("src", img_url);
+    Node1122.appendChild(Node11221);
+
+
+
+
+    var Node113 = document.createElement("div");
+    Node113.setAttribute("class", "bottom");
+    Node11.appendChild(Node113);
+
+    var Node1131 = document.createElement("button");
+    Node1131.setAttribute("class", "cancel");
+    Node1131.onclick = oncancel;
+    Node113.appendChild(Node1131);
+
+    var textNode1131_1 = document.createTextNode("cancel");
+    Node1131.appendChild(textNode1131_1);
+
+
+    var Node1132 = document.createElement("button");
+    Node1132.setAttribute("class", "ok");
+    Node1132.onclick = onok
+    Node113.appendChild(Node1132);
+
+    var textNode1132_1 = document.createTextNode("save");
+    Node1132.appendChild(textNode1132_1);
+    return Node1
 }
+
+function makeInvitePopup(link, onCancel, onOk) {
+    //to append the html to an element simply write:
+    //appendHTMLto(document.getElementById("parent"));
+    //Create Elements
+    var Node1 = document.createElement("div");
+    Node1.setAttribute("class", "popup-item invite-link");
+
+    var Node11 = document.createElement("div");
+    Node11.setAttribute("class", "wall");
+    Node1.appendChild(Node11);
+
+    var Node111 = document.createElement("div");
+    Node111.setAttribute("class", "top");
+    Node11.appendChild(Node111);
+
+    var Node1111 = document.createElement("span");
+    Node111.appendChild(Node1111);
+
+    var textNode1111_1 = document.createTextNode("Invite link");
+    Node1111.appendChild(textNode1111_1);
+
+
+    var Node1112 = document.createElement("span");
+    Node1112.onclick = onCancel
+    Node111.appendChild(Node1112);
+
+    var Node11121 = document.createElement("i");
+    Node11121.setAttribute("class", "bx bx-x");
+    Node1112.appendChild(Node11121);
+    
+
+    var Node112 = document.createElement("div");
+    Node112.setAttribute("class", "conten");
+    Node11.appendChild(Node112);
+    
+    var w = document.createTextNode("Lưu ý mỗi link chỉ sử dụng được một lần và không có nhiều link đồng thời");
+    Node112.appendChild(w)
+
+    var Node1121 = document.createElement("div");
+    Node1121.setAttribute("class", "wall-link");
+    Node112.appendChild(Node1121);
+
+
+
+    var Node11211 = document.createElement("input");
+    Node11211.setAttribute("type", "text");
+    Node11211.setAttribute("onkeydown", "event.preventDefault()");
+    Node11211.setAttribute("onclick", "event.target.select()");
+    Node11211.setAttribute("value", link);
+    Node1121.appendChild(Node11211);
+
+
+
+
+    var Node113 = document.createElement("div");
+    Node113.setAttribute("class", "bottom");
+    Node11.appendChild(Node113);
+
+    var Node1131 = document.createElement("button");
+    Node1131.setAttribute("class", "cancel");
+    Node1131.onclick = onCancel
+    Node113.appendChild(Node1131);
+
+    var textNode1131_1 = document.createTextNode("cancel");
+    Node1131.appendChild(textNode1131_1);
+
+
+    var Node1132 = document.createElement("button");
+    Node1132.setAttribute("class", "ok");
+    Node1132.onclick = onOk
+    Node113.appendChild(Node1132);
+
+    var textNode1132_1 = document.createTextNode("copy");
+    Node1132.appendChild(textNode1132_1);
+
+    return Node1
+
+}
+
+function onclickInviteLink() {
+
+    var popup;
+    var link;
+
+    function onCancel() {
+        popup.remove()
+    }
+
+    function onOk() {
+        navigator.clipboard.writeText(link)
+        createPopup('success', 'copy thành công')
+
+    }
+
+    if (!tkb_id) {
+        createPopup('err', "TKB chưa lưu");
+        return
+    }
+
+    fetch('/api/get_invite_link?' + new URLSearchParams({
+        tkb_id: tkb_id
+    })).then(async resp => {
+        const json_data = await resp.json()
+
+        if (json_data.err) {
+            createPopup("err", json_data.err_mess)
+            return
+        }
+        link = location.origin + '/tkb/invite?id=' + json_data.data
+        popup = makeInvitePopup(link, onCancel, onOk)
+        document.getElementById('popup-area').appendChild(popup)
+    })
+}
+
+
 function saveTkb() {
 
     var base64;
@@ -729,10 +911,10 @@ function saveTkb() {
         popup.remove()
     }
 
-    function saveHandle(ele) {
+    function saveHandle() {
         // console.log(ele)
-        var name = ele.querySelector('#file_save_name').value
-        var des = ele.querySelector('#file_save_des').value
+        var name = popup.querySelector('#file_save_name').value
+        var des = popup.querySelector('#file_save_des').value
 
         console.log(name, des)
 

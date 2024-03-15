@@ -649,71 +649,137 @@ body {
 }
 #popup-area > .popup-item {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: var(--popup-shadow);
-  background-color: var(--background-color-1);
-  border-radius: 10px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
   z-index: 13;
 }
-#popup-area .save-tkb {
-  display: grid;
-  grid-template-columns: 1fr 250px;
-  justify-items: center;
-  max-width: 620px;
-  color: var(--text-color);
+#popup-area .popup-item > .wall {
+  max-width: 650px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--background-color-1);
+  box-shadow: var(--popup-shadow);
 }
-#popup-area .save-tkb > div {
-  padding: 15px;
+#popup-area .popup-item > .wall .top {
+  height: 38px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
-#popup-area .save-tkb .left input[type=text], #popup-area .save-tkb .left textarea {
+#popup-area .popup-item > .wall .top span:nth-child(1) {
   color: var(--text-color);
-  width: calc(100% - 10px);
-  padding: 8px;
-  margin: 5px 0;
-  resize: none;
+  font-size: 20px;
+  font-weight: bolder;
+}
+#popup-area .popup-item > .wall .top span:nth-child(2) {
+  cursor: pointer;
+}
+#popup-area .popup-item > .wall .top i {
+  color: var(--text-color);
+  font-size: 31px;
+}
+#popup-area .popup-item > .wall .bottom {
+  padding: 14px 0px 5px 0px;
+  display: flex;
+  gap: 44px;
+  justify-content: center;
+}
+#popup-area .popup-item > .wall .bottom button {
+  height: 35px;
+  width: 124px;
+  border: none;
+  outline: none;
+  border: 1px transparent solid;
+  border-radius: 10px;
   font-size: 15px;
-  border: 1.5px gray solid;
+  cursor: pointer;
+}
+#popup-area .popup-item > .wall .bottom button.cancel {
+  border-color: var(--text-color);
+  background-color: transparent;
+  color: var(--text-color);
+}
+#popup-area .popup-item > .wall .bottom button.ok {
+  background-color: #3C33D8;
+  color: #fff;
+}
+#popup-area .save-tkb > .wall .conten {
+  display: flex;
+}
+#popup-area .save-tkb > .wall .conten .fill {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+#popup-area .save-tkb > .wall .conten .fill .input-text input {
+  padding-bottom: 2px;
+  height: 22px;
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  min-width: 80%;
+  width: fit-content;
+  border-bottom: 2px var(--text-color-2) solid;
+  color: var(--text-color);
+}
+#popup-area .save-tkb > .wall .conten .fill .type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#popup-area .save-tkb > .wall .conten .fill .type i {
+  color: var(--text-color);
+  font-size: 30px;
+}
+#popup-area .save-tkb > .wall .conten .fill .type .text p:nth-child(1) {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+#popup-area .save-tkb > .wall .conten .fill .type .text p:nth-child(2) {
+  font-size: 13px;
+  color: var(--text-color-2);
+}
+#popup-area .save-tkb > .wall .conten .thumbnail {
+  display: flex;
+  padding-left: 24px;
+  align-items: center;
+}
+#popup-area .save-tkb > .wall .conten .thumbnail img {
+  width: 223px;
+  height: 126px;
   border-radius: 5px;
+  box-shadow: var(--main-box-shadow);
+}
+#popup-area .invite-link .conten {
+  color: var(--text-color);
+}
+#popup-area .invite-link .conten .wall-link {
+  margin-top: 10px;
+  width: 100%;
+  background-color: var(--background-color-2);
+  border-radius: 10px;
+  padding: 10px;
+}
+#popup-area .invite-link .conten .wall-link input {
+  color: var(--text-color);
+  width: 100%;
   background: transparent;
-}
-#popup-area .save-tkb .pp > div {
-  padding: 2px;
-}
-#popup-area .save-tkb .pp > div input {
-  height: 15px;
-  width: 15px;
-}
-#popup-area .save-tkb .right {
-  grid-column: 2;
-  grid-row: 1;
-}
-#popup-area .save-tkb .right img {
-  height: 144px;
-  width: 200px;
-  border: 1px gray solid;
-  border-radius: 5px;
-}
-#popup-area .save-tkb .button {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: end;
-  margin-bottom: calc((100% - 144px) / 2);
-  transform: translateY(calc(50% + 10px));
-}
-#popup-area .save-tkb .button button {
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-#popup-area .save-tkb .button button + button {
-  margin-left: 10px;
-}
-#popup-area .save-tkb .button .save {
-  background: #1cc487;
-}
-#popup-area .save-tkb .button .cancel {
-  background: #e23243;
+  border: none;
+  outline: none;
 }
 
 #notification {

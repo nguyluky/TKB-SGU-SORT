@@ -237,7 +237,11 @@ async function inviteId2TkbId(inviteId) {
     const sql = 'SELECT * FROM invite_link WHERE id=?'
 
     const [err, result, fields] = await query(sql, [inviteId])
-    return [err, result[0].tkb_id]
+    if (result[0])
+        return [err, result[0].tkb_id]
+
+    return [err, null]
+    
 }
 
 async function deleteInviteByTkbId(tkbId) {

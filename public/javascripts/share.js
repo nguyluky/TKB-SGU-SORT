@@ -1,8 +1,10 @@
 var user_info;
 var isloaded = false;
+var isIconUpdate = false;
+
 
 function checkLogin() {
-    return sessionStorage.getItem('isLogin') == 'true';
+    return user_info;
 }
 
 function dataFormatString(data) {
@@ -17,17 +19,22 @@ function log_out() {
 }
 
 
-function updateUserAccoutIcon() {
-    if (!checkLogin()) {
-        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
-    }
-
+function updateUserAccoutIcon(value) {
     if (user_info) {
+        console.log('is login')
         document.querySelector('div.user-info > p:nth-child(1)').textContent = user_info['display_name'] ? user_info['display_name'] : '++++++++++++'
         document.querySelector('div.user-info > p.mssv').textContent = `MSSV: ${user_info['ma_sv'] ? user_info['ma_sv'] : '**********'}`
         document.querySelector('div.user-info > p:nth-child(3)').textContent = `Khoa: ${user_info['khoa'] ? user_info['khoa'] : '****'}`
         document.querySelector('div.user-info > p:nth-child(4)').textContent = `Lớp: ${user_info['lop'] ? user_info['lop'] : '****'}`
+        document.getElementById('accout').innerHTML = '<i class="bx bxs-user-circle"></i>'
+        return
     }
+    else {
+        console.log('no login')
+        document.getElementById('accout').innerHTML = "<p> Sign In </p>"
+        return
+    }
+
 }
 
 function get_use_info() {
@@ -37,14 +44,14 @@ function get_use_info() {
         // console.log(json_)
         if (json_.err) {
             sessionStorage.setItem('isLogin', false)
-            updateUserAccoutIcon()
+            updateUserAccoutIcon(false)
             console.error("chưa đăng nhậm")
             return
         }
 
         user_info = json_.data
         sessionStorage.setItem('isLogin', true)
-        updateUserAccoutIcon()
+        updateUserAccoutIcon(true)
     })
 }
 

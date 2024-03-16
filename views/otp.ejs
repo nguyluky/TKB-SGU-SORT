@@ -34,36 +34,55 @@
             setToDarkMode()
         }
     </script>
-    <script defer src="javascripts\p_sign_in.js"></script>
+    <script defer src="\javascripts\otp_page.js"></script>
 </head>
 
 <body>
     <div class="main-center">
-        <p class="title">SignIn</p>
-        <div class="line">
-            <label class="wall-input">
-                <input type="text" id="user-name" placeholder="Tên đăng nhập">
+        <p class="title">Verify</p>
+
+        <p class="dctk">Code đã được gửi đến email của bạn!</p>
+
+        <div class="line" id="otp">
+            <label class="wall-input otp">
+                <input type="text" placeholder="">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input otp">
+                <input type="text" placeholder="">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input otp">
+                <input type="text" placeholder="">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input otp">
+                <input type="text" placeholder="">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input otp">
+                <input type="text" placeholder="">
                 <div class="icon-err">
                     <i class='bx bx-error-circle'></i>
                     <div class="tooltip"></div>
                 </div>
             </label>
         </div>
-        <div class="line">
-            <label class="wall-input">
-                <input type="text" id="password" placeholder="Mật khẩu">
-                <div class="icon-err">
-                    <i class='bx bx-error-circle'></i>
-                    <div class="tooltip"></div>
-                </div>
-            </label>
-        </div>
+        <button class="ok" onclick="sendOtp()">Verify</button>
 
-        <a class="dctk">Quên mật khẩu?</a>
-
-        <button class="ok" onclick="sign_in()">SignIn</button>
-
-        <p class="dctk">Không có tài khoản?<a href="/sign_up">SignUp</a></p>
+        <p class="dctk">Không nhận được code?<a href="#">Gửi lại</a></p>
     </div>
 </body>
 

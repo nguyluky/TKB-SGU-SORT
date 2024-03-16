@@ -8,6 +8,8 @@ thông quan dự án này tôi muốn chao rồi cho mình nhiều kĩ năn cho 
 nói đơn giản là cái này nó xẽ giúp xinh viên xắp xệp thời khóa biểu hợp lý
 các tính năng nổi bật
 - xắp xết thời khóa biểu
+- filter theo ngày tiết giáo viên
+- lưu, chia sẻ, làm chung với bạn bè của bạn
 - xuất thời khóa biểu dang nhiều dạng khác nhau
   - hình ảnh
   - code javascript để gián vào 

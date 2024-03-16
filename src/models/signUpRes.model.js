@@ -1,12 +1,11 @@
-
 const { response } = require('express');
 
 
 const ERR_LOCATION = {
-    USER_NAME: "username",
-    PASSWORD: "pass",
+    USER_NAME: "user-name",
+    PASSWORD: "password",
     EMAIL: "email",
-    FULL_NAME: "display_name",
+    FULL_NAME: "full-name",
     MSSV: "mssv",
     KHOA: "khoa",
     LOP: 'lop',

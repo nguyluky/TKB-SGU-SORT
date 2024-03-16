@@ -12,4 +12,7 @@ router.post('/otp' , signUpController.handleOTP)
 router.put('/', signUpController.createAcc)
 router.get('/', signUpController.getSignUpPage);
 
+// TODO add page
+router.get('/otp', signUpController.getOtpPage)
+
 module.exports = router;

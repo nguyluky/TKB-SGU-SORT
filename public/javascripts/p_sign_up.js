@@ -1,263 +1,30 @@
-const username = document.getElementById('username');
-const pass = document.getElementById('pass');
-const email = document.getElementById('email');
-const display_name = document.getElementById('display_name')
-const mssv = document.getElementById('mssv')
-const khoa = document.querySelector('#khoa > div.selected')
-const lop = document.querySelector('#lop > div.selected')
-const inputs = document.getElementById("inputs");
-
-function disable_button_next() {
-    document.querySelector('button.next').disabled = true
-}
-
-function no_disable_button_next() {
-    var have_err = false;
-    const err_view = document.querySelectorAll(`.err_view`).forEach(e => {
-        if (e.textContent) have_err = true;
-    })
-
-    if (have_err) return;
-    document.querySelector('button.next').disabled = false
-
-}
-
-function optInit() {
-    var last_item = document.querySelector("#inputs > input:nth-child(1)");
-    inputs.addEventListener("input", function (e) {
-        const target = e.target;
-        const val = target.value;
-        if (val.length > 1) {
-            console.log(val)
-            var otp = val;
-            if (otp.length > 5) return;
-
-            otp.split("").forEach((elem, index) => {
-                document.querySelectorAll('#inputs input')[index].value = elem;
-                last_item = document.querySelectorAll('#inputs input')[index];
-            })
-
-            const next = last_item.nextElementSibling;
-            if (next) {
-                last_item = next;
-                next.focus();
-            }
-
-            return;
-        }
-        if (isNaN(val)) {
-            target.value = "";
-            return;
-        }
-
-        if (val != "") {
-            const next = last_item.nextElementSibling;
-            if (next) {
-                last_item = next;
-                next.focus();
-            }
-        }
-    });
-
-    inputs.addEventListener("keyup", function (e) {
-        const target = e.target;
-        const key = e.key.toLowerCase();
-
-        if (key == "backspace" || key == "delete") {
-            target.value = "";
-            const prev = last_item.previousElementSibling;
-            if (prev) {
-                last_item = prev;
-                prev.focus();
-                prev.select()
-            }
-            return;
-        }
-    });
-
-    document.querySelectorAll('#inputs input').forEach(e => {
-        e.addEventListener('focus', function (event) {
-            if (event.target == last_item) return
-            if (!last_item) return;
-            last_item.focus()
-        })
-    })
+const AsyncFunction = async function () { }.constructor;
+var listElementCheck = []
 
 
-}
-optInit()
-
-
-function setErr(mess) {
-    document.getElementById('err').innerHTML += `<p>${mess}</p>`
-}
-
-function clsErr() {
-    document.getElementById('err').innerHTML = ''
-}
-
-function back() {
-    document.querySelector('.tab1').style.display = ''
-    document.querySelector('.tab2').style.display = 'none'
-
-    document.querySelector('button.sguacc').textContent = 'Đăng ký với tài khoản trường'
-    document.querySelector('button.sguacc').onclick = () => { }
-
-    document.querySelector('button.next').onclick = next
-}
-
-
-async function check_user_name() {
-    var check_user_name_req = await fetch('/api/check_user_name', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            user_name: username.value
-        })
-    })
-
-    console.log('check user name res', (await check_user_name_req).status)
-
-    const json_resp = await check_user_name_req.json()
-    if (json_resp.err) {
-        console.log(json_resp.err_mess)
-        return false
-    }
-
-    return json_resp.data;
-
-}
-
-async function next() {
-    clsErr()
-    var user = username.value
-    var pas = pass.value
-    var em = email.value
-
-    if (user == '') {
-        err_show('username', 'Vui lòng nhập tên đăng nhập')
-        return
-    }
-
-    if (pas == '') {
-        err_show('pass1', "Vui lòng nhập một khẩu")
-        return
-    }
-
-    if (em == '') {
-        err_show('email', "Emal không thể trống")
-        return
-    }
-
-    if (user.includes(' ')) {
-        // setErr('Tên đăng nhập không được chứa khoản chống')
-        return
-    }
-
-    disable_button_next();
-
-    var user_name_used = await check_user_name();
-    if (user_name_used) {
-        setErr("Tên đăng nhập đã tồn tại");
-        return;
-    }
-
-
-    var email_used = await check_email(em);
-    if (email_used) {
-        return;
-    }
-
-    document.querySelector('.tab1').style.display = 'none'
-    document.querySelector('.tab2').style.display = ''
-
-    document.querySelector('button.sguacc').textContent = 'Back'
-    document.querySelector('button.sguacc').onclick = back
-    document.querySelector('button.next').onclick = sign_up
-
-    no_disable_button_next();
-}
-
-async function sign_up() {
-    var user = username.value
-    var pas = pass.value
-    var ema = email.value
-    var dn = display_name.value
-    var ms = mssv.value
-    var k = document.querySelector('#khoa > div.selected').getAttribute('id_sele')
-    var lop_ = document.querySelector('#lop > div.selected').getAttribute('id_sele')
-
-    if (email.classList.contains('err')) {
-        return
-    }
-
-
-    // var check_req = await fetch('/sign_up/checkemail', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         email: ema
-    //     })
-    // })
-
-    // if (check_req.status != 200) {
-    //     var text = await check_req.text()
-    //     setErr(text)
-    //     return
-    // }
-
-    fetch('sign_up', {
+async function sendCreateAccount(userName, password, email, fullName, mssv, khoa, lop) {
+    const create_accoutn_resp = await fetch('sign_up', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            user: user,
-            password: pas,
-            email: ema,
-            display_name: dn,
-            ma_sv: ms,
-            khoa: k,
-            lop: lop_
+            user: userName,
+            password: password,
+            email: email,
+            display_name: fullName,
+            ma_sv: mssv,
+            khoa: khoa,
+            lop: lop
         })
-    }).then(async e => {
-        if (e.status != 200) {
-            var text = await e.text()
-            console.log(text);
-            setErr(text)
-            return
-        }
-
-        nextOtp();
-
     })
+
+    return await create_accoutn_resp.json()
 }
 
-function nextOtp() {
-    document.querySelector('.tab2').style.display = 'none'
-    document.querySelector('.tab3').style.display = ''
-
-    document.querySelector('button.sguacc').onclick = () => {
-        document.querySelector('.tab3').style.display = 'none'
-        document.querySelector('.tab2').style.display = ''
-        document.querySelector('button.sguacc').onclick = back
-        document.querySelector('button.next').onclick = sign_up
-    }
-    document.querySelector('button.next').onclick = sendOtp
-
-}
-
-function sendOtp() {
-    const otps = document.querySelectorAll('#inputs input')
-    const a = Array.from(otps)
-    const otp = a.map(e => e.value).join('');
-    if (otp.length != 5) return;
+async function sendOtp(otp) {
     console.log(otp)
-    fetch('/sign_up/otp', {
+    const send_otp_resp = await fetch('/sign_up/otp', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -265,187 +32,15 @@ function sendOtp() {
         body: JSON.stringify({
             otp: otp
         })
-    }).then(async e => {
-        const json_req = await e.json()
-        if (json_req.err) {
-            console.error(json_req.err_mess)
-        }
-
-        console.log(json_req)
-        document.location.pathname = '/sign_in'
-        
     })
+
+    return await send_otp_resp.json()
 }
 
 
-// Handle event
 
-function err_show(id, err) {
-    const input = document.getElementById(id)
-    const err_view = document.querySelector(`.err_view.${id}`)
-    if (err) {
-        if (input) input.classList.add('err');
-        err_view.textContent = err
-        return
-    }
+async function sendCheckEmailServer(email) {
 
-    input.classList.remove('err')
-    err_view.textContent = ''
-
-}
-
-function intiCheck() {
-
-    document.getElementById('username').addEventListener('keyup', (event) => {
-        var name = event.target.value;
-        var err_mess = null
-        if (name.includes(' ')) {
-            err_mess = "Tên Không được có khoản cách"
-        }
-        err_show('username', err_mess)
-    })
-
-    document.getElementById('username').addEventListener('focusout', async event => {
-        var name = event.target.value;
-        var err_mess = null
-
-        if (name.length < 5) {
-            err_mess = "Tên đăng nhập quá ngắn"
-            err_show('username', err_mess)
-            return
-        }
-
-        var user_name_used = await check_user_name();
-
-        if (user_name_used) {
-            err_show('username', 'Tên đăng nhập đã tồn tại')
-            disable_button_next();
-        }
-        else {
-            err_show('username', null)
-            no_disable_button_next()
-        }
-    })
-
-    document.getElementById('pass').addEventListener('focusout', event => {
-        var pa = event.target.value;
-        var err_mess = null;
-
-        if (pa.length < 7) {
-            err_mess = "Mật khẩu quá ngắn"
-        }
-        err_show('pass', err_mess)
-    })
-}
-
-
-intiCheck()
-/**
- * 
- * @param {Element} elem 
- * @param {*} data 
-*/
-function create_sele_box(elem, data) {
-    elem.innerHTML = ''
-    var div_selected = document.createElement('div')
-    div_selected.className = 'selected'
-    div_selected.textContent = elem.getAttribute('placeholder')
-    div_selected.setAttribute('id_sele', '')
-    elem.appendChild(div_selected)
-
-    var div_selec_popup = document.createElement('div')
-    div_selec_popup.className = 'selec-popup'
-
-    function closePopup() {
-        elem.style.borderColor = ''
-        div_selec_popup.classList.remove('open')
-        document.removeEventListener('click', closePopup)
-    }
-    elem.addEventListener('click', event => {
-        elem.style.borderColor = 'black'
-        div_selec_popup.classList.add('open')
-        event.stopPropagation()
-        document.body.addEventListener('click', closePopup)
-    })
-
-    var div_search = document.createElement('div')
-    var div_option_container = document.createElement('div')
-
-    div_search.className = 'search'
-    var input = document.createElement('input')
-    input.setAttribute('placeholder', 'Tên hoặt mã số')
-    input.addEventListener('keyup', event => {
-        // filter
-
-        var text = event.target.value;
-        div_option_container.childNodes.forEach(e => {
-
-            if (e.textContent.toLowerCase().includes(text.toLowerCase())) {
-                e.style.display = 'block'
-            }
-            else if (e.querySelector('input').id.toLowerCase().includes(text.toLowerCase())) {
-                e.style.display = 'block'
-            }
-            else {
-                e.style.display = 'none'
-            }
-        })
-    })
-    div_search.appendChild(input)
-    div_selec_popup.appendChild(div_search)
-
-    div_option_container.className = 'option-container'
-    data.forEach(element => {
-        var { id, display_name } = element;
-        if (id == '') return
-
-        var div_option = document.createElement('div')
-        div_option.className = 'option'
-
-        var input_radio = document.createElement('input')
-        input_radio.type = 'radio'
-        input_radio.id = id
-        input_radio.name = 'elect' + elem.id
-        input_radio.addEventListener('change', event => {
-            // console.log(display_name)
-            div_selected.textContent = display_name
-            div_selected.setAttribute('id_sele', id)
-            closePopup()
-        })
-
-        div_option.append(input_radio)
-
-        var label = document.createElement('label')
-        label.setAttribute('for', id)
-        label.textContent = display_name
-
-        div_option.appendChild(label)
-
-        div_option_container.appendChild(div_option)
-    });
-    div_selec_popup.appendChild(div_option_container)
-
-    elem.appendChild(div_selec_popup)
-}
-
-fetch('api/ds_khoa').then(e => e.json()).then(e => {
-    if (e.err_mess) {
-        console.error(e.err_mess)
-        return
-    }
-    create_sele_box(document.getElementById('khoa'), e.data)
-})
-
-fetch('api/ds_lop').then(e => e.json()).then(e => {
-    if (e.err_mess) {
-        console.error(e.err_mess)
-        return
-    }
-    create_sele_box(document.getElementById('lop'), e.data)
-})
-
-
-async function check_email(email) {
     var check_email_req = await fetch('api/check_email', {
         method: "POST",
         headers: {
@@ -457,31 +52,309 @@ async function check_email(email) {
     })
 
     const json_resp = await check_email_req.json()
+    console.log(json_resp)
+    return json_resp.data;
+}
 
-    return json_resp.data
+/**
+ * 
+ * @param {Element} ele input fil
+ * @param {string} mess 
+ */
+function showErr(ele, mess) {
+    const parent = ele.parentElement;
+    const errIcon = parent.querySelector('.icon-err')
+    const toolTip = parent.querySelector('.tooltip')
+
+    if (!errIcon.classList.contains('show')) {
+        errIcon.classList.add('show')
+    }
+
+    toolTip.textContent = mess
+}
+
+/**
+ * @param {Element} ele 
+ */
+function hideErr(ele) {
+    const parent = ele.parentElement;
+    const errIcon = parent.querySelector('.icon-err')
+    const toolTip = parent.querySelector('.tooltip')
+
+    errIcon.classList.remove('show')
+    toolTip.textContent = ''
+}
+
+
+/**
+ * 
+ * @param {Element} ele 
+ * @param {CallableFunction} getErr 
+ */
+function handleErrCheck(ele, getErr) {
+
+    listElementCheck.push([ele, getErr])
+
+    async function handleEvent(event) {
+        var value = event.target.value;
+
+        if (getErr instanceof AsyncFunction) {
+            var mess = await getErr(value)
+        }
+        else var mess = getErr(value)
+
+        if (mess) {
+            showErr(ele, mess);
+            return
+        }
+
+        hideErr(ele);
+    }
+
+    ele.addEventListener('keyup', handleEvent)
+    ele.addEventListener('focusout', handleEvent)
+}
+
+async function checkAll() {
+    var haveErr = false
+
+
+    async function checkErrasync([ele, getErr]) {
+        const value = ele.value;
+
+        if (getErr instanceof AsyncFunction) {
+            var mess = await getErr(value)
+        }
+        else var mess = getErr(value)
+
+        if (mess) {
+            showErr(ele, mess)
+            haveErr = true
+            return
+        }
+
+        hideErr(ele)
+    }
+
+    var allPromise = listElementCheck.map(e => checkErrasync(e))
+    await Promise.all(allPromise)
+    return haveErr
+}
+
+
+async function checkValidName(userName) {
+
+    const return_model = {
+        HAVE_WHILL_SPACE: "Không được có khoản trắng.",
+        USERNAME_AREADY_EXIT: "Tên đăng nhập đã tồn tại.",
+        NO_INPUT: "Không được để chống"
+    }
+
+    if (userName.includes(' ')) return return_model.HAVE_WHILL_SPACE;
+    if (userName == '') return return_model.NO_INPUT
+}
+
+async function checkValidEmail(email) {
+    const return_model = {
+        EMAIL_INVALID: "Email không hợp lệ",
+        NO_INPUT: "Không được để chống",
+        AREADY_EXIT: "Email đã được sử dụng"
+    }
+
+    if (email == "") return return_model.NO_INPUT
+
+    const a = email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+    if (!a) return return_model.EMAIL_INVALID
+
+    if (await sendCheckEmailServer(email)) return return_model.AREADY_EXIT
+
+}
+
+async function checkValidPassword2(pass) {
+    const pass1 = document.getElementById('password').value
+
+    if (pass == "") return "Không được để chống"
+    if (pass1 != pass) return "Không giống"
+}
+
+/**
+ * 
+ * @param {string} pass 
+ */
+async function checkValidPassword(pass) {
+    const return_model = {
+        HAVE_SPACE: "Không được có khoản trắng",
+        NGAN: "Quá nắng"
+    }
+
+    if (pass.length < 5) return return_model.NGAN;
+    if (pass.includes(' ')) return return_model.HAVE_SPACE
+}
+
+
+async function handleSignUpClick() {
+
+    console.log('ok')
+    const fullFill = await checkAll();
+    if (fullFill) return
+
+    const userName = document.getElementById('user-name').value
+    const password = document.getElementById('password').value
+    const email = document.getElementById('email').value
+    const fullName = document.getElementById('full-name').value
+    const mssv = document.getElementById('mssv').value
+    const khoa = document.getElementById('khoa').getAttribute('data_id')
+    const lop = document.getElementById('lop').getAttribute('data_id')
+
+    console.log(userName ,password ,email ,fullName ,mssv ,khoa ,lop)
+    const data = await sendCreateAccount(userName, password, email, fullName, mssv, khoa, lop)
     
+    if (data.success) {
+        location.pathname = "/sign_up/otp"
+        return
+    }
+
+    showErr(document.getElementById(data.errLocation), data.errMess)
 
 }
 
-function email_event() {
-    var id_event = null;
-    document.getElementById('email').addEventListener('keyup', event => {
-        if (id_event) clearTimeout(id_event);
-        id_event = setTimeout(async () => {
-            var email = document.getElementById('email').value
-            if (email.includes('@')) {
-                var email_used = await check_email(email);
-                if (email_used) {
-                    err_show("email", "Đã tồn tại");
-                    disable_button_next();
-                }
-                else {
-                    err_show("email", null);
-                    no_disable_button_next();
-                }
+/**
+ * 
+ * @param {Element} input 
+ * @param {Array<[string, string]>} data   
+ */
+function createDropDown(input, data) {
+    
+    var Node12;
+    var Node1111;
+    var popup;
+    function filter(value) {
+        Node12.childNodes.forEach(element => {
+            if (element.textContent.toLowerCase().includes(value.toLowerCase())) {
+                element.style.display = null
             }
-        }, 500)
-    })
+            else 
+                element.style.display = 'none'
+        })
+    }
+
+    function hidePopup(event) {
+        console.log('ok2')
+        popup.classList.remove('show');
+        document.body.removeEventListener('click' , hidePopup)
+    }
+
+    function setValue(id, value) {
+        input.value = value
+        input.setAttribute('data_id', id)
+    }
+
+    /**
+     * 
+     * @param {Event} event 
+     */
+    function showPopup(event) {
+        console.log('ok')
+        popup.classList.add('show');
+        Node1111.focus()
+    }
+
+    function createElement(data) {
+        var Node1 = document.createElement("div");
+        Node1.setAttribute("class", "dropdown-popup");
+        Node1.addEventListener('click', (event) => event.preventDefault())
+
+        var Node11 = document.createElement("div");
+        Node11.setAttribute("class", "search");
+        Node1.appendChild(Node11);
+
+        var Node111 = document.createElement("div");
+        Node111.setAttribute("class", "wall-input");
+        Node11.appendChild(Node111);
+
+        Node1111 = document.createElement("input");
+        Node1111.setAttribute("type", "text");
+        Node1111.setAttribute("placeholder", "Search");
+        Node1111.addEventListener('focus', (event) => {
+            event.stopPropagation()
+            setTimeout(() => {
+                document.body.addEventListener('click', hidePopup)
+            }, 200)
+        })
+        Node1111.addEventListener('keyup', (event) => {
+            filter(event.target.value)
+        })
+        Node111.appendChild(Node1111);
+
+        Node12 = document.createElement("div");
+        Node12.setAttribute("class", "view");
+        Node1.appendChild(Node12);
+
+        data.forEach(({id, display_name}) => {
+            var Node121 = document.createElement("div");
+            Node121.setAttribute("class", "item");
+            Node121.textContent = display_name
+            Node121.setAttribute('khoa-id', id)
+            Node121.onclick = (event) => {
+                setValue(id, display_name)
+                popup.classList.remove('show');
+                document.removeEventListener('click' , hidePopup)
+                event.preventDefault()
+
+            }
+            Node12.appendChild(Node121);
+        });
+
+        return Node1
+    }
+
+  
+    popup = createElement(data)
+    input.parentNode.appendChild(popup)
+    input.addEventListener('focus', showPopup)
 }
 
-email_event()
+
+handleErrCheck(document.getElementById("user-name"), checkValidName)
+handleErrCheck(document.getElementById("email"), checkValidEmail)
+handleErrCheck(document.getElementById("password"), checkValidPassword)
+handleErrCheck(document.getElementById("password-2"), checkValidPassword2)
+
+async function getDsKhoa() {
+
+    const dsKhoaResp = await fetch('/api/ds_khoa')
+
+
+    const json_data = await dsKhoaResp.json()
+
+    if (json_data.err) {
+        console.error(json_data)
+        return
+    }
+
+    createDropDown(document.getElementById('khoa'),json_data.data)
+}
+
+getDsKhoa()
+
+
+
+async function getDsLop() {
+
+    const dsKhoaResp = await fetch('/api/ds_lop')
+
+
+    const json_data = await dsKhoaResp.json()
+
+    if (json_data.err) {
+        console.error(json_data)
+        return
+    }
+
+    createDropDown(document.getElementById('lop'),json_data.data)
+}
+
+getDsLop()
+// document.querySelector('button.ok').onClick = handleSignInClick
+

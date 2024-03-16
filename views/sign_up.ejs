@@ -12,20 +12,23 @@
 
     <script>
         function setToDarkMode() {
-            document.documentElement.style.setProperty('--wrapper-color', '#282a2c')
-            document.documentElement.style.setProperty('--h1dangky-color', '#bdc1c6')
-            document.documentElement.style.setProperty('--input-color', '#282a2c')
-            document.documentElement.style.setProperty('--text-color', '#bdc1c6')
-            document.documentElement.style.setProperty('--member-color', '#bdc1c6')
             document.documentElement.style.setProperty('--background-color-2', '#1b1b1b')
+            document.documentElement.style.setProperty('--text-color', '#e3e3e3')
+            document.documentElement.style.setProperty('--text-color-2', '#898989')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
+            document.documentElement.style.setProperty('--background-color-1', '#282a2c')
+            document.documentElement.style.setProperty('--height-line-color', 'rgba(255,255,255,0.2)')
         }
 
         function setToLightMode() {
-            document.documentElement.style.setProperty('--wrapper-color', 'whitesmoke')
-            document.documentElement.style.setProperty('--h1dangky-color', '#07001f')
-            document.documentElement.style.setProperty('--input-color', '#e4e4e4')
-            document.documentElement.style.setProperty('--text-color', '#07001f')
             document.documentElement.style.setProperty('--background-color-2', '#e9eef6')
+            document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
+            document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
+            document.documentElement.style.setProperty('--background-color-1', 'whitesmoke')
+            document.documentElement.style.setProperty('--height-line-color', 'rgb(218,220,224)')
         }
 
         if (localStorage.getItem('theme') == 'dark') {
@@ -38,50 +41,85 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <h1>Đăng Ký</h1>
-        <form>
-            <div class="tab1">
-                <input type="text" placeholder="Tên đăng nhập" id="username">
-                <p class="err_view username"></p>
-                <input type="text" placeholder="Mật khẩu" id="pass">
-                <p class="err_view pass"></p>
-                <input type="text" placeholder="Email" id="email">
-                <p class="err_view email"></p>
-            </div>
-
-            <div class="tab2" style="display: none;">
-                <input type="text" placeholder="Họ Tên" id="display_name">
-                <p class="err_view display_name"></p>
-                <input type="text" placeholder="Mã Sinh Viên" id="mssv">
-                <p class="err_view mssv"></p>
-                <!-- <input type="text" placeholder="Khao" id="khoa"> -->
-                <div class="select-box khoa" id="khoa" placeholder="Chọn khoa"></div>
-                <p class="err_view khoa"></p>
-                <div class="select-box khoa" id="lop" placeholder="Chọn lop"></div>
-                <p class="err_view lop"></p>
-            </div>
-            
-            <div class="tab3" style="display: none;">
-                <div class="otp-box">
-                    <div id="inputs" class="inputs">
-                        <input class="input" type="text" inputmode="numeric"/>
-                        <input class="input" type="text" inputmode="numeric"/>
-                        <input class="input" type="text" inputmode="numeric"/>
-                        <input class="input" type="text" inputmode="numeric"/>
-                        <input class="input" type="text" inputmode="numeric"/>
-                    </div>
+    <div class="main-center">
+        <p class="title">SignUp Form</p>
+        <div class="line">
+            <label class="wall-input">
+                <input type="text" id="user-name" placeholder="Tên đăng nhập">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
                 </div>
-                <p class="err_view otp"></p>
-            </div>
-        </form>
-        <div class="err" id="err"></div>
-        <button onclick="next()" class="next">Đăng ký</button>
-        <div class="line"></div>
-        <button onclick="" class="sguacc">Đăng ký với tài khoản trường</button>
-        <div class="member">
-            Đã có tài khoản ? <a href="./sign_in">Đăng nhập</a>
+            </label>
+            <label class="wall-input">
+                <input type="text" id="email" placeholder="Email">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
         </div>
+        <div class="line">
+            <label class="wall-input">
+                <input type="text" id="password" placeholder="Mật khẩu">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input">
+                <input type="text" id="password-2" placeholder="Xác nhận mật khẩu">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+        </div>
+        <div class="line">
+            <label class="wall-input">
+                <input type="text" id="full-name" placeholder="Họ và tên">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input">
+                <input type="number" id="mssv" placeholder="Mã số sinh viên">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+        </div>
+        <div class="line">
+            <label class="wall-input">
+                <input class="dropdown" type="text" id="khoa" placeholder="Khoa">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+            <label class="wall-input">
+                <input class="dropdown" type="text" id="lop" placeholder="Lớp">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+        </div>
+
+        <button class="ok" onclick="handleSignUpClick()">SignUp</button>
+
+        <p class="dctk">Đã có tài khoản?<a href="/sign_in">SignIn</a></p>
+
+        <div class="hr">
+            <div class="a"></div>
+            <span>OR</span>
+            <div class="a"></div>
+        </div>
+
+        <button class="b2">Đăng nhập với tài khoản sgu</button>
+
     </div>
 </body>
 

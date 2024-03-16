@@ -1,9 +1,10 @@
 const { request, response } = require('express');
 
 const mysqlService = require('../services/app.service')
+const generateOTP = require('../utils/otp')
+const errPage = require('../models/errPage.model')
 const {createResponse, ERR_LOCATION} = require('../models/signUpRes.model')
 const {validAccountPassword, checkEmailAlreadyExists, checkUserNameAlreadyExists} = require('../middleware/app.middleware');
-const generateOTP = require('../utils/otp')
 const {sendOtp} = require('../utils/email')
 
 
@@ -37,7 +38,7 @@ async function handleOTP(req, res) {
 
     // TODO: thêm phần thông báo
     req.session.destroy()
-    createResponse(res, null, "ok");
+    createResponse(res, null,);
 }
 
 // NOTE: checkacc move to api
@@ -94,6 +95,22 @@ async function getSignUpPage(req, res) {
     res.render("sign_up", {});
 }
 
+
+/**
+ * 
+ * @param {request} req 
+ * @param {response} res 
+ */
+async function getOtpPage(req, res) {
+    console.log(req.session.otpCode)
+    if (!req.session.otpCode) {
+        res.render('err_page', errPage.PAGE_NOT_FOUND)
+        return
+    }
+
+    res.render('otp')
+}
+
 module.exports = {
-    handleOTP, createAcc, getSignUpPage
+    handleOTP, createAcc, getSignUpPage, getOtpPage
 }

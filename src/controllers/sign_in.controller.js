@@ -29,6 +29,7 @@ async function login(req, res) {
     
     if (!userName || !password) {
         createResponse(res, false, "bad req")
+        return
     }
 
     const [err, user] = await mysqlService.login(userName, password)

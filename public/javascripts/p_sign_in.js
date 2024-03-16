@@ -1,16 +1,32 @@
-  
-function setErr(mess) {
-    document.querySelector('.err_view.a').innerHTML += `<p>${mess}</p>` 
+function showErr(ele, mess) {
+    const parent = ele.parentElement;
+    const errIcon = parent.querySelector('.icon-err')
+    const toolTip = parent.querySelector('.tooltip')
+
+    if (!errIcon.classList.contains('show')) {
+        errIcon.classList.add('show')
+    }
+
+    toolTip.textContent = mess
 }
 
-function clsErr() {
-    document.querySelector('.err_view.a').innerHTML = ''
+/**
+ * @param {Element} ele 
+ */
+function hideErr(ele) {
+    const parent = ele.parentElement;
+    const errIcon = parent.querySelector('.icon-err')
+    const toolTip = parent.querySelector('.tooltip')
+
+    errIcon.classList.remove('show')
+    toolTip.textContent = ''
 }
+
 
 function sign_in() {
-    clsErr()
-    var user = document.getElementById('username').value;
-    var pass = document.getElementById('pass').value;
+    hideErr(document.getElementById('user-name'))
+    var user = document.getElementById('user-name').value;
+    var pass = document.getElementById('password').value;
 
     fetch('/sign_in', {
         method: 'POST',
@@ -27,23 +43,13 @@ function sign_in() {
 
         console.log(json_data)
         if (!json_data.success) {
-            setErr(json_data.mess)
+            showErr(document.getElementById('user-name'), "MK hoặc tài khoản không đúng")
+            document.getElementById('password').value = ''
             return
         }
 
 
         document.location.pathname = sessionStorage.getItem('befor');
-
-        // if (response.status == 200) {
-            // document.location.pathname = sessionStorage.getItem('befor');
-        //     return;
-        // }
-
-        // // TODO: chỉnh lại cái này
-        // var mess;
-        // if (response.status == 400) mess = "Tên đăng nhập hoặc mật khẩu không đúng";
-        // else mess = await response.text();
-        // setErr(mess);
     });
 
 }

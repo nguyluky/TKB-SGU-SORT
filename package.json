@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --trace-deprecation ./app.js",
+    "start": "node ./app.js",
     "dev": "nodemon --inspect -L ./app.js",
     "sass_w": "sass --watch --no-source-map ./public/stylesheets/.scss/:./public/stylesheets/"
   },

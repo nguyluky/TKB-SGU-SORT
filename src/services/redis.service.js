@@ -5,6 +5,9 @@ const {createClient} = require('redis')
 const config = require('../configs/redis.config')
 
 const redisClient = createClient(config)
+
+console.log('>> start connet redis', config.url)
+
 redisClient.connect().catch(console.error)
 
 const redisStore = new RedisStore({

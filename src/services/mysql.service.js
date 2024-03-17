@@ -7,6 +7,7 @@ const mysqlConfig = require('../configs/mysql.config')
 let connect;
 
 async function createConnet() {
+    console.log('>> start connet mysql at', mysqlConfig.host)
     connect = await mysql.createConnection(mysqlConfig);
 }
 

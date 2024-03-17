@@ -30,7 +30,7 @@ var app = express();
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
-app.use(logger(':method :url :status :res[content-length] - :response-time ms'));
+app.use(logger('common'));
 app.use(express.urlencoded({ extended:  false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.json());
@@ -127,5 +127,5 @@ server_https.on('error', (e) => onError(e, https_port));
 io.on('connection', ioController);
 
 server_https.listen(https_port, () => {
-  console.log(`server start in https://localhost:${https_port}`);
+  console.log(`>> server start in https://localhost:${https_port}`);
 });

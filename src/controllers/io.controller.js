@@ -24,7 +24,6 @@ async function onConnect(socket) {
     }
 
     if (!await checkPermissionTkb(tkbId, userId)) {
-        createResponse(res, errCode.PERMISSION)
         return
     }
 

@@ -8,7 +8,6 @@ const login_option = {
         pass: process.env.EMAIL_PASS
     }
 }
-console.log(login_option)
 var transporter = nodemailer.createTransport(login_option)
 
 function sendMail(to, subject, text, callback) {

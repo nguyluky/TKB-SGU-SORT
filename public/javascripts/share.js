@@ -57,6 +57,9 @@ function get_use_info() {
 
 get_use_info()
 
+function beforNavigationPage() {
+}
+
 function initAccoutClick() {
 
     var accountPopup = document.querySelector('.menubar-right-item .accout-popup')
@@ -73,6 +76,7 @@ function initAccoutClick() {
         // kiểm tra xem có đăng nhập chưa
         if (!checkLogin()) {
             sessionStorage.setItem('befor', document.location.pathname)
+            beforNavigationPage()
             document.location.href = "/sign_in"
             return
         }

@@ -20,6 +20,7 @@ const errPageRouter = require('./src/routes/err_page')
 const errPages = require('./src/models/errPage.model')
 
 const {redisStore, redisClient} = require('./src/services/redis.service')
+const ioController = require('./src/controllers/io.controller')
 
 
 
@@ -123,18 +124,7 @@ function onError(error, port) {
 var https_port = process.env.HTTPS_PORT;
 server_https.on('error', (e) => onError(e, https_port));
 
-io.on('connection', (socket) => {
-
-  socket.on('add', function() {
-    console.log(arguments)
-  })
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-
-  console.log('ok')
-});
+io.on('connection', ioController);
 
 server_https.listen(https_port, () => {
   console.log(`server start in https://localhost:${https_port}`);

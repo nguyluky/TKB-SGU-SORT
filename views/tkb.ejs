@@ -38,8 +38,8 @@
     </script>
 
     <script>
-
         var tkb_id = "<%= tkb_id %>"
+        const socket = io(location.origin, {query: {"tkb_id": tkb_id}})
     </script>
 </head>
 

@@ -226,6 +226,7 @@ async function updateTkb(req, res) {
     }
     if (!await checkPermissionTkb(tkbId, userId)) {
         createResponse(res, errCode.PERMISSION)
+        return
     }
 
     const {name , id_to_hocs: idToHocs, description,thumbnail} = req.body;

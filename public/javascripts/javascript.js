@@ -1,5 +1,5 @@
 var data = null;
-var isSave = false;
+var isSave = true;
 let filterItem = {}
 // Khi người dùng click thêm học phần
 const button_themhocphan = document.querySelector('.button_themhocphan')
@@ -8,7 +8,10 @@ const add_themhocphan = document.querySelector('.add_themhocphan')
 // TODO khi nguoi dung chuat phai vao hoc phan
 async function initFile() {
     console.log(tkb_id)
-    if (!tkb_id) return;
+    if (!tkb_id) {
+        loadHocPhanFromSessionStorage()
+        return
+    };
     var a = createPopup('info', "get tkb save", -1)
     var req = await fetch(`/api/tkb?` + new URLSearchParams({
         tkb_id: tkb_id
@@ -23,13 +26,17 @@ async function initFile() {
         return
     }
 
+    var load = true;
+
     data_json.data.json_data.forEach(id_to_hoc => {
         data.ds_nhom_to.forEach(e => {
             if (e.id_to_hoc == id_to_hoc) {
                 // console.log(e)
+
                 addHp(e.ma_mon)
                 var ele = document.querySelector(`div.list-hp div[id-to-hoc="${e.id_to_hoc}"]`)
                 ele.click()
+                load = false
                 // tkb.render(e)
 
             }
@@ -38,6 +45,12 @@ async function initFile() {
 
     a.remove()
     createPopup('success', "Tải thời khóa biểu thành công")
+
+    if (load) loadHocPhanFromSessionStorage();
+
+    isSave = true
+    console.log("set true")
+
 }
 
 function buttonThemHocPhanInit() {
@@ -225,6 +238,8 @@ function hocPhanInit(cls) {
     function chonTiet(hp, div_hp_item, div_list_hp, hp_per) {
         var list_tiet_curr = []
 
+        if (div_hp_item.classList.contains('select')) return
+
         // tiet hoc pham moi them vao
         hp.tkb.forEach(tkb_item => {
             for (let index = tkb_item.tbd; index <= tkb_item.tkt; index++) {
@@ -280,8 +295,12 @@ function hocPhanInit(cls) {
         tkb.remove_go(hp.id_to_hoc)
 
         removeSelection(div_list_hp)
+        isSave = false
+        console.log("set false")
+
 
         tkb.render(hp)
+        sendEventChangeTH(hp.id_to_hoc)
 
         div_hp_item.classList.add("select")
 
@@ -313,6 +332,7 @@ function hocPhanInit(cls) {
 
         if (list_hp.includes(mahp)) return
         list_hp.push(mahp);
+        sendEventAddHp(mahp)
 
         var list = data.ds_nhom_to.filter(e => e.ma_mon == mahp)
         var name = data.ds_mon_hoc[mahp]
@@ -374,6 +394,7 @@ function hocPhanInit(cls) {
             div_hp_item.onmouseenter = () => { showGhost(hp, mahp) }
             div_hp_item.onmouseleave = () => { hideGhost(hp, mahp) }
             div_hp_item.onclick = () => { chonTiet(hp, div_hp_item, div_list_hp, hp) }
+            
             div_hp_item.addEventListener('contextmenu', (event) => {
                 console.log('ok')
                 event.preventDefault()
@@ -426,6 +447,7 @@ function hocPhanInit(cls) {
         
         if (!hp) return
         hp.remove()
+        sendEventRemoveHp(mahp)
 
         Object.values(tkb.hocphan).forEach(e => {
             if (e.ma_mon == mahp) {
@@ -939,6 +961,9 @@ function saveTkb() {
             tkb_id = resp_json.data.tkb_id
             window.history.pushState(stateObj, "", "/tkb/" + tkb_id);
             createPopup('success', '')
+            isSave = true
+            console.log("set true")
+            sessionStorage.setItem('tkb-save', '')
             cancelHandle()
         })
     }
@@ -966,6 +991,8 @@ function saveTkb() {
             }
 
             createPopup('success', '')
+            isSave = true
+
         })
 
     }
@@ -1163,3 +1190,75 @@ function filterInit() {
     }
 }
 filterInit()
+
+
+const beforeUnloadHandler = (event) => {
+    console.log(event)
+    if (isSave) return
+
+
+    // Recommended
+    event.preventDefault();
+
+    // Included for legacy support, e.g. Chrome/Edge < 119
+    event.returnValue = true;
+};
+
+window.addEventListener("beforeunload", beforeUnloadHandler);
+
+function beforNavigationPage() {
+    isSave = true
+    console.log("set true")
+    sessionStorage.setItem("tkb-save", JSON.stringify(Object.values(tkb.hocphan)))
+}
+
+function loadHocPhanFromSessionStorage() {
+    var hocphan = sessionStorage.getItem('tkb-save')
+
+    sessionStorage.setItem('tkb-save', '')
+    if (!hocphan) return
+
+    hocphan = JSON.parse(hocphan)
+
+    hocphan.forEach(e => {
+        console.log(e)
+        addHp(e.ma_mon)
+        var ele = document.querySelector(`div.list-hp div[id-to-hoc="${e.id_to_hoc}"]`)
+        ele.click()
+    })
+}
+
+
+function sendEventAddHp(hp) {
+
+    if (!tkb_id) return
+    socket.emit('add-hp', hp)
+}
+
+function sendEventRemoveHp(hp) {
+    if (!tkb_id) return
+    socket.emit('remove-hp', hp)
+}
+
+function sendEventChangeTH(id_to_hoc) {
+    console.log("sendEventChangeTH")
+    if (!tkb_id) return
+    socket.emit('change-th', id_to_hoc)
+}
+
+
+socket.on('add-hp', (mahp) => {
+    console.log("add-hp", mahp)
+    addHp(mahp)
+})
+
+socket.on('remove-hp', (mahp) => {
+    console.log(mahp)
+    removeHp(mahp)
+})
+
+socket.on('change-th', (id_to_hoc) => {
+    console.log(id_to_hoc)
+    var ele = document.querySelector(`div.list-hp div[id-to-hoc="${id_to_hoc}"]`)
+    if (ele) ele.click()
+})

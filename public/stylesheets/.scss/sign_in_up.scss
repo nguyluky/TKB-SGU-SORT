@@ -119,8 +119,10 @@ body {
                 }
 
                 i {
+
                     color: #D03947;
                     font-size: 20px;
+                    cursor: pointer;
                 }
 
                 &:has(i:hover) .tooltip {
@@ -179,6 +181,7 @@ body {
                         text-wrap: nowrap;
                         text-overflow: ellipsis;
                         overflow: hidden;
+                        color: var(--text-color);
 
                         &:hover {
                             background-color: rgba(0, 0, 0, 0.15);
@@ -197,6 +200,14 @@ body {
         border: 1px #5b5f6354 solid;
         border-radius: 5px;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        i {
+            display: none;
+            font-size: 25px;
+        }
         &.ok {
             background: #075AD4;
             color: #fff;
@@ -209,6 +220,10 @@ body {
 
         &:active {
             filter: brightness(0.7);
+        }
+
+        &.loading i {
+            display: inline;
         }
     }
 

@@ -5,7 +5,6 @@ const signUpController = require('../controllers/sign_up.controller')
 
 var router = express.Router();
 
-router.post('/otp' , signUpController.handleOTP)
 
 // NOTE check checkacc move to api
 
@@ -14,5 +13,6 @@ router.get('/', signUpController.getSignUpPage);
 
 // TODO add page
 router.get('/otp', signUpController.getOtpPage)
+router.post('/otp' , signUpController.handleOTP)
 
 module.exports = router;

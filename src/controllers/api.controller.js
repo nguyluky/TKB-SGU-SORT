@@ -322,6 +322,15 @@ async function getInviteLink(req, res) {
 }
 
 
+/**
+ * 
+ * @param {request} req 
+ * @param {response} res 
+ */
+async function forgetPassword(req, res) {
+    
+}
+
 
 
 module.exports = {

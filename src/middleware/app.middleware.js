@@ -22,6 +22,11 @@ function validAccountPassword(user, password) {
         return {"userErr": "Tên người dùng quá ngắn"}
     }
 
+    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if (format.test(user)) {
+        return {"userErr": "Tên đăng nhậm không được chứa ký tự đặp biệt."}
+    }
+
     return {}
 }
 
@@ -69,6 +74,8 @@ async function checkUserNameAlreadyExists(userName) {
 
     return false
 }
+
+
 
 module.exports = {
     checkEmailAlreadyExists, 

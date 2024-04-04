@@ -10,7 +10,6 @@ const { checkPermissionTkb } = require('../middleware/app.middleware')
 async function onConnect(socket) {
     
     const {tkb_id: tkbId} = socket.handshake.query;
-    console.log(tkbId)
     if (!tkbId) return
     const token = socket.request.session.token;
     const [err, userId] = await mysqlService.token2userId(token);
@@ -26,7 +25,7 @@ async function onConnect(socket) {
     if (!await checkPermissionTkb(tkbId, userId)) {
         return
     }
-
+    console.log(">>",userId, "join", tkbId)
     socket.join(tkbId)
 
     socket.on('add-hp', (mahp) => {
@@ -42,10 +41,9 @@ async function onConnect(socket) {
     })
   
     socket.on('disconnect', () => {
-      console.log('user disconnected');
+        console.log(">>",userId, "lead", tkbId)
     });
-  
-    console.log('ok')
+
   }
 
 module.exports = onConnect

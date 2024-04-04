@@ -1,8 +1,8 @@
 const AsyncFunction = async function () { }.constructor;
-var listElementCheck = []
-
+let listElementCheck = [];
 
 async function sendCreateAccount(userName, password, email, fullName, mssv, khoa, lop) {
+
     const create_accoutn_resp = await fetch('sign_up', {
         method: 'PUT',
         headers: {
@@ -147,11 +147,15 @@ async function checkValidName(userName) {
     const return_model = {
         HAVE_WHILL_SPACE: "Không được có khoản trắng.",
         USERNAME_AREADY_EXIT: "Tên đăng nhập đã tồn tại.",
-        NO_INPUT: "Không được để chống"
+        NO_INPUT: "Không được để chống",
+        SPECIAL_CHARACTERS: "Không được chứa ký tự đặp biệt."
     }
-
+    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     if (userName.includes(' ')) return return_model.HAVE_WHILL_SPACE;
-    if (userName == '') return return_model.NO_INPUT
+    if (userName == '') return return_model.NO_INPUT;
+    if (format.test(userName)) return return_model.SPECIAL_CHARACTERS;
+
+
 }
 
 async function checkValidEmail(email) {
@@ -193,11 +197,14 @@ async function checkValidPassword(pass) {
 }
 
 
-async function handleSignUpClick() {
+async function handleSignUpClick(event) {
 
-    console.log('ok')
+    event.target.classList.add("loading");
     const fullFill = await checkAll();
-    if (fullFill) return
+    if (fullFill) {
+        event.target.classList.remove("loading");
+        return;
+    }
 
     const userName = document.getElementById('user-name').value
     const password = document.getElementById('password').value
@@ -215,6 +222,7 @@ async function handleSignUpClick() {
         return
     }
 
+    event.target.classList.remove("loading");
     showErr(document.getElementById(data.errLocation), data.errMess)
 
 }
@@ -231,6 +239,7 @@ function createDropDown(input, data) {
     var popup;
     function filter(value) {
         Node12.childNodes.forEach(element => {
+
             if (element.textContent.toLowerCase().includes(value.toLowerCase())) {
                 element.style.display = null
             }
@@ -256,6 +265,12 @@ function createDropDown(input, data) {
      */
     function showPopup(event) {
         console.log('ok')
+        if (popup.classList.contains('show')) {
+            event.target.blur()
+            console.log('all')
+            return
+        }
+
         popup.classList.add('show');
         Node1111.focus()
     }
@@ -294,14 +309,18 @@ function createDropDown(input, data) {
         data.forEach(({id, display_name}) => {
             var Node121 = document.createElement("div");
             Node121.setAttribute("class", "item");
+
+            if (display_name.includes('-')) display_name = display_name.split('-')[1];
+            else if (display_name.includes('(ngành)')) display_name = display_name.replaceAll("(ngành) " , '')
+            display_name = display_name + " - " + id
             Node121.textContent = display_name
-            Node121.setAttribute('khoa-id', id)
+            Node121.title = display_name
+            Node121.setAttribute('data-id', id)
             Node121.onclick = (event) => {
                 setValue(id, display_name)
                 popup.classList.remove('show');
                 document.removeEventListener('click' , hidePopup)
                 event.preventDefault()
-
             }
             Node12.appendChild(Node121);
         });
@@ -312,7 +331,7 @@ function createDropDown(input, data) {
   
     popup = createElement(data)
     input.parentNode.appendChild(popup)
-    input.addEventListener('focus', showPopup)
+    input.addEventListener('click', showPopup)
 }
 
 
@@ -357,4 +376,6 @@ async function getDsLop() {
 
 getDsLop()
 // document.querySelector('button.ok').onClick = handleSignInClick
+
+document.getElementById('sign-up').onclick = handleSignUpClick
 

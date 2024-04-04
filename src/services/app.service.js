@@ -1,6 +1,6 @@
 const {query, escape} = require('./mysql.service');
 const { v4: uuidv4 } = require('uuid');
-const { token48: token } = require('../utils/app');
+const { token48: token , validateEmail} = require('../utils/app');
 
 
 /**
@@ -26,6 +26,7 @@ async function registerAccount(user, password, email,fullName, mssv, khao, lop) 
         VALUES (?,?,?,?,?)
     `
 
+    console.log(">>> create accout", uuid, fullName, mssv, khao, lop)
     var [err, result, fields] = await query(sqlCreateUserInfo, [uuid, fullName, mssv, khao, lop]);
     if (err) return [err, null];
     [err, result, fields] = await query(sqlCreateUserLoginInfo, [user, password, email, uuid]);
@@ -261,6 +262,14 @@ async function addUserToTkb(tkbId, userId) {
 
     const [err, result, fields] = await query(sql, [tkbId]);
     return [err, result]
+}
+
+async function createResetPasswordLink(userNameOrEmail) {
+    const sql = 'SELECT * FROM user_login_info WHERE username=? OR email=?;'
+
+    const isEmail = validateEmail()
+    const [err, result, fields] = await query(sql, [!isEmail ? userNameOrEmail: "", isEmail ? userNameOrEmail: "" ])
+    // TODO: làm nốt
 }
 
 module.exports = {

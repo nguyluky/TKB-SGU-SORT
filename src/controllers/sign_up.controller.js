@@ -5,7 +5,8 @@ const generateOTP = require('../utils/otp')
 const errPage = require('../models/errPage.model')
 const {createResponse, ERR_LOCATION} = require('../models/signUpRes.model')
 const {validAccountPassword, checkEmailAlreadyExists, checkUserNameAlreadyExists} = require('../middleware/app.middleware');
-const {sendOtp} = require('../utils/email')
+const {sendOtp} = require('../utils/email');
+const { validateEmail } = require('../utils/app');
 
 
 /**
@@ -24,7 +25,14 @@ async function handleOTP(req, res) {
         return
     }
 
-    const {user, password, email, display_name, ma_sv, khoa, lop} = req.session.userInfoCache;
+    var {user, password, email, display_name, ma_sv, khoa, lop} = req.session.userInfoCache;
+
+
+    display_name == undefined ? display_name = "": "";
+    ma_sv == undefined ? display_name = "": "";
+    khoa == undefined ? display_name = "": "";
+    lop == undefined ? display_name = "": "";
+
 
     // create acc
     const [err, userId] = await mysqlService.registerAccount(user, password, email, display_name, ma_sv, khoa, lop);
@@ -36,7 +44,6 @@ async function handleOTP(req, res) {
     }
 
 
-    // TODO: thêm phần thông báo
     req.session.destroy()
     createResponse(res, null,);
 }
@@ -51,7 +58,7 @@ async function handleOTP(req, res) {
  */
 async function createAcc(req, res) {
 
-    const {user, password, email} = req.body;
+    const {user, password, email, display_name, ma_sv, khoa, lop} = req.body;
 
 
     const {userErr, passErr} = validAccountPassword(user, password);
@@ -70,11 +77,18 @@ async function createAcc(req, res) {
         return
     }
 
+    if (!validateEmail(email)) {
+        createResponse(res, ERR_LOCATION.EMAIL, "Email không hợp lệ.")
+        return
+    }
+
     const UC = await checkUserNameAlreadyExists(user);
     if (UC) {
         createResponse(res, ERR_LOCATION.USER_NAME, "Tên đang nhập đã tồn tại");
         return
     }
+
+    
 
 
     const otp = await generateOTP();
@@ -94,7 +108,6 @@ async function createAcc(req, res) {
 async function getSignUpPage(req, res) {
     res.render("sign_up", {});
 }
-
 
 /**
  * 

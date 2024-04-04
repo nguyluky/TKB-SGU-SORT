@@ -73,6 +73,15 @@ async function getLoginPage(req, res) {
     res.render("sign_in", {});
 }
 
+/**
+ * 
+ * @param {request} req 
+ * @param {response} res 
+ */
+async function getForgetPasswordPage(req, res) {
+    res.render('forgot_password')
+}
+
 module.exports = {
-    lignOut, login, getLoginPage
+    lignOut, login, getLoginPage, getForgetPasswordPage
 }

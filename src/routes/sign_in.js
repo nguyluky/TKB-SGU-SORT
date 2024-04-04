@@ -35,4 +35,6 @@ router.post('/', signInController.login)
 /* GET home page. */
 router.get('/', signInController.getLoginPage);
 
+router.get('/forget_password', signInController.getForgetPasswordPage)
+
 module.exports = router;

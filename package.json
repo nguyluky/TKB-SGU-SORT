@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./app.js",
     "dev": "nodemon --inspect -L ./app.js",
-    "sass_w": "sass --watch --no-source-map ./public/stylesheets/.scss/:./public/stylesheets/"
+    "sass_w": "sass --watch --no-source-map ./public/stylesheets/.scss/:./public/stylesheets/ --style compressed"
   },
   "dependencies": {
     "connect-redis": "^7.1.1",

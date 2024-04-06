@@ -61,17 +61,23 @@
         </div>
         <div class="line">
             <label class="wall-input">
-                <input type="text" id="password" placeholder="Mật khẩu">
+                <input type="password" id="password" placeholder="Mật khẩu">
                 <div class="icon-err">
                     <i class='bx bx-error-circle'></i>
                     <div class="tooltip"></div>
                 </div>
+                <div class="hide-pass">
+                    <i class='bx bx-hide'></i>
+                </div>
             </label>
             <label class="wall-input">
-                <input type="text" id="password-2" placeholder="Xác nhận mật khẩu">
+                <input type="password" id="password-2" placeholder="Xác nhận mật khẩu">
                 <div class="icon-err">
                     <i class='bx bx-error-circle'></i>
                     <div class="tooltip"></div>
+                </div>
+                <div class="hide-pass">
+                    <i class='bx bx-hide'></i>
                 </div>
             </label>
         </div>
@@ -118,7 +124,7 @@
             <div class="a"></div>
         </div>
 
-        <button class="b2">Đăng nhập với tài khoản sgu</button>
+        <button class="b2" onclick="location = '/sign_in?type=SGU'">Đăng nhập với tài khoản sgu</button>
 
     </div>
 </body>

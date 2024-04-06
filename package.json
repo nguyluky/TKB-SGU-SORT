@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "node ./test/test_getUserInfo.js",
     "start": "node ./app.js",
     "dev": "nodemon --inspect -L ./app.js",
     "sass_w": "sass --watch --no-source-map ./public/stylesheets/.scss/:./public/stylesheets/ --style compressed"
@@ -25,9 +26,11 @@
     "nodemailer": "^6.9.10",
     "nodemon": "^3.0.3",
     "redis": "^4.6.13",
-    "request": "^2.88.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.6",
     "sass": "^1.70.0",
     "socket.io": "^4.7.4",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "winston": "^3.13.0"
   }
 }

@@ -53,3 +53,33 @@ function sign_in() {
     });
 
 }
+
+
+/**
+ * 
+ * @param {Element} ele 
+ */
+function showPasswordHandel(ele) {
+    const parentNode = ele.parentNode;
+    const icon = parentNode.querySelector('.hide-pass i')
+
+    const mouseUP = () => {
+        ele.type = 'password'
+        document.body.removeEventListener('mouseup', mouseUP);
+
+    }
+
+    icon.addEventListener('mousedown', (e) => {
+        if (ele.type == 'text') {
+            icon.className = 'bx bx-hide'
+            ele.type = 'password'
+        }
+        else {
+            ele.type = 'text';
+            icon.className = 'bx bx-show'
+        }
+        // document.body.addEventListener('mouseup', mouseUP);
+    })
+}
+
+showPasswordHandel(document.getElementById('password'))

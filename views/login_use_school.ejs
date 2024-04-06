@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập tài khoản</title>
+
+    <link rel="stylesheet" href="/stylesheets/sign_in_up.css">
+    <link href='/stylesheets/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <script>
+        function setToDarkMode() {
+            document.documentElement.style.setProperty('--background-color-2', '#1b1b1b')
+            document.documentElement.style.setProperty('--text-color', '#e3e3e3')
+            document.documentElement.style.setProperty('--text-color-2', '#898989')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
+            document.documentElement.style.setProperty('--background-color-1', '#282a2c')
+            document.documentElement.style.setProperty('--height-line-color', 'rgba(255,255,255,0.2)')
+        }
+
+        function setToLightMode() {
+            document.documentElement.style.setProperty('--background-color-2', '#e9eef6')
+            document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
+            document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
+            document.documentElement.style.setProperty('--background-color-1', 'whitesmoke')
+            document.documentElement.style.setProperty('--height-line-color', 'rgb(218,220,224)')
+        }
+
+        if (localStorage.getItem('theme') == 'dark') {
+            setToDarkMode()
+        }
+
+        /**
+         * 
+         * @param {Element} ele input fil
+         * @param {string} mess 
+         */
+        function showErr(ele, mess) {
+            const parent = ele.parentElement;
+            const errIcon = parent.querySelector('.icon-err')
+            const toolTip = parent.querySelector('.tooltip')
+
+            if (!errIcon.classList.contains('show')) {
+                errIcon.classList.add('show')
+            }
+
+            toolTip.textContent = mess
+        }
+
+        /**
+         * @param {Element} ele 
+         */
+        function hideErr(ele) {
+            const parent = ele.parentElement;
+            const errIcon = parent.querySelector('.icon-err')
+            const toolTip = parent.querySelector('.tooltip')
+
+            errIcon.classList.remove('show')
+            toolTip.textContent = ''
+        }
+
+        function sign_in() {
+            var userNameDiv = document.getElementById('user-name')
+            var passwordDiv = document.getElementById('password')
+
+            hideErr(userNameDiv)
+            hideErr(passwordDiv)
+
+            var userName = userNameDiv.value
+            var password = passwordDiv.value
+            
+            if (!userName) {
+                showErr(userNameDiv, "Không hợp lệ")
+                return
+            }
+            if (!password) {
+                showErr(passwordDiv, "Không hợp lệ")
+                return
+            }
+
+            fetch('/sign_up/SGU', {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userName: userName,
+                    pass: password
+                })
+            }).then(async (response) => {
+                const json_data = await response.json();
+
+                console.log(json_data)
+                if (!json_data.success) {
+                    showErr(document.getElementById('user-name'), "MK hoặc tài khoản không đúng")
+                    document.getElementById('password').value = ''
+                    return
+                }
+
+                document.location = '/sign_in';
+            });
+        }
+
+        /**
+         * 
+         * @param {Element} ele 
+         */
+        function showPasswordHandel(ele) {
+            const parentNode = ele.parentNode;
+            const icon = parentNode.querySelector('.hide-pass i')
+
+            const mouseUP = () => {
+                ele.type = 'password'
+                document.body.removeEventListener('mouseup', mouseUP);
+
+            }
+
+            icon.addEventListener('mousedown', (e) => {
+                if (ele.type == 'text') {
+                    icon.className = 'bx bx-hide'
+                    ele.type = 'password'
+                }
+                else {
+                    ele.type = 'text';
+                    icon.className = 'bx bx-show'
+                }
+                // document.body.addEventListener('mouseup', mouseUP);
+            })
+        }
+        </script>
+    
+</head>
+
+<body>
+    <div class="main-center">
+        <p class="title">SGU Account</p>
+        <div class="line">
+            <label class="wall-input">
+                <input type="text" id="user-name" placeholder="Tên đăng nhập">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+            </label>
+        </div>
+        <div class="line">
+            <label class="wall-input">
+                <input type="password" id="password" placeholder="Mật khẩu">
+                <div class="icon-err">
+                    <i class='bx bx-error-circle'></i>
+                    <div class="tooltip"></div>
+                </div>
+                <div class="hide-pass">
+                    <i class='bx bx-hide'></i>
+                </div>
+            </label>
+        </div>
+        <button class="ok" onclick="sign_in()">SignIn</button>
+        <p class="dctk">Quay lại Sign Up?<a href="/sign_up">SignUp</a></p>
+    </div>
+
+    <script>
+        showPasswordHandel(document.getElementById('password'))
+    </script>
+</body>
+
+</html>

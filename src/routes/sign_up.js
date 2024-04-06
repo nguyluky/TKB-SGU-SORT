@@ -9,6 +9,7 @@ var router = express.Router();
 // NOTE check checkacc move to api
 
 router.put('/', signUpController.createAcc)
+router.put('/SGU', signUpController.createAccSGU)
 router.get('/', signUpController.getSignUpPage);
 
 // TODO add page

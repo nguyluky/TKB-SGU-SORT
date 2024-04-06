@@ -26,7 +26,6 @@ async function joinTkb(req, res) {
     }
     var [err, userId] = await mysqlService.token2userId(token);
     if (err) {
-        console.error(err);
         res.render('err_page', errPages.SERVER_ERROR)
         return;
     }
@@ -38,7 +37,6 @@ async function joinTkb(req, res) {
     const {id:inviteId} = req.query;
     const [err1, tkbId] = await mysqlService.inviteId2TkbId(inviteId);
     if (err1) {
-        console.error(err1)
         res.render('err_page', errPages.SERVER_ERROR)
         return
     }
@@ -49,10 +47,9 @@ async function joinTkb(req, res) {
     const [err2, result] = await mysqlService.addUserToTkb(tkbId, userId)
     if (err2) {
         res.render('err_page', errPages.SERVER_ERROR)
-        console.log(err2)
     }
 
-    console.log(tkbId)
+    // console.log(tkbId)
     const [err3, result1] = await mysqlService.deleteInviteByTkbId(tkbId);
 
     res.render('err_page', errPages.INVITE_SUCCESS)

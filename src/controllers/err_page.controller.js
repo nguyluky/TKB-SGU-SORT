@@ -1,6 +1,5 @@
 
 const { request, response } = require('express');
-
 const errPages = require('../models/errPage.model')
 
 /**

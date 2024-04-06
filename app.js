@@ -22,6 +22,7 @@ const errPages = require('./src/models/errPage.model')
 const {redisStore, redisClient} = require('./src/services/redis.service')
 const ioController = require('./src/controllers/io.controller')
 
+const Logger = require('./src/utils/logger')
 
 
 var app = express();
@@ -109,11 +110,11 @@ function onError(error, port) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      Logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      Logger.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -127,5 +128,7 @@ server_https.on('error', (e) => onError(e, https_port));
 io.on('connection', ioController);
 
 server_https.listen(https_port, () => {
-  console.log(`>> server start in https://localhost:${https_port}`);
+  Logger.info('>> server start in https://localhost:%s' , https_port)
 });
+
+module.exports = app

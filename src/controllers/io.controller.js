@@ -3,6 +3,8 @@ const {Socket} = require("socket.io");
 const mysqlService = require('../services/app.service')
 const { checkPermissionTkb } = require('../middleware/app.middleware')
 
+const Logger = require('../utils/logger')
+
 /**
  * 
  * @param {Socket} socket 
@@ -14,7 +16,6 @@ async function onConnect(socket) {
     const token = socket.request.session.token;
     const [err, userId] = await mysqlService.token2userId(token);
     if (err) {
-        console.error(err);
         return
     }
 
@@ -25,7 +26,8 @@ async function onConnect(socket) {
     if (!await checkPermissionTkb(tkbId, userId)) {
         return
     }
-    console.log(">>",userId, "join", tkbId)
+
+    Logger.info('>> %s join TKB %s', userId, tkbId)
     socket.join(tkbId)
 
     socket.on('add-hp', (mahp) => {
@@ -41,7 +43,7 @@ async function onConnect(socket) {
     })
   
     socket.on('disconnect', () => {
-        console.log(">>",userId, "lead", tkbId)
+        Logger.info('>> %s lead TKB %s', userId, tkbId)
     });
 
   }

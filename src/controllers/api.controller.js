@@ -6,7 +6,7 @@ const mysqlService = require('../services/app.service')
 const { createResponse, errCode } = require('../models/apiRes.model')
 const {cache} = require('../services/redis.service');
 const { checkEmailAlreadyExists: checkEmailAE, checkUserNameAlreadyExists: checkUserNameAE, checkPermissionTkb } = require('../middleware/app.middleware')
-
+const Logger = require('../utils/logger')
 
 const cachePath = "./public"
 // const cachePath = "../../public"
@@ -25,7 +25,7 @@ async function getDsHocPhan(req, res) {
         return fs.readFileSync(path.join(cachePath , 'locdsnhomto.json'), 'utf-8')
     }
 
-    json_file = await cache(read_file)()
+    json_file = await cache(read_file)
     res.send(json_file)
 }
 
@@ -46,7 +46,7 @@ async function getUserInfo(req, res) {
 
     var [err, userId] = await mysqlService.token2userId(token);
     if (err) {
-        console.error(err);
+        // Logger.error(">> token2userId err %s: %s", err.name, err.message)
         createResponse(res, errCode.SERVER_ERR)
         return;
     }
@@ -59,7 +59,7 @@ async function getUserInfo(req, res) {
     [err, userInfo] = await mysqlService.findUserById(userId);
 
     if (err) {
-        console.error(err);
+        // Logger.error(">> findUserById err %s: %s", err.name, err.message)
         createResponse(res, errCode.SERVER_ERR)
         return;
     }
@@ -77,7 +77,6 @@ async function getDsKhoa(req, res) {
     const [err, dsKhoa] = await mysqlService.getDsKhoa();
 
     if (err) {
-        console.error(err);
         createResponse(res, errCode.SERVER_ERR)
         return;
     }
@@ -94,7 +93,6 @@ async function getDsKhoa(req, res) {
 async function getDsLop(req, res) {
     const [err, dsLop] = await mysqlService.getDsLop();
     if (err) {
-        console.error(err);
         createResponse(res, errCode.SERVER_ERR)
         return;
     }
@@ -152,7 +150,6 @@ async function getDsTkb(req, res) {
     const [err1, dsTkb] = await mysqlService.getDsTkb(userId);
 
     if (err1) {
-        console.log(err1);
         createResponse(res, errCode.SERVER_ERR);
         return;
     }
@@ -172,7 +169,6 @@ async function createTkb(req, res) {
     const [err, userId] = await mysqlService.token2userId(token);
 
     if (err) {
-        console.error(err);
         createResponse(res, errCode.SERVER_ERR);
         return
     }
@@ -193,7 +189,6 @@ async function createTkb(req, res) {
     const [err1, tkbId] = await mysqlService.saveTkb(userId, idToHocs, name, description, thumbnail);
 
     if (err1) {
-        console.error(err1);
         createResponse(res, errCode.SERVER_ERR);
         return;
     }
@@ -216,7 +211,6 @@ async function updateTkb(req, res) {
     const [err, userId] = await mysqlService.token2userId(token);
     const { tkb_id: tkbId} = req.query;
     if (err) {
-        console.error(err);
         createResponse(res, errCode.SERVER_ERR);
         return;
     }
@@ -232,7 +226,6 @@ async function updateTkb(req, res) {
     const {name , id_to_hocs: idToHocs, description,thumbnail} = req.body;
     const [err1, result] = await mysqlService.updateTkb(tkbId, idToHocs, name, description, thumbnail, userId);
     if (err1) {
-        console.error(err1)
         createResponse(res, errCode.SERVER_ERR);
         return;
     }
@@ -250,7 +243,6 @@ async function getTkb(req, res) {
     const { tkb_id: tkbId} = req.query;
     const [err, userId] = await mysqlService.token2userId(token);
     if (err) {
-        console.error(err);
         createResponse(res, errCode.SERVER_ERR);
         return;
     }
@@ -267,7 +259,6 @@ async function getTkb(req, res) {
 
     const [err1, tkb] = await mysqlService.getTkb(tkbId);
     if (err1) {
-        console.error(err1)
         createResponse(res, errCode.SERVER_ERR)
         return
     }
@@ -297,7 +288,6 @@ async function getInviteLink(req, res) {
     }
     const [err2, userId] = await mysqlService.token2userId(token);
     if (err2) {
-        console.error(err2);
         createResponse(res, errCode.SERVER_ERR);
         return;
     }
@@ -313,7 +303,6 @@ async function getInviteLink(req, res) {
 ;
     const [err, inviteId] = await mysqlService.getInviteId(tkbId)
     if (err) {
-        console.error(err);
         createResponse(res, errCode.SERVER_ERR);
         return;
 ;    }

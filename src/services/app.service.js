@@ -2,6 +2,8 @@ const {query, escape} = require('./mysql.service');
 const { v4: uuidv4 } = require('uuid');
 const { token48: token , validateEmail} = require('../utils/app');
 
+const Logger = require('../utils/logger');
+const logger = require('../utils/logger');
 
 /**
  * 
@@ -26,12 +28,16 @@ async function registerAccount(user, password, email,fullName, mssv, khao, lop) 
         VALUES (?,?,?,?,?)
     `
 
-    console.log(">>> create accout", uuid, fullName, mssv, khao, lop)
+    logger.info(">> create accout %s, %s, %s, %s, %s", uuid, fullName, mssv, khao, lop)
     var [err, result, fields] = await query(sqlCreateUserInfo, [uuid, fullName, mssv, khao, lop]);
-    if (err) return [err, null];
+    if (err) {
+        Logger.error('>> registerAccount %s : %s', err.name, err.message)
+        return [err, null];
+    }
     [err, result, fields] = await query(sqlCreateUserLoginInfo, [user, password, email, uuid]);
 
     if (err) {
+        Logger.error('>> registerAccount %s : %s', err.name, err.message)
         await query('DELETE FROM user_info WHERE id = ?', [uuid])
         return [err, null];
     }
@@ -87,10 +93,15 @@ async function token2userId(token) {
 
     const sql = `SELECT * FROM user_login_info WHERE token = ?`;
     const [err, result, fields] = await query(sql, [token]);
-    if (err) return [err, null]
+    if (err) {
+        Logger.error('>> token2userId %s : %s', err.name, err.message)
+        return [err, null];
+    }
 
     var userLoginInfo = result[0];
-    if (!userLoginInfo) return
+    if (!userLoginInfo) {
+        return [null, null];
+    }
 
     return [null, userLoginInfo.id];
 }
@@ -115,7 +126,10 @@ async function updateUserInfo(userId, fullName, masv, khoa, lop) {
     `
 
     const [err, result, fields] = await query(sql, [fullName, masv, khoa, lop, userId]);
-    if (err) return [err, false];
+    if (err) {
+        Logger.error('>> updateUserInfo %s : %s', err.name, err.message)
+        return [err, false];
+    }
     return [null, true]
 }
 
@@ -124,7 +138,10 @@ async function findUserByUserName(userName) {
         WHERE username = ?`
     
     const [err, result, fields] = await query(sql, [userName]);
-    if (err) return [err, null];
+    if (err) {
+        Logger.error('>> findUserByUserName %s : %s', err.name, err.message)
+        return [err, null];
+    }
 
     return [null, result[0]];
     
@@ -137,7 +154,10 @@ async function findUserById(userId) {
         `
     
     const [err, result, fields] = await query(sql, [userId]);
-    if (err) return [err, null];
+    if (err) {
+        Logger.error('>> findUserById %s : %s', err.name, err.message)
+        return [err, null];
+    }
 
     return [null, result[0]];
 }
@@ -147,7 +167,10 @@ async function getDsKhoa() {
     const sql = 'SELECT * FROM ds_khoa;'
 
     const [err, result, fields] = await query(sql);
-    if (err) return [err, null];
+    if (err) {
+        Logger.error('>> getDsKhoa %s : %s', err.name, err.message)
+        return [err, null];
+    }
 
     return [null, result];
 }
@@ -156,7 +179,10 @@ async function getDsLop() {
     const sql = 'SELECT * FROM ds_lop;'
 
     const [err, result, fields] = await query(sql);
-    if (err) return [err, null];
+    if (err) {
+        Logger.error('>> getDsLop %s : %s', err.name, err.message)
+        return [err, null];
+    }
 
     return [null, result];
 }
@@ -246,7 +272,7 @@ async function inviteId2TkbId(inviteId) {
 }
 
 async function deleteInviteByTkbId(tkbId) {
-    console.log("delete ", tkbId)
+    Logger.info('>> delete %s', tkbId)
     const [err, result, fields] = await query('DELETE FROM invite_link WHERE tkb_id=?;', [tkbId]);
     return [err, result];
 }

@@ -13,10 +13,6 @@ async function lignOut(req, res) {
     res.status(200).send('ok')
 }
 
-// NOTE: replay with send ủe info 
-// async function checkLogin(req, res) {
-    
-// }
 
 /**
  * 
@@ -35,27 +31,21 @@ async function login(req, res) {
     const [err, user] = await mysqlService.login(userName, password)
     
     if (err) {
-        // TODO: redirect To err page
-        console.error(err)
         createResponse(res, false, "lỗi server")
-        // res.status(500).send()
         return
     }
 
 
     if (!user) {
         createResponse(res, false, "tên đăng nhập mật khẩu không đúng")
-        // res.status(400).send()
         return
     }
-
 
     const userId = user.id;
 
     const [err1, token] = await mysqlService.refreshToken(userId);
 
     if (err1) {
-        console.error(err1)
         res.status(500).send()
         return
     }
@@ -70,6 +60,10 @@ async function login(req, res) {
  * @param {response} res 
  */
 async function getLoginPage(req, res) {
+    if (req.query.type == "SGU") {
+        res.render("login_use_school.ejs", {});
+        return
+    }
     res.render("sign_in", {});
 }
 

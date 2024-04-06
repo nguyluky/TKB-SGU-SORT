@@ -1,3 +1,4 @@
+const Logger = require("../utils/logger")
 const mysql = require('mysql2/promise');
 
 const mysqlConfig = require('../configs/mysql.config')
@@ -7,7 +8,7 @@ const mysqlConfig = require('../configs/mysql.config')
 let connect;
 
 async function createConnet() {
-    console.log('>> start connet mysql at', mysqlConfig.host)
+    Logger.info('>> start connet mysql at %s', mysqlConfig.host)
     connect = await mysql.createConnection(mysqlConfig);
 }
 

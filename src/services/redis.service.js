@@ -1,12 +1,13 @@
 
 const RedisStore = require("connect-redis").default
 const {createClient} = require('redis')
-
+const Logger = require('../utils/logger')
 const config = require('../configs/redis.config')
+const logger = require("../utils/logger")
 
 const redisClient = createClient(config)
 
-console.log('>> start connet redis', config.url)
+Logger.info('>> start connet redis %s', config.url)
 
 redisClient.connect().catch(console.error)
 
@@ -15,25 +16,22 @@ const redisStore = new RedisStore({
     prefix: "myapp:",
   })
 
-function cache(func) {
-    async function defined(params) {
-        const key = func.name ? 'cache:' + func.name : (func_count++, 'cache:func_' + func_count)
+async function cache(func) {
+    const key = func.name ? 'cache:' + func.name : (func_count++, 'cache:func_' + func_count)
 
-        const cache_result = await redisClient.get(key)
+    const cache_result = await redisClient.get(key)
 
 
-        if (cache_result) {
-            console.log('read cache')
-            return cache_result
-        }
-
-        const result = func(...arguments)
-        await redisClient.set(key, result)
-
-        return result
+    if (cache_result) {
+        logger.info('>> get cache id %s', key)
+        return cache_result
     }
 
-    return defined
+    const result = func(...arguments)
+    await redisClient.set(key, result)
+    logger.info('>> cache add function id %s' , key)
+
+    return result
 }
 
 module.exports = {

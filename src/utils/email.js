@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
-
+const Logger = require('../utils/logger');
+const logger = require('../utils/logger');
 
 const login_option = {
     service: 'gmail',
@@ -17,7 +18,7 @@ function sendMail(to, subject, text, callback) {
         subject: subject,
         text: text
     }
-
+    logger.debug('>> send email frome %s to %s', process.env.EMAIL_USERNAME, to);
     transporter.sendMail(mainOptions, callback);
 }
 

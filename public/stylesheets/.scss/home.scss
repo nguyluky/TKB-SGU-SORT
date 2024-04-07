@@ -33,6 +33,8 @@ body {
     position: relative;
     
     color: var(--text-color);
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.301);
     .left {
         height: 100%;
         display: flex;
@@ -287,6 +289,102 @@ body {
                 color: var(--text-color);
 
                 font-size: 90px;
+            }
+        }
+    }
+}
+
+.body-info {
+
+    height: calc(100% - 50px);
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: gray  transparent;
+
+    .block-content {
+        width: 100%;
+        height: 500px;
+        display: flex;
+        background-color: var(--background-color-2);
+        align-items: center;
+        justify-content: space-around;
+
+        &.flo {
+            height: 70px;
+        }
+
+        &:nth-child(odd) {
+            background: var(--background-color-1);
+        }
+
+        > img {
+            width: 632px;
+            height: 390px;
+            border-radius: 5px;
+
+            &.boxshadow {
+                box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.26);
+            }
+        }
+
+        .content {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 10px;
+            h2 {
+                color: var(--text-color);
+                font-size: 48px;
+                
+                display: flex;
+                align-items: center;
+
+                img {
+                    height: 74px;
+                    width: 74px;
+                    margin-right: 10px;
+                }
+            }
+
+            .line1 {
+                font-size: 25px;
+                font-weight: lighter;
+                color: var(--text-color-2);
+            }
+
+
+            .line2 {
+                font-size: 20px;
+                font-weight: lighter;
+                color: var(--text-color-2);
+            }
+
+            li {
+                margin-left: 30px;
+            }
+
+            button.start {
+                width: 200px;
+                height: 50px;
+                background: var(--primary);
+                border: none;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+
+                cursor: pointer;
+            }
+        }
+
+        span {
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            i {
+                margin: 10px;
+                font-size: 20px;
             }
         }
     }

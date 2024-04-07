@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="/javascripts/share.js"></script>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link href='/stylesheets/boxicons.min.css' rel='stylesheet'>
+    <title>TKB</title>
+
+    <script>
+        function setToDarkMode() {
+            document.documentElement.style.setProperty('--background-color-2', '#1b1b1b')
+            document.documentElement.style.setProperty('--text-color', '#e3e3e3')
+            document.documentElement.style.setProperty('--text-color-2', '#898989')
+            document.documentElement.style.setProperty('--background-color-1', '#282a2c')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(232,234,237,.08)')
+            document.documentElement.style.setProperty('--color-hover', '#e3e3e3')
+            document.documentElement.style.setProperty('--height-line-color', 'rgba(255,255,255,0.2)')
+        }
+
+        function setToLightMode() {
+            document.documentElement.style.setProperty('--background-color-2', '#e9eef6')
+            document.documentElement.style.setProperty('--text-color', 'rgb(60,64,67)')
+            document.documentElement.style.setProperty('--text-color-2', 'rgb(91, 95, 99)')
+            document.documentElement.style.setProperty('--background-color-1', 'whitesmoke')
+            document.documentElement.style.setProperty('--hover-color', 'rgba(0,0,0,0.05)')
+            document.documentElement.style.setProperty('--color-hover', 'rgb(75, 79, 82)')
+            document.documentElement.style.setProperty('--height-line-color', 'rgb(218,220,224)')
+        }
+
+        if (localStorage.getItem('theme') == 'dark') {
+            setToDarkMode()
+        }
+    </script>
+</head>
+
+<body>
+    <div class="menubar">
+        <div class="left">
+            <img src="./images/favicon.ico">
+            TKB SGU
+        </div>
+
+        <div class="right">
+            <div class="menubar-right-item" id="theme">
+                <div class="menubar-menu light-mode">
+                    <i class='bx bxs-moon'></i>
+                </div>
+            </div>
+            <div class="menubar-right-item">
+                <div class="menubar-menu accout" id="accout">
+                    <i class='bx bxs-user-circle'></i>
+                </div>
+                <div class="accout-popup" style="display: none;">
+                    <div class="user-info">
+                        <p>Nguyễn Văn a</p>
+                        <p class="mssv">MSSV: **********</p>
+                        <p class="line">Khoa: ****</p>
+                        <p class="line">Lớp: ****</p>
+                    </div>
+                    <div class="br"></div>
+                    <p class="logout" onclick="log_out()">Đăng Xuất</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-info">
+        <div class="block-content">
+            <img class="boxshadow" src="./images/able_img1.png">
+            <div class="content main">
+                <h2><img src="./images/favicon.ico"> TKB SGU</h2>
+                <p class="line1">Sắp xếp TKB trượt tuyết dành cho học sinh</p>
+                <p class="line2">Làm chủ thời gian của bản thân</p>
+                <button class="start" onclick="location = '/tkbs'">
+                    Bắt đầu
+                </button>
+            </div>
+        </div>
+        <div class="block-content">
+            <div class="content">
+                <h2>Lý do tồn tại trang web:</h2>
+                <li class="line2">Ai ở cũng đã chải qua viện đăng ký học phần một lần, nó thực sự phiền phức.</li>
+                <li class="line2">Do đó trang web này được lập nên để giúp tất mọi người dễ dàng xếp và đăng ký.</li>
+                <li class="line2">Một phần cũng là do tôi lười xếp lịch.</li>
+            </div>
+            <img src="./images/mt.png">
+        </div>
+        <div class="block-content">
+            <img src="./images/teamwork.png">
+            <div class="content">
+                <h2>Làm việt nhóm:</h2>
+                <li class="line2">Không biết ghi gì hết.</li>
+                <li class="line2">Cùng nhau sếp xếp lịch.</li>
+                <li class="line2">Cùng nhau đăng ký.</li>
+            </div>
+        </div>
+
+        <div class="block-content flo">
+            <span class="line2">
+                <span>Thông tin liên hệ: </span>
+                <i class='bx bxl-discord-alt'></i>
+                <i class='bx bxl-facebook-circle' ></i>
+                <i class='bx bxl-gmail' ></i>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -9,7 +9,9 @@ const redisClient = createClient(config)
 
 Logger.info('>> start connet redis %s', config.url)
 
-redisClient.connect().catch(console.error)
+redisClient.connect().catch((err) => {
+    logger.error('>> redis %s', err.message)
+})
 
 const redisStore = new RedisStore({
     client: redisClient,

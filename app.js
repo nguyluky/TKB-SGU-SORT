@@ -16,6 +16,7 @@ const signupRouter = require('./src/routes/sign_up');
 const apiRouter = require('./src/routes/api');
 const homeRouter = require('./src/routes/home');
 const errPageRouter = require('./src/routes/err_page')
+const tkbsRouter = require('./src/routes/tkbs')
 
 const errPages = require('./src/models/errPage.model')
 
@@ -71,6 +72,7 @@ app.set('session', sessionMiddleware)
 
 app.use('/', homeRouter)
 app.use('/tkb', tkbRouter);
+app.use('/tkbs', tkbsRouter);
 app.use('/users', usersRouter);
 app.use('/sign_in', signinRouter);
 app.use('/sign_up', signupRouter);
@@ -82,9 +84,9 @@ app.all('*', (req, res) => {
   res.render('err_page', errPages.PAGE_NOT_FOUND)
 })
 
-const key = fs.readFileSync(path.join(__dirname , './certs/tkbsgusort.id.vn/private.key'));
-const cert = fs.readFileSync(path.join(__dirname , './certs/tkbsgusort.id.vn/certificate.crt'));
-const ca = fs.readFileSync(path.join(__dirname ,'./certs/tkbsgusort.id.vn/ca_bundle.crt'));
+const key = fs.readFileSync(path.join(__dirname , './certs/private.key'));
+const cert = fs.readFileSync(path.join(__dirname , './certs/certificate.crt'));
+const ca = fs.readFileSync(path.join(__dirname ,'./certs/ca_bundle.crt'));
 const options = {
   ca: ca,
   key: key,

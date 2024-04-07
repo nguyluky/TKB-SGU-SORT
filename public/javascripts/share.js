@@ -71,7 +71,8 @@ function initAccoutClick() {
     }
 
 
-    document.getElementById('accout').onclick = (event) => {
+    var account = document.getElementById('accout')
+    if (account) account.onclick = (event) => {
 
         // kiểm tra xem có đăng nhập chưa
         if (!checkLogin()) {

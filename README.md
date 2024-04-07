@@ -13,10 +13,11 @@ các tính năng nổi bật
 - xuất thời khóa biểu dang nhiều dạng khác nhau
   - hình ảnh
   - code javascript để gián vào 
-  - chó phét nhiều người làm chung một thơi khóa biểu
+  - nhiều người làm chung một thơi khóa biểu
 - bot đăng kí
 
 
 # Screenshots
 
 ![](./public/images/able_img1.png)
+![](./screenshots/Screenshot%20from%202024-04-07%2019-09-59.png)

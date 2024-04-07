@@ -6,7 +6,7 @@ const { request, response } = require('express');
  * @param {response} res 
  */
 async function getHomePage(req, res) {
-    res.render('able', {})
+    res.render('about', {})
 }
 
 

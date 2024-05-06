@@ -36,6 +36,10 @@ class SguAPI:
         if (json_data.get('result')):
             return UserInfo.from_dict(json_data['data'])
         return RespExcept.from_dict(json_data)
+    
+    async def dangKy():
+        # TODO
+        pass
 
     async def post(self, url, headers, data):
         if (self.client):

@@ -1,5 +1,5 @@
 
-fetch('api/tkbs').then(e => e.json()).then(e => {
+fetch(urlApis.getTkbs).then(e => e.json()).then(e => {
     Object.values(e.data).forEach(e => {
         var base64String = String.fromCharCode(...new Uint8Array(e.thumbnails.data))
         var tkb_name = e.tkb_name
@@ -50,7 +50,6 @@ function create_list_item(tkb_name, base64String, date_save, id){
 
     return div_listtiem_1
 }
-
 
 function newTkb() {
 	document.location.pathname = '/tkb'

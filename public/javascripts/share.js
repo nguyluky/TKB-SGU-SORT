@@ -1,7 +1,21 @@
+'use client'
 var user_info;
 var isloaded = false;
 var isIconUpdate = false;
 
+const urlApis = {
+    getDshocphan   : "/api/dshocphan",
+    getDskhoa      : "/api/dskhoa",
+    getDslop       : "/api/dslop",
+    
+    getUserinfo    : "/api/userinfo",
+    getTkbs        : "/api/tkbs",
+    updateTkb      : "/api/tkb",
+    createTkb      : "/api/tkb",
+    getTkb         : "/api/tkb",
+    getTkb         : "/api/tkb",
+    getInviteLink  : "/api/getinvitelink"
+}
 
 function checkLogin() {
     return user_info;

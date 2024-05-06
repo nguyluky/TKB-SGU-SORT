@@ -318,7 +318,7 @@ body {
                     left: calc(100% + 10px);
                     // transform: translateX(100%);
                     display: none;
-                    height: 262px;
+                    height: 362px;
                     background-color: var(--background-color-2);
                     padding: 5px;
                     position: absolute;
@@ -361,6 +361,13 @@ body {
 
                         .filter-item {
                             margin: 0 10px;
+                            &.gv {
+                                width: 300px;
+                            }
+
+                            &.hocphan {
+                                width: 250px;
+                            }
                         }
 
                         .filter-item {

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -6,17 +7,8 @@ const session = require('express-session')
 const fs = require('fs');
 const https = require('https')
 const { Server } = require("socket.io");
-require('dotenv').config()
 
-
-const tkbRouter = require('./src/routes/tkb');
-const usersRouter = require('./src/routes/users');
-const signinRouter = require('./src/routes/sign_in');
-const signupRouter = require('./src/routes/sign_up');
-const apiRouter = require('./src/routes/api');
-const homeRouter = require('./src/routes/home');
-const errPageRouter = require('./src/routes/err_page')
-const tkbsRouter = require('./src/routes/tkbs')
+const routes = require('./src/routes/index')
 
 const errPages = require('./src/models/errPage.model')
 
@@ -28,22 +20,26 @@ const Logger = require('./src/utils/logger')
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, './views'));
-app.set('view engine', 'ejs');
-
+// express setup
 app.use(logger('common'));
 app.use(express.urlencoded({ extended:  false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.json());
 
-// static path
-app.use(express.static(path.join(__dirname, 'public')));
+// view engine setup
+app.set('views', path.join(__dirname, './public/views'));
+app.set('view engine', 'ejs');
+
+// static folder setup 
+app.use('/fonts', express.static(path.join(__dirname, 'public/fonts')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/javascripts', express.static(path.join(__dirname, 'public/javascripts')));
+app.use('/stylesheets', express.static(path.join(__dirname, 'public/stylesheets')));
+app.use('/svg', express.static(path.join(__dirname, 'public/svg')));
 
 // set port
 app.set('http_port', process.env.HTTP_PORT)
 app.set('https_port', process.env.HTTPS_PORT)
-
 
 //set session
 var sess = {
@@ -65,49 +61,38 @@ if (process.env.DEVE === 'TRUE') {
 }
 
 const sessionMiddleware = session(sess)
-
 app.use(sessionMiddleware)
-app.set('session', sessionMiddleware)
 
+// router setup
+app.use('/', routes)
 
-app.use('/', homeRouter)
-app.use('/tkb', tkbRouter);
-app.use('/tkbs', tkbsRouter);
-app.use('/users', usersRouter);
-app.use('/sign_in', signinRouter);
-app.use('/sign_up', signupRouter);
-app.use('/api', apiRouter)
-app.use('/err_page', errPageRouter)
-
+// 404 page
 app.all('*', (req, res) => {
   res.status(404)
   res.render('err_page', errPages.PAGE_NOT_FOUND)
 })
 
-const key = fs.readFileSync(path.join(__dirname , './certs/private.key'));
-const cert = fs.readFileSync(path.join(__dirname , './certs/certificate.crt'));
-const ca = fs.readFileSync(path.join(__dirname ,'./certs/ca_bundle.crt'));
+
+// https
 const options = {
-  ca: ca,
-  key: key,
-  cert: cert
+  ca: fs.readFileSync(path.join(__dirname ,'./certs/ca_bundle.crt')),
+  key: fs.readFileSync(path.join(__dirname , './certs/private.key')),
+  cert: fs.readFileSync(path.join(__dirname , './certs/certificate.crt'))
 };
-
-
 
 const server_https = https.createServer(options, app);
 const io = new Server(server_https)
 
-io.engine.use(app.get('session'));
+io.engine.use(sessionMiddleware);
 
-function onError(error, port) {
+function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof https_port === 'string'
+    ? 'Pipe ' + https_port
+    : 'Port ' + https_port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -125,12 +110,10 @@ function onError(error, port) {
 }
 
 var https_port = process.env.HTTPS_PORT;
-server_https.on('error', (e) => onError(e, https_port));
+server_https.on('error', onError);
 
 io.on('connection', ioController);
 
 server_https.listen(https_port, () => {
   Logger.info('>> server start in https://localhost:%s' , https_port)
 });
-
-module.exports = app

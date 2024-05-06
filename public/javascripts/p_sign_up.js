@@ -342,7 +342,7 @@ handleErrCheck(document.getElementById("password-2"), checkValidPassword2)
 
 async function getDsKhoa() {
 
-    const dsKhoaResp = await fetch('/api/ds_khoa')
+    const dsKhoaResp = await fetch(urlApis.getDskhoa)
 
 
     const json_data = await dsKhoaResp.json()
@@ -361,7 +361,7 @@ getDsKhoa()
 
 async function getDsLop() {
 
-    const dsKhoaResp = await fetch('/api/ds_lop')
+    const dsKhoaResp = await fetch(urlApis.getDslop)
 
 
     const json_data = await dsKhoaResp.json()

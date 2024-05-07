@@ -3,11 +3,11 @@ const { request, response } = require('express');
 const mysqlService = require('../services/app.service')
 const generateOTP = require('../utils/otp')
 const errPage = require('../models/errPage.model')
-const {createResponse, ERR_LOCATION} = require('../models/signUpRes.model')
-const {validAccountPassword, checkEmailAlreadyExists, checkUserNameAlreadyExists} = require('../middleware/app.middleware');
-const {sendOtp} = require('../utils/email');
+const { createResponse, ERR_LOCATION } = require('../models/signUpRes.model')
+const { validAccountPassword, checkEmailAlreadyExists, checkUserNameAlreadyExists } = require('../middleware/app.middleware');
+const { sendOtp } = require('../utils/email');
 const { validateEmail } = require('../utils/app');
-const {getUserToken, getUserInfo} = require('../utils/sgu_api');
+const { getUserToken, getUserInfo } = require('../utils/sgu_api');
 const logger = require('../utils/logger');
 
 
@@ -25,13 +25,13 @@ async function handleOTP(req, res) {
         return
     }
 
-    var {user, password, email, display_name, ma_sv, khoa, lop} = req.session.userInfoCache;
+    var { user, password, email, display_name, ma_sv, khoa, lop } = req.session.userInfoCache;
 
 
-    display_name == undefined ? display_name = "": "";
-    ma_sv == undefined ? display_name = "": "";
-    khoa == undefined ? display_name = "": "";
-    lop == undefined ? display_name = "": "";
+    display_name == undefined ? display_name = "" : "";
+    ma_sv == undefined ? display_name = "" : "";
+    khoa == undefined ? display_name = "" : "";
+    lop == undefined ? display_name = "" : "";
 
 
     // create acc
@@ -57,10 +57,10 @@ async function handleOTP(req, res) {
  */
 async function createAcc(req, res) {
 
-    const {user, password, email, display_name, ma_sv, khoa, lop} = req.body;
+    const { user, password, email, display_name, ma_sv, khoa, lop } = req.body;
 
 
-    const {userErr, passErr} = validAccountPassword(user, password);
+    const { userErr, passErr } = validAccountPassword(user, password);
     if (userErr) {
         createResponse(res, ERR_LOCATION.USER_NAME, userErr);
         return
@@ -87,7 +87,7 @@ async function createAcc(req, res) {
         return
     }
 
-    
+
 
 
     const otp = await generateOTP();
@@ -105,7 +105,7 @@ async function createAcc(req, res) {
  * @param {response} res 
  */
 async function createAccSGU(req, res) {
-    const {userName, pass} = req.body;
+    const { userName, pass } = req.body;
     var a = await getUserToken(userName, pass);
     if (!a) {
         createResponse(res, "user-name", "Lỗi server");
@@ -126,25 +126,25 @@ async function createAccSGU(req, res) {
     }
 
     var data = JSON.parse(await getUserInfo(token))
-    if(data.result == false) {
+    if (data.result == false) {
         createResponse(res, "user-name", "Lỗi server");
         return
     }
 
     // TODO: convert nganh to id khoa
-    const {ten_day_du: displayName, email, ma_sv, khoi:lop, nganh:khoa} = data.data;
+    const { ten_day_du: displayName, email, ma_sv, khoi: lop, nganh: khoa } = data.data;
 
     logger.debug('>> create account use SGU %s, %s, %s, %s, %s, ', displayName, email, ma_sv, lop, khoa)
-    
+
     // create acc
-    const [err, userId] = await mysqlService.registerAccount(userName, pass, email, displayName, ma_sv, null, null);
+    const [err, userId] = await mysqlService.registerAccount(userName, pass, email, displayName, ma_sv, null, null, "SGU");
 
     if (err) {
         createResponse(res, null, "server err");
         return
     }
-    
-    
+
+
     req.session.destroy()
     createResponse(res, null,);
 }

@@ -12,7 +12,7 @@ const routes = require('./src/routes/index')
 
 const errPages = require('./src/models/errPage.model')
 
-const {redisStore, redisClient} = require('./src/services/redis.service')
+const { redisStore, redisClient } = require('./src/services/redis.service')
 const ioController = require('./src/controllers/io.controller')
 
 const Logger = require('./src/utils/logger')
@@ -22,7 +22,7 @@ var app = express();
 
 // express setup
 app.use(logger('common'));
-app.use(express.urlencoded({ extended:  false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(express.json());
 
@@ -43,21 +43,21 @@ app.set('https_port', process.env.HTTPS_PORT)
 
 //set session
 var sess = {
-    store: redisStore,
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: false,
-        httpOnly: true,
-        sameSite: 'none',
-        maxAge: 1000 * 60 * 10
-    }
+  store: redisStore,
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    sameSite: 'none',
+    maxAge: 60 * 60 * 1000
+  }
 }
 
 if (process.env.DEVE === 'TRUE') {
-    app.set('trust proxy', 1) // trust first proxy
-    sess.cookie.secure = true // serve secure cookies
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
 }
 
 const sessionMiddleware = session(sess)
@@ -75,9 +75,9 @@ app.all('*', (req, res) => {
 
 // https
 const options = {
-  ca: fs.readFileSync(path.join(__dirname ,'./certs/ca_bundle.crt')),
-  key: fs.readFileSync(path.join(__dirname , './certs/private.key')),
-  cert: fs.readFileSync(path.join(__dirname , './certs/certificate.crt'))
+  ca: fs.readFileSync(path.join(__dirname, './certs/ca_bundle.crt')),
+  key: fs.readFileSync(path.join(__dirname, './certs/private.key')),
+  cert: fs.readFileSync(path.join(__dirname, './certs/certificate.crt'))
 };
 
 const server_https = https.createServer(options, app);
@@ -115,5 +115,5 @@ server_https.on('error', onError);
 io.on('connection', ioController);
 
 server_https.listen(https_port, () => {
-  Logger.info('>> server start in https://localhost:%s' , https_port)
+  Logger.info('>> server start in https://localhost:%s', https_port)
 });

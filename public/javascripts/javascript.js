@@ -15,9 +15,9 @@ async function initFile() {
   var a = createPopup("info", "get tkb save", -1);
   var req = await fetch(
     `${urlApis.getTkb}?` +
-      new URLSearchParams({
-        tkb_id: tkb_id,
-      })
+    new URLSearchParams({
+      tkb_id: tkb_id,
+    })
   );
   var data_json = await req.json();
   console.log(data_json);
@@ -82,7 +82,7 @@ function buttonThemHocPhanInit() {
     input.addEventListener("keyup", (event) => {
       var t = event.target.value;
 
-      var max_ = 10;
+      var max_ = 500;
 
       div.childNodes.forEach((e) => {
         if (t == "") {
@@ -306,6 +306,7 @@ function hocPhanInit(cls) {
   }
 
   var list_hp = [];
+  var tinchi = 0;
 
   function makeEle(mahp) {
     if (list_hp.includes(mahp)) return;
@@ -317,6 +318,8 @@ function hocPhanInit(cls) {
     // filterItem.hp.add(mahp)
     var ct = list[0].so_tc;
 
+    tinchi += ct;
+    document.querySelector('#siderbar > div.info-filter > span.title').textContent = `TÍN CHỈ: ${tinchi}/26`
     var div_hp = document.createElement("div");
     div_hp.className = "hp";
     div_hp.setAttribute("mahp", mahp);
@@ -459,6 +462,7 @@ const tkb = {
   tkb: document.getElementById("tkb"),
   hocphan: {},
   hocphan_go: {},
+  tinchi: 0,
 
   /**
    * clear all the hocphan in table tkb
@@ -474,6 +478,8 @@ const tkb = {
    */
   render: function (data) {
     this.hocphan[data.id_to_hoc] = data;
+    // this.tinchi += data.so_tc;
+    // document.querySelector('#siderbar > div.info-filter > span.title').textContent = `TÍN CHỈ: ${this.tinchi}/26`
     data.tkb.forEach((e) => {
       var { thu, tbd, tkt, th, phong, gv } = e;
       var tiets = this.tkb.querySelectorAll(".tiet");
@@ -507,7 +513,6 @@ const tkb = {
    */
   remove: function (id, deleted = true) {
     var data = this.hocphan[id];
-
     if (!data) return;
 
     data.tkb.forEach((e) => {
@@ -700,7 +705,7 @@ function makeSavePopup(img_url, oncancel, onok) {
   var Node1121331 = document.createElement("p");
   Node112133.appendChild(Node1121331);
 
-  var textNode1121331_1 = document.createTextNode("Công khai:");
+  var textNode1121331_1 = document.createTextNode("Công khai: (chưa làm xong)");
   Node1121331.appendChild(textNode1121331_1);
 
   var Node1121332 = document.createElement("p");
@@ -866,9 +871,9 @@ function onclickInviteLink() {
 
   fetch(
     `${urlApis.getInviteLink}?` +
-      new URLSearchParams({
-        tkb_id: tkb_id,
-      })
+    new URLSearchParams({
+      tkb_id: tkb_id,
+    })
   ).then(async (resp) => {
     const json_data = await resp.json();
 
@@ -932,9 +937,9 @@ function saveTkb() {
   if (tkb_id) {
     fetch(
       `${urlApis.getTkb}?` +
-        new URLSearchParams({
-          tkb_id: tkb_id,
-        }),
+      new URLSearchParams({
+        tkb_id: tkb_id,
+      }),
       {
         method: "PUT",
         headers: {
@@ -1044,9 +1049,8 @@ function filterInit() {
 
       var name = data.ds_mon_hoc[mahp];
 
-      a.innerHTML += `<li mahp="${mahp}"><label><input ${
-        filter_stor.hp.has(mahp) ? "" : "checked"
-      } type="checkbox">${name}</label></li>`;
+      a.innerHTML += `<li mahp="${mahp}"><label><input ${filter_stor.hp.has(mahp) ? "" : "checked"
+        } type="checkbox">${name}</label></li>`;
     });
   }
 
@@ -1058,9 +1062,8 @@ function filterInit() {
       if (filter_stor.hp.has(key)) return;
 
       filterItem[key].forEach((e) => {
-        a.innerHTML += `<li mahp="${key}"><label><input ${
-          filter_stor.gv.has(e) ? "" : "checked"
-        } type="checkbox">${e}</label></li>`;
+        a.innerHTML += `<li mahp="${key}"><label><input ${filter_stor.gv.has(e) ? "" : "checked"
+          } type="checkbox">${e}</label></li>`;
       });
     });
     // filterItem.gv.forEach(e => {

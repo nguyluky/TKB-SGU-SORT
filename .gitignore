@@ -136,3 +136,5 @@ certs/tkbsgusort.id.vn/*
 test.*
 
 build/*
+
+bot/lib/*

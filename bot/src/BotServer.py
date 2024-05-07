@@ -1,51 +1,90 @@
-import socket
-import queue
-import time
-from threading import Thread
+import asyncio
+from http import client
+import json
+from operator import le
+import mysql.connector
+from pprint import pprint
+from SGUAPI import SguAPI
+import httpx
 
-HOST = '127.0.0.1'  
-PORT = 8000        
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((HOST, PORT))
-s.listen(2)
-
-q = queue.Queue(10)
-
-def backgroundP():
-    while True:
-        a = q.get()
-        # s.sendall(bytes(a, 'utf8'))
-        time.sleep(2);    
-        print("ok" , a)
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="root1772005",
+  database="tkbsgusort"
+)
 
 
-def server():
-    while True:
-        client, addr = s.accept()
+def getListOfTkb():
+
+    mycursor = mydb.cursor()
+
+    mycursor.execute("SELECT id_user, json_data FROM tkb_save")
+
+    myresult = mycursor.fetchall()
+
+    listOfUser = {}
+    for user_id, list_dk in myresult:
+        users = json.loads(user_id)
+        dks = json.loads(list_dk)
+
+        if type(users) == str:
+            if not listOfUser.get(users, None):
+                listOfUser[users] = [dks]
+            else:
+                listOfUser[users].append(dks)
+
+        else:
+            for user in users:
+                if not listOfUser.get(user, None):
+                    listOfUser[user] = [dks]
+                else:
+                    listOfUser[user].append(dks)
+
+    return listOfUser
+
+def getListOfUser():
+    mycursor = mydb.cursor()
+
+    mycursor.execute('SELECT username,pass,id,type_signup FROM user_login_info')
+
+    listOfUser = {}
+    for userName, password, id_, typeUp in mycursor.fetchall():
+        listOfUser[id_] = (userName, password, typeUp)
+
+    return listOfUser
+
+async def main():
+    ListOfTkb = getListOfTkb()
+    ListOfUser = getListOfUser()
+
+    qu = []
+
+    async with httpx.AsyncClient() as client:
+        loginTaks = []
+        for key in ListOfTkb.keys():
+            if ListOfUser[key][2] == "SGU":
+                api = SguAPI(client=client)
+                loginTaks.append(api.login(ListOfUser[key][0], ListOfUser[key][1]))
+                qu.append(api)
+
+        await asyncio.gather(*loginTaks)
+        print(qu[0].token)
+        while True:
+            taks = []
+            for i in range(5):
+                if (len(qu) > 0) :
+                    api: SguAPI = qu.pop()
+                    taks.append(api.getUserInfo())
         
-        try:
-            print('Connected by', addr)
-            while True:
-                data = client.recv(1024)
-                str_data = data.decode("utf8")
-                if not data:
-                    break
-                    
-                print("Client: " + str_data)
-                q.put(str_data)
-                # msg = input("Server: ")
-                    
-        finally:
-            client.close()
+            if (len(taks) == 0):
+                break
 
-    s.close()
+            print(await asyncio.gather(*taks))
 
+        
 
-t1 = Thread(target=server, args=())
-t2 = Thread(target=backgroundP)
-
-t1.start()
-t2.start()
-t1.join()
-t2.join()
+    
+if __name__ == '__main__':
+    loop = asyncio.new_event_loop()
+    loop.run_until_complete(main())

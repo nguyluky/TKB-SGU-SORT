@@ -4,7 +4,7 @@ const path = require('path')
 
 const mysqlService = require('../services/app.service')
 const { createResponse, errCode } = require('../models/apiRes.model')
-const {cache} = require('../services/redis.service');
+const { cache } = require('../services/redis.service');
 const { checkEmailAlreadyExists: checkEmailAE, checkUserNameAlreadyExists: checkUserNameAE, checkPermissionTkb } = require('../middleware/app.middleware')
 const Logger = require('../utils/logger')
 
@@ -22,7 +22,7 @@ async function getDsHocPhan(req, res) {
     res.setHeader('Content-Type', 'application/json')
 
     function read_file() {
-        return fs.readFileSync(path.join(cachePath , 'locdsnhomto.json'), 'utf-8')
+        return fs.readFileSync(path.join(cachePath, 'locdsnhomto.json'), 'utf-8')
     }
 
     json_file = await cache(read_file)
@@ -107,7 +107,7 @@ async function getDsLop(req, res) {
  */
 async function checkEmailAlreadyExists(req, res) {
     // TODO: làm lại hàm này
-    const { email }= req.body;
+    const { email } = req.body;
     if (await checkEmailAE(email)) {
         createResponse(res, null, true)
         return
@@ -122,7 +122,7 @@ async function checkEmailAlreadyExists(req, res) {
  * @param {response} res 
  */
 async function checkUserNameAlreadyExists(req, res) {
-    var {user_name: userName} = req.body;
+    var { user_name: userName } = req.body;
 
     if (await checkUserNameAE(userName)) {
         createResponse(res, null, true);
@@ -146,7 +146,7 @@ async function getDsTkb(req, res) {
         return
     }
 
-    
+
     const [err1, dsTkb] = await mysqlService.getDsTkb(userId);
 
     if (err1) {
@@ -176,9 +176,9 @@ async function createTkb(req, res) {
     if (!userId) {
         createResponse(res, errCode.NOLOGIN);
         return
-    }  
+    }
 
-    const {name , id_to_hocs: idToHocs, description,thumbnail} = req.body;
+    const { name, id_to_hocs: idToHocs, description, thumbnail } = req.body;
 
     if (!name || !idToHocs) {
         createResponse(res, errCode.BAD_REQ);
@@ -209,7 +209,7 @@ async function updateTkb(req, res) {
 
     const token = req.session.token;
     const [err, userId] = await mysqlService.token2userId(token);
-    const { tkb_id: tkbId} = req.query;
+    const { tkb_id: tkbId } = req.query;
     if (err) {
         createResponse(res, errCode.SERVER_ERR);
         return;
@@ -223,7 +223,7 @@ async function updateTkb(req, res) {
         return
     }
 
-    const {name , id_to_hocs: idToHocs, description,thumbnail} = req.body;
+    const { name, id_to_hocs: idToHocs, description, thumbnail } = req.body;
     const [err1, result] = await mysqlService.updateTkb(tkbId, idToHocs, name, description, thumbnail, userId);
     if (err1) {
         createResponse(res, errCode.SERVER_ERR);
@@ -240,7 +240,7 @@ async function updateTkb(req, res) {
  */
 async function getTkb(req, res) {
     const token = req.session.token;
-    const { tkb_id: tkbId} = req.query;
+    const { tkb_id: tkbId } = req.query;
     const [err, userId] = await mysqlService.token2userId(token);
     if (err) {
         createResponse(res, errCode.SERVER_ERR);
@@ -274,7 +274,7 @@ async function getTkb(req, res) {
  * @param {response} res 
  */
 async function getInviteLink(req, res) {
-    const {tkb_id: tkbId} = req.query;
+    const { tkb_id: tkbId } = req.query;
     if (!tkbId) {
         createResponse(res, errCode.BAD_REQ);
         return;
@@ -300,12 +300,13 @@ async function getInviteLink(req, res) {
         return
     }
 
-;
+    ;
     const [err, inviteId] = await mysqlService.getInviteId(tkbId)
     if (err) {
         createResponse(res, errCode.SERVER_ERR);
         return;
-;    }
+        ;
+    }
 
     createResponse(res, null, inviteId)
 }
@@ -317,10 +318,73 @@ async function getInviteLink(req, res) {
  * @param {response} res 
  */
 async function forgetPassword(req, res) {
-    
+
 }
 
 
+/**
+ *  
+ * @param {request} req 
+ * @param {response} res 
+ */
+async function getToken(req, res) {
+    const token = req.session.token;
+
+    const [err, userId] = await mysqlService.token2userId(token);
+
+    if (err) {
+        createResponse(res, errCode.SERVER_ERR);
+        return
+    }
+
+    if (!userId) {
+        createResponse(res, errCode.NOLOGIN);
+        return
+    }
+
+    const [err1, SGUtoken] = await mysqlService.getTokenSGU(userId)
+
+    if (err1) {
+        createResponse(res, errCode.SERVER_ERR);
+        return
+    }
+
+    createResponse(res, null, SGUtoken[0])
+}
+
+/**
+ *  
+ * @param {request} req 
+ * @param {response} res 
+ */
+async function setToken(req, res) {
+    const token = req.session.token;
+
+    const [err, userId] = await mysqlService.token2userId(token);
+
+    if (err) {
+        createResponse(res, errCode.SERVER_ERR);
+        return
+    }
+
+    if (!userId) {
+        createResponse(res, errCode.NOLOGIN);
+        return
+    }
+
+
+    const { token: newToken } = req.body;
+
+
+    const [err1, result] = await mysqlService.setTokenSGU(userId, newToken)
+
+    if (err1) {
+        createResponse(res, errCode.SERVER_ERR);
+        return
+    }
+
+    createResponse(res, null, null);
+}
 
 module.exports = {
     getDsHocPhan,
@@ -333,5 +397,7 @@ module.exports = {
     updateTkb,
     getTkb,
     checkUserNameAlreadyExists,
-    getInviteLink
+    getInviteLink,
+    getToken,
+    setToken
 }

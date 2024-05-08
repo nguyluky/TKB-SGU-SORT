@@ -21,6 +21,7 @@ router.put("/tkb", apiController.updateTkb);
 router.get("/tkb", apiController.getTkb);
 router.get("/getinvitelink", apiController.getInviteLink);
 
-router.get("");
+router.get("/token", apiController.getToken)
+router.post("/token", apiController.setToken)
 
 module.exports = router;

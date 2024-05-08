@@ -352,6 +352,27 @@ async function createResetPasswordLink(userNameOrEmail) {
   // TODO: làm nốt
 }
 
+async function getTokenSGU(userId) {
+  const sql = "SELECT (access_token) FROM token_table WHERE id=?;"
+
+  const [err, result, fields] = await query(sql, [
+    userId
+  ])
+
+
+  return [err, result]
+}
+
+async function setTokenSGU(userId, token) {
+  const sql = "INSERT INTO token_table(id, access_token) VALUES (?, ?) ON DUPLICATE KEY UPDATE access_token=?;"
+
+  const [err, result, fields] = await query(sql, [
+    userId, token, token
+  ])
+
+  return [err, result];
+}
+
 module.exports = {
   registerAccount,
   login,
@@ -371,4 +392,6 @@ module.exports = {
   inviteId2TkbId,
   deleteInviteByTkbId,
   addUserToTkb,
+  getTokenSGU,
+  setTokenSGU
 };

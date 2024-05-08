@@ -44,8 +44,7 @@ async function query(sql, values) {
     }
 }
 
-
 module.exports = {
-    "query": query, 
+    "query": query,
     "escape": mysql.escape
 }

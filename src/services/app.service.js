@@ -164,7 +164,7 @@ async function updateUserInfo(userId, fullName, masv, khoa, lop) {
 }
 
 async function findUserByUserName(userName) {
-  const sql = `SELECT * FROM user_login_infouuu
+  const sql = `SELECT * FROM user_login_info
         WHERE username = ?`;
 
   const [err, result, fields] = await query(sql, [userName]);

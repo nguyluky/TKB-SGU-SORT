@@ -6,7 +6,7 @@ const logger = require('morgan');
 const session = require('express-session')
 const fs = require('fs');
 const https = require('https')
-const http = require('http')
+// const http = require('http')
 const { Server } = require("socket.io");
 
 const routes = require('./src/routes/index')
@@ -81,7 +81,7 @@ const options = {
 };
 
 const server_https = https.createServer(options, app);
-const server_http = http.createServer(app)
+// const server_http = http.createServer(app)
 const io = new Server(server_https)
 
 io.engine.use(sessionMiddleware);
@@ -111,15 +111,15 @@ function onError(error) {
 }
 
 var https_port = process.env.HTTPS_PORT;
-var http_port = process.env.HTTP_PORT;
+// var http_port = process.env.HTTP_PORT;
 
 server_https.on('error', onError);
 
 io.on('connection', ioController);
 
-server_http.listen(http_port, () => {
-  Logger.info('>> server start in http://localhost:%s', http_port)
-})
+// server_http.listen(http_port, () => {
+//   Logger.info('>> server start in http://localhost:%s', http_port)
+// })
 
 server_https.listen(https_port, () => {
   Logger.info('>> server start in https://localhost:%s', https_port)

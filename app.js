@@ -6,7 +6,8 @@ const logger = require('morgan');
 const session = require('express-session')
 const fs = require('fs');
 const https = require('https')
-// const http = require('http')
+
+if (process.env.DEV === 'TRUE') var http = require('http')
 const { Server } = require("socket.io");
 
 const routes = require('./src/routes/index')
@@ -55,7 +56,7 @@ var sess = {
   }
 }
 
-if (process.env.DEVE === 'TRUE') {
+if (process.env.DEV !== 'TRUE') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
@@ -81,7 +82,7 @@ const options = {
 };
 
 const server_https = https.createServer(options, app);
-// const server_http = http.createServer(app)
+if (process.env.DEV === 'TRUE') var server_http = http.createServer(app)
 const io = new Server(server_https)
 
 io.engine.use(sessionMiddleware);
@@ -111,15 +112,15 @@ function onError(error) {
 }
 
 var https_port = process.env.HTTPS_PORT;
-// var http_port = process.env.HTTP_PORT;
+if (process.env.DEV === 'TRUE') var http_port = process.env.HTTP_PORT;
 
 server_https.on('error', onError);
 
 io.on('connection', ioController);
 
-// server_http.listen(http_port, () => {
-//   Logger.info('>> server start in http://localhost:%s', http_port)
-// })
+if (process.env.DEV === 'TRUE') server_http.listen(http_port, () => {
+  Logger.info('>> server start in http://localhost:%s', http_port)
+})
 
 server_https.listen(https_port, () => {
   Logger.info('>> server start in https://localhost:%s', https_port)

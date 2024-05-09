@@ -46,11 +46,11 @@ def getListOfTkb():
 def getListOfUser():
     mycursor = mydb.cursor()
 
-    mycursor.execute('SELECT username,pass,id,type_signup FROM user_login_info')
+    mycursor.execute('SELECT * FROM token_table;')
 
     listOfUser = {}
-    for userName, password, id_, typeUp in mycursor.fetchall():
-        listOfUser[id_] = (userName, password, typeUp)
+    for id_, access_token in mycursor.fetchall():
+        listOfUser[id_] = json.loads(access_token).get("access_token")
 
     return listOfUser
 
@@ -61,30 +61,25 @@ async def main():
     qu = []
 
     async with httpx.AsyncClient() as client:
-        loginTaks = []
-        for key in ListOfTkb.keys():
-            if ListOfUser[key][2] == "SGU":
-                api = SguAPI(client=client)
-                loginTaks.append(api.login(ListOfUser[key][0], ListOfUser[key][1]))
-                qu.append(api)
+        for key in ListOfUser.keys():
+            api = SguAPI(client=client, token=ListOfUser[key])
+            qu.append((api, ListOfTkb.get(key)))
 
-        await asyncio.gather(*loginTaks)
-        print(qu[0].token)
         while True:
             taks = []
             for i in range(5):
                 if (len(qu) > 0) :
-                    api: SguAPI = qu.pop()
-                    taks.append(api.getUserInfo())
+                    api, dks = qu.pop()
+                    taks.append(api.dangKy(dks))
         
             if (len(taks) == 0):
                 break
 
-            print(await asyncio.gather(*taks))
+            for i in await asyncio.gather(*taks):
+                # i: httpx.Response
+                print(i)
 
-        
 
-    
 if __name__ == '__main__':
     loop = asyncio.new_event_loop()
     loop.run_until_complete(main())

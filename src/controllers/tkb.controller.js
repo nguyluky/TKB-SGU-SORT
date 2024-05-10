@@ -9,7 +9,7 @@ const errPages = require('../models/errPage.model')
  */
 async function getTkbById(req, res) {
     const { tkb_id } = req.params;
-    res.render("tkb", { tkb_id : tkb_id});
+    res.render("tkb", { tkb_id: tkb_id });
 }
 
 /**
@@ -18,10 +18,10 @@ async function getTkbById(req, res) {
  * @param {response} res 
  */
 async function joinTkb(req, res) {
-
+    // console.log(req.url)
     const token = req.session.token;
     if (!token) {
-        res.redirect('../sign_in')
+        res.redirect('../sign_in?url=' + req.url)
         return;
     }
     var [err, userId] = await mysqlService.token2userId(token);
@@ -30,11 +30,11 @@ async function joinTkb(req, res) {
         return;
     }
     if (!userId) {
-        res.redirect('../sign_in')
+        res.redirect('../sign_in?url=' + req.url)
         return;
     }
 
-    const {id:inviteId} = req.query;
+    const { id: inviteId } = req.query;
     const [err1, tkbId] = await mysqlService.inviteId2TkbId(inviteId);
     if (err1) {
         res.render('err_page', errPages.SERVER_ERROR)
@@ -52,6 +52,7 @@ async function joinTkb(req, res) {
     // console.log(tkbId)
     const [err3, result1] = await mysqlService.deleteInviteByTkbId(tkbId);
 
+    console.log(result)
     res.render('err_page', errPages.INVITE_SUCCESS)
 }
 

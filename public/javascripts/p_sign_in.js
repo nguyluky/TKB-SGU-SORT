@@ -48,8 +48,11 @@ function sign_in() {
             return
         }
 
-
-        document.location.pathname = sessionStorage.getItem('befor') ? sessionStorage.getItem('befor') : '';
+        var lastUrl = sessionStorage.getItem('befor') ? 'https://tkbsgusort.id.vn/' + sessionStorage.getItem('befor') : null;
+        sessionStorage.setItem('befor', null);
+        var urlSearch = (new URLSearchParams(location.search)).get("url")
+        urlSearch = urlSearch ? 'https://tkbsgusort.id.vn' + urlSearch : null;
+        document.location = lastUrl || urlSearch || 'https://tkbsgusort.id.vn/tkbs';
     });
 
 }

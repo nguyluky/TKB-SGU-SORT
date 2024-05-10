@@ -47,7 +47,7 @@ app.set('https_port', process.env.HTTPS_PORT)
 var sess = {
   store: redisStore,
   secret: process.env.SESSION_SECRET,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   cookie: {
     secure: false,

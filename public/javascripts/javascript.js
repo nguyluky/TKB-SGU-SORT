@@ -960,8 +960,8 @@ function saveTkb() {
     });
   } else {
     html2canvas(document.querySelector("body > div.main-body > div.tkb"), {
-      windowWidth: 1300,
-      windowHeight: 616,
+      windowWidth: 1040,
+      windowHeight: 492,
     }).then((e) => {
       console.log(e);
       base64 = e.toDataURL("image/jpeg");

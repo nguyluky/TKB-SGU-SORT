@@ -12,16 +12,16 @@
     --height-line-color: rgb(218, 220, 224);
     --primary: rgb(26, 115, 232);
     --silver: #e4e4e4;
-    --add-button-shadow: 0px 4px 4px 0px rgba(60, 64, 67, 0.3), 0px 8px 12px 6px rgba(60, 64, 67, 0.15);
-    --main-box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
-    --popup-shadow: 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12), 0 11px 15px -7px rgba(0,0,0,.2);
+    --add-button-shadow: 0rem 0.25rem 0.25rem 0rem rgba(60, 64, 67, 0.3), 0rem 0.5rem 0.75rem 0.375rem rgba(60, 64, 67, 0.15);
+    --main-box-shadow: 0 0.25rem 0.5rem 0.1875rem rgba(0, 0, 0, 0.15), 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
+    --popup-shadow: 0 1.5rem 2.375rem 0.1875rem rgba(0,0,0,.14), 0 0.5625rem 2.875rem 0.5rem rgba(0,0,0,.12), 0 0.6875rem 0.9375rem -0.4375rem rgba(0,0,0,.2);
 
     --err-color: 220, 53, 69;
     --info-color: 23, 162, 184;
     --warning-color: 255, 193, 7;
     --success-color: 40, 167, 69;
 
-    --width-siderbar: 256px;
+    --width-siderbar: 16rem;
 }
 
 * {
@@ -47,37 +47,37 @@ body {
 
 
 .main-center {
-    padding: 12px 24px 20px 24px;
+    padding: 0.75rem 1.5rem 1.25rem 1.5rem;
     background: var(--background-color-1);
-    border-radius: 10px;
+    border-radius: 0.625rem;
     display: flex;
 
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
 
     .title {
-        font-size: 30px;
+        font-size: 1.875rem;
         font-weight: bolder;
         color: var(--text-color);
     }
 
     .line {
         display: flex;
-        gap: 20px;
+        gap: 1.25rem;
 
         &:has(.wall-input.otp) {
             cursor: text;
         }
 
         .wall-input {
-            border: 1px #5b5f6354 solid;
-            height: 40px;
-            width: 300px;
+            border: 0.0625rem #5b5f6354 solid;
+            height: 2.5rem;
+            width: 18.75rem;
             cursor: text;
             
             display: flex;
-            border-radius: 5px;
+            border-radius: 0.3125rem;
             position: relative;
             
             &:has(input[type="text"]:disabled), input[type="text"]:disabled {
@@ -85,7 +85,7 @@ body {
             }
 
             &.otp {
-                width: 40px;
+                width: 2.5rem;
                 display: flex;
 
                 input {
@@ -98,8 +98,8 @@ body {
                 background: transparent;
                 border: none;
                 outline: none;
-                margin-left: 10px;
-                font-size: 15px;
+                margin-left: 0.625rem;
+                font-size: 0.9375rem;
                 color: var(--text-color);
                 width: 100%;
             }
@@ -122,7 +122,7 @@ body {
                 i {
 
                     color: #D03947;
-                    font-size: 20px;
+                    font-size: 1.25rem;
                     cursor: pointer;
                 }
 
@@ -134,12 +134,12 @@ body {
                     display: none;
                     position: absolute;
                     background: #d03948d8;
-                    font-size: 14px;
+                    font-size: 0.875rem;
                     width: max-content;
-                    padding: 5px;
-                    border-radius: 5px;
+                    padding: 0.3125rem;
+                    border-radius: 0.3125rem;
                     right: 100%;
-                    max-width: 250px;
+                    max-width: 15.625rem;
                     color: #E8E8E8;
                 }
             }
@@ -153,14 +153,14 @@ body {
 
             .dropdown-popup {
                 position: absolute;
-                top: calc(100% + 10px);
+                top: calc(100% + 0.625rem);
                 left: 0;
-                width: 300px;
+                width: 18.75rem;
                 height: fit-content;
                 background-color: var(--background-color-1);
-                box-shadow: 0 0 4px #000000;
-                border-radius: 5px;
-                padding: 10px;
+                box-shadow: 0 0 0.25rem #000000;
+                border-radius: 0.3125rem;
+                padding: 0.625rem;
                 display: none;
                 z-index: 10;
 
@@ -170,21 +170,21 @@ body {
 
                 .wall-input {
                     width: 100%;
-                    height: 30px;
+                    height: 1.875rem;
                 }
 
                 .view {
-                    max-height: 150px;
+                    max-height: 9.375rem;
                     overflow-y: auto;
                     overflow-x: hidden;
                     scrollbar-width: thin;
                     scrollbar-color: gray transparent;
                     .item {
-                        margin-top: 10px;
-                        height: 30px;
-                        line-height: 30px;
-                        border-radius: 5px;
-                        padding: 0 10px;
+                        margin-top: 0.625rem;
+                        height: 1.875rem;
+                        line-height: 1.875rem;
+                        border-radius: 0.3125rem;
+                        padding: 0 0.625rem;
                         cursor: pointer;
                         text-wrap: nowrap;
                         text-overflow: ellipsis;
@@ -203,18 +203,18 @@ body {
 
     button {
         width: 100%;
-        height: 40px;
+        height: 2.5rem;
         background: transparent;
-        border: 1px #5b5f6354 solid;
-        border-radius: 5px;
+        border: 0.0625rem #5b5f6354 solid;
+        border-radius: 0.3125rem;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
         i {
             display: none;
-            font-size: 25px;
+            font-size: 1.5625rem;
         }
         &.ok {
             background: #075AD4;
@@ -236,11 +236,11 @@ body {
     }
 
     .dctk{
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: lighter;
         color: var(--text-color-2);
         a {
-            margin-left: 5px;
+            margin-left: 0.3125rem;
             color: var(--text-color-2);
             text-decoration: none;
             font-weight: bolder;
@@ -254,16 +254,16 @@ body {
         align-items: center;
 
         span {
-            padding: 0 2px;
+            padding: 0 0.125rem;
             color: var(--text-color-2);
         }
 
         .a {
             background-color: var(--text-color-2);
             opacity: 0.3;
-            border-width: 1px;
+            border-width: 0.0625rem;
             width: 100%;
-            height: 1px;
+            height: 0.0625rem;
         }
     }
 }

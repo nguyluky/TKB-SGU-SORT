@@ -10,8 +10,8 @@
     --height-line-color: rgb(218, 220, 224);
     --primary: rgb(26, 115, 232);
     --silver: #e4e4e4;
-    --add-button-shadow: 0px 4px 4px 0px rgba(60, 64, 67, 0.3), 0px 8px 12px 6px rgba(60, 64, 67, 0.15);
-    --main-box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --add-button-shadow: 0rem 0.25rem 0.25rem 0rem rgba(60, 64, 67, 0.3), 0rem 0.5rem 0.75rem 0.375rem rgba(60, 64, 67, 0.15);
+    --main-box-shadow: 0 0.25rem 0.5rem 0.1875rem rgba(0, 0, 0, 0.15), 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -26,7 +26,7 @@ body {
 }
 
 .menubar {
-    height: 50px;
+    height: 3.125rem;
     background-color: var(--background-color-2);
     display: flex;
     justify-content: space-between;
@@ -34,16 +34,16 @@ body {
     
     color: var(--text-color);
 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.301);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.301);
     .left {
         height: 100%;
         display: flex;
         align-items: center;
         font-weight: bold;
         img {
-            margin: calc(5px / 2);
-            height: 30px;
-            width: 30px;
+            margin: calc(0.3125rem / 2);
+            height: 1.875rem;
+            width: 1.875rem;
         }
     }
 
@@ -55,10 +55,10 @@ body {
         background: var(--background-color-1);
         display: flex;
         align-items: center;
-        padding: 0 10px;
-        border-radius: 5px;
+        padding: 0 0.625rem;
+        border-radius: 0.3125rem;
         width: 40%;
-        max-width: 500px;
+        max-width: 31.25rem;
         i {
             font-size: 1.5625rem;
             color: var(--text-color-2);
@@ -67,30 +67,30 @@ body {
         input {
             color: var(--text-color);
             background: transparent;
-            height: 35px;
+            height: 2.1875rem;
             border: none;
             outline: none;
-            width: calc(100% - 1.5625rem - 5px);
-            margin-left: 5px;
+            width: calc(100% - 1.5625rem - 0.3125rem);
+            margin-left: 0.3125rem;
         }
 
     }
 
     .right {
-        margin-right: 8px;
+        margin-right: 0.5rem;
         display: flex;
         position: relative;
         align-items: center;
 
         .menubar-menu {
-            padding: 5px;
+            padding: 0.3125rem;
             height: 1.5625rem;
             cursor: pointer;
         }
 
         .menubar-menu:hover {
             background-color: var(--hover-color);
-            border-radius: 17.5px;
+            border-radius: 1.09375rem;
     
             i, p {
                 color: var(--color-hover);
@@ -98,10 +98,10 @@ body {
         }
 
         div.menubar-right-item {
-            padding: 3px;
+            padding: 0.1875rem;
     
             +div.menubar-right-item {
-                margin-left: 10px;
+                margin-left: 0.625rem;
             }
         }
 
@@ -115,32 +115,32 @@ body {
         .accout-popup {
             position: absolute;
             z-index: 100;
-            padding: 5px;
+            padding: 0.3125rem;
             top: 100%;
-            right: 5px;
+            right: 0.3125rem;
             background: var(--background-color-2);
             box-shadow: var(--main-box-shadow);
             width: max-content;
-            border-radius: 5px;
+            border-radius: 0.3125rem;
             color: var(--text-color);
             .user-info {
                 p.line {
-                    margin-top: 5px;
+                    margin-top: 0.3125rem;
                     font-size: 0.813rem;
                 }
     
                 .mssv {
                     color: var(--text-color-2);
                     font-size: 0.625rem;
-                    padding-left: 5px;
+                    padding-left: 0.3125rem;
                 }
             }
     
             .br {
                 width: 100%;
-                height: 1px;
+                height: 0.0625rem;
                 background: var(--text-color-2);
-                margin: 2px 0px 5px;
+                margin: 0.125rem 0rem 0.3125rem;
             }
     
             .logout {
@@ -158,7 +158,7 @@ body {
 
 .body {
     
-    height: calc(100% - 50px);
+    height: calc(100% - 3.125rem);
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -180,9 +180,9 @@ body {
 
     .wall {
         .head {
-            width: calc(100% - 20px);
+            width: calc(100% - 1.25rem);
             color: var(--text-color);
-            padding: 10px;
+            padding: 0.625rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -190,7 +190,7 @@ body {
 
             .title {
                 span {
-                    font-size: 16px;
+                    font-size: 1rem;
                     font-weight: bold;
                 }
             }
@@ -201,7 +201,7 @@ body {
                 {
                     display: inline-block;
                     i {
-                        font-size: 20px;
+                        font-size: 1.25rem;
                     } 
                 }
             }
@@ -210,12 +210,12 @@ body {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             justify-items: center;
-            min-width: 800px;
+            min-width: 50rem;
           
 
             .list-tiem {
-                border-radius: 5px;
-                margin: 10px;
+                border-radius: 0.3125rem;
+                margin: 0.625rem;
                 overflow: hidden;
                 position: relative;
                 box-shadow: var(--main-box-shadow);
@@ -225,32 +225,32 @@ body {
                 }
 
                 .thumbnail {
-                    height: 144px;
-                    width: 200px;
+                    height: 9rem;
+                    width: 12.5rem;
 
                     img {
                         height: 100%;
                         width: 100%;
-                        border-radius: 5px;
+                        border-radius: 0.3125rem;
                     }
                 }
 
                 .info {
                     
                     color: var(--text-color);
-                    padding: 5px;
+                    padding: 0.3125rem;
 
                     p {
-                        width: calc(100% - 30px);
+                        width: calc(100% - 1.875rem);
                     }
 
                     .name {
-                        font-size: 17px;
+                        font-size: 1.0625rem;
                         font-weight: bold;
                     }
 
                     .auth {
-                        font-size: 13px;
+                        font-size: 0.8125rem;
                         color: var(--text-color-2);
                     }
                 }
@@ -259,12 +259,12 @@ body {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    height: 20px;
-                    width: 20px;
+                    height: 1.25rem;
+                    width: 1.25rem;
                     position: absolute;
                     right: 0;
                     bottom: 0;
-                    margin: 10px;
+                    margin: 0.625rem;
 
                     &:hover {
                         border-radius: 50%;
@@ -276,9 +276,9 @@ body {
     }
 
     .template .wall .list-tiem {
-        border: 1px transparent solid;
-        border-radius: 5px;
-        margin: 10px;
+        border: 0.0625rem transparent solid;
+        border-radius: 0.3125rem;
+        margin: 0.625rem;
 
         .thumbnail {
             
@@ -288,7 +288,7 @@ body {
             i {
                 color: var(--text-color);
 
-                font-size: 90px;
+                font-size: 5.625rem;
             }
         }
     }
@@ -296,21 +296,21 @@ body {
 
 .body-info {
 
-    height: calc(100% - 50px);
+    height: calc(100% - 3.125rem);
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: gray  transparent;
 
     .block-content {
         width: 100%;
-        height: 500px;
+        height: 31.25rem;
         display: flex;
         background-color: var(--background-color-2);
         align-items: center;
         justify-content: space-around;
 
         &.flo {
-            height: 70px;
+            height: 4.375rem;
         }
 
         &:nth-child(odd) {
@@ -318,12 +318,12 @@ body {
         }
 
         > img {
-            width: 632px;
-            height: 390px;
-            border-radius: 5px;
+            width: 39.5rem;
+            height: 24.375rem;
+            border-radius: 0.3125rem;
 
             &.boxshadow {
-                box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.26);
+                box-shadow: 0 0 0.25rem 0.25rem rgba(0, 0, 0, 0.26);
             }
         }
 
@@ -331,46 +331,46 @@ body {
             width: 35%;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            padding: 10px;
+            gap: 1.25rem;
+            padding: 0.625rem;
             h2 {
                 color: var(--text-color);
-                font-size: 48px;
+                font-size: 3rem;
                 
                 display: flex;
                 align-items: center;
 
                 img {
-                    height: 74px;
-                    width: 74px;
-                    margin-right: 10px;
+                    height: 4.625rem;
+                    width: 4.625rem;
+                    margin-right: 0.625rem;
                 }
             }
 
             .line1 {
-                font-size: 25px;
+                font-size: 1.5625rem;
                 font-weight: lighter;
                 color: var(--text-color-2);
             }
 
 
             .line2 {
-                font-size: 20px;
+                font-size: 1.25rem;
                 font-weight: lighter;
                 color: var(--text-color-2);
             }
 
             li {
-                margin-left: 30px;
+                margin-left: 1.875rem;
             }
 
             button.start {
-                width: 200px;
-                height: 50px;
+                width: 12.5rem;
+                height: 3.125rem;
                 background: var(--primary);
                 border: none;
-                border-radius: 10px;
-                font-size: 20px;
+                border-radius: 0.625rem;
+                font-size: 1.25rem;
                 font-weight: bold;
                 color: white;
 
@@ -383,8 +383,8 @@ body {
             display: flex;
             align-items: center;
             i {
-                margin: 10px;
-                font-size: 20px;
+                margin: 0.625rem;
+                font-size: 1.25rem;
             }
         }
     }

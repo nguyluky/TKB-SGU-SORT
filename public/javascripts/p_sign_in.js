@@ -48,7 +48,7 @@ function sign_in() {
             return
         }
 
-        var lastUrl = sessionStorage.getItem('befor') ? 'https://tkbsgusort.id.vn/' + sessionStorage.getItem('befor') : null;
+        var lastUrl = sessionStorage.getItem('befor') ? 'https://tkbsgusort.id.vn' + sessionStorage.getItem('befor') : null;
         sessionStorage.setItem('befor', null);
         var urlSearch = (new URLSearchParams(location.search)).get("url")
         urlSearch = urlSearch ? 'https://tkbsgusort.id.vn' + urlSearch : null;

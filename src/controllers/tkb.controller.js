@@ -18,7 +18,7 @@ async function getTkbById(req, res) {
  * @param {response} res 
  */
 async function joinTkb(req, res) {
-    // console.log(req.url)
+    // console.log(req)
     const token = req.session.token;
     if (!token) {
         res.redirect('../sign_in?url=' + req.url)
@@ -53,7 +53,9 @@ async function joinTkb(req, res) {
     const [err3, result1] = await mysqlService.deleteInviteByTkbId(tkbId);
 
     console.log(result)
-    res.render('err_page', errPages.INVITE_SUCCESS)
+    // res.render('err_page', errPages.INVITE_SUCCESS)
+    res.redirect('../tkb/' + tkbId)
+
 }
 
 /**

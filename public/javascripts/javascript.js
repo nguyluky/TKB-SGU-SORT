@@ -435,6 +435,13 @@ function hocPhanInit(cls) {
   function removeHp(mahp) {
     // filterItem.hp.delete(mahp)
     delete filterItem[mahp];
+
+    var list = data.ds_nhom_to.filter((e) => e.ma_mon == mahp);
+    var ct = list[0].so_tc;
+
+    tinchi -= ct;
+    document.querySelector('#siderbar > div.info-filter > span.title').textContent = `TÍN CHỈ: ${tinchi}/26`
+
     var hp = document.querySelector(`.hp[mahp="${mahp}"]`);
 
     if (!hp) return;
@@ -964,8 +971,8 @@ function saveTkb() {
       windowHeight: 492,
     }).then((e) => {
       console.log(e);
-      base64 = e.toDataURL("image/jpeg");
-
+      base64 = e.toDataURL("image/jpeg", 0.3);
+      console.log(base64.substring(23));
       var ele = document.getElementById("popup-area");
 
       popup = makeSavePopup(base64, cancelHandle, saveHandle);

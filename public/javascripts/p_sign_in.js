@@ -49,7 +49,7 @@ function sign_in() {
         }
 
 
-        document.location.pathname = sessionStorage.getItem('befor');
+        document.location.pathname = sessionStorage.getItem('befor') ? sessionStorage.getItem('befor') : '';
     });
 
 }

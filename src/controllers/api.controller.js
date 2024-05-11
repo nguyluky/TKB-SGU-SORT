@@ -239,8 +239,8 @@ async function updateTkb(req, res) {
  * @param {response} res 
  */
 async function getTkb(req, res) {
-    const token = req.session.token;
     const { tkb_id: tkbId } = req.query;
+    const token = req.session.token;
     const [err, userId] = await mysqlService.token2userId(token);
     if (err) {
         createResponse(res, errCode.SERVER_ERR);
@@ -321,7 +321,32 @@ async function forgetPassword(req, res) {
 
 }
 
-// TODO add update slot
+/**
+ * 
+ * @param {request} req 
+ * @param {response} res 
+ */
+async function getSlots(req, res) {
+    const id_to_hocs = req.body;
+    if (Object.prototype.toString.call(id_to_hocs) !== '[object Array]') {
+        createResponse(res, errCode.BAD_REQ, null)
+        return;
+    }
+
+    if (!id_to_hocs.length) {
+        createResponse(res, null, [])
+        return;
+    }
+
+    const [err1, result] = await mysqlService.getSlots(id_to_hocs)
+
+    if (err1) {
+        createResponse(res, errCode.SERVER_ERR);
+        return;
+    }
+
+    createResponse(res, null, result)
+}
 
 module.exports = {
     getDsHocPhan,
@@ -334,5 +359,6 @@ module.exports = {
     updateTkb,
     getTkb,
     checkUserNameAlreadyExists,
-    getInviteLink
+    getInviteLink,
+    getSlots
 }

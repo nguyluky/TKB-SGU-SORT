@@ -357,8 +357,12 @@ async function updateSlot(id_to_hoc, dk, cp) {
   console.log("updateSlot")
 }
 
-async function getSlot(id_to_hoc) {
+async function getSlots(id_to_hocs) {
+  const sql = "SELECT * FROM slot_hoc_phan WHERE id_to_hoc IN (" + escape(id_to_hocs) + ");"
 
+  const [err, result, fields] = await query(sql);
+
+  return [err, result];
 }
 
 module.exports = {
@@ -379,5 +383,5 @@ module.exports = {
   getInviteId,
   inviteId2TkbId,
   deleteInviteByTkbId,
-  addUserToTkb
+  addUserToTkb, getSlots
 };

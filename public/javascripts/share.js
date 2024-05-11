@@ -15,6 +15,8 @@ const urlApis = {
   getTkb: "/api/tkb",
   getTkb: "/api/tkb",
   getInviteLink: "/api/getinvitelink",
+
+  getSlot: "/api/slots"
 };
 
 function checkLogin() {
@@ -37,9 +39,8 @@ function updateUserAccoutIcon(value) {
     console.log("is login");
     document.querySelector("div.user-info > p:nth-child(1)").textContent =
       user_info["display_name"] ? user_info["display_name"] : "++++++++++++";
-    document.querySelector("div.user-info > p.mssv").textContent = `MSSV: ${
-      user_info["ma_sv"] ? user_info["ma_sv"] : "**********"
-    }`;
+    document.querySelector("div.user-info > p.mssv").textContent = `MSSV: ${user_info["ma_sv"] ? user_info["ma_sv"] : "**********"
+      }`;
     document.querySelector(
       "div.user-info > p:nth-child(3)"
     ).textContent = `Khoa: ${user_info["khoa"] ? user_info["khoa"] : "****"}`;
@@ -77,7 +78,7 @@ function get_use_info() {
 
 get_use_info();
 
-function beforNavigationPage() {}
+function beforNavigationPage() { }
 
 function initAccoutClick() {
   var accountPopup = document.querySelector(

@@ -341,6 +341,7 @@ async function getSlots(req, res) {
     const [err1, result] = await mysqlService.getSlots(id_to_hocs)
 
     if (err1) {
+        console.log(err1)
         createResponse(res, errCode.SERVER_ERR);
         return;
     }

@@ -82,7 +82,7 @@ async function registerAccount(
  */
 async function login(user, password) {
   const sql = "SELECT * FROM user_login_info WHERE username = ? AND pass = ?";
-  const [err, result, fields] = await await query(sql, [user, password]);
+  const [err, result, fields] = await query(sql, [user, password]);
   return [err, result[0]];
 }
 
@@ -349,28 +349,16 @@ async function createResetPasswordLink(userNameOrEmail) {
     !isEmail ? userNameOrEmail : "",
     isEmail ? userNameOrEmail : "",
   ]);
-  // TODO: làm nốt
+  // TODO: chưa làm xong khỗi phục password
 }
 
-async function getTokenSGU(userId) {
-  const sql = "SELECT (access_token) FROM token_table WHERE id=?;"
-
-  const [err, result, fields] = await query(sql, [
-    userId
-  ])
-
-
-  return [err, result]
+async function updateSlot(id_to_hoc, dk, cp) {
+  // TODO updateSlot
+  console.log("updateSlot")
 }
 
-async function setTokenSGU(userId, token) {
-  const sql = "INSERT INTO token_table(id, access_token) VALUES (?, ?) ON DUPLICATE KEY UPDATE access_token=?;"
+async function getSlot(id_to_hoc) {
 
-  const [err, result, fields] = await query(sql, [
-    userId, token, token
-  ])
-
-  return [err, result];
 }
 
 module.exports = {
@@ -391,7 +379,5 @@ module.exports = {
   getInviteId,
   inviteId2TkbId,
   deleteInviteByTkbId,
-  addUserToTkb,
-  getTokenSGU,
-  setTokenSGU
+  addUserToTkb
 };

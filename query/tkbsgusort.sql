@@ -57,3 +57,9 @@ CREATE TABLE IF NOT EXISTS token_table(
   id VARCHAR(48) PRIMARY KEY,
   access_token TEXT(1000)
 )
+
+CREATE TABLE IF NOT EXISTS slot_hoc_phan (
+  id_to_hoc VARCHAR(21) PRIMARY KEY,
+  sl_cp INT,
+  sl_dk INT
+)

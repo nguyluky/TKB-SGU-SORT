@@ -321,70 +321,7 @@ async function forgetPassword(req, res) {
 
 }
 
-
-/**
- *  
- * @param {request} req 
- * @param {response} res 
- */
-async function getToken(req, res) {
-    const token = req.session.token;
-
-    const [err, userId] = await mysqlService.token2userId(token);
-
-    if (err) {
-        createResponse(res, errCode.SERVER_ERR);
-        return
-    }
-
-    if (!userId) {
-        createResponse(res, errCode.NOLOGIN);
-        return
-    }
-
-    const [err1, SGUtoken] = await mysqlService.getTokenSGU(userId)
-
-    if (err1) {
-        createResponse(res, errCode.SERVER_ERR);
-        return
-    }
-
-    createResponse(res, null, SGUtoken[0])
-}
-
-/**
- *  
- * @param {request} req 
- * @param {response} res 
- */
-async function setToken(req, res) {
-    const token = req.session.token;
-
-    const [err, userId] = await mysqlService.token2userId(token);
-
-    if (err) {
-        createResponse(res, errCode.SERVER_ERR);
-        return
-    }
-
-    if (!userId) {
-        createResponse(res, errCode.NOLOGIN);
-        return
-    }
-
-
-    const { token: newToken } = req.body;
-
-
-    const [err1, result] = await mysqlService.setTokenSGU(userId, newToken)
-
-    if (err1) {
-        createResponse(res, errCode.SERVER_ERR);
-        return
-    }
-
-    createResponse(res, null, null);
-}
+// TODO add update slot
 
 module.exports = {
     getDsHocPhan,
@@ -397,7 +334,5 @@ module.exports = {
     updateTkb,
     getTkb,
     checkUserNameAlreadyExists,
-    getInviteLink,
-    getToken,
-    setToken
+    getInviteLink
 }

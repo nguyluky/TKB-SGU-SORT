@@ -96,12 +96,11 @@ function handleErrCheck(ele, getErr) {
     listElementCheck.push([ele, getErr])
 
     async function handleEvent(event) {
-        var value = event.target.value;
 
         if (getErr instanceof AsyncFunction) {
-            var mess = await getErr(value)
+            var mess = await getErr(event.target)
         }
-        else var mess = getErr(value)
+        else var mess = getErr(event.target)
 
         if (mess) {
             showErr(ele, mess);
@@ -113,6 +112,7 @@ function handleErrCheck(ele, getErr) {
 
     ele.addEventListener('keyup', handleEvent)
     ele.addEventListener('focusout', handleEvent)
+    ele.addEventListener('focusin', handleEvent)
 }
 
 async function checkAll() {
@@ -120,12 +120,12 @@ async function checkAll() {
 
 
     async function checkErrasync([ele, getErr]) {
-        const value = ele.value;
+        // const value = ele.value;
 
         if (getErr instanceof AsyncFunction) {
-            var mess = await getErr(value)
+            var mess = await getErr(ele)
         }
-        else var mess = getErr(value)
+        else var mess = getErr(ele)
 
         if (mess) {
             showErr(ele, mess)
@@ -142,7 +142,9 @@ async function checkAll() {
 }
 
 
-async function checkValidName(userName) {
+async function checkValidName(target) {
+
+    var userName = target.value
 
     const return_model = {
         HAVE_WHILL_SPACE: "Không được có khoản trắng.",
@@ -158,7 +160,10 @@ async function checkValidName(userName) {
 
 }
 
-async function checkValidEmail(email) {
+async function checkValidEmail(target) {
+
+    var email = target.value
+
     const return_model = {
         EMAIL_INVALID: "Email không hợp lệ",
         NO_INPUT: "Không được để chống",
@@ -175,7 +180,8 @@ async function checkValidEmail(email) {
 
 }
 
-async function checkValidPassword2(pass) {
+async function checkValidPassword2(target) {
+    var pass = target.value
     const pass1 = document.getElementById('password').value
 
     if (pass == "") return "Không được để chống"
@@ -184,9 +190,10 @@ async function checkValidPassword2(pass) {
 
 /**
  * 
- * @param {string} pass 
+ * @param {EventListener} event
  */
-async function checkValidPassword(pass) {
+async function checkValidPassword(target) {
+    var pass = target.value
     const return_model = {
         HAVE_SPACE: "Không được có khoản trắng",
         NGAN: "Quá nắng"
@@ -214,9 +221,9 @@ async function handleSignUpClick(event) {
     const khoa = document.getElementById('khoa').getAttribute('data_id')
     const lop = document.getElementById('lop').getAttribute('data_id')
 
-    console.log(userName ,password ,email ,fullName ,mssv ,khoa ,lop)
+    console.log(userName, password, email, fullName, mssv, khoa, lop)
     const data = await sendCreateAccount(userName, password, email, fullName, mssv, khoa, lop)
-    
+
     if (data.success) {
         location.pathname = "/sign_up/otp"
         return
@@ -227,13 +234,19 @@ async function handleSignUpClick(event) {
 
 }
 
+async function chekcMSSV(target) {
+    // console.log(event)
+    if (target.value.length > 10)
+        target.value = target.value.substring(0, 10)
+}
+
 /**
  * 
  * @param {Element} input 
  * @param {Array<[string, string]>} data   
  */
 function createDropDown(input, data) {
-    
+
     var Node12;
     var Node1111;
     var popup;
@@ -243,7 +256,7 @@ function createDropDown(input, data) {
             if (element.textContent.toLowerCase().includes(value.toLowerCase())) {
                 element.style.display = null
             }
-            else 
+            else
                 element.style.display = 'none'
         })
     }
@@ -251,7 +264,7 @@ function createDropDown(input, data) {
     function hidePopup(event) {
         console.log('ok2')
         popup.classList.remove('show');
-        document.body.removeEventListener('click' , hidePopup)
+        document.body.removeEventListener('click', hidePopup)
     }
 
     function setValue(id, value) {
@@ -306,12 +319,12 @@ function createDropDown(input, data) {
         Node12.setAttribute("class", "view");
         Node1.appendChild(Node12);
 
-        data.forEach(({id, display_name}) => {
+        data.forEach(({ id, display_name }) => {
             var Node121 = document.createElement("div");
             Node121.setAttribute("class", "item");
 
             if (display_name.includes('-')) display_name = display_name.split('-')[1];
-            else if (display_name.includes('(ngành)')) display_name = display_name.replaceAll("(ngành) " , '')
+            else if (display_name.includes('(ngành)')) display_name = display_name.replaceAll("(ngành) ", '')
             display_name = display_name + " - " + id
             Node121.textContent = display_name
             Node121.title = display_name
@@ -319,7 +332,7 @@ function createDropDown(input, data) {
             Node121.onclick = (event) => {
                 setValue(id, display_name)
                 popup.classList.remove('show');
-                document.removeEventListener('click' , hidePopup)
+                document.removeEventListener('click', hidePopup)
                 event.preventDefault()
             }
             Node12.appendChild(Node121);
@@ -328,17 +341,12 @@ function createDropDown(input, data) {
         return Node1
     }
 
-  
+
     popup = createElement(data)
     input.parentNode.appendChild(popup)
     input.addEventListener('click', showPopup)
 }
 
-
-handleErrCheck(document.getElementById("user-name"), checkValidName)
-handleErrCheck(document.getElementById("email"), checkValidEmail)
-handleErrCheck(document.getElementById("password"), checkValidPassword)
-handleErrCheck(document.getElementById("password-2"), checkValidPassword2)
 
 async function getDsKhoa() {
 
@@ -352,10 +360,9 @@ async function getDsKhoa() {
         return
     }
 
-    createDropDown(document.getElementById('khoa'),json_data.data)
+    createDropDown(document.getElementById('khoa'), json_data.data)
 }
 
-getDsKhoa()
 
 
 
@@ -371,10 +378,9 @@ async function getDsLop() {
         return
     }
 
-    createDropDown(document.getElementById('lop'),json_data.data)
+    createDropDown(document.getElementById('lop'), json_data.data)
 }
 
-getDsLop()
 
 /**
  * 
@@ -403,6 +409,18 @@ function showPasswordHandel(ele) {
     })
 }
 
+
+// ===============================================
+//                         RUN
+// ===============================================
+getDsLop()
+getDsKhoa()
+
+handleErrCheck(document.getElementById("user-name"), checkValidName)
+handleErrCheck(document.getElementById("email"), checkValidEmail)
+handleErrCheck(document.getElementById("password"), checkValidPassword)
+handleErrCheck(document.getElementById("password-2"), checkValidPassword2)
+handleErrCheck(document.getElementById('mssv'), chekcMSSV)
 
 showPasswordHandel(document.getElementById('password-2'))
 showPasswordHandel(document.getElementById('password'))

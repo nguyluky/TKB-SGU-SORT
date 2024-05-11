@@ -652,7 +652,7 @@ function updateSlot() {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(id_to_hocs)
+		body: JSON.stringify(id_to_hocs.flat())
 	}).then(async resp => {
 		var data = await resp.json()
 		data.data.forEach(({ id_to_hoc, sl_cp, sl_dk }) => {

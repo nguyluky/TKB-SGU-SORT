@@ -137,4 +137,12 @@ test.*
 
 build/*
 
+bot/lib
 bot/lib/*
+
+bot/bin
+bot/bin/*
+bot/include
+bot/include/*
+bot/lib64
+bot/lib64/*

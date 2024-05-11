@@ -13,7 +13,7 @@ mydb = mysql.connector.connect(
 async def getValue():
     token = None
     with open('token.txt') as file:
-        token = file.read()
+        token = file.read().replace('\n', '').replace('\t', '')
     
 
     a = SGUAPI.SguAPI(token=token)

@@ -40,6 +40,7 @@ async function query(sql, values) {
         return [null, result, fields];
     }
     catch (err) {
+        console.log(err)
         return [err, [], []]
     }
 }

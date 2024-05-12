@@ -21,15 +21,15 @@ async function lignOut(req, res) {
  */
 async function login(req, res) {
 
-    const {user: userName, password} = req.body;
-    
+    const { user: userName, password } = req.body;
+
     if (!userName || !password) {
         createResponse(res, false, "bad req")
         return
     }
 
     const [err, user] = await mysqlService.login(userName, password)
-    
+
     if (err) {
         createResponse(res, false, "lỗi server")
         return
@@ -46,7 +46,7 @@ async function login(req, res) {
     const [err1, token] = await mysqlService.refreshToken(userId);
 
     if (err1) {
-        res.status(500).send()
+        createResponse(res, false, "lỗi server")
         return
     }
 

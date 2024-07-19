@@ -1,3 +1,7 @@
+
+# Chuyển qua repositorie mới
+https://github.com/nguyluky/TKB-SGU-UI
+
 # Thời Khóa Biểu Sắp Xếp
 
 đây là dự án lớn nhất được đầu tự và tốn thời gian nhất của tôi.
